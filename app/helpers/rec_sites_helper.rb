@@ -1,0 +1,2 @@
+module RecSitesHelper
+end
