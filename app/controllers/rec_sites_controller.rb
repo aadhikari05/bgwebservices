@@ -1,6 +1,6 @@
 require 'QueryHelper/StructureQuery'
 require 'rexml/document'
-
+  
 class RecSitesController < ApplicationController
 include REXML
 
@@ -9,8 +9,8 @@ include REXML
           @footer= '</recommended_site_search>'
           keywords = params[:id]
 	     string=''
-	     @books = RecommendedSiteCategory.find_by_sql(RecommendedSiteQuery.getKeywordsQuery(keywords))
-	     @books.each do |c|
+	     @queryResults = RecommendedSiteCategory.find_by_sql(RecommendedSiteQuery.getKeywordsQuery(keywords))
+	     @queryResults.each do |c|
 		  string = string+<<EOF      
 		       <recommended_site recType="keywords">
 		       <title>#{c.title}</title>
@@ -23,4 +23,6 @@ EOF
           @doc = Document.new @header+string+@footer
           render :xml => @doc
       end
+
+	def 
 end
