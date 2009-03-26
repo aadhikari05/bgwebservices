@@ -24,5 +24,6 @@ EOF
           render :xml => @doc
       end
 
-	def 
+	def features
+	end
 end
