@@ -1,436 +1,89 @@
-# Logfile created on Fri Mar 27 14:52:09 -0400 2009
+# Logfile created on Mon Mar 30 17:36:36 -0400 2009
 
-Processing RecSitesController#features (for 127.0.0.1 at 2009-03-27 14:52:27) [GET]
-  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
-SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
-  Parameters: {"name"=>"bankruptcy", "action"=>"features", "id"=>"keywords", "controller"=>"rec_sites"}
-  [4;36;1mSQL (0.000280)[0m   [0;1mSET NAMES 'utf8'[0m
-  [4;35;1mSQL (0.008655)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
-  [4;36;1mRecommendedSiteCategory Load (0.002424)[0m   [0;1mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
-feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r,feature_recommended_site_keywords kk
-where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where keywords='bankruptcy') and
-k.category_id =r.id and k.id in (select feature_recommended_site_id from feature_recommended_site where feature_id in (select feature_id from zipcodes where zip='keywords')
-and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id and
-kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='bankruptcy' order by k.orders[0m
-Completed in 0.09001 (11 reqs/sec) | Rendering: 0.00341 (3%) | DB: 0.01136 (12%) | 200 OK [http://localhost/rec_sites/keywords/bankruptcy]
+Processing ApplicationController#index (for 127.0.0.1 at 2009-03-30 17:37:19) [GET]
+  Session ID: 2933860822c1afec82da13ed09e39574
+  Parameters: {}
 
 
-Processing RecSitesController#features (for 127.0.0.1 at 2009-03-27 14:54:57) [GET]
-  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
-SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
-  Parameters: {"name"=>"ebay", "action"=>"features", "id"=>"keywords", "controller"=>"rec_sites"}
-  [4;36;1mSQL (0.000259)[0m   [0;1mSET NAMES 'utf8'[0m
-  [4;35;1mSQL (0.000205)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
-  [4;36;1mRecommendedSiteCategory Load (0.034477)[0m   [0;1mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
-feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r,feature_recommended_site_keywords kk
-where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where keywords='ebay') and
-k.category_id =r.id and k.id in (select feature_recommended_site_id from feature_recommended_site where feature_id in (select feature_id from zipcodes where zip='keywords')
-and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id and
-kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='ebay' order by k.orders[0m
-Completed in 0.07241 (13 reqs/sec) | Rendering: 0.00281 (3%) | DB: 0.03494 (48%) | 200 OK [http://localhost/rec_sites/keywords/ebay]
+ActionController::RoutingError (No route matches "/rec_site/keywords/bankruptcy" with {:method=>:get}):
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/routing/recognition_optimisation.rb:67:in `recognize_path'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/routing/route_set.rb:384:in `recognize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:148:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:76:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:74:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel.rb:159:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel.rb:158:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel.rb:158:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel.rb:285:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel.rb:285:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel.rb:268:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel.rb:268:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel.rb:268:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/configurator.rb:282:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/configurator.rb:281:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/configurator.rb:281:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:128:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/command.rb:212:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:281
+    /usr/bin/mongrel_rails:19:in `load'
+    /usr/bin/mongrel_rails:19
+
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/templates/rescues/layout.erb (not_found)
 
 
-Processing RecSitesController#features (for 127.0.0.1 at 2009-03-27 14:57:17) [GET]
-  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
-SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
-  Parameters: {"name"=>"ebay", "action"=>"features", "id"=>"keywords", "controller"=>"rec_sites"}
-  [4;36;1mSQL (0.000250)[0m   [0;1mSET NAMES 'utf8'[0m
-  [4;35;1mSQL (0.000240)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
-  [4;36;1mRecommendedSiteCategory Load (0.000768)[0m   [0;1mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
-feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r,feature_recommended_site_keywords kk
-where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where keywords='ebay') and
-k.category_id =r.id and k.id in (select feature_recommended_site_id from feature_recommended_site where feature_id in (select feature_id from zipcodes where zip='keywords')
-and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id and
-kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='ebay' order by k.orders[0m
-Completed in 0.07108 (14 reqs/sec) | Rendering: 0.02444 (34%) | DB: 0.00126 (1%) | 200 OK [http://localhost/rec_sites/keywords/ebay]
-
-
-Processing RecSitesController#features (for 127.0.0.1 at 2009-03-27 14:59:24) [GET]
-  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
-SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
-  Parameters: {"name"=>"ebay", "action"=>"features", "id"=>"keywords", "controller"=>"rec_sites"}
-  [4;36;1mSQL (0.000235)[0m   [0;1mSET NAMES 'utf8'[0m
-  [4;35;1mSQL (0.000231)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
-  [4;36;1mRecommendedSiteCategory Load (0.000860)[0m   [0;1mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
-feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r,feature_recommended_site_keywords kk
-where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where keywords='ebay') and
-k.category_id =r.id and k.id in (select feature_recommended_site_id from feature_recommended_site where feature_id in (select feature_id from zipcodes where zip='keywords')
-and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id and
-kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='ebay' order by k.orders[0m
-Completed in 0.06281 (15 reqs/sec) | Rendering: 0.00296 (4%) | DB: 0.00133 (2%) | 200 OK [http://localhost/rec_sites/keywords/ebay]
-
-
-Processing RecSitesController#features (for 127.0.0.1 at 2009-03-27 14:59:25) [GET]
-  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
-SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
-  Parameters: {"name"=>"ebay", "action"=>"features", "id"=>"keywords", "controller"=>"rec_sites"}
-  [4;35;1mRecommendedSiteCategory Load (0.000860)[0m   [0mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
-feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r,feature_recommended_site_keywords kk
-where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where keywords='ebay') and
-k.category_id =r.id and k.id in (select feature_recommended_site_id from feature_recommended_site where feature_id in (select feature_id from zipcodes where zip='keywords')
-and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id and
-kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='ebay' order by k.orders[0m
-Completed in 0.13275 (7 reqs/sec) | Rendering: 0.01771 (13%) | DB: 0.00086 (0%) | 200 OK [http://localhost/rec_sites/keywords/ebay]
-
-
-Processing RecSitesController#keywords (for 127.0.0.1 at 2009-03-27 15:00:21) [GET]
-  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
-SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
-  Parameters: {"action"=>"keywords", "id"=>"ebay", "controller"=>"rec_sites"}
-  [4;36;1mSQL (0.009208)[0m   [0;1mSET NAMES 'utf8'[0m
-  [4;35;1mSQL (0.000293)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
-  [4;36;1mRecommendedSiteCategory Load (0.002125)[0m   [0;1mselect k.id,k.orders,kk.keywords, k.master_term, k.title, k.description, r.name category, k.url from keyword_recommended_sites k, recommended_site_categories r, keyword_recommended_site_keywords kk where k.id in (select keyword_recommended_site_id from keyword_recommended_site_keywords where keywords='ebay') and k.category_id=r.id and kk.keyword_recommended_site_id=k.id and kk.keywords='ebay' order by k.orders[0m
-  [4;35;1mRecommendedSiteCategory Columns (0.001979)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
-Completed in 0.08949 (11 reqs/sec) | Rendering: 0.00384 (4%) | DB: 0.01361 (15%) | 200 OK [http://localhost/rec_sites/keywords/ebay]
-
-
-Processing RecSitesController#keywords (for 127.0.0.1 at 2009-03-27 15:01:01) [GET]
+Processing RecSitesController#keywords (for 127.0.0.1 at 2009-03-30 17:37:31) [GET]
   Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
 SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
   Parameters: {"action"=>"keywords", "id"=>"bankruptcy", "controller"=>"rec_sites"}
-  [4;36;1mSQL (0.000255)[0m   [0;1mSET NAMES 'utf8'[0m
-  [4;35;1mSQL (0.000231)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
-  [4;36;1mRecommendedSiteCategory Load (0.011008)[0m   [0;1mselect k.id,k.orders,kk.keywords, k.master_term, k.title, k.description, r.name category, k.url from keyword_recommended_sites k, recommended_site_categories r, keyword_recommended_site_keywords kk where k.id in (select keyword_recommended_site_id from keyword_recommended_site_keywords where keywords='bankruptcy') and k.category_id=r.id and kk.keyword_recommended_site_id=k.id and kk.keywords='bankruptcy' order by k.orders[0m
-  [4;35;1mRecommendedSiteCategory Columns (0.005917)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
-Completed in 0.10891 (9 reqs/sec) | Rendering: 0.00310 (2%) | DB: 0.01741 (15%) | 200 OK [http://localhost/rec_sites/keywords/bankruptcy]
+WARNING: You're using the Ruby-based MySQL library that ships with Rails. This library is not suited for production. Please install the C-based MySQL library instead (gem install mysql).
+  [4;36;1mSQL (0.000169)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000143)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mRecommendedSiteCategory Load (0.022057)[0m   [0;1mselect k.id,k.orders,kk.keywords, k.master_term, k.title, k.description, r.name category, k.url from keyword_recommended_sites k, recommended_site_categories r, keyword_recommended_site_keywords kk where k.id in (select keyword_recommended_site_id from keyword_recommended_site_keywords where keywords='bankruptcy') and k.category_id=r.id and kk.keyword_recommended_site_id=k.id and kk.keywords='bankruptcy' order by k.orders[0m
+  [4;35;1mRecommendedSiteCategory Columns (0.001911)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
+Completed in 0.03577 (27 reqs/sec) | Rendering: 0.00181 (5%) | DB: 0.02428 (67%) | 200 OK [http://localhost/rec_sites/keywords/bankruptcy]
 
 
-Processing RecSitesController#keywords (for 127.0.0.1 at 2009-03-27 16:21:15) [GET]
-  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
-SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+Processing RecSitesController#keywords (for 127.0.0.1 at 2009-03-31 14:28:30) [GET]
+  Session ID: 06bf6ef3b81d6740c0b0a6bf81c71352
   Parameters: {"action"=>"keywords", "id"=>"bankruptcy", "controller"=>"rec_sites"}
-  [4;36;1mSQL (0.000860)[0m   [0;1mSET NAMES 'utf8'[0m
-  [4;35;1mSQL (0.000468)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+WARNING: You're using the Ruby-based MySQL library that ships with Rails. This library is not suited for production. Please install the C-based MySQL library instead (gem install mysql).
+  [4;36;1mSQL (0.013986)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000327)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mRecommendedSiteCategory Load (0.069879)[0m   [0;1mselect k.id,k.orders,kk.keywords, k.master_term, k.title, k.description, r.name category, k.url from keyword_recommended_sites k, recommended_site_categories r, keyword_recommended_site_keywords kk where k.id in (select keyword_recommended_site_id from keyword_recommended_site_keywords where keywords='bankruptcy') and k.category_id=r.id and kk.keyword_recommended_site_id=k.id and kk.keywords='bankruptcy' order by k.orders[0m
+  [4;35;1mRecommendedSiteCategory Columns (0.002182)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
+Completed in 0.08496 (11 reqs/sec) | Rendering: 0.00219 (2%) | DB: 0.08637 (101%) | 200 OK [http://localhost/rec_sites/keywords/bankruptcy]
 
 
-ArgumentError (wrong number of arguments (2 for 1)):
-    /app/controllers/rec_sites_controller.rb:17:in `getKeywordsQuery'
-    /app/controllers/rec_sites_controller.rb:17:in `keywords'
-    /vendor/rails/actionpack/lib/action_controller/base.rb:1162:in `send'
-    /vendor/rails/actionpack/lib/action_controller/base.rb:1162:in `perform_action_without_filters'
-    /vendor/rails/actionpack/lib/action_controller/filters.rb:580:in `call_filters'
-    /vendor/rails/actionpack/lib/action_controller/filters.rb:573:in `perform_action_without_benchmark'
-    /vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
-    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
-    /vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
-    /vendor/rails/actionpack/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
-    /vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
-    /vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
-    /vendor/rails/activerecord/lib/active_record/query_cache.rb:8:in `cache'
-    /vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
-    /vendor/rails/actionpack/lib/action_controller/base.rb:529:in `send'
-    /vendor/rails/actionpack/lib/action_controller/base.rb:529:in `process_without_filters'
-    /vendor/rails/actionpack/lib/action_controller/filters.rb:569:in `process_without_session_management_support'
-    /vendor/rails/actionpack/lib/action_controller/session_management.rb:130:in `process'
-    /vendor/rails/actionpack/lib/action_controller/base.rb:389:in `process'
-    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:149:in `handle_request'
-    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:107:in `dispatch'
-    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `synchronize'
-    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `dispatch'
-    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
-    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:35:in `dispatch'
-    /usr/local/lib/site_ruby/1.8/mongrel/rails.rb:76:in `process'
-    /usr/local/lib/site_ruby/1.8/mongrel/rails.rb:74:in `synchronize'
-    /usr/local/lib/site_ruby/1.8/mongrel/rails.rb:74:in `process'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:159:in `process_client'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:158:in `each'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:158:in `process_client'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:285:in `run'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:285:in `initialize'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:285:in `new'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:285:in `run'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:268:in `initialize'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:268:in `new'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:268:in `run'
-    /usr/local/lib/site_ruby/1.8/mongrel/configurator.rb:282:in `run'
-    /usr/local/lib/site_ruby/1.8/mongrel/configurator.rb:281:in `each'
-    /usr/local/lib/site_ruby/1.8/mongrel/configurator.rb:281:in `run'
-    /usr/bin/mongrel_rails:129:in `run'
-    /usr/local/lib/site_ruby/1.8/mongrel/command.rb:212:in `run'
-    /usr/bin/mongrel_rails:282
-
-Rendering /home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
-
-
-Processing RecSitesController#keywords (for 127.0.0.1 at 2009-03-27 16:21:57) [GET]
-  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
-SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
-  Parameters: {"action"=>"keywords", "id"=>"bankruptcy", "controller"=>"rec_sites"}
-  [4;36;1mSQL (0.000279)[0m   [0;1mSET NAMES 'utf8'[0m
-  [4;35;1mSQL (0.000256)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
-
-
-ArgumentError (wrong number of arguments (2 for 1)):
-    /app/controllers/rec_sites_controller.rb:17:in `find_by_sql'
-    /app/controllers/rec_sites_controller.rb:17:in `keywords'
-    /vendor/rails/actionpack/lib/action_controller/base.rb:1162:in `send'
-    /vendor/rails/actionpack/lib/action_controller/base.rb:1162:in `perform_action_without_filters'
-    /vendor/rails/actionpack/lib/action_controller/filters.rb:580:in `call_filters'
-    /vendor/rails/actionpack/lib/action_controller/filters.rb:573:in `perform_action_without_benchmark'
-    /vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
-    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
-    /vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
-    /vendor/rails/actionpack/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
-    /vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
-    /vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
-    /vendor/rails/activerecord/lib/active_record/query_cache.rb:8:in `cache'
-    /vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
-    /vendor/rails/actionpack/lib/action_controller/base.rb:529:in `send'
-    /vendor/rails/actionpack/lib/action_controller/base.rb:529:in `process_without_filters'
-    /vendor/rails/actionpack/lib/action_controller/filters.rb:569:in `process_without_session_management_support'
-    /vendor/rails/actionpack/lib/action_controller/session_management.rb:130:in `process'
-    /vendor/rails/actionpack/lib/action_controller/base.rb:389:in `process'
-    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:149:in `handle_request'
-    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:107:in `dispatch'
-    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `synchronize'
-    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `dispatch'
-    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
-    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:35:in `dispatch'
-    /usr/local/lib/site_ruby/1.8/mongrel/rails.rb:76:in `process'
-    /usr/local/lib/site_ruby/1.8/mongrel/rails.rb:74:in `synchronize'
-    /usr/local/lib/site_ruby/1.8/mongrel/rails.rb:74:in `process'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:159:in `process_client'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:158:in `each'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:158:in `process_client'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:285:in `run'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:285:in `initialize'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:285:in `new'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:285:in `run'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:268:in `initialize'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:268:in `new'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:268:in `run'
-    /usr/local/lib/site_ruby/1.8/mongrel/configurator.rb:282:in `run'
-    /usr/local/lib/site_ruby/1.8/mongrel/configurator.rb:281:in `each'
-    /usr/local/lib/site_ruby/1.8/mongrel/configurator.rb:281:in `run'
-    /usr/bin/mongrel_rails:129:in `run'
-    /usr/local/lib/site_ruby/1.8/mongrel/command.rb:212:in `run'
-    /usr/bin/mongrel_rails:282
-
-Rendering /home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
-
-
-Processing ApplicationController#keywords (for 127.0.0.1 at 2009-03-27 16:23:20) [GET]
-  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
-SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
-  Parameters: {"action"=>"keywords", "id"=>"bankruptcy", "controller"=>"rec_sites"}
-
-
-SyntaxError (/home/schoe/rubyprograms/bgwebservices/app/controllers/rec_sites_controller.rb:18: syntax error, unexpected tIVAR, expecting ')'
-          @doc = RecommendedSiteXML.getRecom...
-              ^):
-    /vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:215:in `load_without_new_constant_marking'
-    /vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:215:in `load_file'
-    /vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:354:in `new_constants_in'
-    /vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:214:in `load_file'
-    /vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:95:in `require_or_load'
-    /vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:260:in `load_missing_constant'
-    /vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:467:in `const_missing'
-    /vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:479:in `const_missing'
-    /vendor/rails/activerecord/lib/../../activesupport/lib/active_support/inflector.rb:283:in `constantize'
-    /vendor/rails/activerecord/lib/../../activesupport/lib/active_support/core_ext/string/inflections.rb:143:in `constantize'
-    /vendor/rails/actionpack/lib/action_controller/routing/route_set.rb:386:in `recognize'
-    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:148:in `handle_request'
-    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:107:in `dispatch'
-    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `synchronize'
-    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `dispatch'
-    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
-    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:35:in `dispatch'
-    /usr/local/lib/site_ruby/1.8/mongrel/rails.rb:76:in `process'
-    /usr/local/lib/site_ruby/1.8/mongrel/rails.rb:74:in `synchronize'
-    /usr/local/lib/site_ruby/1.8/mongrel/rails.rb:74:in `process'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:159:in `process_client'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:158:in `each'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:158:in `process_client'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:285:in `run'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:285:in `initialize'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:285:in `new'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:285:in `run'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:268:in `initialize'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:268:in `new'
-    /usr/local/lib/site_ruby/1.8/mongrel.rb:268:in `run'
-    /usr/local/lib/site_ruby/1.8/mongrel/configurator.rb:282:in `run'
-    /usr/local/lib/site_ruby/1.8/mongrel/configurator.rb:281:in `each'
-    /usr/local/lib/site_ruby/1.8/mongrel/configurator.rb:281:in `run'
-    /usr/bin/mongrel_rails:129:in `run'
-    /usr/local/lib/site_ruby/1.8/mongrel/command.rb:212:in `run'
-    /usr/bin/mongrel_rails:282
-
-Rendering /home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
-
-
-Processing RecSitesController#keywords (for 127.0.0.1 at 2009-03-27 16:24:50) [GET]
-  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
-SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
-  Parameters: {"action"=>"keywords", "id"=>"bankruptcy", "controller"=>"rec_sites"}
-  [4;36;1mSQL (0.000336)[0m   [0;1mSET NAMES 'utf8'[0m
-  [4;35;1mSQL (0.000204)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
-  [4;36;1mRecommendedSiteCategory Load (0.001121)[0m   [0;1mselect k.id,k.orders,kk.keywords, k.master_term, k.title, k.description, r.name category, k.url from keyword_recommended_sites k, recommended_site_categories r, keyword_recommended_site_keywords kk where k.id in (select keyword_recommended_site_id from keyword_recommended_site_keywords where keywords='bankruptcy') and k.category_id=r.id and kk.keyword_recommended_site_id=k.id and kk.keywords='bankruptcy' order by k.orders[0m
-  [4;35;1mRecommendedSiteCategory Columns (0.014684)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
-Completed in 0.10621 (9 reqs/sec) | Rendering: 0.00352 (3%) | DB: 0.01635 (15%) | 200 OK [http://localhost/rec_sites/keywords/bankruptcy]
-
-
-Processing RecSitesController#keywords (for 127.0.0.1 at 2009-03-27 16:29:03) [GET]
-  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
-SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
-  Parameters: {"action"=>"keywords", "id"=>"bankruptcy", "controller"=>"rec_sites"}
-  [4;36;1mSQL (0.000584)[0m   [0;1mSET NAMES 'utf8'[0m
-  [4;35;1mSQL (0.000759)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
-  [4;36;1mRecommendedSiteCategory Load (0.001524)[0m   [0;1mselect k.id,k.orders,kk.keywords, k.master_term, k.title, k.description, r.name category, k.url from keyword_recommended_sites k, recommended_site_categories r, keyword_recommended_site_keywords kk where k.id in (select keyword_recommended_site_id from keyword_recommended_site_keywords where keywords='bankruptcy') and k.category_id=r.id and kk.keyword_recommended_site_id=k.id and kk.keywords='bankruptcy' order by k.orders[0m
-  [4;35;1mRecommendedSiteCategory Columns (0.003743)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
-Completed in 0.11076 (9 reqs/sec) | Rendering: 0.00032 (0%) | DB: 0.00661 (5%) | 200 OK [http://localhost/rec_sites/keywords/bankruptcy]
-
-
-Processing RecSitesController#keywords (for 127.0.0.1 at 2009-03-27 16:29:07) [GET]
-  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
-SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
-  Parameters: {"action"=>"keywords", "id"=>"ebay", "controller"=>"rec_sites"}
-  [4;36;1mRecommendedSiteCategory Load (0.009003)[0m   [0;1mselect k.id,k.orders,kk.keywords, k.master_term, k.title, k.description, r.name category, k.url from keyword_recommended_sites k, recommended_site_categories r, keyword_recommended_site_keywords kk where k.id in (select keyword_recommended_site_id from keyword_recommended_site_keywords where keywords='ebay') and k.category_id=r.id and kk.keyword_recommended_site_id=k.id and kk.keywords='ebay' order by k.orders[0m
-  [4;35;1mRecommendedSiteCategory Columns (0.003323)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
-Completed in 0.13412 (7 reqs/sec) | Rendering: 0.00306 (2%) | DB: 0.01233 (9%) | 200 OK [http://localhost/rec_sites/keywords/ebay]
-
-
-Processing RecSitesController#features (for 127.0.0.1 at 2009-03-27 16:29:23) [GET]
-  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
-SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
-  Parameters: {"name"=>"taxes", "action"=>"features", "id"=>"20121", "controller"=>"rec_sites"}
-  [4;36;1mRecommendedSiteCategory Load (0.009196)[0m   [0;1mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
-feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r,feature_recommended_site_keywords kk
-where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where keywords='taxes') and
-k.category_id =r.id and k.id in (select feature_recommended_site_id from feature_recommended_site where feature_id in (select feature_id from zipcodes where zip='20121')
-and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id and
-kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='taxes' order by k.orders[0m
-  [4;35;1mRecommendedSiteCategory Columns (0.005989)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
-Completed in 0.13474 (7 reqs/sec) | Rendering: 0.01489 (11%) | DB: 0.01518 (11%) | 200 OK [http://localhost/rec_sites/20121/taxes]
-
-
-Processing RecSitesController#show (for 127.0.0.1 at 2009-03-27 16:29:32) [GET]
+Processing RecSitesController#show (for 127.0.0.1 at 2009-03-31 14:28:59) [GET]
   Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
 SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
   Parameters: {"action"=>"show", "id"=>"94117", "controller"=>"rec_sites"}
-  [4;36;1mRecommendedSiteCategory Load (0.006099)[0m   [0;1mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
+  [4;36;1mRecommendedSiteCategory Load (0.555964)[0m   [0;1mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
 feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r,feature_recommended_site_keywords kk
 where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where keywords='--GENERAL--') and
 k.category_id =r.id and k.id in (select feature_recommended_site_id from feature_recommended_site where feature_id in (select feature_id from zipcodes where zip='94117')
 and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id and
 kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='--GENERAL--' order by k.orders[0m
-  [4;35;1mRecommendedSiteCategory Columns (0.009371)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
-Completed in 0.13168 (7 reqs/sec) | Rendering: 0.00349 (2%) | DB: 0.01547 (11%) | 200 OK [http://localhost/rec_sites/94117/]
+  [4;35;1mRecommendedSiteCategory Columns (0.002018)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
+Completed in 0.56767 (1 reqs/sec) | Rendering: 0.00189 (0%) | DB: 0.55798 (98%) | 200 OK [http://localhost/rec_sites/94117]
 
 
-Processing RecSitesController#show (for 127.0.0.1 at 2009-03-27 16:29:37) [GET]
-  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
-SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
-  Parameters: {"action"=>"show", "id"=>"94118", "controller"=>"rec_sites"}
-  [4;36;1mRecommendedSiteCategory Load (0.016603)[0m   [0;1mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
-feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r,feature_recommended_site_keywords kk
-where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where keywords='--GENERAL--') and
-k.category_id =r.id and k.id in (select feature_recommended_site_id from feature_recommended_site where feature_id in (select feature_id from zipcodes where zip='94118')
-and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id and
-kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='--GENERAL--' order by k.orders[0m
-  [4;35;1mRecommendedSiteCategory Columns (0.001742)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
-Completed in 0.14705 (6 reqs/sec) | Rendering: 0.01365 (9%) | DB: 0.01835 (12%) | 200 OK [http://localhost/rec_sites/94118/]
-
-
-Processing RecSitesController#show (for 127.0.0.1 at 2009-03-27 16:29:42) [GET]
-  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
-SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
-  Parameters: {"action"=>"show", "id"=>"99118", "controller"=>"rec_sites"}
-  [4;36;1mRecommendedSiteCategory Load (0.011867)[0m   [0;1mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
-feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r,feature_recommended_site_keywords kk
-where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where keywords='--GENERAL--') and
-k.category_id =r.id and k.id in (select feature_recommended_site_id from feature_recommended_site where feature_id in (select feature_id from zipcodes where zip='99118')
-and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id and
-kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='--GENERAL--' order by k.orders[0m
-Completed in 0.14730 (6 reqs/sec) | Rendering: 0.01318 (8%) | DB: 0.01187 (8%) | 200 OK [http://localhost/rec_sites/99118/]
-
-
-Processing RecSitesController#show (for 127.0.0.1 at 2009-03-27 16:31:39) [GET]
-  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
-SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+Processing RecSitesController#show (for 127.0.0.1 at 2009-03-31 15:45:18) [GET]
+  Session ID: 564d43244ef7efe8693aeb8e05a5fbb5
   Parameters: {"action"=>"show", "id"=>"94117", "controller"=>"rec_sites"}
-  [4;35;1mRecommendedSiteCategory Load (0.006051)[0m   [0mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
+  [4;36;1mRecommendedSiteCategory Load (0.002565)[0m   [0;1mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
 feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r,feature_recommended_site_keywords kk
 where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where keywords='--GENERAL--') and
 k.category_id =r.id and k.id in (select feature_recommended_site_id from feature_recommended_site where feature_id in (select feature_id from zipcodes where zip='94117')
 and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id and
 kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='--GENERAL--' order by k.orders[0m
-  [4;36;1mRecommendedSiteCategory Columns (0.001697)[0m   [0;1mSHOW FIELDS FROM `recommended_site_categories`[0m
-Completed in 0.12065 (8 reqs/sec) | Rendering: 0.01337 (11%) | DB: 0.00775 (6%) | 200 OK [http://localhost/rec_sites/94117/]
-
-
-Processing RecSitesController#show (for 127.0.0.1 at 2009-03-30 09:22:35) [GET]
-  Session ID: 72e0e2903e3bea5a7af3b2141bc82bbc
-  Parameters: {"action"=>"show", "id"=>"94117", "controller"=>"rec_sites"}
-  [4;36;1mSQL (0.000848)[0m   [0;1mSET NAMES 'utf8'[0m
-  [4;35;1mSQL (0.000504)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
-  [4;36;1mRecommendedSiteCategory Load (0.162041)[0m   [0;1mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
-feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r,feature_recommended_site_keywords kk
-where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where keywords='--GENERAL--') and
-k.category_id =r.id and k.id in (select feature_recommended_site_id from feature_recommended_site where feature_id in (select feature_id from zipcodes where zip='94117')
-and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id and
-kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='--GENERAL--' order by k.orders[0m
-  [4;35;1mRecommendedSiteCategory Columns (0.018410)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
-Completed in 0.28714 (3 reqs/sec) | Rendering: 0.00347 (1%) | DB: 0.18180 (63%) | 200 OK [http://localhost/rec_sites/94117]
-
-
-Processing RecSitesController#features (for 127.0.0.1 at 2009-03-30 09:22:57) [GET]
-  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
-SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
-  Parameters: {"name"=>"taxes", "action"=>"features", "id"=>"20121", "controller"=>"rec_sites"}
-  [4;36;1mRecommendedSiteCategory Load (0.014993)[0m   [0;1mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
-feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r,feature_recommended_site_keywords kk
-where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where keywords='taxes') and
-k.category_id =r.id and k.id in (select feature_recommended_site_id from feature_recommended_site where feature_id in (select feature_id from zipcodes where zip='20121')
-and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id and
-kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='taxes' order by k.orders[0m
-  [4;35;1mRecommendedSiteCategory Columns (0.007772)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
-Completed in 0.15171 (6 reqs/sec) | Rendering: 0.00486 (3%) | DB: 0.02276 (15%) | 200 OK [http://localhost/rec_sites/20121/taxes]
-
-
-Processing RecSitesController#show (for 127.0.0.1 at 2009-03-30 11:05:48) [GET]
-  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
-SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
-  Parameters: {"action"=>"show", "id"=>"ebay", "controller"=>"rec_sites"}
-  [4;36;1mRecommendedSiteCategory Load (0.028272)[0m   [0;1mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
-feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r,feature_recommended_site_keywords kk
-where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where keywords='--GENERAL--') and
-k.category_id =r.id and k.id in (select feature_recommended_site_id from feature_recommended_site where feature_id in (select feature_id from zipcodes where zip='ebay')
-and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id and
-kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='--GENERAL--' order by k.orders[0m
-Completed in 0.19419 (5 reqs/sec) | Rendering: 0.00157 (0%) | DB: 0.02827 (14%) | 200 OK [http://localhost/rec_sites/ebay]
-
-
-Processing RecSitesController#show (for 127.0.0.1 at 2009-03-30 11:05:57) [GET]
-  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
-SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
-  Parameters: {"action"=>"show", "id"=>"ebay", "controller"=>"rec_sites"}
-  [4;35;1mRecommendedSiteCategory Load (0.000911)[0m   [0mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
-feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r,feature_recommended_site_keywords kk
-where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where keywords='--GENERAL--') and
-k.category_id =r.id and k.id in (select feature_recommended_site_id from feature_recommended_site where feature_id in (select feature_id from zipcodes where zip='ebay')
-and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id and
-kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='--GENERAL--' order by k.orders[0m
-Completed in 0.10490 (9 reqs/sec) | Rendering: 0.00265 (2%) | DB: 0.00091 (0%) | 200 OK [http://localhost/rec_sites/show/ebay]
-
-
-Processing RecSitesController#show (for 127.0.0.1 at 2009-03-30 11:06:17) [GET]
-  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
-SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
-  Parameters: {"action"=>"show", "id"=>"94117", "controller"=>"rec_sites"}
-  [4;36;1mRecommendedSiteCategory Load (0.001422)[0m   [0;1mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
-feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r,feature_recommended_site_keywords kk
-where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where keywords='--GENERAL--') and
-k.category_id =r.id and k.id in (select feature_recommended_site_id from feature_recommended_site where feature_id in (select feature_id from zipcodes where zip='94117')
-and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id and
-kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='--GENERAL--' order by k.orders[0m
-  [4;35;1mRecommendedSiteCategory Columns (0.004418)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
-Completed in 0.14984 (6 reqs/sec) | Rendering: 0.00133 (0%) | DB: 0.00584 (3%) | 200 OK [http://localhost/rec_sites/94117]
-
-
-Processing RecSitesController#keywords (for 127.0.0.1 at 2009-03-30 11:06:38) [GET]
-  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
-SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
-  Parameters: {"action"=>"keywords", "id"=>"bankruptcy", "controller"=>"rec_sites"}
-  [4;36;1mRecommendedSiteCategory Load (0.005707)[0m   [0;1mselect k.id,k.orders,kk.keywords, k.master_term, k.title, k.description, r.name category, k.url from keyword_recommended_sites k, recommended_site_categories r, keyword_recommended_site_keywords kk where k.id in (select keyword_recommended_site_id from keyword_recommended_site_keywords where keywords='bankruptcy') and k.category_id=r.id and kk.keyword_recommended_site_id=k.id and kk.keywords='bankruptcy' order by k.orders[0m
-  [4;35;1mRecommendedSiteCategory Columns (0.003892)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
-Completed in 0.10148 (9 reqs/sec) | Rendering: 0.00311 (3%) | DB: 0.00960 (9%) | 200 OK [http://localhost/rec_sites/keywords/bankruptcy]
+  [4;35;1mRecommendedSiteCategory Columns (0.002126)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
+Completed in 0.01466 (68 reqs/sec) | Rendering: 0.00217 (14%) | DB: 0.00469 (31%) | 200 OK [http://localhost/rec_sites/94117]

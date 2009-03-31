@@ -12,7 +12,7 @@ include REXML
 
 	#http://localhost:3000/rec_sites/keywords/bankruptcy
      def keywords
-          @recType='keywords'
+         @recType='keywords'
           keywords = params[:id]
 	     queryResults = RecommendedSiteCategory.find_by_sql(RecommendedSiteQuery.getKeywordsQuery(keywords))
           @doc = RecommendedSiteXML.getRecommendedSiteXML(queryResults, @recType)
@@ -22,13 +22,12 @@ include REXML
 	#this "show" def might not needed.  Revisit again. 3/30/09 - songchoe. 
      #http://localhost:3000/rec_sites/94117
 	def show
-          @recType='features'
+        @recType='features'
 		zipcode=params[:id]
-          string=''
      	queryResults = RecommendedSiteCategory.find_by_sql(RecommendedSiteQuery.getFeaturedQueryByZipcode(zipcode))
-	     @doc = RecommendedSiteXML.getRecommendedSiteXML(queryResults, @recType)
+	    @doc = RecommendedSiteXML.getRecommendedSiteXML(queryResults, @recType)
           
-          render :xml => @doc
+        render :xml => @doc
      end
 
 	# http://localhost:3000/rec_sites/20121/taxes
@@ -36,10 +35,9 @@ include REXML
      def features
 		zipcode=params[:id]
 		keywords=params[:name]
-          @recType='features'
-          string=''
+        @recType='features'
      	queryResults = RecommendedSiteCategory.find_by_sql(RecommendedSiteQuery.getFeaturedQueryByZipKeywords(keywords,zipcode))
-	     @doc = RecommendedSiteXML.getRecommendedSiteXML(queryResults, @recType)
-          render :xml => @doc
+	    @doc = RecommendedSiteXML.getRecommendedSiteXML(queryResults, @recType)
+        render :xml => @doc
      end
 end
