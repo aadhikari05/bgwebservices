@@ -29,7 +29,8 @@ include REXML
         @recType='features'
 		zipcode=params[:id]
      	queryResults = RecommendedSiteCategory.find_by_sql(RecommendedSiteQuery.getFeaturedQueryByZipcode(zipcode))
-	    @doc = RecommendedSiteXML.getRecommendedSiteXML(queryResults, @recType)
+           @doc = RecommendedSiteXML.getRecommendedSiteXML(queryResults, @recType)
+
           
         render :xml => @doc
      end
