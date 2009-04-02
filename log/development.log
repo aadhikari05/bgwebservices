@@ -261,3 +261,321 @@ kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='
   [4;36;1mRecommendedSiteCategory Columns (0.007884)[0m   [0;1mSHOW FIELDS FROM `recommended_site_categories`[0m
 Completed in 0.02151 (46 reqs/sec) | Rendering: 0.00180 (8%) | DB: 0.01085 (50%) | 200 OK [http://localhost/rec_sites/94117]
 >>>>>>> 355ce37128d4baf5f05326a5dd48d63ec40be578:log/development.log
+
+
+Processing RecSitesController#show (for 127.0.0.1 at 2009-04-02 15:34:10) [GET]
+  Session ID: fd12a6486996fbd882bfe9dd6bd3291e
+  Parameters: {"action"=>"show", "id"=>"94117", "controller"=>"rec_sites"}
+  [4;36;1mSQL (0.190385)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.002401)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mRecommendedSiteCategory Load (1.688193)[0m   [0;1mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
+feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r,feature_recommended_site_keywords kk
+where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where keywords='--GENERAL--') and
+k.category_id =r.id and k.id in (select feature_recommended_site_id from feature_recommended_site where feature_id in (select feature_id from zipcodes where zip='94117')
+and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id and
+kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='--GENERAL--' order by k.orders[0m
+  [4;35;1mRecommendedSiteCategory Columns (0.272188)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
+Completed in 2.09574 (0 reqs/sec) | Rendering: 0.00768 (0%) | DB: 2.15317 (102%) | 200 OK [http://localhost/rec_sites/94117]
+
+
+Processing RecSitesController#show (for 127.0.0.1 at 2009-04-02 15:34:23) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"action"=>"show", "id"=>"ebay", "controller"=>"rec_sites"}
+  [4;36;1mRecommendedSiteCategory Load (0.051679)[0m   [0;1mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
+feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r,feature_recommended_site_keywords kk
+where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where keywords='--GENERAL--') and
+k.category_id =r.id and k.id in (select feature_recommended_site_id from feature_recommended_site where feature_id in (select feature_id from zipcodes where zip='ebay')
+and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id and
+kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='--GENERAL--' order by k.orders[0m
+Completed in 0.14606 (6 reqs/sec) | Rendering: 0.00049 (0%) | DB: 0.05168 (35%) | 200 OK [http://localhost/rec_sites/ebay]
+
+
+Processing RecSitesController#show (for 127.0.0.1 at 2009-04-02 15:37:32) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"action"=>"show", "id"=>"ebay", "controller"=>"rec_sites"}
+  [4;36;1mSQL (0.000366)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000281)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mRecommendedSiteCategory Load (0.000955)[0m   [0;1mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
+feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r,feature_recommended_site_keywords kk
+where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where keywords='--GENERAL--') and
+k.category_id =r.id and k.id in (select feature_recommended_site_id from feature_recommended_site where feature_id in (select feature_id from zipcodes where zip='ebay')
+and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id and
+kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='--GENERAL--' order by k.orders[0m
+Completed in 0.13330 (7 reqs/sec) | Rendering: 0.00919 (6%) | DB: 0.00160 (1%) | 200 OK [http://localhost/rec_sites/ebay]
+
+
+Processing RecSitesController#keywords (for 127.0.0.1 at 2009-04-02 15:38:06) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"action"=>"keywords", "id"=>"bankruptcy", "controller"=>"rec_sites"}
+  [4;35;1mRecommendedSiteCategory Load (0.156746)[0m   [0mselect k.id,k.orders,kk.keywords, k.master_term, k.title, k.description, r.name category, k.url from keyword_recommended_sites k, recommended_site_categories r, keyword_recommended_site_keywords kk where k.id in (select keyword_recommended_site_id from keyword_recommended_site_keywords where keywords='bankruptcy') and k.category_id=r.id and kk.keyword_recommended_site_id=k.id and kk.keywords='bankruptcy' order by k.orders[0m
+  [4;36;1mRecommendedSiteCategory Columns (0.001947)[0m   [0;1mSHOW FIELDS FROM `recommended_site_categories`[0m
+
+
+REXML::ParseException (#<REXML::ParseException: Missing end tag for 'recommended_site_search' (got "recommended_site_searches")
+Line: 
+Position: 
+Last 80 unconsumed characters:
+ 				        </recommended_site_search>>
+/usr/lib/ruby/1.8/rexml/parsers/baseparser.rb:330:in `pull'
+/usr/lib/ruby/1.8/rexml/parsers/treeparser.rb:22:in `parse'
+/usr/lib/ruby/1.8/rexml/document.rb:228:in `build'
+/usr/lib/ruby/1.8/rexml/document.rb:43:in `initialize'
+/home/schoe/rubyprograms/bgwebservices/app/controllers/XmlHelper/StructureXml.rb:22:in `new'
+/home/schoe/rubyprograms/bgwebservices/app/controllers/XmlHelper/StructureXml.rb:22:in `getRecommendedSiteXML'
+/home/schoe/rubyprograms/bgwebservices/app/controllers/rec_sites_controller.rb:21:in `keywords'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/base.rb:1162:in `send'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/base.rb:1162:in `perform_action_without_filters'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/filters.rb:580:in `call_filters'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/filters.rb:573:in `perform_action_without_benchmark'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/activerecord/lib/active_record/query_cache.rb:8:in `cache'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/base.rb:529:in `send'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/base.rb:529:in `process_without_filters'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/filters.rb:569:in `process_without_session_management_support'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/session_management.rb:130:in `process'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/base.rb:389:in `process'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/dispatcher.rb:149:in `handle_request'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/dispatcher.rb:107:in `dispatch'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `synchronize'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `dispatch'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/dispatcher.rb:35:in `dispatch'
+/usr/local/lib/site_ruby/1.8/mongrel/rails.rb:76:in `process'
+/usr/local/lib/site_ruby/1.8/mongrel/rails.rb:74:in `synchronize'
+/usr/local/lib/site_ruby/1.8/mongrel/rails.rb:74:in `process'
+/usr/local/lib/site_ruby/1.8/mongrel.rb:159:in `process_client'
+/usr/local/lib/site_ruby/1.8/mongrel.rb:158:in `each'
+/usr/local/lib/site_ruby/1.8/mongrel.rb:158:in `process_client'
+/usr/local/lib/site_ruby/1.8/mongrel.rb:285:in `run'
+/usr/local/lib/site_ruby/1.8/mongrel.rb:285:in `initialize'
+/usr/local/lib/site_ruby/1.8/mongrel.rb:285:in `new'
+/usr/local/lib/site_ruby/1.8/mongrel.rb:285:in `run'
+/usr/local/lib/site_ruby/1.8/mongrel.rb:268:in `initialize'
+/usr/local/lib/site_ruby/1.8/mongrel.rb:268:in `new'
+/usr/local/lib/site_ruby/1.8/mongrel.rb:268:in `run'
+/usr/local/lib/site_ruby/1.8/mongrel/configurator.rb:282:in `run'
+/usr/local/lib/site_ruby/1.8/mongrel/configurator.rb:281:in `each'
+/usr/local/lib/site_ruby/1.8/mongrel/configurator.rb:281:in `run'
+/usr/bin/mongrel_rails:129:in `run'
+/usr/local/lib/site_ruby/1.8/mongrel/command.rb:212:in `run'
+/usr/bin/mongrel_rails:282
+...
+Missing end tag for 'recommended_site_search' (got "recommended_site_searches")
+Line: 
+Position: 
+Last 80 unconsumed characters:
+ 				        </recommended_site_search>
+Line: 
+Position: 
+Last 80 unconsumed characters:
+ 				        </recommended_site_search>):
+    /usr/lib/ruby/1.8/rexml/parsers/treeparser.rb:92:in `parse'
+    /usr/lib/ruby/1.8/rexml/document.rb:228:in `build'
+    /usr/lib/ruby/1.8/rexml/document.rb:43:in `initialize'
+    /app/controllers/XmlHelper/StructureXml.rb:22:in `new'
+    /app/controllers/XmlHelper/StructureXml.rb:22:in `getRecommendedSiteXML'
+    /app/controllers/rec_sites_controller.rb:21:in `keywords'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:1162:in `send'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:1162:in `perform_action_without_filters'
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:580:in `call_filters'
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:573:in `perform_action_without_benchmark'
+    /vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /vendor/rails/actionpack/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /vendor/rails/activerecord/lib/active_record/query_cache.rb:8:in `cache'
+    /vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:529:in `send'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:529:in `process_without_filters'
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:569:in `process_without_session_management_support'
+    /vendor/rails/actionpack/lib/action_controller/session_management.rb:130:in `process'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:389:in `process'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /usr/local/lib/site_ruby/1.8/mongrel/rails.rb:76:in `process'
+    /usr/local/lib/site_ruby/1.8/mongrel/rails.rb:74:in `synchronize'
+    /usr/local/lib/site_ruby/1.8/mongrel/rails.rb:74:in `process'
+    /usr/local/lib/site_ruby/1.8/mongrel.rb:159:in `process_client'
+    /usr/local/lib/site_ruby/1.8/mongrel.rb:158:in `each'
+    /usr/local/lib/site_ruby/1.8/mongrel.rb:158:in `process_client'
+    /usr/local/lib/site_ruby/1.8/mongrel.rb:285:in `run'
+    /usr/local/lib/site_ruby/1.8/mongrel.rb:285:in `initialize'
+    /usr/local/lib/site_ruby/1.8/mongrel.rb:285:in `new'
+    /usr/local/lib/site_ruby/1.8/mongrel.rb:285:in `run'
+    /usr/local/lib/site_ruby/1.8/mongrel.rb:268:in `initialize'
+    /usr/local/lib/site_ruby/1.8/mongrel.rb:268:in `new'
+    /usr/local/lib/site_ruby/1.8/mongrel.rb:268:in `run'
+    /usr/local/lib/site_ruby/1.8/mongrel/configurator.rb:282:in `run'
+    /usr/local/lib/site_ruby/1.8/mongrel/configurator.rb:281:in `each'
+    /usr/local/lib/site_ruby/1.8/mongrel/configurator.rb:281:in `run'
+    /usr/bin/mongrel_rails:129:in `run'
+    /usr/local/lib/site_ruby/1.8/mongrel/command.rb:212:in `run'
+    /usr/bin/mongrel_rails:282
+
+Rendering /home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing RecSitesController#keywords (for 127.0.0.1 at 2009-04-02 15:38:28) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"action"=>"keywords", "id"=>"bankruptcy", "controller"=>"rec_sites"}
+  [4;36;1mSQL (0.000292)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000280)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mRecommendedSiteCategory Load (0.000891)[0m   [0;1mselect k.id,k.orders,kk.keywords, k.master_term, k.title, k.description, r.name category, k.url from keyword_recommended_sites k, recommended_site_categories r, keyword_recommended_site_keywords kk where k.id in (select keyword_recommended_site_id from keyword_recommended_site_keywords where keywords='bankruptcy') and k.category_id=r.id and kk.keyword_recommended_site_id=k.id and kk.keywords='bankruptcy' order by k.orders[0m
+  [4;35;1mRecommendedSiteCategory Columns (0.001864)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
+
+
+REXML::ParseException (#<REXML::ParseException: Missing end tag for 'recommended_site_searches' (got "recommended_site_search")
+Line: 
+Position: 
+Last 80 unconsumed characters:
+>
+/usr/lib/ruby/1.8/rexml/parsers/baseparser.rb:330:in `pull'
+/usr/lib/ruby/1.8/rexml/parsers/treeparser.rb:22:in `parse'
+/usr/lib/ruby/1.8/rexml/document.rb:228:in `build'
+/usr/lib/ruby/1.8/rexml/document.rb:43:in `initialize'
+/home/schoe/rubyprograms/bgwebservices/app/controllers/XmlHelper/StructureXml.rb:22:in `new'
+/home/schoe/rubyprograms/bgwebservices/app/controllers/XmlHelper/StructureXml.rb:22:in `getRecommendedSiteXML'
+/home/schoe/rubyprograms/bgwebservices/app/controllers/rec_sites_controller.rb:21:in `keywords'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/base.rb:1162:in `send'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/base.rb:1162:in `perform_action_without_filters'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/filters.rb:580:in `call_filters'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/filters.rb:573:in `perform_action_without_benchmark'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/activerecord/lib/active_record/query_cache.rb:8:in `cache'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/base.rb:529:in `send'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/base.rb:529:in `process_without_filters'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/filters.rb:569:in `process_without_session_management_support'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/session_management.rb:130:in `process'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/base.rb:389:in `process'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/dispatcher.rb:149:in `handle_request'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/dispatcher.rb:107:in `dispatch'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `synchronize'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `dispatch'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+/home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/dispatcher.rb:35:in `dispatch'
+/usr/local/lib/site_ruby/1.8/mongrel/rails.rb:76:in `process'
+/usr/local/lib/site_ruby/1.8/mongrel/rails.rb:74:in `synchronize'
+/usr/local/lib/site_ruby/1.8/mongrel/rails.rb:74:in `process'
+/usr/local/lib/site_ruby/1.8/mongrel.rb:159:in `process_client'
+/usr/local/lib/site_ruby/1.8/mongrel.rb:158:in `each'
+/usr/local/lib/site_ruby/1.8/mongrel.rb:158:in `process_client'
+/usr/local/lib/site_ruby/1.8/mongrel.rb:285:in `run'
+/usr/local/lib/site_ruby/1.8/mongrel.rb:285:in `initialize'
+/usr/local/lib/site_ruby/1.8/mongrel.rb:285:in `new'
+/usr/local/lib/site_ruby/1.8/mongrel.rb:285:in `run'
+/usr/local/lib/site_ruby/1.8/mongrel.rb:268:in `initialize'
+/usr/local/lib/site_ruby/1.8/mongrel.rb:268:in `new'
+/usr/local/lib/site_ruby/1.8/mongrel.rb:268:in `run'
+/usr/local/lib/site_ruby/1.8/mongrel/configurator.rb:282:in `run'
+/usr/local/lib/site_ruby/1.8/mongrel/configurator.rb:281:in `each'
+/usr/local/lib/site_ruby/1.8/mongrel/configurator.rb:281:in `run'
+/usr/bin/mongrel_rails:129:in `run'
+/usr/local/lib/site_ruby/1.8/mongrel/command.rb:212:in `run'
+/usr/bin/mongrel_rails:282
+...
+Missing end tag for 'recommended_site_searches' (got "recommended_site_search")
+Line: 
+Position: 
+Last 80 unconsumed characters:
+
+Line: 
+Position: 
+Last 80 unconsumed characters:
+):
+    /usr/lib/ruby/1.8/rexml/parsers/treeparser.rb:92:in `parse'
+    /usr/lib/ruby/1.8/rexml/document.rb:228:in `build'
+    /usr/lib/ruby/1.8/rexml/document.rb:43:in `initialize'
+    /app/controllers/XmlHelper/StructureXml.rb:22:in `new'
+    /app/controllers/XmlHelper/StructureXml.rb:22:in `getRecommendedSiteXML'
+    /app/controllers/rec_sites_controller.rb:21:in `keywords'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:1162:in `send'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:1162:in `perform_action_without_filters'
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:580:in `call_filters'
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:573:in `perform_action_without_benchmark'
+    /vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /vendor/rails/actionpack/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /vendor/rails/actionpack/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /vendor/rails/activerecord/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /vendor/rails/activerecord/lib/active_record/query_cache.rb:8:in `cache'
+    /vendor/rails/actionpack/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:529:in `send'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:529:in `process_without_filters'
+    /vendor/rails/actionpack/lib/action_controller/filters.rb:569:in `process_without_session_management_support'
+    /vendor/rails/actionpack/lib/action_controller/session_management.rb:130:in `process'
+    /vendor/rails/actionpack/lib/action_controller/base.rb:389:in `process'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /vendor/rails/actionpack/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /usr/local/lib/site_ruby/1.8/mongrel/rails.rb:76:in `process'
+    /usr/local/lib/site_ruby/1.8/mongrel/rails.rb:74:in `synchronize'
+    /usr/local/lib/site_ruby/1.8/mongrel/rails.rb:74:in `process'
+    /usr/local/lib/site_ruby/1.8/mongrel.rb:159:in `process_client'
+    /usr/local/lib/site_ruby/1.8/mongrel.rb:158:in `each'
+    /usr/local/lib/site_ruby/1.8/mongrel.rb:158:in `process_client'
+    /usr/local/lib/site_ruby/1.8/mongrel.rb:285:in `run'
+    /usr/local/lib/site_ruby/1.8/mongrel.rb:285:in `initialize'
+    /usr/local/lib/site_ruby/1.8/mongrel.rb:285:in `new'
+    /usr/local/lib/site_ruby/1.8/mongrel.rb:285:in `run'
+    /usr/local/lib/site_ruby/1.8/mongrel.rb:268:in `initialize'
+    /usr/local/lib/site_ruby/1.8/mongrel.rb:268:in `new'
+    /usr/local/lib/site_ruby/1.8/mongrel.rb:268:in `run'
+    /usr/local/lib/site_ruby/1.8/mongrel/configurator.rb:282:in `run'
+    /usr/local/lib/site_ruby/1.8/mongrel/configurator.rb:281:in `each'
+    /usr/local/lib/site_ruby/1.8/mongrel/configurator.rb:281:in `run'
+    /usr/bin/mongrel_rails:129:in `run'
+    /usr/local/lib/site_ruby/1.8/mongrel/command.rb:212:in `run'
+    /usr/bin/mongrel_rails:282
+
+Rendering /home/schoe/rubyprograms/bgwebservices/vendor/rails/actionpack/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing RecSitesController#keywords (for 127.0.0.1 at 2009-04-02 15:38:56) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"action"=>"keywords", "id"=>"bankruptcy", "controller"=>"rec_sites"}
+  [4;36;1mSQL (0.000302)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000276)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mRecommendedSiteCategory Load (0.000886)[0m   [0;1mselect k.id,k.orders,kk.keywords, k.master_term, k.title, k.description, r.name category, k.url from keyword_recommended_sites k, recommended_site_categories r, keyword_recommended_site_keywords kk where k.id in (select keyword_recommended_site_id from keyword_recommended_site_keywords where keywords='bankruptcy') and k.category_id=r.id and kk.keyword_recommended_site_id=k.id and kk.keywords='bankruptcy' order by k.orders[0m
+  [4;35;1mRecommendedSiteCategory Columns (0.005746)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
+Completed in 0.09893 (10 reqs/sec) | Rendering: 0.01726 (17%) | DB: 0.00721 (7%) | 200 OK [http://localhost/rec_sites/keywords/bankruptcy]
+
+
+Processing RecSitesController#features (for 127.0.0.1 at 2009-04-02 15:39:39) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"name"=>"taxes", "action"=>"features", "id"=>"20121", "controller"=>"rec_sites"}
+  [4;36;1mRecommendedSiteCategory Load (0.057388)[0m   [0;1mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
+feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r,feature_recommended_site_keywords kk
+where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where keywords='taxes') and
+k.category_id =r.id and k.id in (select feature_recommended_site_id from feature_recommended_site where feature_id in (select feature_id from zipcodes where zip='20121')
+and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id and
+kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='taxes' order by k.orders[0m
+  [4;35;1mRecommendedSiteCategory Columns (0.001774)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
+Completed in 0.16570 (6 reqs/sec) | Rendering: 0.01025 (6%) | DB: 0.05916 (35%) | 200 OK [http://localhost/rec_sites/20121/taxes]
