@@ -6,13 +6,13 @@ include REXML
 	def RecommendedSiteXML.getRecommendedSiteXML(queryResults, recType)
 		string='<recommended_site_searches>'
           
-		queryResults.each do |c|
+		queryResults.each do |resultLoop|
 				  string = string+<<EOF      
-					  <recommended_site_search id="#{c.id}">
+					  <recommended_site_search id="#{resultLoop.id}">
 				       <recommended_site recType="#{recType}">
-					  <title>#{c.title}</title>
-					  <url>#{c.url}</url>
-					  <description>#{c.description}</description>
+					  <title>#{resultLoop.title}</title>
+					  <url>#{resultLoop.url}</url>
+					  <description>#{resultLoop.description}</description>
 					  </recommended_site>
 					  </recommended_site_search>
 				       
