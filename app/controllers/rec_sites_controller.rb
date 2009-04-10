@@ -58,7 +58,7 @@ include REXML
   	 #http://localhost:3000/rec_sites/states/nevada
        def states
            @recType='states'
-            queryResults = StateRecommendedSite.find(:all, :include => :state, :conditions => ['states.alpha = ?', "#{params[:alpha]}"])
+            queryResults = StateRecommendedSite.find(:all, :include => :state, :conditions => ['states.name = ?', "#{params[:name]}"])
             if queryResults.blank?
              @doc = RecommendedSiteXML.getRecommendedSiteNotFoundXML(@recType)
             else
