@@ -58,8 +58,7 @@ include REXML
   	 #http://localhost:3000/rec_sites/states/nevada
        def states
            @recType='states'
-            states = params[:name]
-            queryResults = StateRecommendedSite.find(:all, :include => :state, :conditions => ['states.name LIKE ?', "#{params[:name]}%"])
+            queryResults = StateRecommendedSite.find(:all, :include => :state, :conditions => ['states.alpha = ?', "#{params[:alpha]}"])
             if queryResults.blank?
              @doc = RecommendedSiteXML.getRecommendedSiteNotFoundXML(@recType)
             else
@@ -67,5 +66,17 @@ include REXML
             end
             render :xml => @doc
         end
+
+     	 #http://localhost:3000/rec_sites/states
+      def all_states
+           @recType='states'
+           queryResults = StateRecommendedSite.find(:all)
+           if queryResults.blank?
+              @doc = RecommendedSiteXML.getRecommendedSiteNotFoundXML(@recType)
+           else
+                @doc = RecommendedSiteXML.getRecommendedSiteXML(queryResults, @recType)
+           end
+          render :xml => @doc
+      end
 
 end

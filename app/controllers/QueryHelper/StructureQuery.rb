@@ -23,9 +23,4 @@ kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='
 		
 	end
 
-	def RecommendedSiteQuery.getStatesQuery(states)
-	    returnQuery = "select k.id,k.orders,kk.keywords, k.master_term, k.title, k.description, r.name category, k.url from  state_recommended_sites k, recommended_site_categories r, state_recommended_site_keywords kk where k.id in (select state_recommended_site_id from state_recommended_site_keywords where keywords='"+states+"') and k.category_id=r.id and kk.state_recommended_site_id=k.id and kk.keywords='"+states+"' order by k.orders"
-	end
-
-
 end
