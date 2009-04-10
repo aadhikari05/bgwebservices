@@ -11,9 +11,10 @@ include REXML
 	end
 
 	 #http://localhost:3000/rec_sites/keywords/bankruptcy
+	 #http://localhost:3000/rec_sites/keywords/ebay
      def keywords
          @recType='keywords'
-          keywords = params[:id]
+          keywords = params[:keyword]
 	     queryResults = RecommendedSiteCategory.find_by_sql(RecommendedSiteQuery.getKeywordsQuery(keywords))
           if queryResults.blank?
            @doc = RecommendedSiteXML.getRecommendedSiteNotFoundXML(@recType)
@@ -27,7 +28,7 @@ include REXML
      #http://localhost:3000/rec_sites/94117
 	def show
         @recType='features'
-		zipcode=params[:id]
+		zipcode=params[:keyword]
      	queryResults = RecommendedSiteCategory.find_by_sql(RecommendedSiteQuery.getFeaturedQueryByZipcode(zipcode))
 	    if queryResults.blank?
            @doc = RecommendedSiteXML.getRecommendedSiteNotFoundXML(@recType)
@@ -39,9 +40,9 @@ include REXML
      end
 
 	 # http://localhost:3000/rec_sites/20121/taxes
-     # http://localhost:3000/rec_sites/ebay
+
      def features
-		zipcode=params[:id]
+		zipcode=params[:keyword]
 		keywords=params[:name]
         @recType='features'
      	queryResults = RecommendedSiteCategory.find_by_sql(RecommendedSiteQuery.getFeaturedQueryByZipKeywords(keywords,zipcode))

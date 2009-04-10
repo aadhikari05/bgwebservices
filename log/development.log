@@ -579,3 +579,89 @@ and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id an
 kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='taxes' order by k.orders[0m
   [4;35;1mRecommendedSiteCategory Columns (0.001774)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
 Completed in 0.16570 (6 reqs/sec) | Rendering: 0.01025 (6%) | DB: 0.05916 (35%) | 200 OK [http://localhost/rec_sites/20121/taxes]
+
+
+Processing RecSitesController#keywords (for 127.0.0.1 at 2009-04-10 12:03:35) [GET]
+  Session ID: 9ae57974a5d995aa48d87e94b1682cbb
+  Parameters: {"action"=>"keywords", "controller"=>"rec_sites", "keyword"=>"bankruptcy"}
+WARNING: You're using the Ruby-based MySQL library that ships with Rails. This library is not suited for production. Please install the C-based MySQL library instead (gem install mysql).
+  [4;36;1mSQL (0.018182)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000311)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mRecommendedSiteCategory Load (0.064034)[0m   [0;1mselect k.id,k.orders,kk.keywords, k.master_term, k.title, k.description, r.name category, k.url from keyword_recommended_sites k, recommended_site_categories r, keyword_recommended_site_keywords kk where k.id in (select keyword_recommended_site_id from keyword_recommended_site_keywords where keywords='bankruptcy') and k.category_id=r.id and kk.keyword_recommended_site_id=k.id and kk.keywords='bankruptcy' order by k.orders[0m
+  [4;35;1mRecommendedSiteCategory Columns (0.006672)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
+Completed in 0.08272 (12 reqs/sec) | Rendering: 0.00181 (2%) | DB: 0.08920 (107%) | 200 OK [http://localhost/rec_sites/keywords/bankruptcy]
+
+
+Processing RecSitesController#keywords (for 127.0.0.1 at 2009-04-10 12:05:19) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"action"=>"keywords", "controller"=>"rec_sites", "keyword"=>"bankruptcy"}
+WARNING: You're using the Ruby-based MySQL library that ships with Rails. This library is not suited for production. Please install the C-based MySQL library instead (gem install mysql).
+  [4;36;1mSQL (0.000173)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000147)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mRecommendedSiteCategory Load (0.001087)[0m   [0;1mselect k.id,k.orders,kk.keywords, k.master_term, k.title, k.description, r.name category, k.url from keyword_recommended_sites k, recommended_site_categories r, keyword_recommended_site_keywords kk where k.id in (select keyword_recommended_site_id from keyword_recommended_site_keywords where keywords='bankruptcy') and k.category_id=r.id and kk.keyword_recommended_site_id=k.id and kk.keywords='bankruptcy' order by k.orders[0m
+  [4;35;1mRecommendedSiteCategory Columns (0.006427)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
+Completed in 0.01900 (52 reqs/sec) | Rendering: 0.00182 (9%) | DB: 0.00783 (41%) | 200 OK [http://localhost/rec_sites/keywords/bankruptcy]
+
+
+Processing RecSitesController#show (for 127.0.0.1 at 2009-04-10 12:05:23) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"action"=>"show", "controller"=>"rec_sites", "keyword"=>"94117"}
+  [4;36;1mRecommendedSiteCategory Load (0.263781)[0m   [0;1mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
+feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r,feature_recommended_site_keywords kk
+where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where keywords='--GENERAL--') and
+k.category_id =r.id and k.id in (select feature_recommended_site_id from feature_recommended_site where feature_id in (select feature_id from zipcodes where zip='94117')
+and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id and
+kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='--GENERAL--' order by k.orders[0m
+  [4;35;1mRecommendedSiteCategory Columns (0.006746)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
+Completed in 0.31468 (3 reqs/sec) | Rendering: 0.00206 (0%) | DB: 0.27053 (85%) | 200 OK [http://localhost/rec_sites/94117]
+
+
+Processing RecSitesController#features (for 127.0.0.1 at 2009-04-10 12:05:34) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"name"=>"taxes", "action"=>"features", "controller"=>"rec_sites", "keyword"=>"20121"}
+  [4;36;1mRecommendedSiteCategory Load (0.002978)[0m   [0;1mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
+feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r,feature_recommended_site_keywords kk
+where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where keywords='taxes') and
+k.category_id =r.id and k.id in (select feature_recommended_site_id from feature_recommended_site where feature_id in (select feature_id from zipcodes where zip='20121')
+and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id and
+kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='taxes' order by k.orders[0m
+  [4;35;1mRecommendedSiteCategory Columns (0.006841)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
+Completed in 0.01973 (50 reqs/sec) | Rendering: 0.00184 (9%) | DB: 0.00982 (49%) | 200 OK [http://localhost/rec_sites/20121/taxes]
+
+
+Processing RecSitesController#show (for 127.0.0.1 at 2009-04-10 12:05:46) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"action"=>"show", "controller"=>"rec_sites", "keyword"=>"ebay"}
+  [4;36;1mRecommendedSiteCategory Load (0.026201)[0m   [0;1mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
+feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r,feature_recommended_site_keywords kk
+where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where keywords='--GENERAL--') and
+k.category_id =r.id and k.id in (select feature_recommended_site_id from feature_recommended_site where feature_id in (select feature_id from zipcodes where zip='ebay')
+and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id and
+kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='--GENERAL--' order by k.orders[0m
+Completed in 0.06259 (15 reqs/sec) | Rendering: 0.00027 (0%) | DB: 0.02620 (41%) | 200 OK [http://localhost/rec_sites/ebay]
+
+
+Processing RecSitesController#features (for 127.0.0.1 at 2009-04-10 12:06:04) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"name"=>"ebay", "action"=>"features", "controller"=>"rec_sites", "keyword"=>"keyword"}
+  [4;35;1mRecommendedSiteCategory Load (0.002014)[0m   [0mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
+feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r,feature_recommended_site_keywords kk
+where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where keywords='ebay') and
+k.category_id =r.id and k.id in (select feature_recommended_site_id from feature_recommended_site where feature_id in (select feature_id from zipcodes where zip='keyword')
+and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id and
+kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='ebay' order by k.orders[0m
+Completed in 0.00876 (114 reqs/sec) | Rendering: 0.00020 (2%) | DB: 0.00201 (22%) | 200 OK [http://localhost/rec_sites/keyword/ebay]
+
+
+Processing RecSitesController#keywords (for 127.0.0.1 at 2009-04-10 12:06:35) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"action"=>"keywords", "controller"=>"rec_sites", "keyword"=>"ebay"}
+  [4;36;1mRecommendedSiteCategory Load (0.001109)[0m   [0;1mselect k.id,k.orders,kk.keywords, k.master_term, k.title, k.description, r.name category, k.url from keyword_recommended_sites k, recommended_site_categories r, keyword_recommended_site_keywords kk where k.id in (select keyword_recommended_site_id from keyword_recommended_site_keywords where keywords='ebay') and k.category_id=r.id and kk.keyword_recommended_site_id=k.id and kk.keywords='ebay' order by k.orders[0m
+  [4;35;1mRecommendedSiteCategory Columns (0.006444)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
+Completed in 0.05040 (19 reqs/sec) | Rendering: 0.00184 (3%) | DB: 0.00755 (14%) | 200 OK [http://localhost/rec_sites/keywords/ebay]
