@@ -12,7 +12,13 @@ class RecSitesController < ApplicationController
   def keywords
     @recType='keywords'
     keywords = params[:keyword]
-    @queryResults = RecommendedSiteCategory.find_by_sql(RecommendedSiteQuery.getKeywordsQuery(keywords)) 
+    
+    #if the path is /rec_sites  then show every keywords.
+    if keywords.blank?
+      @queryResults= RecommendedSiteCategory.find_by_sql(RecommendedSiteQuery.getAllKeywordsQuery()) 
+    else
+      @queryResults = RecommendedSiteCategory.find_by_sql(RecommendedSiteQuery.getKeywordsQuery(keywords)) 
+    end
     render :template => 'recommendedSiteResult.builder'
   end
   

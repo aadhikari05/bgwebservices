@@ -7777,3 +7777,105 @@ SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
 Rendering recommendedSiteResult.builder
   [4;35;1mRecommendedSiteCategory Columns (0.006173)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
 Completed in 0.01496 (66 reqs/sec) | Rendering: 0.00306 (20%) | DB: 0.00711 (47%) | 200 OK [http://localhost/rec_sites/keywords/ebay]
+
+
+Processing RecSitesController#keywords (for 127.0.0.1 at 2009-04-17 15:34:54) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"action"=>"keywords", "controller"=>"rec_sites", "keyword"=>"ebay"}
+  [4;36;1mSQL (0.000212)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000100)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mRecommendedSiteCategory Load (0.000626)[0m   [0;1mselect k.id,k.orders,kk.keywords, k.master_term, k.title, k.description, r.name category, k.url from keyword_recommended_sites k, recommended_site_categories r, keyword_recommended_site_keywords kk where k.id in (select keyword_recommended_site_id from keyword_recommended_site_keywords where keywords='ebay') and k.category_id=r.id and kk.keyword_recommended_site_id=k.id and kk.keywords='ebay' order by k.orders[0m
+Rendering recommendedSiteResult.builder
+  [4;35;1mRecommendedSiteCategory Columns (0.006155)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
+Completed in 0.01481 (67 reqs/sec) | Rendering: 0.00302 (20%) | DB: 0.00709 (47%) | 200 OK [http://localhost/rec_sites/keywords/ebay]
+
+
+Processing RecSitesController#show (for 127.0.0.1 at 2009-04-17 15:34:58) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"action"=>"show", "controller"=>"rec_sites", "keyword"=>"keywords"}
+  [4;36;1mRecommendedSiteCategory Load (0.020061)[0m   [0;1mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
+feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r,feature_recommended_site_keywords kk
+where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where keywords='--GENERAL--') and
+k.category_id =r.id and k.id in (select feature_recommended_site_id from feature_recommended_site where feature_id in (select feature_id from zipcodes where zip='keywords')
+and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id and
+kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='--GENERAL--' order by k.orders[0m
+Rendering recommendedSiteResult.builder
+Completed in 0.02716 (36 reqs/sec) | Rendering: 0.00077 (2%) | DB: 0.02006 (73%) | 200 OK [http://localhost/rec_sites/keywords/]
+
+
+Processing RecSitesController#show (for 127.0.0.1 at 2009-04-17 15:53:08) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"action"=>"show", "controller"=>"rec_sites", "keyword"=>"keywords"}
+  [4;36;1mSQL (0.000197)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000072)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mRecommendedSiteCategory Load (0.002423)[0m   [0;1mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
+feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r,feature_recommended_site_keywords kk
+where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where keywords='--GENERAL--') and
+k.category_id =r.id and k.id in (select feature_recommended_site_id from feature_recommended_site where feature_id in (select feature_id from zipcodes where zip='keywords')
+and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id and
+kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='--GENERAL--' order by k.orders[0m
+Rendering recommendedSiteResult.builder
+Completed in 0.00843 (118 reqs/sec) | Rendering: 0.00086 (10%) | DB: 0.00269 (31%) | 200 OK [http://localhost/rec_sites/keywords/]
+
+
+Processing RecSitesController#show (for 127.0.0.1 at 2009-04-17 15:53:44) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"action"=>"show", "controller"=>"rec_sites", "keyword"=>"keywords"}
+  [4;36;1mSQL (0.000207)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000098)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mRecommendedSiteCategory Load (0.002379)[0m   [0;1mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
+feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r,feature_recommended_site_keywords kk
+where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where keywords='--GENERAL--') and
+k.category_id =r.id and k.id in (select feature_recommended_site_id from feature_recommended_site where feature_id in (select feature_id from zipcodes where zip='keywords')
+and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id and
+kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='--GENERAL--' order by k.orders[0m
+Rendering recommendedSiteResult.builder
+Completed in 0.00822 (121 reqs/sec) | Rendering: 0.00085 (10%) | DB: 0.00268 (32%) | 200 OK [http://localhost/rec_sites/keywords/]
+
+
+Processing RecSitesController#show (for 127.0.0.1 at 2009-04-17 15:54:14) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"action"=>"show", "controller"=>"rec_sites", "keyword"=>"keywords"}
+  [4;36;1mSQL (0.000207)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000099)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mRecommendedSiteCategory Load (0.002449)[0m   [0;1mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
+feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r,feature_recommended_site_keywords kk
+where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where keywords='--GENERAL--') and
+k.category_id =r.id and k.id in (select feature_recommended_site_id from feature_recommended_site where feature_id in (select feature_id from zipcodes where zip='keywords')
+and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id and
+kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='--GENERAL--' order by k.orders[0m
+Rendering recommendedSiteResult.builder
+Completed in 0.00844 (118 reqs/sec) | Rendering: 0.00089 (10%) | DB: 0.00276 (32%) | 200 OK [http://localhost/rec_sites/keywords/]
+
+
+Processing RecSitesController#show (for 127.0.0.1 at 2009-04-17 15:55:06) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"action"=>"show", "controller"=>"rec_sites", "keyword"=>"keywords"}
+  [4;36;1mSQL (0.000213)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000101)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mRecommendedSiteCategory Load (0.002430)[0m   [0;1mselect k.id, k.orders, kk.keywords,k.master_term, k.title, k.description, r.name category, k.url from
+feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r,feature_recommended_site_keywords kk
+where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where keywords='--GENERAL--') and
+k.category_id =r.id and k.id in (select feature_recommended_site_id from feature_recommended_site where feature_id in (select feature_id from zipcodes where zip='keywords')
+and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id and
+kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='--GENERAL--' order by k.orders[0m
+Rendering recommendedSiteResult.builder
+Completed in 0.00983 (101 reqs/sec) | Rendering: 0.00105 (10%) | DB: 0.00274 (27%) | 200 OK [http://localhost/rec_sites/keywords/]
+
+
+Processing RecSitesController#keywords (for 127.0.0.1 at 2009-04-17 15:57:04) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"action"=>"keywords", "controller"=>"rec_sites"}
+  [4;36;1mSQL (0.000213)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000101)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mRecommendedSiteCategory Load (0.204178)[0m   [0;1mselect k.id,k.orders,kk.keywords, k.master_term, k.title, k.description, r.name category, k.url from keyword_recommended_sites k, recommended_site_categories r, keyword_recommended_site_keywords kk where k.id in (select keyword_recommended_site_id from keyword_recommended_site_keywords where keywords in(select keywords from keyword_recommended_site_keywords)) and k.category_id=r.id and kk.keyword_recommended_site_id=k.id and kk.keywords in(select keywords from keyword_recommended_site_keywords) order by k.orders[0m
+Rendering recommendedSiteResult.builder
+  [4;35;1mRecommendedSiteCategory Columns (0.008631)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
+Completed in 14.26635 (0 reqs/sec) | Rendering: 0.64462 (4%) | DB: 0.21312 (1%) | 200 OK [http://localhost/rec_sites/keywords/]

@@ -40,6 +40,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # Install the default routes as the lowest priority.
   # map.connect 'rec_site/edit/:id', :controller => "albums", :action => "edit"  
+  map.connect 'rec_sites/keywords/', :controller => "rec_sites", :action => "keywords"
   map.connect 'rec_sites/keywords/:keyword', :controller => "rec_sites", :action => "keywords"
   map.connect 'rec_sites/show/:keyword', :controller => "rec_sites", :action => "show"
   map.connect 'rec_sites/:keyword',      :controller => "rec_sites", :action => "show"
