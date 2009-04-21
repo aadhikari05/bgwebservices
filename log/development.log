@@ -8199,3 +8199,50 @@ SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
 Rendering rec_sites/keywords
   [4;35;1mRecommendedSiteCategory Columns (0.006487)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
 Completed in 0.03031 (32 reqs/sec) | Rendering: 0.01854 (61%) | DB: 0.00706 (23%) | 200 OK [http://localhost/rec_sites/keywords/ebay]
+
+
+Processing RecSitesController#keywords (for 127.0.0.1 at 2009-04-20 22:47:57) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"action"=>"keywords", "controller"=>"rec_sites", "keyword"=>"bankruptcy"}
+  [4;36;1mSQL (0.000203)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000100)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mRecommendedSiteCategory Load (0.000606)[0m   [0;1mselect k.id,k.title, k.description, k.url from keyword_recommended_sites k, recommended_site_categories r, keyword_recommended_site_keywords kk where k.id in (select keyword_recommended_site_id from keyword_recommended_site_keywords where keywords='bankruptcy') and k.category_id=r.id and kk.keyword_recommended_site_id=k.id and kk.keywords='bankruptcy' order by k.orders[0m
+Rendering rec_sites/keywords
+  [4;35;1mRecommendedSiteCategory Columns (0.006109)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
+Completed in 0.01576 (63 reqs/sec) | Rendering: 0.00410 (25%) | DB: 0.00702 (44%) | 200 OK [http://localhost/rec_sites/keywords/bankruptcy]
+
+
+Processing RecSitesController#show (for 127.0.0.1 at 2009-04-20 22:48:49) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"action"=>"show", "controller"=>"rec_sites", "keyword"=>"94117"}
+  [4;36;1mRecommendedSiteCategory Load (0.271803)[0m   [0;1mselect k.id, k.title, k.description, k.url from
+feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r,feature_recommended_site_keywords kk
+where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where keywords='--GENERAL--') and
+k.category_id =r.id and k.id in (select feature_recommended_site_id from feature_recommended_site where feature_id in (select feature_id from zipcodes where zip='94117')
+and feature_recommended_site_id=k.id) and k.id=kk.feature_recommended_site_id and
+kk.feature_recommended_site_id=ref.feature_recommended_site_id and kk.keywords='--GENERAL--' order by k.orders[0m
+Rendering rec_sites/show
+  [4;35;1mRecommendedSiteCategory Columns (0.006886)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
+Completed in 0.28847 (3 reqs/sec) | Rendering: 0.00327 (1%) | DB: 0.27869 (96%) | 200 OK [http://localhost/rec_sites/94117]
+
+
+Processing RecSitesController#keywords (for 127.0.0.1 at 2009-04-21 09:24:31) [GET]
+  Session ID: 6d65559d430d288d60bb23bd798ad6dd
+  Parameters: {"action"=>"keywords", "controller"=>"rec_sites", "keyword"=>"ebay"}
+  [4;36;1mSQL (0.018239)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000255)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mRecommendedSiteCategory Load (0.064829)[0m   [0;1mselect k.id,k.title, k.description, k.url from keyword_recommended_sites k, recommended_site_categories r, keyword_recommended_site_keywords kk where k.id in (select keyword_recommended_site_id from keyword_recommended_site_keywords where keywords='ebay') and k.category_id=r.id and kk.keyword_recommended_site_id=k.id and kk.keywords='ebay' order by k.orders[0m
+Rendering rec_sites/keywords
+  [4;35;1mRecommendedSiteCategory Columns (0.006394)[0m   [0mSHOW FIELDS FROM `recommended_site_categories`[0m
+Completed in 0.09687 (10 reqs/sec) | Rendering: 0.00466 (4%) | DB: 0.08972 (92%) | 200 OK [http://localhost/rec_sites/keywords/ebay]
+
+
+Processing RecSitesController#keywords (for 127.0.0.1 at 2009-04-21 09:24:37) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"action"=>"keywords", "controller"=>"rec_sites", "keyword"=>"ebayss"}
+  [4;36;1mRecommendedSiteCategory Load (0.000469)[0m   [0;1mselect k.id,k.title, k.description, k.url from keyword_recommended_sites k, recommended_site_categories r, keyword_recommended_site_keywords kk where k.id in (select keyword_recommended_site_id from keyword_recommended_site_keywords where keywords='ebayss') and k.category_id=r.id and kk.keyword_recommended_site_id=k.id and kk.keywords='ebayss' order by k.orders[0m
+Rendering rec_sites/keywords
+Completed in 0.00629 (158 reqs/sec) | Rendering: 0.00063 (9%) | DB: 0.00047 (7%) | 200 OK [http://localhost/rec_sites/keywords/ebayss]
