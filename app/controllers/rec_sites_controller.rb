@@ -10,9 +10,13 @@ class RecSitesController < ApplicationController
     
     #if the path is /rec_sites  then show every keywords.
     if keywords.blank?
-      @queryResults= RecommendedSiteCategory.find_by_sql(RecommendedSiteQuery.getAllKeywordsQuery()) 
+      #@queryResults= RecommendedSiteCategory.find_by_sql(RecommendedSiteQuery.getAllKeywordsQuery()) 
+      @queryResults= KeywordRecommendedSiteKeyword.all(:select=>"id,keywords", :order => "id ASC")\
     else
-      @queryResults = RecommendedSiteCategory.find_by_sql(RecommendedSiteQuery.getKeywordsQuery(keywords)) 
+      @queryResults=KeywordRecommendedSiteKeyword.find_all_by_keywords("#{keywords}", 
+      :joins =>'Left outer join keyword_recommended_sites k ON k.id= keyword_recommended_site_keywords.keyword_recommended_site_id',
+      :select=>"k.title,k.description,k.url")
+      #@queryResults = RecommendedSiteCategory.find_by_sql(RecommendedSiteQuery.getKeywordsQuery(keywords)) 
     end 
   end
   
