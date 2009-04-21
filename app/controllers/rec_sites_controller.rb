@@ -1,11 +1,6 @@
 require 'QueryHelper/StructureQuery'
-require 'builder'
 
 class RecSitesController < ApplicationController
-  
-  def initialize
-    @xml = Builder::XmlMarkup.new(:indent => 2)
-  end
   
   #http://localhost:3000/rec_sites/keywords/bankruptcy
   #http://localhost:3000/rec_sites/keywords/ebay
@@ -18,8 +13,7 @@ class RecSitesController < ApplicationController
       @queryResults= RecommendedSiteCategory.find_by_sql(RecommendedSiteQuery.getAllKeywordsQuery()) 
     else
       @queryResults = RecommendedSiteCategory.find_by_sql(RecommendedSiteQuery.getKeywordsQuery(keywords)) 
-    end
-    render :template => 'recommendedSiteResult.builder'
+    end 
   end
   
   #this "show" def might not needed.  Revisit again. 3/30/09 - songchoe. 
@@ -28,16 +22,13 @@ class RecSitesController < ApplicationController
     @recType='features'
     zipcode=params[:keyword]
     @queryResults = RecommendedSiteCategory.find_by_sql(RecommendedSiteQuery.getFeaturedQueryByZipcode(zipcode))
-    render :template => 'recommendedSiteResult.builder'
   end
   
   # http://localhost:3000/rec_sites/20121/taxes
-  
   def features
     zipcode=params[:keyword]
     keywords=params[:name]
     @recType='features'
     @queryResults = RecommendedSiteCategory.find_by_sql(RecommendedSiteQuery.getFeaturedQueryByZipKeywords(keywords,zipcode))
-    render :template => 'recommendedSiteResult.builder'    
   end
 end
