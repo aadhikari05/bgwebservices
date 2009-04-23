@@ -46,6 +46,6 @@ class RecSitesController < ApplicationController
   end
   
   def notFound
-    @queryResults={"NotFound"=>"No Keyword"}
+    @queryResults={"NotFound"=>"No Results"}
   end
 end
