@@ -1,0 +1,4 @@
+class RecSitesController < ApplicationController
+
+
+end
