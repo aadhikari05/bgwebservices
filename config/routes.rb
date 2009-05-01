@@ -49,4 +49,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'rec_sites/:keyword/:name',      :controller => "rec_sites", :action => "features"        
   map.connect ':controller/:action/:keyword'
   map.connect ':controller/:action/:keyword.:format'
+  
+  #PERMITME ROUTES
+  map.connect 'permitme', :controller => "permitme", :action => "show"
 end
