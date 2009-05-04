@@ -51,5 +51,11 @@ ActionController::Routing::Routes.draw do |map|
   map.connect ':controller/:action/:keyword.:format'
   
   #PERMITME ROUTES
+#  map.resources :permitme_resource_groups do |resource_group|
+#    resource_group.resources :permitme_resources, :permitme_resource_group_id => "permitme_resource_groups"
+ # end
   map.connect 'permitme', :controller => "permitme", :action => "show"
+  map.connect 'permitme/by_zip/:business_type/:zip', :controller => "permitme", :action => "permitme_by_zip"
+  map.connect 'permitme/state_only/:business_type/:state', :controller => "permitme", :action => "permitme_by_state_only"
+  map.connect 'permitme/state_and_city/:business_type/:state/:feature', :controller => "permitme", :action => "permitme_by_state_and_feature"
 end
