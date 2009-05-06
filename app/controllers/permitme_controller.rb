@@ -1,17 +1,23 @@
 class PermitmeController < ApplicationController
   
   def permitme_by_zip
-      @queryResults = PermitmeResource.find_permitme
+      #http://localhost:3000/permitme/by_zip/child%20care%20services/22209.xml
+      @queryResults = PermitmeResource.find_by_sql(["select Link_Title, Url from permitme_resources where permitme_resource_group_id in (select id from permitme_resource_groups where permitme_subcategory_id in (select id from permitme_subcategories where isExclusive=1 and isActive=1 and name = ?) and state_id in (select distinct(f.state_id) from features f, zipcodes z where z.zip=? and z.feature_id=f.id))",params[:business_type],params[:zip]])
+      
       respond_to_format (@queryResults)
   end
 
   def permitme_by_state_only
-      @queryResults = PermitmeResource.find(:all, :select =>"permitme_resources.link_title,permitme_resources.url", :joins => @joins) 
+    #http://localhost:3000/permitme/by_zip/child%20care%20services/22209.xml
+    @queryResults = PermitmeResource.find_by_sql(["select Link_Title, Url from permitme_resources where permitme_resource_group_id in (select id from permitme_resource_groups where permitme_subcategory_id in (select id from permitme_subcategories where isExclusive=1 and isActive=1 and name = ?) and state_id in (select id from states where alpha=?))",params[:business_type],params[:alpha]])
+
       respond_to_format (@queryResults)
   end
 
   def permitme_by_state_and_feature
-      @queryResults = PermitmeResource.find(:all, :select =>"permitme_resources.link_title,permitme_resources.url", :joins => @joins)  
+    #http://localhost:3000/permitme/by_zip/child%20care%20services/22209.xml
+    @queryResults = PermitmeResource.find_by_sql(["select Link_Title, Url from permitme_resources where permitme_resource_group_id in (select id from permitme_resource_groups where permitme_subcategory_id in (select id from permitme_subcategories where isExclusive=1 and isActive=1 and name = ?) and state_id in (select distinct(f.state_id) from features f, states s where f.feat_name like "%Baldwin%" and s.alpha=? and f.state_id = s.id))",params[:business_type],params[:alpha]])
+
       respond_to_format (@queryResults)
   end
   
