@@ -5367,3 +5367,62 @@ SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
   [4;36;1mPermitmeResource Load (0.033827)[0m   [0;1mselect Link_Title, Url from permitme_resources where permitme_resource_group_id in (select id from permitme_resource_groups where permitme_subcategory_id in (select id from permitme_subcategories where isExclusive=1 and isActive=1 and name = 'child care services') and state_id in (select distinct(f.state_id) from features f, zipcodes z where z.zip='22209' and z.feature_id=f.id))[0m
   [4;35;1mPermitmeResource Columns (0.004150)[0m   [0mSHOW FIELDS FROM `permitme_resources`[0m
 Completed in 0.04663 (21 reqs/sec) | Rendering: 0.00307 (6%) | DB: 0.03798 (81%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/22209.xml]
+
+
+Processing PermitmeController#permitme_by_state_only (for 127.0.0.1 at 2009-05-06 11:40:11) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"format"=>"xml", "action"=>"permitme_by_state_only", "controller"=>"permitme", "business_type"=>"child care services", "state"=>"il"}
+  [4;36;1mPermitmeResource Load (0.032020)[0m   [0;1mselect Link_Title, Url from permitme_resources where permitme_resource_group_id in (select id from permitme_resource_groups where permitme_subcategory_id in (select id from permitme_subcategories where isExclusive=1 and isActive=1 and name = 'child care services') and state_id in (select id from states where alpha=NULL))[0m
+Completed in 0.03772 (26 reqs/sec) | Rendering: 0.00033 (0%) | DB: 0.03202 (84%) | 200 OK [http://localhost/permitme/state_only/child%20care%20services/il.xml]
+
+
+Processing PermitmeController#permitme_by_state_only (for 127.0.0.1 at 2009-05-06 11:40:45) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"format"=>"xml", "action"=>"permitme_by_state_only", "controller"=>"permitme", "business_type"=>"child care services", "state"=>"il"}
+  [4;35;1mPermitmeResource Load (0.032760)[0m   [0mselect Link_Title, Url from permitme_resources where permitme_resource_group_id in (select id from permitme_resource_groups where permitme_subcategory_id in (select id from permitme_subcategories where isExclusive=1 and isActive=1 and name = 'child care services') and state_id in (select id from states where alpha=NULL))[0m
+Completed in 0.04046 (24 reqs/sec) | Rendering: 0.00039 (0%) | DB: 0.03276 (80%) | 200 OK [http://localhost/permitme/state_only/child%20care%20services/il.xml]
+
+
+Processing PermitmeController#permitme_by_zip (for 127.0.0.1 at 2009-05-06 11:42:00) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"zip"=>"22209", "format"=>"xml", "action"=>"permitme_by_zip", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mPermitmeResource Load (0.033180)[0m   [0;1mselect Link_Title, Url from permitme_resources where permitme_resource_group_id in (select id from permitme_resource_groups where permitme_subcategory_id in (select id from permitme_subcategories where isExclusive=1 and isActive=1 and name = 'child care services') and state_id in (select distinct(f.state_id) from features f, zipcodes z where z.zip='22209' and z.feature_id=f.id))[0m
+  [4;35;1mPermitmeResource Columns (0.002754)[0m   [0mSHOW FIELDS FROM `permitme_resources`[0m
+Completed in 0.04519 (22 reqs/sec) | Rendering: 0.00339 (7%) | DB: 0.03593 (79%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/22209.xml]
+
+
+Processing PermitmeController#permitme_by_zip (for 127.0.0.1 at 2009-05-06 11:42:12) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"zip"=>"va", "format"=>"xml", "action"=>"permitme_by_zip", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mPermitmeResource Load (0.032662)[0m   [0;1mselect Link_Title, Url from permitme_resources where permitme_resource_group_id in (select id from permitme_resource_groups where permitme_subcategory_id in (select id from permitme_subcategories where isExclusive=1 and isActive=1 and name = 'child care services') and state_id in (select distinct(f.state_id) from features f, zipcodes z where z.zip='va' and z.feature_id=f.id))[0m
+Completed in 0.03821 (26 reqs/sec) | Rendering: 0.00046 (1%) | DB: 0.03266 (85%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/va.xml]
+
+
+Processing PermitmeController#permitme_by_state_only (for 127.0.0.1 at 2009-05-06 11:42:39) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"format"=>"xml", "action"=>"permitme_by_state_only", "controller"=>"permitme", "business_type"=>"child care services", "state"=>"va"}
+  [4;35;1mPermitmeResource Load (0.032395)[0m   [0mselect Link_Title, Url from permitme_resources where permitme_resource_group_id in (select id from permitme_resource_groups where permitme_subcategory_id in (select id from permitme_subcategories where isExclusive=1 and isActive=1 and name = 'child care services') and state_id in (select id from states where alpha=NULL))[0m
+Completed in 0.03910 (25 reqs/sec) | Rendering: 0.00070 (1%) | DB: 0.03239 (82%) | 200 OK [http://localhost/permitme/state_only/child%20care%20services/va.xml]
+
+
+Processing PermitmeController#permitme_by_state_only (for 127.0.0.1 at 2009-05-06 11:45:25) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"alpha"=>"va", "format"=>"xml", "action"=>"permitme_by_state_only", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mPermitmeResource Load (0.031702)[0m   [0;1mselect Link_Title, Url from permitme_resources where permitme_resource_group_id in (select id from permitme_resource_groups where permitme_subcategory_id in (select id from permitme_subcategories where isExclusive=1 and isActive=1 and name = 'child care services') and state_id in (select id from states where alpha='va'))[0m
+  [4;35;1mPermitmeResource Columns (0.002787)[0m   [0mSHOW FIELDS FROM `permitme_resources`[0m
+Completed in 0.04259 (23 reqs/sec) | Rendering: 0.00265 (6%) | DB: 0.03449 (80%) | 200 OK [http://localhost/permitme/state_only/child%20care%20services/va.xml]
+
+
+Processing PermitmeController#permitme_by_state_only (for 127.0.0.1 at 2009-05-06 11:45:32) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"alpha"=>"il", "format"=>"xml", "action"=>"permitme_by_state_only", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mPermitmeResource Load (0.032993)[0m   [0;1mselect Link_Title, Url from permitme_resources where permitme_resource_group_id in (select id from permitme_resource_groups where permitme_subcategory_id in (select id from permitme_subcategories where isExclusive=1 and isActive=1 and name = 'child care services') and state_id in (select id from states where alpha='il'))[0m
+  [4;35;1mPermitmeResource Columns (0.002122)[0m   [0mSHOW FIELDS FROM `permitme_resources`[0m
+Completed in 0.04874 (20 reqs/sec) | Rendering: 0.00744 (15%) | DB: 0.03511 (72%) | 200 OK [http://localhost/permitme/state_only/child%20care%20services/il.xml]

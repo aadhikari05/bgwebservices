@@ -52,6 +52,6 @@ ActionController::Routing::Routes.draw do |map|
   
   #PERMITME ROUTES
   map.connect 'permitme/by_zip/:business_type/:zip.:format', :controller => "permitme", :action => "permitme_by_zip"
-  map.connect 'permitme/state_only/:business_type/:state.:format', :controller => "permitme", :action => "permitme_by_state_only"
-  map.connect 'permitme/state_and_city/:business_type/:state/:feature.:format', :controller => "permitme", :action => "permitme_by_state_and_feature"
+  map.connect 'permitme/state_only/:business_type/:alpha.:format', :controller => "permitme", :action => "permitme_by_state_only"
+  map.connect 'permitme/state_and_city/:business_type/:alpha/:feature.:format', :controller => "permitme", :action => "permitme_by_state_and_feature"
 end
