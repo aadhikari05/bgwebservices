@@ -17,7 +17,7 @@ class PermitmeController < ApplicationController
 
   def permitme_by_state_and_feature
     #http://localhost:3000/permitme/state_and_city/child%20care%20services/il/baldwin.xml
-    @queryResults = PermitmeResource.find_by_sql(["select Link_Title, Url from permitme_resources where permitme_resource_group_id in (select id from permitme_resource_groups where permitme_subcategory_id in (select id from permitme_subcategories where isExclusive=1 and isActive=1 and name = ?) and state_id in (select distinct(f.state_id) from features f, states s where f.feat_name like "%Baldwin%" and s.alpha=? and f.state_id = s.id))",params[:business_type],params[:alpha]])
+    @queryResults = PermitmeResource.find_by_sql(["select Link_Title, Url from permitme_resources where permitme_resource_group_id in (select id from permitme_resource_groups where permitme_subcategory_id in (select id from permitme_subcategories where isExclusive=1 and isActive=1 and name = ?) and state_id in (select distinct(f.state_id) from features f, states s where f.feat_name like ? and s.alpha=? and f.state_id = s.id))",params[:business_type],"%"+params[:feature]+"%",params[:alpha]])
 
       respond_to_format (@queryResults)
   end
