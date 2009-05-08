@@ -6,29 +6,29 @@ module PermitmeHelper
   #	permitMeSitesByFeatureIdQuery = new PermitMeSitesByFeatureIdQuery(ds);
   #	permitMeFeatureWithStateMappingQuery = new PermitMeFeatureWithStateMappingQuery(ds);
 
-  def CountySpecsByNameQuery
+  def CountySpecsByNameQuery (feature_name, state_id)
     strQuery = "select id, fips_class from features where feat_name = ? and state_id = ?"
   end
   
-  def SitesByFeatureIdQuery
+  def SitesByFeatureIdQuery (feature_id)
     strQuery = "select id,description, url,name, feature_id from sites where feature_id = ? and is_primary = 1 and url is not null"
   end
   
-  def  PermitMeSitesByFeatureIdQuery
+  def  PermitMeSitesByFeatureIdQuery (feature_id)
     strQuery = "select id,description, url,name, feature_id from permitme_sites where feature_id = ? and url is not null"
   end
   
-  def  PermitMeFeatureAltNameMappingQuery
+  def  PermitMeFeatureAltNameMappingQuery (alternate_name)
     strQuery = "select features.id, fips_class, state_id, feat_name,county_name_full,majorfeature, fips_feat_id from features,alternate_names where alternate_names.feature_id = features.id and county_seq = 1 and name = ?"
   end
 
-  def  PermitMeFeatureMappingQuery
+  def  PermitMeFeatureMappingQuery (feature_name, alternate_name)
     strQuery = "select id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = ? "
 		strQuery +=	"union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names "
 		strQuery += "where feature_id = features.id and county_seq = 1 and name = ?"
   end
 
-  def  PermitMeFeatureWithStateMappingQuery
+  def  PermitMeFeatureWithStateMappingQuery (feature_name, alternate_name, state_id)
     strQuery = "select id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = ? "
 		strQuery += "and state_id = ? union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names "
 		strQuery += "where feature_id = features.id and county_seq = 1 and name = ? and state_id = ?"
