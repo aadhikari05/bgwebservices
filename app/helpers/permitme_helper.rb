@@ -38,24 +38,25 @@ module PermitmeHelper
 
   def findAllFeatureSitesByFeatureAndState (feature_id, state_alpha)
     foundSites = findAllSitesByFeatureId(feature_id)
- 		if (foundSites != null) {
-      			for (LocalSite site: foundSites){
-      				site.setStateAbbrev(thisState.getAbbreviation());
-      				site.setFeatureName(thisFeature.getName());
-     				site.setFipsClass(thisFeature.getFipsClass());
-   				}
-   			}
-   			
+    
+ 		if foundSites.length > 0 
+    		for (LocalSite site: foundSites)
+    				site.setStateAbbrev(thisState.getAbbreviation());
+    				site.setFeatureName(thisFeature.getName());
+   				  site.setFipsClass(thisFeature.getFipsClass());
+ 				end
+   	end	
+   		
    	return foundSites;
   end
   
   def  findAllSitesByFeatureId
     foundSites = permitMeSitesByFeatureIdQuery.execute(parms)
     
-    if (foundSites == null || foundSites.size() == 0) {
+    if (foundSites == null || foundSites.size() == 0) 
 			
 			foundSites =  sitesByFeatureIdQuery.execute(parms);
-		}
+		end
 		
   end
 
