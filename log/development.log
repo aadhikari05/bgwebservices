@@ -6225,3 +6225,95 @@ SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
   [4;36;1mPermitmeResource Load (0.004068)[0m   [0;1mSELECT link_title, url FROM `permitme_resources` [0m
   [4;35;1mPermitmeResource Columns (0.002070)[0m   [0mSHOW FIELDS FROM `permitme_resources`[0m
 Completed in 0.86623 (1 reqs/sec) | Rendering: 0.84217 (97%) | DB: 0.01009 (1%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/22209.xml]
+
+
+Processing PermitmeController#permitme_by_zip (for 127.0.0.1 at 2009-05-08 18:06:28) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"zip"=>"22209", "format"=>"xml", "action"=>"permitme_by_zip", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mSQL (0.000313)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000113)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+NoMethodError (undefined method `CountySpecsByNameQuery' for #<PermitmeController:0x2453830>):
+    /app/controllers/permitme_controller.rb:8:in `permitme_by_zip'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `perform_action_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:580:in `call_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:573:in `perform_action_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /Users/aadhikari/.gem/ruby/1.8/gems/activerecord-2.1.0/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /Users/aadhikari/.gem/ruby/1.8/gems/activerecord-2.1.0/lib/active_record/query_cache.rb:8:in `cache'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `process_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:569:in `process_without_session_management_support'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/session_management.rb:130:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:389:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:76:in `process'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `process'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:159:in `process_client'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:158:in `each'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:158:in `process_client'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `initialize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `new'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:268:in `initialize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:268:in `new'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:268:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:282:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:281:in `each'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:281:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:128:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/command.rb:212:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
+    /usr/bin/mongrel_rails:19:in `load'
+    /usr/bin/mongrel_rails:19
+
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing PermitmeController#permitme_by_zip (for 127.0.0.1 at 2009-05-08 18:09:05) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"zip"=>"22209", "format"=>"xml", "action"=>"permitme_by_zip", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mFeature Load (0.094335)[0m   [0;1mSELECT id, fips_class FROM `features` WHERE (feat_name = '--- :feature\n' and state_id = 42) [0m
+Completed in 0.10289 (9 reqs/sec) | Rendering: 0.00052 (0%) | DB: 0.09476 (92%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/22209.xml]
+
+
+Processing PermitmeController#permitme_by_zip (for 127.0.0.1 at 2009-05-08 18:09:26) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"zip"=>"22209", "format"=>"xml", "action"=>"permitme_by_zip", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;35;1mFeature Load (0.000454)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name = '--- :feature\n' and state_id = 42) [0m
+Completed in 0.00869 (115 reqs/sec) | Rendering: 0.00030 (3%) | DB: 0.00045 (5%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/22209.xml]
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-08 18:10:10) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"baldwin", "alpha"=>"il", "format"=>"xml", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mPermitmeResource Load (4.234198)[0m   [0;1mselect Link_Title, Url from permitme_resources where permitme_resource_group_id in (select id from permitme_resource_groups where permitme_subcategory_id in (select id from permitme_subcategories where isExclusive=1 and isActive=1 and name = 'child care services') and state_id in (select distinct(f.state_id) from features f, states s where f.feat_name like '%baldwin%' and s.alpha='il' and f.state_id = s.id))[0m
+  [4;35;1mPermitmeResource Columns (0.081045)[0m   [0mSHOW FIELDS FROM `permitme_resources`[0m
+Completed in 4.33061 (0 reqs/sec) | Rendering: 0.00775 (0%) | DB: 4.31524 (99%) | 200 OK [http://localhost/permitme/state_and_city/child%20care%20services/il/baldwin.xml]
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-08 18:47:29) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"baldwin", "alpha"=>"il", "format"=>"xml", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mPermitmeResource Load (2.112131)[0m   [0;1mselect Link_Title, Url from permitme_resources where permitme_resource_group_id in (select id from permitme_resource_groups where permitme_subcategory_id in (select id from permitme_subcategories where isExclusive=1 and isActive=1 and name = 'child care services') and state_id in (select distinct(f.state_id) from features f, states s where f.feat_name like '%baldwin%' and s.alpha='il' and f.state_id = s.id))[0m
+  [4;35;1mPermitmeResource Columns (0.002230)[0m   [0mSHOW FIELDS FROM `permitme_resources`[0m
+Completed in 2.12581 (0 reqs/sec) | Rendering: 0.00614 (0%) | DB: 2.11436 (99%) | 200 OK [http://localhost/permitme/state_and_city/child%20care%20services/il/baldwin.xml]
