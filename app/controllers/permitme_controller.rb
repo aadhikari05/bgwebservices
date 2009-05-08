@@ -67,14 +67,14 @@ class PermitmeController < ApplicationController
     def findAllFeatureSitesByFeatureAndState (feature_id, state_alpha)
       foundSites = findAllSitesByFeatureId(feature_id)
 
-  # May not be needed    
-  # 		if foundSites.length > 0 
-  #    		for (LocalSite site: foundSites)
-  #    				site.setStateAbbrev(thisState.getAbbreviation());
-  #    				site.setFeatureName(thisFeature.getName());
-  #   				  site.setFipsClass(thisFeature.getFipsClass());
-  # 				end
-  #   	end	
+    # May not be needed    
+    # 		if foundSites.length > 0 
+    #    		for (LocalSite site: foundSites)
+    #    				site.setStateAbbrev(thisState.getAbbreviation());
+    #    				site.setFeatureName(thisFeature.getName());
+    #   				  site.setFipsClass(thisFeature.getFipsClass());
+    # 				end
+    #   	end	
 
      	return foundSites;
     end
