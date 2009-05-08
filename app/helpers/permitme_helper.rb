@@ -25,19 +25,19 @@ module PermitmeHelper
   end
 
   def  PermitMeFeatureMappingQuery
-    strQuery = "select id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = ? " +
-			"union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names " + 
-			"where feature_id = features.id and county_seq = 1 and name = ?"
+    strQuery = "select id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = ? "
+		strQuery +=	"union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names "
+		strQuery += "where feature_id = features.id and county_seq = 1 and name = ?"
   end
 
   def  PermitMeFeatureWithStateMappingQuery
-    strQuery =     "select id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = ? " +
-					"and state_id = ? union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names " + 
-					"where feature_id = features.id and county_seq = 1 and name = ? and state_id = ?"
+    strQuery = "select id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = ? "
+		strQuery += "and state_id = ? union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names "
+		strQuery += "where feature_id = features.id and county_seq = 1 and name = ? and state_id = ?"
 	end
 
-  def findAllFeatureSitesByFeatureAndState (Feature thisFeature, State thisState)
-    foundSites = findAllSitesByFeatureId(thisFeature.getId())
+  def findAllFeatureSitesByFeatureAndState (feature_id, state_alpha)
+    foundSites = findAllSitesByFeatureId(feature_id)
  		if (foundSites != null) {
       			for (LocalSite site: foundSites){
       				site.setStateAbbrev(thisState.getAbbreviation());
