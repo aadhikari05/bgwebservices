@@ -1,0 +1,109 @@
+module PermitmeHelper
+  
+#	featureAltNameMappingQuery = new PermitMeFeatureAltNameMappingQuery(ds);
+	
+#	sitesByFeatureIdQuery = new SitesByFeatureIdQuery(ds);
+	
+#	permitMeCountySpecsByNameQuery = new CountySpecsByNameQuery(ds);
+#	permitMeSitesByFeatureIdQuery = new PermitMeSitesByFeatureIdQuery(ds);
+#	permitMeFeatureWithStateMappingQuery = new PermitMeFeatureWithStateMappingQuery(ds);
+
+  def CountySpecsByNameQuery
+     = "select id, fips_class from features where feat_name = ? and state_id = ?"
+  end
+  
+  def SitesByFeatureIdQuery
+     = "select id,description, url,name, feature_id from sites where feature_id = ? and is_primary = 1 and url is not null"
+  end
+  
+  def  PermitMeSitesByFeatureIdQuery
+     = "select id,description, url,name, feature_id from permitme_sites where feature_id = ? and url is not null"
+  end
+  
+  def  PermitMeFeatureAltNameMappingQuery
+     = "select features.id, fips_class, state_id, feat_name,county_name_full,majorfeature, fips_feat_id from features,alternate_names where alternate_names.feature_id = features.id and county_seq = 1 and name = ?"
+  end
+
+  def  PermitMeFeatureMappingQuery
+     = "select id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = ? " +
+			"union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names " + 
+			"where feature_id = features.id and county_seq = 1 and name = ?"
+  end
+
+  def  PermitMeFeatureWithStateMappingQuery
+     =     "select id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = ? " +
+					"and state_id = ? union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names " + 
+					"where feature_id = features.id and county_seq = 1 and name = ? and state_id = ?"
+	end
+
+  def findAllFeatureSitesByFeatureAndState
+     findAllSitesByFeatureId(thisFeature.getId()
+ 		if (foundSites != null) {
+      			for (LocalSite site: foundSites){
+
+      				site.setStateAbbrev(thisState.getAbbreviation());
+      				site.setFeatureName(thisFeature.getName());
+     				site.setFipsClass(thisFeature.getFipsClass());
+   				}
+   			}
+  end
+  
+  def  findAllSitesByFeatureId
+    permitMeSitesByFeatureIdQuery.execute(parms)
+  end
+
+  def  findAllCountySitesByFeatureAndState
+    getCountiesByFeature(thisFeature) # special case for st.louis
+		List<LocalSite> localSites = new ArrayList<LocalSite>();
+		
+		for (County c : counties) {
+			
+			// Special case for St. Louis because the St. is abbreviated in the county name
+			// This is the fix for SBA-255
+			
+			if (c.getName().matches("^St\\.(.)*")) {
+				c.setName(c.getName().replaceFirst("St\\.","Saint"));
+			}
+			
+			parms[0] = c.getName();
+			List<CountySpec> countySpecs = permitMeCountySpecsByNameQuery.execute(parms);
+			
+			if (countySpecs != null && countySpecs.size() > 0) {
+				CountySpec thisSpec = countySpecs.get(0);
+				Integer id = (Integer) thisSpec.id;
+				c.setId(id);
+			
+				// For this county id get all the site and set the name for each
+				List<LocalSite> sitesForThisCounty = this.findAllSitesByFeatureId(id);
+			
+				if (sitesForThisCounty != null && sitesForThisCounty.size() > 0) {
+				
+					for (LocalSite site:sitesForThisCounty) {
+					
+						site.setFeatureName(c.getName());
+						site.setStateAbbrev(thisState.getAbbreviation());
+						site.setFipsClass(thisSpec.fips_class);
+					}
+				
+					localSites.addAll(sitesForThisCounty);
+				}
+			
+				else {// no sites found
+				
+					localSites.add(createDummyLocalSite(thisState, c, thisSpec.fips_class)); // Because no site was found for this county
+				
+				}
+			} // end if countyIds
+			
+			else {
+				
+				localSites.add(createDummyLocalSite(thisState, c,null)); // Because no spec was found for this county
+			}
+		}
+		
+		return localSites;
+  end
+
+  def  CountySpecsByNameQuery
+  end
+end
