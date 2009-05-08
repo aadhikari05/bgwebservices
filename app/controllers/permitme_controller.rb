@@ -4,7 +4,7 @@ class PermitmeController < ApplicationController
       #http://localhost:3000/permitme/by_zip/child%20care%20services/22209.xml
       #Need to test this query and modify if it is not returning resources for that zip
 #      @queryResults = PermitmeResource.find_by_sql(["select Link_Title, Url from permitme_resources where permitme_resource_group_id in (select id from permitme_resource_groups where permitme_subcategory_id in (select id from permitme_subcategories where isExclusive=1 and isActive=1 and name = ?) and state_id in (select distinct(f.state_id) from features f, zipcodes z where z.zip=? and z.feature_id=f.id))",params[:business_type],params[:zip]])
-      test = Permitme.new()
+      test = Result.new()
       @queryResults = test.find_all
       respond_to do |format|
         format.xml {render :xml => @queryResults}

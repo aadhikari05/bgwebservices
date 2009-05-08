@@ -1,4 +1,4 @@
-class Permitme
+class Result
   
   attr_reader :link_title, :url
   

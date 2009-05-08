@@ -1,12 +1,10 @@
 module PermitmeHelper
   
-#	featureAltNameMappingQuery = new PermitMeFeatureAltNameMappingQuery(ds);
-	
-#	sitesByFeatureIdQuery = new SitesByFeatureIdQuery(ds);
-	
-#	permitMeCountySpecsByNameQuery = new CountySpecsByNameQuery(ds);
-#	permitMeSitesByFeatureIdQuery = new PermitMeSitesByFeatureIdQuery(ds);
-#	permitMeFeatureWithStateMappingQuery = new PermitMeFeatureWithStateMappingQuery(ds);
+  #	featureAltNameMappingQuery = new PermitMeFeatureAltNameMappingQuery(ds);
+  #	sitesByFeatureIdQuery = new SitesByFeatureIdQuery(ds);
+  #	permitMeCountySpecsByNameQuery = new CountySpecsByNameQuery(ds);
+  #	permitMeSitesByFeatureIdQuery = new PermitMeSitesByFeatureIdQuery(ds);
+  #	permitMeFeatureWithStateMappingQuery = new PermitMeFeatureWithStateMappingQuery(ds);
 
   def CountySpecsByNameQuery
     strQuery = "select id, fips_class from features where feat_name = ? and state_id = ?"
@@ -45,14 +43,14 @@ module PermitmeHelper
 #    				site.setStateAbbrev(thisState.getAbbreviation());
 #    				site.setFeatureName(thisFeature.getName());
 #   				  site.setFipsClass(thisFeature.getFipsClass());
- 				end
-   	end	
+# 				end
+#   	end	
    		
    	return foundSites;
   end
   
   def  findAllSitesByFeatureId (feature_id)
-    foundSites = permitMeSitesByFeatureIdQuery.execute(feature_id)
+    <LocalSite> foundSites = permitMeSitesByFeatureIdQuery.execute(feature_id)
     
     if (foundSites == null || foundSites.size() == 0) 
 			
