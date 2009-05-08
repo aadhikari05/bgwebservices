@@ -2,6 +2,8 @@ class County
   
   
   def initialize
+    @id = ""
+    @name = ""
   end
   
   def find_all
