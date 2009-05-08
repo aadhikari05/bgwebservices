@@ -9,51 +9,58 @@ module PermitmeHelper
 #	permitMeFeatureWithStateMappingQuery = new PermitMeFeatureWithStateMappingQuery(ds);
 
   def CountySpecsByNameQuery
-     = "select id, fips_class from features where feat_name = ? and state_id = ?"
+    strQuery = "select id, fips_class from features where feat_name = ? and state_id = ?"
   end
   
   def SitesByFeatureIdQuery
-     = "select id,description, url,name, feature_id from sites where feature_id = ? and is_primary = 1 and url is not null"
+    strQuery = "select id,description, url,name, feature_id from sites where feature_id = ? and is_primary = 1 and url is not null"
   end
   
   def  PermitMeSitesByFeatureIdQuery
-     = "select id,description, url,name, feature_id from permitme_sites where feature_id = ? and url is not null"
+    strQuery = "select id,description, url,name, feature_id from permitme_sites where feature_id = ? and url is not null"
   end
   
   def  PermitMeFeatureAltNameMappingQuery
-     = "select features.id, fips_class, state_id, feat_name,county_name_full,majorfeature, fips_feat_id from features,alternate_names where alternate_names.feature_id = features.id and county_seq = 1 and name = ?"
+    strQuery = "select features.id, fips_class, state_id, feat_name,county_name_full,majorfeature, fips_feat_id from features,alternate_names where alternate_names.feature_id = features.id and county_seq = 1 and name = ?"
   end
 
   def  PermitMeFeatureMappingQuery
-     = "select id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = ? " +
+    strQuery = "select id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = ? " +
 			"union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names " + 
 			"where feature_id = features.id and county_seq = 1 and name = ?"
   end
 
   def  PermitMeFeatureWithStateMappingQuery
-     =     "select id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = ? " +
+    strQuery =     "select id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = ? " +
 					"and state_id = ? union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names " + 
 					"where feature_id = features.id and county_seq = 1 and name = ? and state_id = ?"
 	end
 
-  def findAllFeatureSitesByFeatureAndState
-     findAllSitesByFeatureId(thisFeature.getId()
+  def findAllFeatureSitesByFeatureAndState (Feature thisFeature, State thisState)
+    foundSites = findAllSitesByFeatureId(thisFeature.getId())
  		if (foundSites != null) {
       			for (LocalSite site: foundSites){
-
       				site.setStateAbbrev(thisState.getAbbreviation());
       				site.setFeatureName(thisFeature.getName());
      				site.setFipsClass(thisFeature.getFipsClass());
    				}
    			}
+   			
+   	return foundSites;
   end
   
   def  findAllSitesByFeatureId
-    permitMeSitesByFeatureIdQuery.execute(parms)
+    foundSites = permitMeSitesByFeatureIdQuery.execute(parms)
+    
+    if (foundSites == null || foundSites.size() == 0) {
+			
+			foundSites =  sitesByFeatureIdQuery.execute(parms);
+		}
+		
   end
 
-  def  findAllCountySitesByFeatureAndState
-    getCountiesByFeature(thisFeature) # special case for st.louis
+  def  findAllCountySitesByFeatureAndState  (Feature thisFeature, State thisState)
+    List<County> counties = getCountiesByFeature(thisFeature) # special case for st.louis
 		List<LocalSite> localSites = new ArrayList<LocalSite>();
 		
 		for (County c : counties) {
@@ -102,8 +109,5 @@ module PermitmeHelper
 		}
 		
 		return localSites;
-  end
-
-  def  CountySpecsByNameQuery
   end
 end
