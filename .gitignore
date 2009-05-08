@@ -1,0 +1,8 @@
+
+
+
+log/*
+config/database.yml
+*.log
+mongrel.log
+development.log
