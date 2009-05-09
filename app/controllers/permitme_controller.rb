@@ -31,7 +31,7 @@ class PermitmeController < ApplicationController
   end
 
   def CountySpecsByNameQuery (feature_name, state_id)
-      strQuery = Feature.find(:all, :select => "id, fips_class", :conditions => ["feat_name = ? and state_id = ?",feature_name, state_id])
+      Feature.find(:all, :select => "id, fips_class", :conditions => ["feat_name = ? and state_id = ?",feature_name, state_id])
   end
   
     #	featureAltNameMappingQuery = new PermitMeFeatureAltNameMappingQuery(ds);
@@ -41,15 +41,15 @@ class PermitmeController < ApplicationController
     #	permitMeFeatureWithStateMappingQuery = new PermitMeFeatureWithStateMappingQuery(ds);
 
     def SitesByFeatureIdQuery (feature_id)
-        strQuery = Site.find(:all, :select => "id,description, url,name, feature_id", :conditions => ["feature_id = ? and is_primary = 1 and url is not null",feature_id])
+        Site.find(:all, :select => "id,description, url,name, feature_id", :conditions => ["feature_id = ? and is_primary = 1 and url is not null",feature_id])
     end
 
     def  PermitMeSitesByFeatureIdQuery (feature_id)
-        strQuery = PermitmeSite.find(:all, :select => "id,description, url,name, feature_id", :conditions => ["feature_id = ? and url is not null",feature_id])
+        PermitmeSite.find(:all, :select => "id,description, url,name, feature_id", :conditions => ["feature_id = ? and url is not null",feature_id])
     end
 
     def  PermitMeFeatureAltNameMappingQuery (alternate_name)
-        strQuery = Feature.find_by_sql("select features.id, fips_class, state_id, feat_name,county_name_full,majorfeature, fips_feat_id from features,alternate_names where alternate_names.feature_id = features.id and county_seq = 1 and name = ?",alternate_name)
+        Feature.find_by_sql("select features.id, fips_class, state_id, feat_name,county_name_full,majorfeature, fips_feat_id from features,alternate_names where alternate_names.feature_id = features.id and county_seq = 1 and name = ?",alternate_name)
     end
 
     def  PermitMeFeatureMappingQuery (feature_name, alternate_name)
@@ -68,17 +68,26 @@ class PermitmeController < ApplicationController
 
     def findAllFeatureSitesByFeatureAndState (feature_id, state_alpha)
       foundSites = findAllSitesByFeatureId(feature_id)
-
     # May not be needed    
     # 		if foundSites.length > 0 
     #    		for (LocalSite site: foundSites)
-    #    				site.setStateAbbrev(thisState.getAbbreviation());
-    #    				site.setFeatureName(thisFeature.getName());
-    #   				  site.setFipsClass(thisFeature.getFipsClass());
-    # 				end
+    #    				site.setStateAbbrev(thisState.getAbbreviation())
+    #    				site.setFeatureName(thisFeature.getName())
+    #   				site.setFipsClass(thisFeature.getFipsClass())
+    # 			end
     #   	end	
-
-     	return foundSites;
+     	return foundSites
     end
+
+    def  findAllSitesByFeatureId (feature_id)
+      foundSites = permitMeSitesByFeatureIdQuery(feature_id)
+
+      if foundSites?nil
+    			foundSites =  sitesByFeatureIdQuery.execute(parms)
+    	end
+
+      return foundSites
+    end
+
   
 end
