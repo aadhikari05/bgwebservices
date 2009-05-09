@@ -89,5 +89,49 @@ class PermitmeController < ApplicationController
       return foundSites
     end
 
-  
+    def getCountiesByFeature
+    		Feature.find(:all, :select => "county_name_full", :conditions ["state_id = ? and fips_feat_id=? and county_name_full is not null", state_id, fips_feature_id])
+    end
+
+    def  findAllCountySitesByFeatureAndState  (Feature thisFeature, State thisState)
+        List<County> counties = getCountiesByFeature(thisFeature) # special case for st.louis
+    		List<LocalSite> localSites = new ArrayList<LocalSite>();
+
+        for (County c : counties) 
+
+            # Special case for St. Louis because the St. is abbreviated in the county name
+            if (c.getName().matches("^St\\.(.)*")) 
+                c.setName(c.getName().replaceFirst("St\\.","Saint"));
+            end
+
+            parms[0] = c.getName();
+            List<CountySpec> countySpecs = permitMeCountySpecsByNameQuery.execute(parms);
+
+            if (countySpecs != null && countySpecs.size() > 0) 
+                CountySpec thisSpec = countySpecs.get(0);
+                Integer id = (Integer) thisSpec.id;
+                c.setId(id);
+
+                # For this county id get all the site and set the name for each
+                List<LocalSite> sitesForThisCounty = this.findAllSitesByFeatureId(id);
+
+                if (sitesForThisCounty != null && sitesForThisCounty.size() > 0) 
+
+                    for (LocalSite site:sitesForThisCounty) 
+                        site.setFeatureName(c.getName());
+                        site.setStateAbbrev(thisState.getAbbreviation());
+                        site.setFipsClass(thisSpec.fips_class);
+                    end
+
+                    localSites.addAll(sitesForThisCounty);
+                else # no sitesForThisCounty found
+                    localSites.add(createDummyLocalSite(thisState, c, thisSpec.fips_class)); # Because no site was found for this county
+                end
+
+            else #countySpecs is null
+                localSites.add(createDummyLocalSite(thisState, c,null)); # Because no spec was found for this county
+            end
+
+          return localSites;
+      end  
 end
