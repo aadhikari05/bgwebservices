@@ -89,28 +89,31 @@ class PermitmeController < ApplicationController
       return foundSites
     end
 
-    def getCountiesByFeature
+    def getCountiesByFeature (state_id, fips_feature_id)
     		Feature.find(:all, :select => "county_name_full", :conditions ["state_id = ? and fips_feat_id=? and county_name_full is not null", state_id, fips_feature_id])
     end
+    
+    def permitMeCountySpecsByNameQuery (feature_id)
+        PermitmeSite.Find(:all, :select "id,description, url,name, feature_id", :conditions => ["feature_id = ? and url is not null", feature_id])
+    end
+    def  findAllCountySitesByFeatureAndState  (thisFeature, thisState)
+        counties = getCountiesByFeature (state_id, fips_feature_id)
+    		localSites = Array.new
 
-    def  findAllCountySitesByFeatureAndState  (Feature thisFeature, State thisState)
-        List<County> counties = getCountiesByFeature(thisFeature) # special case for st.louis
-    		List<LocalSite> localSites = new ArrayList<LocalSite>();
-
-        for (County c : counties) 
+        for counties.each do |county|
 
             # Special case for St. Louis because the St. is abbreviated in the county name
-            if (c.getName().matches("^St\\.(.)*")) 
-                c.setName(c.getName().replaceFirst("St\\.","Saint"));
+            if (county.getName().matches("^St\\.(.)*")) 
+                county.setName(county.getName().replaceFirst("St\\.","Saint"));
             end
 
-            parms[0] = c.getName();
-            List<CountySpec> countySpecs = permitMeCountySpecsByNameQuery.execute(parms);
+            parms[0] = county.getName();
+            countySpecs = permitMeCountySpecsByNameQuery (feature_id);
 
             if (countySpecs != null && countySpecs.size() > 0) 
                 CountySpec thisSpec = countySpecs.get(0);
                 Integer id = (Integer) thisSpec.id;
-                c.setId(id);
+                county.setId(id);
 
                 # For this county id get all the site and set the name for each
                 List<LocalSite> sitesForThisCounty = this.findAllSitesByFeatureId(id);
@@ -118,7 +121,7 @@ class PermitmeController < ApplicationController
                 if (sitesForThisCounty != null && sitesForThisCounty.size() > 0) 
 
                     for (LocalSite site:sitesForThisCounty) 
-                        site.setFeatureName(c.getName());
+                        site.setFeatureName(county.getName());
                         site.setStateAbbrev(thisState.getAbbreviation());
                         site.setFipsClass(thisSpec.fips_class);
                     end
