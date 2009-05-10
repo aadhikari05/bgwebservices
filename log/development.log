@@ -9495,3 +9495,14 @@ SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
   [4;35;1mFeature Load (0.001595)[0m   [0mselect features.id, fips_class, state_id, feat_name,county_name_full,majorfeature, fips_feat_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = '22209'[0m
   [4;36;1mFeature Columns (0.003061)[0m   [0;1mSHOW FIELDS FROM `features`[0m
 Completed in 0.01638 (61 reqs/sec) | Rendering: 0.00510 (31%) | DB: 0.00466 (28%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/22209.xml]
+  [4;35;1mSQL (0.000125)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.000207)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing PermitmeController#permitme_by_zip (for 127.0.0.1 at 2009-05-10 14:18:34) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"zip"=>"22209", "format"=>"xml", "action"=>"permitme_by_zip", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;35;1mFeature Load (0.000574)[0m   [0mselect features.id, fips_class, state_id, feat_name,county_name_full,majorfeature, fips_feat_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = '22209'[0m
+  [4;36;1mFeature Columns (0.003414)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+Completed in 0.01643 (60 reqs/sec) | Rendering: 0.00593 (36%) | DB: 0.00432 (26%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/22209.xml]

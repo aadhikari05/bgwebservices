@@ -71,6 +71,32 @@ class PermitmeController < ApplicationController
       		Feature.find_by_sql(strQuery,[feature_name,alternate_name,state_id])
     	end
 
+      def PermitMeResultsByStateQuery (state_id)
+          strQuery = "select rg.id, state_id, c.name as category, s.name as subcategory, sec.name as section, rg.description, p.URL, p.link_title "
+      		strQuery += "from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id "
+      		strQuery += "left join permitme_categories c on rg.permitme_category_id <=> c.id "
+      		strQuery += "left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id "
+      		strQuery += "left join permitme_sections sec on rg.permitme_section_id <=> sec.id "
+      		strQuery += "where state_id= ? "
+      		strQuery += "and (s.isExclusive <=> 0 or s.isExclusive is null) "
+      		strQuery += "and (s.isActive = 1 or s.isActive is null) "
+      		strQuery += "order by permitme_category_id, permitme_subcategory_id, permitme_section_id"
+      		PermitmeResourceGroup.find_by_sql(strQuery,[state_id])
+      end
+      
+      def PermitMeResultsByBusinessTypeQuery (state_id, business_type_id)
+          strQuery = "select rg.id, state_id, c.name as category, s.name as subcategory, sec.name as section, rg.description, p.URL, p.link_title "
+      		strQuery += "from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id "
+      		strQuery += "left join permitme_categories c on rg.permitme_category_id <=> c.id "
+      		strQuery += "join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id "
+      		strQuery += "left join permitme_sections sec on rg.permitme_section_id <=> sec.id "
+      		strQuery += "where state_id= ? and url is not null "
+      		strQuery += "and (s.id = ?) "
+      		strQuery += "and (s.isActive = 1 or s.isActive is null) "
+      		strQuery += "order by permitme_category_id, permitme_subcategory_id, permitme_section_id"
+      		PermitmeResourceGroup.find_by_sql(strQuery,[state_id,business_type_id])
+      end
+      
       def findAllFeatureSitesByFeatureAndState (feature_id, state_alpha)
         foundSites = findAllSitesByFeatureId(feature_id)
       # May not be needed    
