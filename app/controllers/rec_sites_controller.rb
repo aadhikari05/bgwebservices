@@ -48,7 +48,7 @@ class RecSitesController < ApplicationController
   def notFound
     @queryResults={"NotFound"=>"No Results"}
   end
-end
+#end
 
 
   	 #http://localhost:3000/rec_sites/states/nevada

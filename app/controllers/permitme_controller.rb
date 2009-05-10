@@ -2,7 +2,7 @@ class PermitmeController < ApplicationController
   
     def permitme_by_zip
         #http://localhost:3000/permitme/by_zip/child%20care%20services/22209.xml
-        @queryResults = getFeatureAndStateFromZip (params[:zip])
+        @queryResults = getFeatureAndStatebyZip (params[:zip])
         respond_to do |format|
           format.xml {render :xml => @queryResults}
           format.json {render :json => @queryResults}
@@ -36,8 +36,9 @@ class PermitmeController < ApplicationController
       #	permitMeSitesByFeatureIdQuery = new PermitMeSitesByFeatureIdQuery(ds);
       #	permitMeFeatureWithStateMappingQuery = new PermitMeFeatureWithStateMappingQuery(ds);
     
-      def getFeatureAndStateFromZip (zip)
-          Feature.find(:all, :select => "feat_name, state_id", :include => "zipcodes", :conditions => ["zipcodes.zip = ?",zip])
+      def getFeatureAndStatebyZip (zip)
+        Feature.find_by_sql(["select features.id, fips_class, state_id, feat_name,county_name_full,majorfeature, fips_feat_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = ?",zip])
+#          Feature.find(:all, :select => "feat_name, state_id", :joins => "LEFT OUTER JOIN `zipcodes` ON zipcodes.feature_id = features.id", :conditions => ["zipcodes.zip = ?",zip])
       end
 
       def CountySpecsByNameQuery (feature_name, state_id)
