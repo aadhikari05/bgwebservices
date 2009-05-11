@@ -11,7 +11,7 @@ class PermitmeController < ApplicationController
         
         #We pass the state_id and fips_feat_id to the function below to get the list of County Sites
         for ss in 0...@state_and_feature.length
-            @queryResults[ss] = getCountiesByFeature (@state_and_feature[ss]["state_id"], @state_and_feature[ss]["fips_feat_id"])
+            @queryResults[ss] = findAllCountySitesByFeatureAndState (@state_and_feature[ss]["state_id"], @state_and_feature[ss]["fips_feat_id"], @state_and_feature[ss]["features.id"])
         end
         
         #getCountiesByFeature (state_id, fips_feature_id)
@@ -43,7 +43,7 @@ class PermitmeController < ApplicationController
     end
     
       def getFeatureAndStatebyZip (zip)
-        Feature.find_by_sql(["select state_id, fips_feat_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = ?",zip])
+        Feature.find_by_sql(["select state_id, fips_feat_id, features.id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = ?",zip])
 #          Feature.find_by_sql(["select features.id, fips_class, state_id, feat_name,county_name_full,majorfeature, fips_feat_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = ?",zip])
 #          Feature.find(:all, :select => "feat_name, state_id", :joins => "LEFT OUTER JOIN `zipcodes` ON zipcodes.feature_id = features.id", :conditions => ["zipcodes.zip = ?",zip])
       end
@@ -136,28 +136,28 @@ class PermitmeController < ApplicationController
       		Feature.find(:all, :select => "county_name_full", :conditions => ["state_id = ? and fips_feat_id=? and county_name_full is not null", state_id, fips_feature_id])
       end
 
-      def  findAllCountySitesByFeatureAndState  (state_id, fips_feature_id)
-        counties = getCountiesByFeature (state_id, fips_feature_id)
-        localSites = Array.new
+      def  findAllCountySitesByFeatureAndState  (state_id, fips_feature_id,feature_id)
+          counties = getCountiesByFeature (state_id, fips_feature_id)
+          localSites = Array.new
 
-#        for counties.each do |county|
+#          for counties.each do |county|
             # Special case for St. Louis because the St. is abbreviated in the county name
 #           if (county.matches("^St\\.(.)*")) 
  #               county(county.replaceFirst("St\\.","Saint"));
   #          end
 
-   #         parms[0] = county
+# get feature_id, and then do the following
   #          countySpecs = permitMeCountySpecsByNameQuery (feature_id)
 
-  #          if (countySpecs != null && countySpecs.size() > 0) 
+  #          if countySpecs.length > 0 
   #              CountySpec thisSpec = countySpecs.get(0)
  #               Integer id = (Integer) thisSpec.id
   #              county.setId(id)
 
-                # For this county id get all the site and set the name for each
-  #              List<LocalSite> sitesForThisCounty = this.findAllSitesByFeatureId(id)
+                # For this county id get all the sites and set the name for each
+  #              sitesForThisCounty = this.findAllSitesByFeatureId(id)
 
- #               if (sitesForThisCounty != null && sitesForThisCounty.size() > 0) 
+ #               if sitesForThisCounty.length > 0
 
   #                 for (LocalSite site:sitesForThisCounty) 
    #                     site.setFeatureName(county.getName())
@@ -175,9 +175,9 @@ class PermitmeController < ApplicationController
 #                localSites.add(createDummyLocalSite(thisState, c,null)) 
     #        end
 
- #        end
+#         end
 
-#        return localSites
+        return localSites
     end
 
 end
