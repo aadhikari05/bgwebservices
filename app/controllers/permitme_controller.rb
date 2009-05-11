@@ -133,7 +133,7 @@ class PermitmeController < ApplicationController
       end
 
       def getCountiesByFeature (state_id, fips_feature_id)
-      		Feature.find(:all, :select => "county_name_full", :conditions => ["state_id = ? and fips_feat_id=? and county_name_full is not null", state_id, fips_feature_id])
+      		Feature.find(:all, :select => "id, county_name_full, fips_class", :conditions => ["state_id = ? and fips_feat_id=? and county_name_full is not null", state_id, fips_feature_id])
       end
 
       def  findAllCountySitesByFeatureAndState  (state_id, fips_feature_id,feature_id)
@@ -146,33 +146,29 @@ class PermitmeController < ApplicationController
  #               county(county.replaceFirst("St\\.","Saint"));
   #          end
 
-# get feature_id, and then do the following
+            # get county specs from feature_id
   #          countySpecs = permitMeCountySpecsByNameQuery (feature_id)
 
-  #          if countySpecs.length > 0 
-  #              CountySpec thisSpec = countySpecs.get(0)
- #               Integer id = (Integer) thisSpec.id
-  #              county.setId(id)
-
+  #          for currentSpec in 0...countySpecs.length
                 # For this county id get all the sites and set the name for each
-  #              sitesForThisCounty = this.findAllSitesByFeatureId(id)
+  #              sitesForThisCounty = this.findAllSitesByFeatureId(countySpecs[currentSpec]["id"])
 
  #               if sitesForThisCounty.length > 0
 
-  #                 for (LocalSite site:sitesForThisCounty) 
-   #                     site.setFeatureName(county.getName())
-  #                      site.setStateAbbrev(thisState.getAbbreviation())
-  #                      site.setFipsClass(thisSpec.fips_class)
+  #                 for site in sitesForThisCounty
+   #                     site.setFeatureName(countySpecs[currentSpec]["county_name_full"]county[.getName()])
+  #                      site.setStateAbbrev(countySpecs[currentSpec]["abbreviation"]thisState.getAbbreviation())
+  #                      site.setFipsClass(countySpecs[currentSpec]["fips_class"]thisSpec.fips_class)
   #                 end
 
-  #                  localSites.addAll(sitesForThisCounty)
+  #                  localSites += sitesForThisCounty
 #                else 
- #                   localSites.add(createDummyLocalSite(thisState, c, thisSpec.fips_class)) 
+ #                   localSites += (createDummyLocalSite(thisState, c, thisSpec.fips_class)) 
  #               end
 
    #         else 
                 #countySpecs is null
-#                localSites.add(createDummyLocalSite(thisState, c,null)) 
+#                localSites += (createDummyLocalSite(thisState, c,null)) 
     #        end
 
 #         end
