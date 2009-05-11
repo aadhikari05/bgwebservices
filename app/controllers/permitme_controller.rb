@@ -6,12 +6,12 @@ class PermitmeController < ApplicationController
         @queryResults = Array.new
         
         #We take the zip and use it to get state_id and fips_feature_id for a particular zip
+        #using getFeatureAndStatebyZip for now, change to findAllCountySitesByFeatureAndState and save to countyResults array
         @state_and_feature = getFeatureAndStatebyZip (params[:zip])
         
         #We pass the state_id and fips_feat_id to the function below to get the list of County Sites
-        for ss in 1...@state_and_feature.length
-            temp_result = Result.new
-            @queryResults[ss] = @state_and_feature[ss]
+        for ss in 0...@state_and_feature.length
+            @queryResults[ss] = getCountiesByFeature (@state_and_feature[ss]["state_id"], @state_and_feature[ss]["fips_feat_id"])
         end
         
         #getCountiesByFeature (state_id, fips_feature_id)
@@ -136,8 +136,7 @@ class PermitmeController < ApplicationController
       		Feature.find(:all, :select => "county_name_full", :conditions => ["state_id = ? and fips_feat_id=? and county_name_full is not null", state_id, fips_feature_id])
       end
 
-      #Seems like the method above does the same thing as the method below?
-      def  findAllCountySitesByFeatureAndState  (fips_feature_id, state_id)
+      def  findAllCountySitesByFeatureAndState  (state_id, fips_feature_id)
         counties = getCountiesByFeature (state_id, fips_feature_id)
         localSites = Array.new
 
