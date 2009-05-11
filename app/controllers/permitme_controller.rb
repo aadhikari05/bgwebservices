@@ -2,7 +2,19 @@ class PermitmeController < ApplicationController
   
     def permitme_by_zip
         #http://localhost:3000/permitme/by_zip/child%20care%20services/22209.xml
-        @queryResults = getFeatureAndStatebyZip (params[:zip])
+        #Creating the Array that will hold the final resultset
+        @queryResults = Array.new
+        
+        #We take the zip and use it to get state_id and fips_feature_id for a particular zip
+        @state_and_feature = getFeatureAndStatebyZip (params[:zip])
+        
+        #We pass the state_id and fips_feat_id to the function below to get the list of County Sites
+        for ss in 1...@state_and_feature.length
+            temp_result = Result.new
+            @queryResults[ss] = @state_and_feature[ss]
+        end
+        
+        #getCountiesByFeature (state_id, fips_feature_id)
         respond_to do |format|
           format.xml {render :xml => @queryResults}
           format.json {render :json => @queryResults}
@@ -10,15 +22,15 @@ class PermitmeController < ApplicationController
     end
 
     def permitme_by_state_only
-      #http://localhost:3000/permitme/state_only/child%20care%20services/il.xml
-      @queryResults = PermitmeResource.find_by_sql(["select Link_Title, Url from permitme_resources where permitme_resource_group_id in (select id from permitme_resource_groups where permitme_subcategory_id in (select id from permitme_subcategories where isExclusive=1 and isActive=1 and name = ?) and state_id in (select id from states where alpha=?))",params[:business_type],params[:alpha]])
+        #http://localhost:3000/permitme/state_only/child%20care%20services/il.xml
+        @queryResults = PermitmeResource.find_by_sql(["select Link_Title, Url from permitme_resources where permitme_resource_group_id in (select id from permitme_resource_groups where permitme_subcategory_id in (select id from permitme_subcategories where isExclusive=1 and isActive=1 and name = ?) and state_id in (select id from states where alpha=?))",params[:business_type],params[:alpha]])
 
         respond_to_format (@queryResults)
     end
 
     def permitme_by_state_and_feature
-      #http://localhost:3000/permitme/state_and_city/child%20care%20services/il/baldwin.xml
-      @queryResults = PermitmeResource.find_by_sql(["select Link_Title, Url from permitme_resources where permitme_resource_group_id in (select id from permitme_resource_groups where permitme_subcategory_id in (select id from permitme_subcategories where isExclusive=1 and isActive=1 and name = ?) and state_id in (select distinct(f.state_id) from features f, states s where f.feat_name like ? and s.alpha=? and f.state_id = s.id))",params[:business_type],"%"+params[:feature]+"%",params[:alpha]])
+        #http://localhost:3000/permitme/state_and_city/child%20care%20services/il/baldwin.xml
+        @queryResults = PermitmeResource.find_by_sql(["select Link_Title, Url from permitme_resources where permitme_resource_group_id in (select id from permitme_resource_groups where permitme_subcategory_id in (select id from permitme_subcategories where isExclusive=1 and isActive=1 and name = ?) and state_id in (select distinct(f.state_id) from features f, states s where f.feat_name like ? and s.alpha=? and f.state_id = s.id))",params[:business_type],"%"+params[:feature]+"%",params[:alpha]])
 
         respond_to_format (@queryResults)
     end
@@ -31,7 +43,8 @@ class PermitmeController < ApplicationController
     end
     
       def getFeatureAndStatebyZip (zip)
-        Feature.find_by_sql(["select features.id, fips_class, state_id, feat_name,county_name_full,majorfeature, fips_feat_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = ?",zip])
+        Feature.find_by_sql(["select state_id, fips_feat_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = ?",zip])
+#          Feature.find_by_sql(["select features.id, fips_class, state_id, feat_name,county_name_full,majorfeature, fips_feat_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = ?",zip])
 #          Feature.find(:all, :select => "feat_name, state_id", :joins => "LEFT OUTER JOIN `zipcodes` ON zipcodes.feature_id = features.id", :conditions => ["zipcodes.zip = ?",zip])
       end
 
@@ -93,7 +106,8 @@ class PermitmeController < ApplicationController
       
       def findAllFeatureSitesByFeatureAndState (feature_id, state_alpha)
         foundSites = findAllSitesByFeatureId(feature_id)
-      # May not be needed    
+      # May not be needed
+      #-------------------   
       # 		if foundSites.length > 0 
       #    		for (LocalSite site: foundSites)
       #    				site.setStateAbbrev(thisState.getAbbreviation())
@@ -114,56 +128,57 @@ class PermitmeController < ApplicationController
         return foundSites
       end
 
-      def getCountiesByFeature (state_id, fips_feature_id)
-      		Feature.find(:all, :select => "county_name_full", :conditions => ["state_id = ? and fips_feat_id=? and county_name_full is not null", state_id, fips_feature_id])
-      end
-
       def permitMeCountySpecsByNameQuery (feature_id)
           PermitmeSite.Find(:all, :select => "id,description, url,name, feature_id", :conditions => ["feature_id = ? and url is not null", feature_id])
       end
 
-          def  findAllCountySitesByFeatureAndState  (fips_feature_id, state_id)
-      #        counties = getCountiesByFeature (state_id, fips_feature_id)
-      #    		localSites = Array.new
-
-       #       for counties.each do |county|
-                  # Special case for St. Louis because the St. is abbreviated in the county name
-      #            if (county.matches("^St\\.(.)*")) 
-      #                county(county.replaceFirst("St\\.","Saint"));
-      #            end
-
-      #            parms[0] = county
-       #           countySpecs = permitMeCountySpecsByNameQuery (feature_id)
-
-       #           if (countySpecs != null && countySpecs.size() > 0) 
-       #               CountySpec thisSpec = countySpecs.get(0)
-      #                Integer id = (Integer) thisSpec.id
-      #                county.setId(id)
-
-                      # For this county id get all the site and set the name for each
-      #                List<LocalSite> sitesForThisCounty = this.findAllSitesByFeatureId(id)
-
-      #                if (sitesForThisCounty != null && sitesForThisCounty.size() > 0) 
-
-      #                   for (LocalSite site:sitesForThisCounty) 
-      #                        site.setFeatureName(county.getName())
-      #                        site.setStateAbbrev(thisState.getAbbreviation())
-      #                        site.setFipsClass(thisSpec.fips_class)
-      #                   end
-
-       #                   localSites.addAll(sitesForThisCounty)
-      #                else 
-      #                    localSites.add(createDummyLocalSite(thisState, c, thisSpec.fips_class)) 
-      #                end
-
-      #            else 
-                      #countySpecs is null
-       #               localSites.add(createDummyLocalSite(thisState, c,null)) 
-      #            end
-
-       #        end
-
-      #          return localSites
+      def getCountiesByFeature (state_id, fips_feature_id)
+      		Feature.find(:all, :select => "county_name_full", :conditions => ["state_id = ? and fips_feat_id=? and county_name_full is not null", state_id, fips_feature_id])
       end
+
+      #Seems like the method above does the same thing as the method below?
+      def  findAllCountySitesByFeatureAndState  (fips_feature_id, state_id)
+        counties = getCountiesByFeature (state_id, fips_feature_id)
+        localSites = Array.new
+
+#        for counties.each do |county|
+            # Special case for St. Louis because the St. is abbreviated in the county name
+#           if (county.matches("^St\\.(.)*")) 
+ #               county(county.replaceFirst("St\\.","Saint"));
+  #          end
+
+   #         parms[0] = county
+  #          countySpecs = permitMeCountySpecsByNameQuery (feature_id)
+
+  #          if (countySpecs != null && countySpecs.size() > 0) 
+  #              CountySpec thisSpec = countySpecs.get(0)
+ #               Integer id = (Integer) thisSpec.id
+  #              county.setId(id)
+
+                # For this county id get all the site and set the name for each
+  #              List<LocalSite> sitesForThisCounty = this.findAllSitesByFeatureId(id)
+
+ #               if (sitesForThisCounty != null && sitesForThisCounty.size() > 0) 
+
+  #                 for (LocalSite site:sitesForThisCounty) 
+   #                     site.setFeatureName(county.getName())
+  #                      site.setStateAbbrev(thisState.getAbbreviation())
+  #                      site.setFipsClass(thisSpec.fips_class)
+  #                 end
+
+  #                  localSites.addAll(sitesForThisCounty)
+#                else 
+ #                   localSites.add(createDummyLocalSite(thisState, c, thisSpec.fips_class)) 
+ #               end
+
+   #         else 
+                #countySpecs is null
+#                localSites.add(createDummyLocalSite(thisState, c,null)) 
+    #        end
+
+ #        end
+
+#        return localSites
+    end
 
 end

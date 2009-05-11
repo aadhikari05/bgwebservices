@@ -18,7 +18,7 @@ class Result
     @primary_local_sites = false
     @business_type = false
     @business_type_name = false
-    @p_state = false
+#    @p_state = false  #Provisional State - Not Needed since we know states
   end
   
   def find_all
