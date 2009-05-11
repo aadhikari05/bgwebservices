@@ -6,22 +6,26 @@ class PermitmeController < ApplicationController
         #using getFeatureAndStatebyZip for now, change to findAllCountySitesByFeatureAndState and save to countyResults array
         @state_and_feature = getFeatureAndStatebyZip (params[:zip])
         @county_sites = Array.new
+        @local_sites = Array.new
+        @state_sites = Array.new
+        
+        @business_type_id = getBusinessTypeIdFromBusinessType (params[:business_type])
         
         #We pass the state_id and fips_feat_id to the function below to get the list of County Sites
         for ss in 0...@state_and_feature.length
+            #Get County Sites
             @county_sites << findAllCountySitesByFeatureAndState (@state_and_feature[ss]["state_id"], @state_and_feature[ss]["fips_feat_id"], @state_and_feature[ss]["feature_id"])
+            
+            #Get Primary Local Sites
+            @local_sites << findAllSitesByFeatureId (@state_and_feature[ss]["feature_id"])
+
+            #Add State Results
+            @state_sites << PermitMeResultsByBusinessTypeQuery (@state_and_feature[ss]["state_id"], @business_type_id)
         end
         
-        #Get Primary Local Sites
-        
-        
-        #Add State Results
-        
-        #Dont forget results by business_type
-        
         #Creating the Array that will hold the final resultset
-        @queryResults = Array.new
-        @queryResults = @county_sites
+#        @queryResults = Array.new
+        @queryResults = [{"county_sites" => @county_sites}, {"local_sites" => @local_sites}, {"state_sites" => @state_sites}]
         respond_to do |format|
             format.xml {render :xml => @queryResults}
             format.json {render :json => @queryResults}
@@ -49,6 +53,10 @@ class PermitmeController < ApplicationController
         end
     end
     
+    def getBusinessTypeIdFromBusinessType (business_type)
+        PermitmeSubcategory.find(:all, :select => "id", :conditions => ["isExclusive=1 and isActive=1 and name = ?",business_type])
+    end
+
       def getFeatureAndStatebyZip (zip)
         Feature.find_by_sql(["select state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = ?",zip])
 #          Feature.find_by_sql(["select features.id, fips_class, state_id, feat_name,county_name_full,majorfeature, fips_feat_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = ?",zip])
@@ -75,14 +83,14 @@ class PermitmeController < ApplicationController
           strQuery = "select id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = ? "
       		strQuery +=	"union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names "
       		strQuery += "where feature_id = features.id and county_seq = 1 and name = ?"
-      		Feature.find_by_sql(strQuery,[feature_name,alternate_name])
+      		Feature.find_by_sql([strQuery,feature_name,alternate_name])
       end
 
       def  PermitMeFeatureWithStateMappingQuery (feature_name, alternate_name, state_id)
           strQuery = "select id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = ? "
       		strQuery += "and state_id = ? union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names "
       		strQuery += "where feature_id = features.id and county_seq = 1 and name = ? and state_id = ?"
-      		Feature.find_by_sql(strQuery,[feature_name,alternate_name,state_id])
+      		Feature.find_by_sql([strQuery,feature_name,alternate_name,state_id])
     	end
 
       def PermitMeResultsByStateQuery (state_id)
@@ -95,7 +103,7 @@ class PermitmeController < ApplicationController
       		strQuery += "and (s.isExclusive <=> 0 or s.isExclusive is null) "
       		strQuery += "and (s.isActive = 1 or s.isActive is null) "
       		strQuery += "order by permitme_category_id, permitme_subcategory_id, permitme_section_id"
-      		PermitmeResourceGroup.find_by_sql(strQuery,[state_id])
+      		PermitmeResourceGroup.find_by_sql([strQuery,state_id])
       end
       
       def PermitMeResultsByBusinessTypeQuery (state_id, business_type_id)
@@ -108,11 +116,11 @@ class PermitmeController < ApplicationController
       		strQuery += "and (s.id = ?) "
       		strQuery += "and (s.isActive = 1 or s.isActive is null) "
       		strQuery += "order by permitme_category_id, permitme_subcategory_id, permitme_section_id"
-      		PermitmeResourceGroup.find_by_sql(strQuery,[state_id,business_type_id])
+      		PermitmeResourceGroup.find_by_sql([strQuery,state_id,business_type_id])
       end
       
       def findAllFeatureSitesByFeatureAndState (feature_id, state_alpha)
-        foundSites = findAllSitesByFeatureId(feature_id)
+        foundSites = findAllSitesByFeatureId (feature_id)
       # May not be needed
       #-------------------   
       # 		if foundSites.length > 0 
@@ -126,10 +134,10 @@ class PermitmeController < ApplicationController
       end
 
       def  findAllSitesByFeatureId (feature_id)
-        foundSites = permitMeSitesByFeatureIdQuery(feature_id)
+        foundSites = PermitMeSitesByFeatureIdQuery(feature_id)
 
-        if foundSites?nil
-      			foundSites =  sitesByFeatureIdQuery.execute(parms)
+        if foundSites.empty?
+      			foundSites =  SitesByFeatureIdQuery(feature_id)
       	end
 
         return foundSites
@@ -168,7 +176,7 @@ class PermitmeController < ApplicationController
 #                            site.setFipsClass(countySpecs[currentSpec]["fips_class"]thisSpec.fips_class)
 #                       end
 
-                        localSites += sitesForThisCounty
+                        localSites << sitesForThisCounty
 #                    else 
 #                        localSites << (createDummyLocalSite(thisState, c, thisSpec.fips_class)) 
 #                    end
