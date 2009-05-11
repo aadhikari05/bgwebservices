@@ -20,12 +20,14 @@ class PermitmeController < ApplicationController
             @local_sites << findAllSitesByFeatureId (@state_and_feature[ss]["feature_id"])
 
             #Add State Results
-            @state_sites << PermitMeResultsByBusinessTypeQuery (@state_and_feature[ss]["state_id"], @business_type_id)
+            @state_sites << PermitMeResultsByStateQuery (@state_and_feature[ss]["state_id"])
         end
         
         #Creating the Array that will hold the final resultset
 #        @queryResults = Array.new
         @queryResults = [{"county_sites" => @county_sites}, {"local_sites" => @local_sites}, {"state_sites" => @state_sites}]
+#        @queryResults = [@county_sites, @local_sites, @state_sites]
+
         respond_to do |format|
             format.xml {render :xml => @queryResults}
             format.json {render :json => @queryResults}
@@ -68,11 +70,11 @@ class PermitmeController < ApplicationController
       end
 
       def SitesByFeatureIdQuery (feature_id)
-          Site.find(:all, :select => "id,description, url,name, feature_id", :conditions => ["feature_id = ? and is_primary = 1 and url is not null",feature_id])
+          Site.find(:all, :select => "url,name", :conditions => ["feature_id = ? and is_primary = 1 and url is not null",feature_id])
       end
 
       def  PermitMeSitesByFeatureIdQuery (feature_id)
-          PermitmeSite.find(:all, :select => "id,description, url,name, feature_id", :conditions => ["feature_id = ? and url is not null",feature_id])
+          PermitmeSite.find(:all, :select => "url,name", :conditions => ["feature_id = ? and url is not null",feature_id])
       end
 
       def  PermitMeFeatureAltNameMappingQuery (alternate_name)
@@ -94,7 +96,8 @@ class PermitmeController < ApplicationController
     	end
 
       def PermitMeResultsByStateQuery (state_id)
-          strQuery = "select rg.id, state_id, c.name as category, s.name as subcategory, sec.name as section, rg.description, p.URL, p.link_title "
+#          strQuery = "select rg.id, state_id, c.name as category, s.name as subcategory, sec.name as section, rg.description, p.url, p.link_title "
+          strQuery = "select s.name as subcategory,rg.description, p.url, p.link_title "
       		strQuery += "from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id "
       		strQuery += "left join permitme_categories c on rg.permitme_category_id <=> c.id "
       		strQuery += "left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id "
@@ -107,7 +110,8 @@ class PermitmeController < ApplicationController
       end
       
       def PermitMeResultsByBusinessTypeQuery (state_id, business_type_id)
-          strQuery = "select rg.id, state_id, c.name as category, s.name as subcategory, sec.name as section, rg.description, p.URL, p.link_title "
+        strQuery = "select s.name as subcategory, p.url, p.link_title "
+#          strQuery = "select rg.id, state_id, c.name as category, s.name as subcategory, sec.name as section, rg.description, p.URL, p.link_title "
       		strQuery += "from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id "
       		strQuery += "left join permitme_categories c on rg.permitme_category_id <=> c.id "
       		strQuery += "join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id "
@@ -163,7 +167,7 @@ class PermitmeController < ApplicationController
       #          end
 
                 # get county specs like id,description, url,name, feature_id from feature_id
-                countySpecs = permitMeCountySpecsByNameQuery (feature_id.to_i)
+                countySpecs = permitMeCountySpecsByNameQuery (feature_id)
 
                 for currentSpec in 0...countySpecs.length
                       #For this county id get all the sites and set the name for each

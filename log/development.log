@@ -12193,3 +12193,272 @@ SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
   [4;35;1mSite Columns (0.002889)[0m   [0mSHOW FIELDS FROM `sites`[0m
   [4;36;1mPermitmeResourceGroup Columns (0.002440)[0m   [0;1mSHOW FIELDS FROM `permitme_resource_groups`[0m
 Completed in 0.05034 (19 reqs/sec) | Rendering: 0.01308 (25%) | DB: 0.01567 (31%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/22209.xml]
+
+
+Processing PermitmeController#permitme_by_zip (for 127.0.0.1 at 2009-05-11 13:52:27) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"zip"=>"22209", "format"=>"xml", "action"=>"permitme_by_zip", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;35;1mFeature Load (0.000485)[0m   [0mselect state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = '22209'[0m
+  [4;36;1mPermitmeSubcategory Load (0.000365)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;35;1mFeature Columns (0.003141)[0m   [0mSHOW FIELDS FROM `features`[0m
+  [4;36;1mFeature Load (0.000428)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000301)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = 106243 and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000200)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mSite Load (0.000354)[0m   [0mSELECT id,description, url,name, feature_id FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeSubcategory Columns (0.001603)[0m   [0;1mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;35;1mPermitmeResourceGroup Load (0.002067)[0m   [0mselect rg.id, state_id, c.name as category, s.name as subcategory, sec.name as section, rg.description, p.URL, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 90) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mSite Columns (0.001868)[0m   [0;1mSHOW FIELDS FROM `sites`[0m
+  [4;35;1mPermitmeResourceGroup Columns (0.001661)[0m   [0mSHOW FIELDS FROM `permitme_resource_groups`[0m
+Completed in 0.04560 (21 reqs/sec) | Rendering: 0.00875 (19%) | DB: 0.01247 (27%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/22209.xml]
+
+
+Processing PermitmeController#permitme_by_zip (for 127.0.0.1 at 2009-05-11 13:53:00) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"zip"=>"22209", "format"=>"xml", "action"=>"permitme_by_zip", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mFeature Load (0.000531)[0m   [0;1mselect state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = '22209'[0m
+  [4;35;1mPermitmeSubcategory Load (0.000384)[0m   [0mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;36;1mFeature Columns (0.002871)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.000840)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000316)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = 106243 and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000184)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mSite Load (0.000541)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeSubcategory Columns (0.001683)[0m   [0mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;36;1mPermitmeResourceGroup Load (0.001382)[0m   [0;1mselect rg.id, state_id, c.name as category, s.name as subcategory, sec.name as section, rg.description, p.URL, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 90) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = 106243 and url is not null) [0m
+  [4;35;1mSite Columns (0.001679)[0m   [0mSHOW FIELDS FROM `sites`[0m
+  [4;36;1mPermitmeResourceGroup Columns (0.001802)[0m   [0;1mSHOW FIELDS FROM `permitme_resource_groups`[0m
+Completed in 0.11348 (8 reqs/sec) | Rendering: 0.00685 (6%) | DB: 0.01221 (10%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/22209.xml]
+
+
+Processing PermitmeController#permitme_by_zip (for 127.0.0.1 at 2009-05-11 13:53:23) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"zip"=>"22209", "format"=>"xml", "action"=>"permitme_by_zip", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;35;1mFeature Load (0.000633)[0m   [0mselect state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = '22209'[0m
+  [4;36;1mPermitmeSubcategory Load (0.000370)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;35;1mFeature Columns (0.003290)[0m   [0mSHOW FIELDS FROM `features`[0m
+  [4;36;1mFeature Load (0.001270)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.001387)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = 106243 and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.001683)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mSite Load (0.000454)[0m   [0mSELECT id,description, url,name, feature_id FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeSubcategory Columns (0.001879)[0m   [0;1mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;35;1mPermitmeResourceGroup Load (0.002636)[0m   [0mselect rg.id, state_id, c.name as category, s.name as subcategory, sec.name as section, rg.description, p.URL, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 90) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mSite Columns (0.002439)[0m   [0;1mSHOW FIELDS FROM `sites`[0m
+  [4;35;1mPermitmeResourceGroup Columns (0.002123)[0m   [0mSHOW FIELDS FROM `permitme_resource_groups`[0m
+Completed in 0.05781 (17 reqs/sec) | Rendering: 0.00948 (16%) | DB: 0.01816 (31%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/22209.xml]
+
+
+Processing PermitmeController#permitme_by_zip (for 127.0.0.1 at 2009-05-11 13:54:32) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"zip"=>"22209", "format"=>"xml", "action"=>"permitme_by_zip", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mFeature Load (0.000536)[0m   [0;1mselect state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = '22209'[0m
+  [4;35;1mPermitmeSubcategory Load (0.000394)[0m   [0mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;36;1mFeature Columns (0.002266)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.001068)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000425)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = 106243 and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000252)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mSite Load (0.000420)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeSubcategory Columns (0.001698)[0m   [0mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;36;1mPermitmeResourceGroup Load (0.001367)[0m   [0;1mselect rg.id, state_id, c.name as category, s.name as subcategory, sec.name as section, rg.description, p.URL, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 90) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;35;1mSite Columns (0.001834)[0m   [0mSHOW FIELDS FROM `sites`[0m
+  [4;36;1mPermitmeResourceGroup Columns (0.001666)[0m   [0;1mSHOW FIELDS FROM `permitme_resource_groups`[0m
+Completed in 0.04343 (23 reqs/sec) | Rendering: 0.00658 (15%) | DB: 0.01193 (27%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/22209.xml]
+
+
+Processing PermitmeController#permitme_by_zip (for 127.0.0.1 at 2009-05-11 13:57:14) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"zip"=>"22209", "format"=>"xml", "action"=>"permitme_by_zip", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;35;1mFeature Load (0.000484)[0m   [0mselect state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = '22209'[0m
+  [4;36;1mPermitmeSubcategory Load (0.000444)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;35;1mFeature Columns (0.002390)[0m   [0mSHOW FIELDS FROM `features`[0m
+  [4;36;1mFeature Load (0.000860)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000311)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000168)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mSite Load (0.002798)[0m   [0mSELECT id,description, url,name, feature_id FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeSubcategory Columns (0.001733)[0m   [0;1mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;35;1mPermitmeResourceGroup Load (0.001187)[0m   [0mselect rg.id, state_id, c.name as category, s.name as subcategory, sec.name as section, rg.description, p.URL, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 90) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mSite Columns (0.001894)[0m   [0;1mSHOW FIELDS FROM `sites`[0m
+  [4;35;1mPermitmeResourceGroup Columns (0.001827)[0m   [0mSHOW FIELDS FROM `permitme_resource_groups`[0m
+Completed in 0.04320 (23 reqs/sec) | Rendering: 0.00684 (15%) | DB: 0.01410 (32%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/22209.xml]
+
+
+Processing PermitmeController#permitme_by_zip (for 127.0.0.1 at 2009-05-11 13:57:16) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"zip"=>"22209", "format"=>"xml", "action"=>"permitme_by_zip", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mFeature Load (0.000528)[0m   [0;1mselect state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = '22209'[0m
+  [4;35;1mPermitmeSubcategory Load (0.000418)[0m   [0mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;36;1mFeature Columns (0.002460)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.001000)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000425)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000234)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mSite Load (0.000480)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeSubcategory Columns (0.001809)[0m   [0mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;36;1mPermitmeResourceGroup Load (0.001326)[0m   [0;1mselect rg.id, state_id, c.name as category, s.name as subcategory, sec.name as section, rg.description, p.URL, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 90) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;35;1mSite Columns (0.001697)[0m   [0mSHOW FIELDS FROM `sites`[0m
+  [4;36;1mPermitmeResourceGroup Columns (0.001976)[0m   [0;1mSHOW FIELDS FROM `permitme_resource_groups`[0m
+Completed in 0.11291 (8 reqs/sec) | Rendering: 0.00672 (5%) | DB: 0.01235 (10%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/22209.xml]
+
+
+Processing PermitmeController#permitme_by_zip (for 127.0.0.1 at 2009-05-11 13:57:36) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"zip"=>"22209", "format"=>"xml", "action"=>"permitme_by_zip", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;35;1mFeature Load (0.000497)[0m   [0mselect state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = '22209'[0m
+  [4;36;1mPermitmeSubcategory Load (0.000450)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;35;1mFeature Columns (0.003246)[0m   [0mSHOW FIELDS FROM `features`[0m
+  [4;36;1mFeature Load (0.000477)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000312)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000190)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mSite Load (0.000375)[0m   [0mSELECT id,description, url,name, feature_id FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeSubcategory Columns (0.001391)[0m   [0;1mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;35;1mPermitmeResourceGroup Load (0.001933)[0m   [0mselect rg.id, state_id, c.name as category, s.name as subcategory, sec.name as section, rg.description, p.URL, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 90) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mSite Columns (0.002856)[0m   [0;1mSHOW FIELDS FROM `sites`[0m
+  [4;35;1mPermitmeResourceGroup Columns (0.002167)[0m   [0mSHOW FIELDS FROM `permitme_resource_groups`[0m
+Completed in 0.04822 (20 reqs/sec) | Rendering: 0.01128 (23%) | DB: 0.01389 (28%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/22209.xml]
+
+
+Processing PermitmeController#permitme_by_zip (for 127.0.0.1 at 2009-05-11 13:58:36) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"zip"=>"22209", "format"=>"xml", "action"=>"permitme_by_zip", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mFeature Load (0.000458)[0m   [0;1mselect state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = '22209'[0m
+  [4;35;1mPermitmeSubcategory Load (0.000419)[0m   [0mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;36;1mFeature Columns (0.002204)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.001737)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000315)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000173)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mSite Load (0.000299)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeSubcategory Columns (0.001732)[0m   [0mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;36;1mPermitmeResourceGroup Load (0.001277)[0m   [0;1mselect rg.id, state_id, c.name as category, s.name as subcategory, sec.name as section, rg.description, p.URL, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 90) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;35;1mSite Columns (0.002059)[0m   [0mSHOW FIELDS FROM `sites`[0m
+  [4;36;1mPermitmeResourceGroup Columns (0.001866)[0m   [0;1mSHOW FIELDS FROM `permitme_resource_groups`[0m
+Completed in 0.04037 (24 reqs/sec) | Rendering: 0.00617 (15%) | DB: 0.01254 (31%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/22209.xml]
+
+
+Processing PermitmeController#permitme_by_zip (for 127.0.0.1 at 2009-05-11 14:21:40) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"zip"=>"22209", "format"=>"xml", "action"=>"permitme_by_zip", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;35;1mFeature Load (0.000478)[0m   [0mselect state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = '22209'[0m
+  [4;36;1mPermitmeSubcategory Load (0.000392)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;35;1mFeature Columns (0.003478)[0m   [0mSHOW FIELDS FROM `features`[0m
+  [4;36;1mFeature Load (0.000432)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000308)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000189)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mSite Load (0.000366)[0m   [0mSELECT url,name FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeSubcategory Columns (0.001604)[0m   [0;1mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;35;1mPermitmeResourceGroup Load (0.002575)[0m   [0mselect s.name as subcategory, p.URL, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 90) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mSite Columns (0.001843)[0m   [0;1mSHOW FIELDS FROM `sites`[0m
+  [4;35;1mPermitmeResourceGroup Columns (0.001619)[0m   [0mSHOW FIELDS FROM `permitme_resource_groups`[0m
+Completed in 0.04574 (21 reqs/sec) | Rendering: 0.00617 (13%) | DB: 0.01328 (29%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/22209.xml]
+
+
+Processing PermitmeController#permitme_by_zip (for 127.0.0.1 at 2009-05-11 14:22:04) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"zip"=>"22209", "format"=>"xml", "action"=>"permitme_by_zip", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mFeature Load (0.000490)[0m   [0;1mselect state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = '22209'[0m
+  [4;35;1mPermitmeSubcategory Load (0.000392)[0m   [0mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;36;1mFeature Columns (0.003008)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.000413)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000283)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000187)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mSite Load (0.000297)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeSubcategory Columns (0.001724)[0m   [0mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;36;1mPermitmeResourceGroup Load (0.001310)[0m   [0;1mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 90) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;35;1mSite Columns (0.001808)[0m   [0mSHOW FIELDS FROM `sites`[0m
+  [4;36;1mPermitmeResourceGroup Columns (0.001997)[0m   [0;1mSHOW FIELDS FROM `permitme_resource_groups`[0m
+Completed in 0.04102 (24 reqs/sec) | Rendering: 0.00545 (13%) | DB: 0.01191 (29%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/22209.xml]
+
+
+Processing PermitmeController#permitme_by_zip (for 127.0.0.1 at 2009-05-11 14:23:02) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"zip"=>"22209", "format"=>"xml", "action"=>"permitme_by_zip", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;35;1mFeature Load (0.000668)[0m   [0mselect state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = '22209'[0m
+  [4;36;1mPermitmeSubcategory Load (0.000371)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;35;1mFeature Columns (0.003142)[0m   [0mSHOW FIELDS FROM `features`[0m
+  [4;36;1mFeature Load (0.000512)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000309)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000197)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mSite Load (0.000363)[0m   [0mSELECT url,name FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeSubcategory Columns (0.001718)[0m   [0;1mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;35;1mPermitmeResourceGroup Load (0.002036)[0m   [0mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 90) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mSite Columns (0.001943)[0m   [0;1mSHOW FIELDS FROM `sites`[0m
+  [4;35;1mPermitmeResourceGroup Columns (0.001618)[0m   [0mSHOW FIELDS FROM `permitme_resource_groups`[0m
+Completed in 0.04446 (22 reqs/sec) | Rendering: 0.00651 (14%) | DB: 0.01288 (28%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/22209.xml]
+
+
+Processing PermitmeController#permitme_by_zip (for 127.0.0.1 at 2009-05-11 14:27:37) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"zip"=>"22209", "format"=>"xml", "action"=>"permitme_by_zip", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mFeature Load (0.000475)[0m   [0;1mselect state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = '22209'[0m
+  [4;35;1mPermitmeSubcategory Load (0.000345)[0m   [0mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;36;1mFeature Columns (0.003275)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.000424)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000300)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000178)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mSite Load (0.000410)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeSubcategory Columns (0.001717)[0m   [0mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;36;1mPermitmeResourceGroup Load (0.000983)[0m   [0;1mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 90) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;35;1mSite Columns (0.001805)[0m   [0mSHOW FIELDS FROM `sites`[0m
+  [4;36;1mPermitmeResourceGroup Columns (0.002138)[0m   [0;1mSHOW FIELDS FROM `permitme_resource_groups`[0m
+Completed in 0.04188 (23 reqs/sec) | Rendering: 0.00620 (14%) | DB: 0.01205 (28%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/22209.xml]
+
+
+Processing PermitmeController#permitme_by_zip (for 127.0.0.1 at 2009-05-11 16:18:12) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"zip"=>"22209", "format"=>"xml", "action"=>"permitme_by_zip", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;35;1mFeature Load (0.001620)[0m   [0mselect state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = '22209'[0m
+  [4;36;1mPermitmeSubcategory Load (0.000448)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;35;1mFeature Columns (0.003888)[0m   [0mSHOW FIELDS FROM `features`[0m
+  [4;36;1mFeature Load (0.001152)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000310)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000309)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mSite Load (0.000729)[0m   [0mSELECT url,name FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeResourceGroup Load (0.001663)[0m   [0;1mselect rg.id, state_id, c.name as category, s.name as subcategory, sec.name as section, rg.description, p.URL, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and (s.isExclusive <=> 0 or s.isExclusive is null) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;35;1mSite Columns (0.002386)[0m   [0mSHOW FIELDS FROM `sites`[0m
+  [4;36;1mPermitmeResourceGroup Columns (0.002247)[0m   [0;1mSHOW FIELDS FROM `permitme_resource_groups`[0m
+Completed in 0.07076 (14 reqs/sec) | Rendering: 0.02675 (37%) | DB: 0.01475 (20%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/22209.xml]
+
+
+Processing PermitmeController#permitme_by_zip (for 127.0.0.1 at 2009-05-11 16:19:14) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"zip"=>"22209", "format"=>"xml", "action"=>"permitme_by_zip", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;35;1mFeature Load (0.000604)[0m   [0mselect state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = '22209'[0m
+  [4;36;1mPermitmeSubcategory Load (0.000493)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;35;1mFeature Columns (0.003089)[0m   [0mSHOW FIELDS FROM `features`[0m
+  [4;36;1mFeature Load (0.000517)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000321)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000244)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mSite Load (0.000355)[0m   [0mSELECT url,name FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeResourceGroup Load (0.002424)[0m   [0;1mselect s.name as subcategory,rg.description, p.URL, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and (s.isExclusive <=> 0 or s.isExclusive is null) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;35;1mSite Columns (0.002014)[0m   [0mSHOW FIELDS FROM `sites`[0m
+  [4;36;1mPermitmeResourceGroup Columns (0.002497)[0m   [0;1mSHOW FIELDS FROM `permitme_resource_groups`[0m
+Completed in 0.06692 (14 reqs/sec) | Rendering: 0.02713 (40%) | DB: 0.01256 (18%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/22209.xml]
+
+
+Processing PermitmeController#permitme_by_zip (for 127.0.0.1 at 2009-05-11 16:20:07) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"zip"=>"22209", "format"=>"xml", "action"=>"permitme_by_zip", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;35;1mFeature Load (0.000732)[0m   [0mselect state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = '22209'[0m
+  [4;36;1mPermitmeSubcategory Load (0.000439)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;35;1mFeature Columns (0.002935)[0m   [0mSHOW FIELDS FROM `features`[0m
+  [4;36;1mFeature Load (0.000458)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000325)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000174)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mSite Load (0.000296)[0m   [0mSELECT url,name FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeResourceGroup Load (0.001471)[0m   [0;1mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and (s.isExclusive <=> 0 or s.isExclusive is null) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;35;1mSite Columns (0.002009)[0m   [0mSHOW FIELDS FROM `sites`[0m
+  [4;36;1mPermitmeResourceGroup Columns (0.002550)[0m   [0;1mSHOW FIELDS FROM `permitme_resource_groups`[0m
+Completed in 0.12816 (7 reqs/sec) | Rendering: 0.02364 (18%) | DB: 0.01139 (8%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/22209.xml]
