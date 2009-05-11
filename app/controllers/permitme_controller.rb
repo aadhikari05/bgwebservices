@@ -2,22 +2,30 @@ class PermitmeController < ApplicationController
   
     def permitme_by_zip
         #http://localhost:3000/permitme/by_zip/child%20care%20services/22209.xml
-        #Creating the Array that will hold the final resultset
-        @queryResults = Array.new
-        
         #We take the zip and use it to get state_id and fips_feature_id for a particular zip
         #using getFeatureAndStatebyZip for now, change to findAllCountySitesByFeatureAndState and save to countyResults array
         @state_and_feature = getFeatureAndStatebyZip (params[:zip])
+        @county_sites = Array.new
         
         #We pass the state_id and fips_feat_id to the function below to get the list of County Sites
         for ss in 0...@state_and_feature.length
-            @queryResults[ss] = findAllCountySitesByFeatureAndState (@state_and_feature[ss]["state_id"], @state_and_feature[ss]["fips_feat_id"], @state_and_feature[ss]["features.id"])
+            @county_sites << findAllCountySitesByFeatureAndState (@state_and_feature[ss]["state_id"], @state_and_feature[ss]["fips_feat_id"], @state_and_feature[ss]["feature_id"])
+#            @county_sites = getCountiesByFeature (@state_and_feature[ss]["state_id"], @state_and_feature[ss]["fips_feat_id"])
         end
         
-        #getCountiesByFeature (state_id, fips_feature_id)
+        #Get Primary Local Sites
+        
+        
+        #Add State Results
+        
+        #Dont forget results by business_type
+        
+        #Creating the Array that will hold the final resultset
+        @queryResults = Array.new
+        @queryResults = @county_sites
         respond_to do |format|
-          format.xml {render :xml => @queryResults}
-          format.json {render :json => @queryResults}
+            format.xml {render :xml => @queryResults}
+            format.json {render :json => @queryResults}
         end
     end
 
@@ -43,7 +51,7 @@ class PermitmeController < ApplicationController
     end
     
       def getFeatureAndStatebyZip (zip)
-        Feature.find_by_sql(["select state_id, fips_feat_id, features.id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = ?",zip])
+        Feature.find_by_sql(["select state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = ?",zip])
 #          Feature.find_by_sql(["select features.id, fips_class, state_id, feat_name,county_name_full,majorfeature, fips_feat_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = ?",zip])
 #          Feature.find(:all, :select => "feat_name, state_id", :joins => "LEFT OUTER JOIN `zipcodes` ON zipcodes.feature_id = features.id", :conditions => ["zipcodes.zip = ?",zip])
       end
@@ -129,7 +137,7 @@ class PermitmeController < ApplicationController
       end
 
       def permitMeCountySpecsByNameQuery (feature_id)
-          PermitmeSite.Find(:all, :select => "id,description, url,name, feature_id", :conditions => ["feature_id = ? and url is not null", feature_id])
+          PermitmeSite.find(:all, :select => "id,description, url,name, feature_id", :conditions => ["feature_id = ? and url is not null", feature_id])
       end
 
       def getCountiesByFeature (state_id, fips_feature_id)
@@ -137,41 +145,36 @@ class PermitmeController < ApplicationController
       end
 
       def  findAllCountySitesByFeatureAndState  (state_id, fips_feature_id,feature_id)
+          #The following will return id, county_name_full and fips_class
           counties = getCountiesByFeature (state_id, fips_feature_id)
           localSites = Array.new
 
-#          for counties.each do |county|
-            # Special case for St. Louis because the St. is abbreviated in the county name
-#           if (county.matches("^St\\.(.)*")) 
- #               county(county.replaceFirst("St\\.","Saint"));
-  #          end
+          counties.each do |county|
+                # Special case for St. Louis because the St. is abbreviated in the county name
+    #           if (county.matches("^St\\.(.)*")) 
+     #               county(county.replaceFirst("St\\.","Saint"));
+      #          end
 
-            # get county specs from feature_id
-  #          countySpecs = permitMeCountySpecsByNameQuery (feature_id)
+                # get county specs from feature_id
+                countySpecs = permitMeCountySpecsByNameQuery (feature_id.to_i)
 
-  #          for currentSpec in 0...countySpecs.length
-                # For this county id get all the sites and set the name for each
-  #              sitesForThisCounty = this.findAllSitesByFeatureId(countySpecs[currentSpec]["id"])
+                for currentSpec in 0...countySpecs.length
+                      #For this county id get all the sites and set the name for each
+                    sitesForThisCounty = this.findAllSitesByFeatureId(countySpecs[currentSpec]["id"])
 
- #               if sitesForThisCounty.length > 0
+     #               if sitesForThisCounty.length > 0
+      #                 for site in sitesForThisCounty
+       #                     site.setFeatureName(countySpecs[currentSpec]["county_name_full"]county[.getName()])
+      #                      site.setStateAbbrev(countySpecs[currentSpec]["abbreviation"]thisState.getAbbreviation())
+      #                      site.setFipsClass(countySpecs[currentSpec]["fips_class"]thisSpec.fips_class)
+      #                 end
 
-  #                 for site in sitesForThisCounty
-   #                     site.setFeatureName(countySpecs[currentSpec]["county_name_full"]county[.getName()])
-  #                      site.setStateAbbrev(countySpecs[currentSpec]["abbreviation"]thisState.getAbbreviation())
-  #                      site.setFipsClass(countySpecs[currentSpec]["fips_class"]thisSpec.fips_class)
-  #                 end
-
-  #                  localSites += sitesForThisCounty
-#                else 
- #                   localSites += (createDummyLocalSite(thisState, c, thisSpec.fips_class)) 
- #               end
-
-   #         else 
-                #countySpecs is null
-#                localSites += (createDummyLocalSite(thisState, c,null)) 
-    #        end
-
-#         end
+                        localSites << sitesForThisCounty
+    #                else 
+     #                   localSites << (createDummyLocalSite(thisState, c, thisSpec.fips_class)) 
+     #               end
+                end
+         end
 
         return localSites
     end
