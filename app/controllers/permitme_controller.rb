@@ -10,7 +10,6 @@ class PermitmeController < ApplicationController
         #We pass the state_id and fips_feat_id to the function below to get the list of County Sites
         for ss in 0...@state_and_feature.length
             @county_sites << findAllCountySitesByFeatureAndState (@state_and_feature[ss]["state_id"], @state_and_feature[ss]["fips_feat_id"], @state_and_feature[ss]["feature_id"])
-#            @county_sites = getCountiesByFeature (@state_and_feature[ss]["state_id"], @state_and_feature[ss]["fips_feat_id"])
         end
         
         #Get Primary Local Sites
@@ -155,24 +154,24 @@ class PermitmeController < ApplicationController
      #               county(county.replaceFirst("St\\.","Saint"));
       #          end
 
-                # get county specs from feature_id
+                # get county specs like id,description, url,name, feature_id from feature_id
                 countySpecs = permitMeCountySpecsByNameQuery (feature_id.to_i)
 
                 for currentSpec in 0...countySpecs.length
                       #For this county id get all the sites and set the name for each
                     sitesForThisCounty = this.findAllSitesByFeatureId(countySpecs[currentSpec]["id"])
 
-     #               if sitesForThisCounty.length > 0
-      #                 for site in sitesForThisCounty
-       #                     site.setFeatureName(countySpecs[currentSpec]["county_name_full"]county[.getName()])
-      #                      site.setStateAbbrev(countySpecs[currentSpec]["abbreviation"]thisState.getAbbreviation())
-      #                      site.setFipsClass(countySpecs[currentSpec]["fips_class"]thisSpec.fips_class)
-      #                 end
+#                    if sitesForThisCounty.length > 0
+#                       for site in sitesForThisCounty
+#                            site.setFeatureName(countySpecs[currentSpec]["county_name_full"]county[.getName()])
+#                            site.setStateAbbrev(countySpecs[currentSpec]["abbreviation"]thisState.getAbbreviation())
+#                            site.setFipsClass(countySpecs[currentSpec]["fips_class"]thisSpec.fips_class)
+#                       end
 
-                        localSites << sitesForThisCounty
-    #                else 
-     #                   localSites << (createDummyLocalSite(thisState, c, thisSpec.fips_class)) 
-     #               end
+                        localSites += sitesForThisCounty
+#                    else 
+#                        localSites << (createDummyLocalSite(thisState, c, thisSpec.fips_class)) 
+#                    end
                 end
          end
 
