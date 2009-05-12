@@ -13233,3 +13233,191 @@ SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
   [4;36;1mPermitmeResourceGroup Load (0.001803)[0m   [0;1mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and (s.isExclusive <=> 0 or s.isExclusive is null) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
   [4;35;1mSite Columns (0.001886)[0m   [0mSHOW FIELDS FROM `sites`[0m
 Completed in 0.04154 (24 reqs/sec) | Rendering: 0.00262 (6%) | DB: 0.01060 (25%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/22209.xml]
+
+
+Processing PermitmeController#permitme_by_zip (for 127.0.0.1 at 2009-05-12 10:37:18) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"zip"=>"22209", "format"=>"xml", "action"=>"permitme_by_zip", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mFeature Load (0.000586)[0m   [0;1mselect state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = '22209'[0m
+  [4;35;1mPermitmeSubcategory Load (0.000386)[0m   [0mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;36;1mFeature Columns (0.002324)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.000906)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000285)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000193)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mSite Load (0.000439)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeResourceGroup Load (0.001472)[0m   [0mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and (s.isExclusive <=> 0 or s.isExclusive is null) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mSite Columns (0.001679)[0m   [0;1mSHOW FIELDS FROM `sites`[0m
+  [4;35;1mPermitmeResourceGroup Columns (0.001896)[0m   [0mSHOW FIELDS FROM `permitme_resource_groups`[0m
+Completed in 0.05268 (18 reqs/sec) | Rendering: 0.02071 (39%) | DB: 0.01017 (19%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/22209.xml]
+
+
+Processing PermitmeController#permitme_by_zip (for 127.0.0.1 at 2009-05-12 10:49:31) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"zip"=>"22209", "format"=>"xml", "action"=>"permitme_by_zip", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mFeature Load (0.000463)[0m   [0;1mselect state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = '22209'[0m
+  [4;35;1mPermitmeSubcategory Load (0.000518)[0m   [0mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;36;1mFeature Columns (0.003494)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.000496)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000414)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000598)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mSite Load (0.000372)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeResourceGroup Load (0.001487)[0m   [0mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and (s.isExclusive <=> 0 or s.isExclusive is null) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeSubcategory Columns (0.001717)[0m   [0;1mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;35;1mPermitmeResourceGroup Load (0.002465)[0m   [0mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 90) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.<<):
+    /app/controllers/permitme_controller.rb:26:in `permitme_by_zip'
+    /app/controllers/permitme_controller.rb:15:in `each'
+    /app/controllers/permitme_controller.rb:15:in `permitme_by_zip'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `perform_action_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:580:in `call_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:573:in `perform_action_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /Users/aadhikari/.gem/ruby/1.8/gems/activerecord-2.1.0/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /Users/aadhikari/.gem/ruby/1.8/gems/activerecord-2.1.0/lib/active_record/query_cache.rb:8:in `cache'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `process_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:569:in `process_without_session_management_support'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/session_management.rb:130:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:389:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:76:in `process'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `process'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:159:in `process_client'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:158:in `each'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:158:in `process_client'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `initialize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `new'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:268:in `initialize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:268:in `new'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:268:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:282:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:281:in `each'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:281:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:128:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/command.rb:212:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
+    /usr/bin/mongrel_rails:19:in `load'
+    /usr/bin/mongrel_rails:19
+
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing PermitmeController#permitme_by_zip (for 127.0.0.1 at 2009-05-12 10:50:11) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"zip"=>"22209", "format"=>"xml", "action"=>"permitme_by_zip", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mFeature Load (0.000497)[0m   [0;1mselect state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = '22209'[0m
+  [4;35;1mPermitmeSubcategory Load (0.000352)[0m   [0mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;36;1mFeature Columns (0.003090)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.000534)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000407)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.001139)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mSite Load (0.000345)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeResourceGroup Load (0.001462)[0m   [0mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and (s.isExclusive <=> 0 or s.isExclusive is null) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeSubcategory Columns (0.001598)[0m   [0;1mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;35;1mPermitmeResourceGroup Load (0.002309)[0m   [0mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 90) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mSite Columns (0.001509)[0m   [0;1mSHOW FIELDS FROM `sites`[0m
+  [4;35;1mPermitmeResourceGroup Columns (0.001949)[0m   [0mSHOW FIELDS FROM `permitme_resource_groups`[0m
+Completed in 0.06171 (16 reqs/sec) | Rendering: 0.02138 (34%) | DB: 0.02721 (44%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/22209.xml]
+
+
+Processing PermitmeController#permitme_by_zip (for 127.0.0.1 at 2009-05-12 10:53:52) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"zip"=>"22209", "format"=>"xml", "action"=>"permitme_by_zip", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mFeature Load (0.000524)[0m   [0;1mselect state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = '22209'[0m
+  [4;35;1mPermitmeSubcategory Load (0.000350)[0m   [0mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;36;1mFeature Columns (0.003401)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.000447)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000435)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000225)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mSite Load (0.000422)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeResourceGroup Load (0.001652)[0m   [0mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and (s.isExclusive <=> 0 or s.isExclusive is null) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeSubcategory Columns (0.001712)[0m   [0;1mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;35;1mPermitmeResourceGroup Load (0.001179)[0m   [0mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 90) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mSite Columns (0.001481)[0m   [0;1mSHOW FIELDS FROM `sites`[0m
+  [4;35;1mPermitmeResourceGroup Columns (0.001674)[0m   [0mSHOW FIELDS FROM `permitme_resource_groups`[0m
+Completed in 0.05909 (16 reqs/sec) | Rendering: 0.02021 (34%) | DB: 0.01350 (22%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/22209.xml]
+
+
+Processing PermitmeController#permitme_by_zip (for 127.0.0.1 at 2009-05-12 10:56:46) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"zip"=>"22209", "format"=>"xml", "action"=>"permitme_by_zip", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mFeature Load (0.000497)[0m   [0;1mselect state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = '22209'[0m
+  [4;35;1mPermitmeSubcategory Load (0.000410)[0m   [0mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;36;1mFeature Columns (0.003367)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.000527)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000325)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+
+
+NoMethodError (undefined method `<<' for {}:Hash):
+    /app/controllers/permitme_controller.rb:19:in `permitme_by_zip'
+    /app/controllers/permitme_controller.rb:17:in `each'
+    /app/controllers/permitme_controller.rb:17:in `permitme_by_zip'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `perform_action_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:580:in `call_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:573:in `perform_action_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /Users/aadhikari/.gem/ruby/1.8/gems/activerecord-2.1.0/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /Users/aadhikari/.gem/ruby/1.8/gems/activerecord-2.1.0/lib/active_record/query_cache.rb:8:in `cache'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `process_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:569:in `process_without_session_management_support'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/session_management.rb:130:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:389:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:76:in `process'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `process'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:159:in `process_client'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:158:in `each'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:158:in `process_client'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `initialize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `new'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:268:in `initialize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:268:in `new'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:268:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:282:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:281:in `each'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:281:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:128:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/command.rb:212:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
+    /usr/bin/mongrel_rails:19:in `load'
+    /usr/bin/mongrel_rails:19
+
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
