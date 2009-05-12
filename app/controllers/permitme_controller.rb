@@ -16,22 +16,22 @@ class PermitmeController < ApplicationController
         #We pass the state_id and fips_feat_id to the function below to get the list of County Sites
         for ss in 0...@state_and_feature.length
             #Get County Sites
-            @queryResults << findAllCountySitesByFeatureAndState (@state_and_feature[ss]["state_id"], @state_and_feature[ss]["fips_feat_id"], @state_and_feature[ss]["feature_id"])
+            @county_sites << findAllCountySitesByFeatureAndState (@state_and_feature[ss]["state_id"], @state_and_feature[ss]["fips_feat_id"], @state_and_feature[ss]["feature_id"])
             
             #Get Primary Local Sites
-            @queryResults << findAllSitesByFeatureId (@state_and_feature[ss]["feature_id"])
+            @local_sites << findAllSitesByFeatureId (@state_and_feature[ss]["feature_id"])
 
             #Add State Results
-            @queryResults << PermitMeResultsByStateQuery (@state_and_feature[ss]["state_id"])
+            @state_sites << PermitMeResultsByStateQuery (@state_and_feature[ss]["state_id"])
 
             #Add State Results
-            @queryResults << PermitMeResultsByBusinessTypeQuery (@state_and_feature[ss]["state_id"], @business_type_id)
+            @sites_for_business_type << PermitMeResultsByBusinessTypeQuery (@state_and_feature[ss]["state_id"], @business_type_id)
         end
         
         #Creating the Array that will hold the final resultset
 #        @queryResults = Array.new
 #        @queryResults = [{"county_sites" => @county_sites}, {"local_sites" => @local_sites}, {"state_sites" => @state_sites}, {"sites_for_business_type" => @sites_for_business_type}]
-#        @queryResults = [@county_sites, @local_sites, @state_sites]
+        @queryResults << @county_sites << @local_sites << @state_sites
 
         respond_to do |format|
             format.xml {render :xml => @queryResults}
@@ -176,7 +176,7 @@ class PermitmeController < ApplicationController
 
                 for currentSpec in 0...countySpecs.length
                       #For this county id get all the sites and set the name for each
-                    sitesForThisCounty = this.findAllSitesByFeatureId(countySpecs[currentSpec]["id"])
+                    localSites = this.findAllSitesByFeatureId(countySpecs[currentSpec]["id"])
 
 #                    if sitesForThisCounty.length > 0
 #                       for site in sitesForThisCounty
@@ -185,7 +185,7 @@ class PermitmeController < ApplicationController
 #                            site.setFipsClass(countySpecs[currentSpec]["fips_class"]thisSpec.fips_class)
 #                       end
 
-                        localSites << sitesForThisCounty
+#                        localSites << sitesForThisCounty
 #                    else 
 #                        localSites << (createDummyLocalSite(thisState, c, thisSpec.fips_class)) 
 #                    end
