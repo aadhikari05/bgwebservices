@@ -10,7 +10,8 @@ class PermitmeController < ApplicationController
         @state_sites = Array.new
         @sites_for_business_type = Array.new
         @queryResults = Array.new
-        
+        @this_result = Result.new
+       
         @business_type_id = getBusinessTypeIdFromBusinessType (params[:business_type])
         
         #We pass the state_id and fips_feat_id to the function below to get the list of County Sites
@@ -20,21 +21,22 @@ class PermitmeController < ApplicationController
             
             #Get Primary Local Sites
             @local_sites << findAllSitesByFeatureId (@state_and_feature[ss]["feature_id"])
-
-            #Add State Results
-            @state_sites << PermitMeResultsByStateQuery (@state_and_feature[ss]["state_id"])
-
-            #Add State Results
-            @sites_for_business_type << PermitMeResultsByBusinessTypeQuery (@state_and_feature[ss]["state_id"], @business_type_id)
         end
         
+        #Add State Results
+        @state_sites << PermitMeResultsByStateQuery (@state_and_feature[ss]["state_id"])
+
+        
+        #Add Business Type Results
+        @sites_for_business_type << PermitMeResultsByBusinessTypeQuery (@state_and_feature[ss]["state_id"], @business_type_id)
+
         #Creating the Array that will hold the final resultset
 #        @queryResults = Array.new
 #        @queryResults = [{"county_sites" => @county_sites}, {"local_sites" => @local_sites}, {"state_sites" => @state_sites}, {"sites_for_business_type" => @sites_for_business_type}]
-        @queryResults << @county_sites << @local_sites << @state_sites
+        @queryResults << @county_sites << @local_sites << @this_result
 
         respond_to do |format|
-            format.xml {render :xml => @queryResults}
+            format.xml {render :xml => @this_result}
             format.json {render :json => @queryResults}
         end
     end
