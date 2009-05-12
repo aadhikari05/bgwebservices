@@ -3,22 +3,22 @@ class Result
   attr_reader :link_title, :url
   
   def initialize
-    @is_normal = false
+    @is_normal = true
     @is_disambig = false
     @is_invalid = false
-    @state = false
+    @state = ""
     @has_multiple_counties = false
-    @outcome = false
-    @errors = false
-    @county_sites = false
-    @disambig_choices = false
-    @root_resource_group = false
-    @status = false
-    @user_query = false
-    @primary_local_sites = false
-    @business_type = false
-    @business_type_name = false
-#    @p_state = false  #Provisional State - Not Needed since we know states
+    @outcome = Array.new
+    @errors = Array.new
+    @county_sites = Array.new
+#    @disambig_choices = false
+    @root_resource_group = Array.new
+    @status = ""
+    @user_query = ""
+    @primary_local_sites = Array.new
+    @business_type = 0
+    @business_type_name = ""
+#    @p_state = false  #Provisional State - Not Needed since we know state
   end
   
   def find_all
