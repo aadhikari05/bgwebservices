@@ -24,15 +24,11 @@ class PermitmeController < ApplicationController
         #Add Business Type Results
         @this_result.sites_for_business_type = PermitMeResultsByBusinessTypeQuery (@state_and_feature[ss]["state_id"], @business_type_id)
 
-        respond_to do |format|
-            format.xml {render :xml => @this_result}
-            format.json {render :json => @queryResults}
-        end
+        respond_to_format (@this_result)
     end
 
     def permitme_by_state_only
         #http://localhost:3000/permitme/state_only/child%20care%20services/il.xml
-        @queryResults = PermitmeResource.find_by_sql(["select Link_Title, Url from permitme_resources where permitme_resource_group_id in (select id from permitme_resource_groups where permitme_subcategory_id in (select id from permitme_subcategories where isExclusive=1 and isActive=1 and name = ?) and state_id in (select id from states where alpha=?))",params[:business_type],params[:alpha]])
 
         respond_to_format (@queryResults)
     end
