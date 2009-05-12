@@ -1,60 +1,80 @@
 class PermitmeController < ApplicationController
   
-    def permitme_by_zip
-        #http://localhost:3000/permitme/by_zip/child%20care%20services/22209.xml
-        #We take the zip and use it to get state_id and fips_feature_id for a particular zip
-        #using getFeatureAndStatebyZip for now, change to findAllCountySitesByFeatureAndState and save to countyResults array
-        @state_and_feature = getFeatureAndStatebyZip (params[:zip])
-        @this_result = Result.new
-       
-        @business_type_id = getBusinessTypeIdFromBusinessType (params[:business_type])
+      ####################################################
+      # R O U T I N G   F U N C T I O N S
+      ####################################################
+      def permitme_by_zip
+          #http://localhost:3000/permitme/by_zip/child%20care%20services/22209.xml
+          #We take the zip and use it to get state_id and fips_feature_id for a particular zip
+          #using getFeatureAndStatebyZip for now, change to findAllCountySitesByFeatureAndState and save to countyResults array
+          @state_and_feature = getFeatureAndStatebyZip (params[:zip])
+          @business_type_id = getBusinessTypeIdFromBusinessType (params[:business_type])
         
-        #We pass the state_id and fips_feat_id to the function below to get the list of County Sites
-        for ss in 0...@state_and_feature.length
-            #Get County Sites
-            @this_result.county_sites = findAllCountySitesByFeatureAndState (@state_and_feature[ss]["state_id"], @state_and_feature[ss]["fips_feat_id"], @state_and_feature[ss]["feature_id"])
-            
-            #Get Primary Local Sites
-            @this_result.local_sites = findAllSitesByFeatureId (@state_and_feature[ss]["feature_id"])
-        end
+          #We pass the state_id and fips_feat_id to the function below to get the list of County Sites
+          get_all_permitme_sites (@state_and_feature, @business_type_id)
+      end
+
+      def permitme_by_state_only
+          #http://localhost:3000/permitme/state_only/child%20care%20services/il.xml
+          @business_type_id = getBusinessTypeIdFromBusinessType (params[:business_type])
         
-        #Add State Results
-        @this_result.state_sites = PermitMeResultsByStateQuery (@state_and_feature[ss]["state_id"])
+          @state_and_feature = getFeatureAndStatebyZip (params[:zip])
+        
+          #We pass the state_id and fips_feat_id to the function below to get the list of County Sites
+          get_all_permitme_sites (state_and_feature_array, business_type_id)
+      end
 
-        #Add Business Type Results
-        @this_result.sites_for_business_type = PermitMeResultsByBusinessTypeQuery (@state_and_feature[ss]["state_id"], @business_type_id)
+      def permitme_by_state_and_feature
+          #http://localhost:3000/permitme/state_and_city/child%20care%20services/il/baldwin.xml
+          #params[:business_type],"%"+params[:feature]+"%",params[:alpha]])
 
-        respond_to_format (@this_result)
-    end
+          @business_type_id = getBusinessTypeIdFromBusinessType (params[:business_type])
+        
+          @state_and_feature = getFeatureAndStatebyZip (params[:zip])
 
-    def permitme_by_state_only
-        #http://localhost:3000/permitme/state_only/child%20care%20services/il.xml
-
-        respond_to_format (@queryResults)
-    end
-
-    def permitme_by_state_and_feature
-        #http://localhost:3000/permitme/state_and_city/child%20care%20services/il/baldwin.xml
-        @queryResults = PermitmeResource.find_by_sql(["select Link_Title, Url from permitme_resources where permitme_resource_group_id in (select id from permitme_resource_groups where permitme_subcategory_id in (select id from permitme_subcategories where isExclusive=1 and isActive=1 and name = ?) and state_id in (select distinct(f.state_id) from features f, states s where f.feat_name like ? and s.alpha=? and f.state_id = s.id))",params[:business_type],"%"+params[:feature]+"%",params[:alpha]])
-
-        respond_to_format (@queryResults)
-    end
+          #We pass the state_id and fips_feat_id to the function below to get the list of County Sites
+          get_all_permitme_sites (state_and_feature_array, business_type_id)
+      end
   
-    def respond_to_format (resultArray)
-        respond_to do |format|
-          format.xml {render :xml => resultArray}
-          format.json {render :json => resultArray}
-        end
-    end
+      ####################################################
+      # H E L P E R   F U N C T I O N S
+      ####################################################
+      def get_all_permitme_sites (state_and_feature_array, business_type_id)
+          @this_result = Result.new
+     
+          for ss in 0...@state_and_feature.length
+              #Get County Sites
+              @this_result.county_sites = findAllCountySitesByFeatureAndState (@state_and_feature[ss]["state_id"], @state_and_feature[ss]["fips_feat_id"], @state_and_feature[ss]["feature_id"])
+          
+              #Get Primary Local Sites
+              @this_result.local_sites = findAllSitesByFeatureId (@state_and_feature[ss]["feature_id"])
+          end
+      
+          #Add State Results
+          @this_result.state_sites = PermitMeResultsByStateQuery (@state_and_feature[ss]["state_id"])
+
+          #Add Business Type Results
+          @this_result.sites_for_business_type = PermitMeResultsByBusinessTypeQuery (@state_and_feature[ss]["state_id"], @business_type_id)
+
+          respond_to_format (@this_result)
+      end
     
-    def getBusinessTypeIdFromBusinessType (business_type)
-        PermitmeSubcategory.find(:all, :select => "id", :conditions => ["isExclusive=1 and isActive=1 and name = ?",business_type])
-    end
+      def respond_to_format (resultArray)
+          respond_to do |format|
+            format.xml {render :xml => resultArray}
+            format.json {render :json => resultArray}
+          end
+      end
+    
+      #########################################################
+      # S Q L   Q U E R I E S   T O   S I N G L E   T A B L E S
+      #########################################################
+      def getBusinessTypeIdFromBusinessType (business_type)
+          PermitmeSubcategory.find(:all, :select => "id", :conditions => ["isExclusive=1 and isActive=1 and name = ?",business_type])
+      end
 
       def getFeatureAndStatebyZip (zip)
-        Feature.find_by_sql(["select state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = ?",zip])
-#          Feature.find_by_sql(["select features.id, fips_class, state_id, feat_name,county_name_full,majorfeature, fips_feat_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = ?",zip])
-#          Feature.find(:all, :select => "feat_name, state_id", :joins => "LEFT OUTER JOIN `zipcodes` ON zipcodes.feature_id = features.id", :conditions => ["zipcodes.zip = ?",zip])
+          Feature.find_by_sql(["select state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = ?",zip])
       end
 
       def CountySpecsByNameQuery (feature_name, state_id)
@@ -73,6 +93,17 @@ class PermitmeController < ApplicationController
           Feature.find_by_sql("select features.id, fips_class, state_id, feat_name,county_name_full,majorfeature, fips_feat_id from features,alternate_names where alternate_names.feature_id = features.id and county_seq = 1 and name = ?",alternate_name)
       end
 
+      def permitMeCountySpecsByNameQuery (feature_id)
+          PermitmeSite.find(:all, :select => "id,description, url,name, feature_id", :conditions => ["feature_id = ? and url is not null", feature_id])
+      end
+
+      def getCountiesByFeature (state_id, fips_feature_id)
+      		Feature.find(:all, :select => "id, county_name_full, fips_class", :conditions => ["state_id = ? and fips_feat_id=? and county_name_full is not null", state_id, fips_feature_id])
+      end
+
+      ####################################################
+      # P E R M I T M E   Q U E R I E S
+      ####################################################
       def  PermitMeFeatureMappingQuery (feature_name, alternate_name)
           strQuery = "select id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = ? "
       		strQuery +=	"union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names "
@@ -137,14 +168,6 @@ class PermitmeController < ApplicationController
       	end
 
         return foundSites
-      end
-
-      def permitMeCountySpecsByNameQuery (feature_id)
-          PermitmeSite.find(:all, :select => "id,description, url,name, feature_id", :conditions => ["feature_id = ? and url is not null", feature_id])
-      end
-
-      def getCountiesByFeature (state_id, fips_feature_id)
-      		Feature.find(:all, :select => "id, county_name_full, fips_class", :conditions => ["state_id = ? and fips_feat_id=? and county_name_full is not null", state_id, fips_feature_id])
       end
 
       def  findAllCountySitesByFeatureAndState  (state_id, fips_feature_id,feature_id)
