@@ -1,6 +1,7 @@
 class Result
   
-  attr_reader :link_title, :url
+  attr_reader :county_sites, :primary_local_sites
+  attr_writer :county_sites, :primary_local_sites
   
   def initialize
     @is_normal = true
@@ -21,7 +22,4 @@ class Result
 #    @p_state = false  #Provisional State - Not Needed since we know state
   end
   
-  def find_all
-    PermitmeResource.find(:all, :select => "link_title, url")
-  end
 end
