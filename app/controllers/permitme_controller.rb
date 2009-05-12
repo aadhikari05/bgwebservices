@@ -5,11 +5,6 @@ class PermitmeController < ApplicationController
         #We take the zip and use it to get state_id and fips_feature_id for a particular zip
         #using getFeatureAndStatebyZip for now, change to findAllCountySitesByFeatureAndState and save to countyResults array
         @state_and_feature = getFeatureAndStatebyZip (params[:zip])
-        @county_sites = Array.new
-        @local_sites = Array.new
-        @state_sites = Array.new
-        @sites_for_business_type = Array.new
-        @queryResults = Array.new
         @this_result = Result.new
        
         @business_type_id = getBusinessTypeIdFromBusinessType (params[:business_type])
@@ -17,23 +12,17 @@ class PermitmeController < ApplicationController
         #We pass the state_id and fips_feat_id to the function below to get the list of County Sites
         for ss in 0...@state_and_feature.length
             #Get County Sites
-            @county_sites << findAllCountySitesByFeatureAndState (@state_and_feature[ss]["state_id"], @state_and_feature[ss]["fips_feat_id"], @state_and_feature[ss]["feature_id"])
+            @this_result.county_sites = findAllCountySitesByFeatureAndState (@state_and_feature[ss]["state_id"], @state_and_feature[ss]["fips_feat_id"], @state_and_feature[ss]["feature_id"])
             
             #Get Primary Local Sites
-            @local_sites << findAllSitesByFeatureId (@state_and_feature[ss]["feature_id"])
+            @this_result.local_sites = findAllSitesByFeatureId (@state_and_feature[ss]["feature_id"])
         end
         
         #Add State Results
-        @state_sites << PermitMeResultsByStateQuery (@state_and_feature[ss]["state_id"])
+        @this_result.state_sites = PermitMeResultsByStateQuery (@state_and_feature[ss]["state_id"])
 
-        
         #Add Business Type Results
-        @sites_for_business_type << PermitMeResultsByBusinessTypeQuery (@state_and_feature[ss]["state_id"], @business_type_id)
-
-        #Creating the Array that will hold the final resultset
-#        @queryResults = Array.new
-#        @queryResults = [{"county_sites" => @county_sites}, {"local_sites" => @local_sites}, {"state_sites" => @state_sites}, {"sites_for_business_type" => @sites_for_business_type}]
-        @queryResults << @county_sites << @local_sites << @this_result
+        @this_result.sites_for_business_type = PermitMeResultsByBusinessTypeQuery (@state_and_feature[ss]["state_id"], @business_type_id)
 
         respond_to do |format|
             format.xml {render :xml => @this_result}
