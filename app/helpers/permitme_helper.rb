@@ -126,9 +126,15 @@ module PermitmeHelper
 
             counties.each do |county|
                   # Special case for St. Louis because the St. is abbreviated in the county name
-      #           if (county.matches("^St\\.(.)*")) 
-       #               county(county.replaceFirst("St\\.","Saint"));
-        #          end
+                  county_name = county["county_name_full"]
+
+                  if (county_name.include?("^St\\.(.)*"))
+                      find_string = "St."
+                      replace_string = "Saint"
+                      string_index = county_name.index(find_string)
+                      county_name[string_index, find_string.length] = replace_string
+                      county["county_name_full"] = county_name
+                  end
 
                   # get county specs like id,description, url,name, feature_id from feature_id
                   countySpecs = permitMeCountySpecsByNameQuery (feature_id)
