@@ -106,15 +106,6 @@ module PermitmeHelper
 
         def PermitmeHelper.findAllFeatureSitesByFeatureAndState (feature_id, state_alpha)
           foundSites = findAllSitesByFeatureId (feature_id)
-        # May not be needed
-        #-------------------   
-        # 		if foundSites.length > 0 
-        #    		for (LocalSite site: foundSites)
-        #    				site.setStateAbbrev(thisState.getAbbreviation())
-        #    				site.setFeatureName(thisFeature.getName())
-        #   				site.setFipsClass(thisFeature.getFipsClass())
-        # 			end
-        #   	end	
          	return foundSites
         end
 
@@ -145,18 +136,6 @@ module PermitmeHelper
                   for currentSpec in 0...countySpecs.length
                         #For this county id get all the sites and set the name for each
                       localSites = this.findAllSitesByFeatureId(countySpecs[currentSpec]["id"])
-
-  #                    if sitesForThisCounty.length > 0
-  #                       for site in sitesForThisCounty
-  #                            site.setFeatureName(countySpecs[currentSpec]["county_name_full"]county[.getName()])
-  #                            site.setStateAbbrev(countySpecs[currentSpec]["abbreviation"]thisState.getAbbreviation())
-  #                            site.setFipsClass(countySpecs[currentSpec]["fips_class"]thisSpec.fips_class)
-  #                       end
-
-  #                        localSites << sitesForThisCounty
-  #                    else 
-  #                        localSites << (createDummyLocalSite(thisState, c, thisSpec.fips_class)) 
-  #                    end
                   end
            end
 
