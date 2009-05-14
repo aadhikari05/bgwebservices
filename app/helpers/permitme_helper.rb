@@ -128,13 +128,14 @@ module PermitmeHelper
                   # Special case for St. Louis because the St. is abbreviated in the county name
                   county_name = county["county_name_full"]
 
-                  if (county_name.include?("^St\\.(.)*"))
-                      find_string = "St."
-                      replace_string = "Saint"
-                      string_index = county_name.index(find_string)
-                      county_name[string_index, find_string.length] = replace_string
-                      county["county_name_full"] = county_name
-                  end
+                  #If we are using feature_id in our query, do we really need to do this replace?
+#                  if (county_name.include?("^St\\.(.)*"))
+#                      find_string = "St."
+#                      replace_string = "Saint"
+#                      string_index = county_name.index(find_string)
+#                      county_name[string_index, find_string.length] = replace_string
+#                      county["county_name_full"] = county_name
+#                  end
 
                   # get county specs like id,description, url,name, feature_id from feature_id
                   countySpecs = permitMeCountySpecsByNameQuery (feature_id)
