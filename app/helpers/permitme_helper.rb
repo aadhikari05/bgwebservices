@@ -9,17 +9,17 @@ module PermitmeHelper
  
             for ss in 0...state_and_feature_array.length
                 #Get County Sites
-                @this_result.county_sites = findAllCountySitesByFeatureAndState (state_and_feature_array[ss]["state_id"], state_and_feature_array[ss]["fips_feat_id"], state_and_feature_array[ss]["feature_id"])
+                @this_result.county_sites = findAllCountySitesByFeatureAndState(state_and_feature_array[ss]["state_id"], state_and_feature_array[ss]["fips_feat_id"], state_and_feature_array[ss]["feature_id"])
       
                 #Get Primary Local Sites
-                @this_result.local_sites = findAllSitesByFeatureId (state_and_feature_array[ss]["feature_id"])
+                @this_result.local_sites = findAllSitesByFeatureId(state_and_feature_array[ss]["feature_id"])
             end
   
             #Add State Results
-            @this_result.state_sites = PermitMeResultsByStateQuery (state_and_feature_array[ss]["state_id"])
+            @this_result.state_sites = PermitMeResultsByStateQuery(state_and_feature_array[ss]["state_id"])
 
             #Add Business Type Results
-            @this_result.sites_for_business_type = PermitMeResultsByBusinessTypeQuery (state_and_feature_array[ss]["state_id"], @business_type_id)
+            @this_result.sites_for_business_type = PermitMeResultsByBusinessTypeQuery(state_and_feature_array[ss]["state_id"], @business_type_id)
 
             @this_result
         end
@@ -105,7 +105,7 @@ module PermitmeHelper
         end
 
         def PermitmeHelper.findAllFeatureSitesByFeatureAndState (feature_id, state_alpha)
-          foundSites = findAllSitesByFeatureId (feature_id)
+          foundSites = findAllSitesByFeatureId(feature_id)
         # May not be needed
         #-------------------   
         # 		if foundSites.length > 0 
@@ -130,7 +130,7 @@ module PermitmeHelper
 
         def  PermitmeHelper.findAllCountySitesByFeatureAndState  (state_id, fips_feature_id,feature_id)
             #The following will return id, county_name_full and fips_class
-            counties = getCountiesByFeature (state_id, fips_feature_id)
+            counties = getCountiesByFeature(state_id, fips_feature_id)
             localSites = Array.new
 
             counties.each do |county|
@@ -140,7 +140,7 @@ module PermitmeHelper
         #          end
 
                   # get county specs like id,description, url,name, feature_id from feature_id
-                  countySpecs = permitMeCountySpecsByNameQuery (feature_id)
+                  countySpecs = permitMeCountySpecsByNameQuery(feature_id)
 
                   for currentSpec in 0...countySpecs.length
                         #For this county id get all the sites and set the name for each
