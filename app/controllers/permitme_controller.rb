@@ -32,7 +32,9 @@ class PermitmeController < ApplicationController
           #Get state_id, fips_feature_id and feature_id based on feature_name
           #Need to trim the list by state
 
-          @state_and_feature = PermitmeHelper.PermitMeFeatureAltNameMappingQuery (params[:feature])
+          #We take the state alpha and use it to get state_id, (fips_feature_id, feature_id will be blank in this cases)
+          @state_and_feature = PermitmeHelper.getStateIDFromStateAlpha (params[:alpha])
+          @state_and_feature = PermitmeHelper.PermitMeFeatureWithStateMappingQuery (params[:feature], params[:feature], @state_and_feature[0]["state_id"])
 
           #We pass the state_id and fips_feat_id to the function below to get the list of County Sites
           respond_to_format (PermitmeHelper.get_all_permitme_sites (@state_and_feature, @business_type_id, "permitme_by_state_and_feature"))

@@ -86,7 +86,7 @@ module PermitmeHelper
             strQuery = "select id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = ? "
         		strQuery += "and state_id = ? union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names "
         		strQuery += "where feature_id = features.id and county_seq = 1 and name = ? and state_id = ?"
-        		Feature.find_by_sql([strQuery,feature_name,alternate_name,state_id])
+        		Feature.find_by_sql([strQuery,feature_name,state_id,alternate_name,state_id])
       	end
 
         def PermitmeHelper.PermitMeResultsByStateQuery (state_id)
