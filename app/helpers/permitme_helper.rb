@@ -43,6 +43,10 @@ module PermitmeHelper
             Feature.find_by_sql(["select state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = ?",zip])
         end
 
+        def PermitmeHelper.getStateIDFromStateAlpha (state_alpha)
+            State.find(:all, :select => "id as state_id", :conditions => ["alpha = ?",state_alpha])
+        end
+
         def PermitmeHelper.CountySpecsByNameQuery (feature_name, state_id)
             Feature.find(:all, :select => "id, fips_class", :conditions => ["feat_name = ? and state_id = ?",feature_name, state_id])
         end

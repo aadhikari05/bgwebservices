@@ -18,10 +18,10 @@ class PermitmeController < ApplicationController
           @business_type_id = PermitmeHelper.getBusinessTypeIdFromBusinessType (params[:business_type])
         
           #We take the state alpha and use it to get state_id, (fips_feature_id, feature_id will be blank in this cases)
-#          @state_and_feature = PermitmeHelper.getFeatureAndStatebyZip (params[:zip])
+          @state_and_feature = PermitmeHelper.getStateIDFromStateAlpha (params[:alpha])
         
           #We pass the state_id and fips_feat_id to the function below to get the list of County Sites
-          respond_to_format (PermitmeHelper.get_all_permitme_sites (state_and_feature_array, business_type_id, "permitme_by_state_only"))
+          respond_to_format (PermitmeHelper.get_all_permitme_sites (@state_and_feature, @business_type_id, "permitme_by_state_only"))
       end
 
       def permitme_by_state_and_feature
@@ -29,11 +29,12 @@ class PermitmeController < ApplicationController
           #params[:business_type],"%"+params[:feature]+"%",params[:alpha]])
 
           @business_type_id = PermitmeHelper.getBusinessTypeIdFromBusinessType (params[:business_type])
+#          @state_id = PermitmeHelper.getStateIDFromStateAlpha (params[:alpha])
         
-#          @state_and_feature = PermitmeHelper.getFeatureAndStatebyZip (params[:zip])
+#          @state_and_feature = PermitmeHelper.getStateIDFromStateAlpha (params[:alpha])
 
           #We pass the state_id and fips_feat_id to the function below to get the list of County Sites
-          respond_to_format (PermitmeHelper.get_all_permitme_sites (state_and_feature_array, business_type_id, "permitme_by_state_and_feature"))
+          respond_to_format (PermitmeHelper.get_all_permitme_sites (@state_and_feature, @business_type_id, "permitme_by_state_and_feature"))
       end
   
     
