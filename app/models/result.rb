@@ -61,5 +61,43 @@ class Result
         end
     end
   end
+  
+  def to_json(options = {})
+    result = Hash.new
+	
+	for current_site in 0...@county_sites.length
+		county_site_value=Array.new
+		county_site_value.push({"title"=>@county_sites[current_site]["link_title"]})
+		county_site_value.push({"description"=>@county_sites[current_site]["description"]})
+		county_site_value.push({"url"=>@county_sites[current_site]["url"]})
+		h1={"county_sites_item"+current_site.to_s =>state_site_value}
+		result.merge!(h1) 
+	end
+	for current_site in 0...@local_sites.length
+		local_site_value=Array.new
+		local_site_value.push({"title"=>@local_sites[current_site]["link_title"]})
+		local_site_value.push({"description"=>@local_sites[current_site]["description"]})
+		local_site_value.push({"url"=>@local_sites[current_site]["url"]})
+		h1={"state_site_item"+current_site.to_s =>local_site_value}
+		result.merge!(h1) 
+	end
+	for current_site in 0...@state_sites.length
+		state_site_value=Array.new
+		state_site_value.push({"title"=>@state_sites[current_site]["link_title"]})
+		state_site_value.push({"description"=>@state_sites[current_site]["description"]})
+		state_site_value.push({"url"=>@state_sites[current_site]["url"]})
+		h1={"state_site_item"+current_site.to_s =>state_site_value}
+		result.merge!(h1) 
+	end
+	for current_site in 0...@sites_for_business_type.length
+		sites_for_business_value=Array.new
+		sites_for_business_value.push({"title"=>@sites_for_business_type[current_site]["link_title"]})
+		sites_for_business_value.push({"description"=>@sites_for_business_type[current_site]["description"]})
+		sites_for_business_value.push({"url"=>@sites_for_business_type[current_site]["url"]})
+		h1={"state_site_item"+current_site.to_s =>sites_for_business_value}
+		result.merge!(h1) 
+	end
+    result.to_json  
+  end
 
 end
