@@ -7,7 +7,7 @@ module PermitmeHelper
         def PermitmeHelper.get_all_permitme_sites (state_and_feature_array, business_type_id, query_type)
             @this_result = Result.new
  
-            if (query_type = "permitme_by_zip")
+            if !query_type.eql? ("permitme_by_state_only")
                 for ss in 0...state_and_feature_array.length
                     #Get County Sites
                     @this_result.county_sites = findAllCountySitesByFeatureAndState (state_and_feature_array[ss]["state_id"], state_and_feature_array[ss]["fips_feat_id"], state_and_feature_array[ss]["feature_id"])
@@ -60,7 +60,8 @@ module PermitmeHelper
         end
 
         def  PermitmeHelper.PermitMeFeatureAltNameMappingQuery (alternate_name)
-            Feature.find_by_sql("select features.id, fips_class, state_id, feat_name,county_name_full,majorfeature, fips_feat_id from features,alternate_names where alternate_names.feature_id = features.id and county_seq = 1 and name = ?",alternate_name)
+            Feature.find_by_sql(["select features.id as feature_id, state_id, fips_feat_id from features,alternate_names where alternate_names.feature_id = features.id and county_seq = 1 and name = ?",alternate_name])
+#            Feature.find_by_sql("select features.id, fips_class, state_id, feat_name,county_name_full,majorfeature, fips_feat_id from features,alternate_names where alternate_names.feature_id = features.id and county_seq = 1 and name = ?",alternate_name)
         end
 
         def PermitmeHelper.permitMeCountySpecsByNameQuery (feature_id)

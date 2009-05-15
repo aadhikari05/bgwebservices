@@ -26,12 +26,13 @@ class PermitmeController < ApplicationController
 
       def permitme_by_state_and_feature
           #http://localhost:3000/permitme/state_and_city/child%20care%20services/il/baldwin.xml
-          #params[:business_type],"%"+params[:feature]+"%",params[:alpha]])
 
           @business_type_id = PermitmeHelper.getBusinessTypeIdFromBusinessType (params[:business_type])
-#          @state_id = PermitmeHelper.getStateIDFromStateAlpha (params[:alpha])
-        
-#          @state_and_feature = PermitmeHelper.getStateIDFromStateAlpha (params[:alpha])
+          
+          #Get state_id, fips_feature_id and feature_id based on feature_name
+          #Need to trim the list by state
+
+          @state_and_feature = PermitmeHelper.PermitMeFeatureAltNameMappingQuery (params[:feature])
 
           #We pass the state_id and fips_feat_id to the function below to get the list of County Sites
           respond_to_format (PermitmeHelper.get_all_permitme_sites (@state_and_feature, @business_type_id, "permitme_by_state_and_feature"))
