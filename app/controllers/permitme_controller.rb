@@ -39,6 +39,7 @@ class PermitmeController < ApplicationController
     
       def respond_to_format (resultArray)
           respond_to do |format|
+   		    format.html { render :text => resultArray.to_json }
             format.xml {render :xml => resultArray}
             format.json {render :json => resultArray}
           end
