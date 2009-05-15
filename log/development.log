@@ -14350,3 +14350,31 @@ SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
   [4;36;1mPermitmeResourceGroup Load (0.001834)[0m   [0;1mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 49 and url is not null and (s.id = 90) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
   [4;35;1mPermitmeResourceGroup Columns (0.001637)[0m   [0mSHOW FIELDS FROM `permitme_resource_groups`[0m
 Completed in 0.06117 (16 reqs/sec) | Rendering: 0.01258 (20%) | DB: 0.01532 (25%) | 200 OK [http://localhost/permitme/state_and_city/child%20care%20services/al/springfield.xml]
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-15 16:37:23) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"springfield", "alpha"=>"al", "format"=>"xml", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mPermitmeSubcategory Load (0.034386)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;35;1mState Load (0.000488)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'al') [0m
+  [4;36;1mState Columns (0.003263)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.001404)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'springfield' and state_id = '49' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'springfield' and state_id = '49'[0m
+  [4;36;1mFeature Columns (0.007031)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.005493)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 49 and fips_feat_id='157095' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000369)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '95325' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000173)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '95325' and url is not null) [0m
+  [4;36;1mSite Load (0.015612)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '95325' and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000610)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 49 and fips_feat_id='157097' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000715)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '95326' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.001938)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '95326' and url is not null) [0m
+  [4;36;1mSite Load (0.004262)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '95326' and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.001555)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 49 and fips_feat_id='157096' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000441)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '95327' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000157)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '95327' and url is not null) [0m
+  [4;36;1mSite Load (0.000165)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '95327' and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeResourceGroup Load (0.066265)[0m   [0mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 49 and (s.isExclusive <=> 0 or s.isExclusive is null) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeSubcategory Columns (0.002250)[0m   [0;1mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;35;1mPermitmeResourceGroup Load (0.000906)[0m   [0mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 49 and url is not null and (s.id = 90) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeResourceGroup Columns (0.002571)[0m   [0;1mSHOW FIELDS FROM `permitme_resource_groups`[0m
+Completed in 0.34163 (2 reqs/sec) | Rendering: 0.01779 (5%) | DB: 0.15005 (43%) | 200 OK [http://localhost/permitme/state_and_city/child%20care%20services/al/springfield.xml]
