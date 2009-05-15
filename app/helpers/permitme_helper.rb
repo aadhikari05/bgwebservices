@@ -4,24 +4,32 @@ module PermitmeHelper
         ####################################################
         # H E L P E R   F U N C T I O N S
         ####################################################
-        def PermitmeHelper.get_all_permitme_sites (state_and_feature_array, business_type_id)
+        def PermitmeHelper.get_all_permitme_sites (state_and_feature_array, business_type_id, query_type)
             @this_result = Result.new
  
-            for ss in 0...state_and_feature_array.length
-                #Get County Sites
-                @this_result.county_sites = findAllCountySitesByFeatureAndState (state_and_feature_array[ss]["state_id"], state_and_feature_array[ss]["fips_feat_id"], state_and_feature_array[ss]["feature_id"])
-      
-                #Get Primary Local Sites
-                @this_result.local_sites = findAllSitesByFeatureId (state_and_feature_array[ss]["feature_id"])
-            end
-  
-            #Add State Results
-            @this_result.state_sites = PermitMeResultsByStateQuery (state_and_feature_array[ss]["state_id"])
+            if (query_type = "permitme_by_zip")
+                for ss in 0...state_and_feature_array.length
+                    #Get County Sites
+                    @this_result.county_sites = findAllCountySitesByFeatureAndState (state_and_feature_array[ss]["state_id"], state_and_feature_array[ss]["fips_feat_id"], state_and_feature_array[ss]["feature_id"])
 
-            #Add Business Type Results
-            @this_result.sites_for_business_type = PermitMeResultsByBusinessTypeQuery (state_and_feature_array[ss]["state_id"], @business_type_id)
+                    #Get Primary Local Sites
+                    @this_result.local_sites = findAllSitesByFeatureId (state_and_feature_array[ss]["feature_id"])
+                end
+            end
+          
+            @this_result = get_state_business_type_permitme_sites (@this_result, state_and_feature_array[ss]["state_id"], business_type_id)
 
             @this_result
+        end
+
+        def PermitmeHelper.get_state_business_type_permitme_sites (this_result, state_id, business_type_id)
+            #Add State Results
+            this_result.state_sites = PermitMeResultsByStateQuery (state_id)
+
+            #Add Business Type Results
+            this_result.sites_for_business_type = PermitMeResultsByBusinessTypeQuery (state_id, business_type_id)
+
+            this_result
         end
 
         #########################################################
@@ -123,12 +131,12 @@ module PermitmeHelper
             #The following will return id, county_name_full and fips_class
             counties = getCountiesByFeature (state_id, fips_feature_id)
             localSites = Array.new
+#            sitesForThisCounty = Hash.new
 
             counties.each do |county|
                   # Special case for St. Louis because the St. is abbreviated in the county name
                   county_name = county["county_name_full"]
 
-                  #If we are using feature_id in our query, do we really need to do this replace?
 #                  if (county_name.include?("^St\\.(.)*"))
 #                      find_string = "St."
 #                      replace_string = "Saint"
@@ -142,7 +150,7 @@ module PermitmeHelper
 
                   for currentSpec in 0...countySpecs.length
                         #For this county id get all the sites and set the name for each
-                      localSites = this.findAllSitesByFeatureId(countySpecs[currentSpec]["id"])
+                      localSites << this.findAllSitesByFeatureId(countySpecs[currentSpec]["id"])
                   end
            end
 

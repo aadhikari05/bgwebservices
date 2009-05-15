@@ -5,22 +5,23 @@ class PermitmeController < ApplicationController
       ####################################################
       def permitme_by_zip
           #http://localhost:3000/permitme/by_zip/child%20care%20services/22209.xml
-          #We take the zip and use it to get state_id and fips_feature_id for a particular zip
+          #We take the zip and use it to get state_id, fips_feature_id, feature_id for a particular zip
           @state_and_feature = PermitmeHelper.getFeatureAndStatebyZip (params[:zip])
           @business_type_id = PermitmeHelper.getBusinessTypeIdFromBusinessType (params[:business_type])
         
           #We pass the state_id and fips_feat_id to the function below to get the list of County Sites
-          respond_to_format (PermitmeHelper.get_all_permitme_sites (@state_and_feature, @business_type_id))
+          respond_to_format (PermitmeHelper.get_all_permitme_sites (@state_and_feature, @business_type_id, "permitme_by_zip"))
       end
 
       def permitme_by_state_only
           #http://localhost:3000/permitme/state_only/child%20care%20services/il.xml
           @business_type_id = PermitmeHelper.getBusinessTypeIdFromBusinessType (params[:business_type])
         
+          #We take the state alpha and use it to get state_id, (fips_feature_id, feature_id will be blank in this cases)
 #          @state_and_feature = PermitmeHelper.getFeatureAndStatebyZip (params[:zip])
         
           #We pass the state_id and fips_feat_id to the function below to get the list of County Sites
-          respond_to_format (PermitmeHelper.get_all_permitme_sites (state_and_feature_array, business_type_id))
+          respond_to_format (PermitmeHelper.get_all_permitme_sites (state_and_feature_array, business_type_id, "permitme_by_state_only"))
       end
 
       def permitme_by_state_and_feature
@@ -32,7 +33,7 @@ class PermitmeController < ApplicationController
 #          @state_and_feature = PermitmeHelper.getFeatureAndStatebyZip (params[:zip])
 
           #We pass the state_id and fips_feat_id to the function below to get the list of County Sites
-          respond_to_format (PermitmeHelper.get_all_permitme_sites (state_and_feature_array, business_type_id))
+          respond_to_format (PermitmeHelper.get_all_permitme_sites (state_and_feature_array, business_type_id, "permitme_by_state_and_feature"))
       end
   
     
