@@ -140,7 +140,7 @@ module PermitmeHelper
 
             counties.each do |county|
                   # Special case for St. Louis because the St. is abbreviated in the county name
-                  county_name = county["county_name_full"]
+#                  county_name = county["county_name_full"]
 
 #                  if (county_name.include?("^St\\.(.)*"))
 #                      find_string = "St."
