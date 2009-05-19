@@ -133,8 +133,11 @@ module PermitmeHelper
         end
 
         def  PermitmeHelper.findAllCountySitesByFeatureAndState  (state_id, fips_feature_id,feature_id)
-            #The following will return id, county_name_full and fips_class
+            #The following will return id, county_name_full and fips_class for a given state_id and fips_feat_id
             counties = getCountiesByFeature (state_id, fips_feature_id)
+            
+            counties = process_rules(counties)
+            
             localSites = Array.new
 #            sitesForThisCounty = Hash.new
 
@@ -162,4 +165,12 @@ module PermitmeHelper
           return localSites
       end
 
+
+      ####################################################
+      # P E R M I T M E   R U L E S
+      ####################################################
+      def process_rules (county_array)
+        
+        
+      end
 end

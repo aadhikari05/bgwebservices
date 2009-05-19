@@ -23,7 +23,7 @@ class Result
 #    @business_type = 0
 #    @business_type_name = ""
   end
-  s  
+    
   def to_xml(options = {})
     xml = options[:builder] ||= Builder::XmlMarkup.new(:indent => options[:indent])
     xml.instruct! unless options[:skip_instruct => true, :dasherize => false]
