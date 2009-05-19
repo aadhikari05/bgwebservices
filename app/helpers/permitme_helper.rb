@@ -181,10 +181,12 @@ module PermitmeHelper
       end
       
       def PermitmeHelper.rule1 (this_array)
+          #prune unincorporated areas when we have another option in same county
           this_array
       end
       
       def PermitmeHelper.rule2 (this_array)
+          #return multiple url's for same county as one set
           this_array
       end
       
