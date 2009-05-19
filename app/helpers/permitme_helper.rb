@@ -189,11 +189,8 @@ module PermitmeHelper
       end
       
       def PermitmeHelper.rule3 (this_array)
-          #get state alpha from state_id. 
-          state_alpha = PermitmeHelper.getStateAlphaFromStateID (@state_alpha)
-          
           #If state is vermont, then drop any h1-h6 counties
-          if state_alpha.eql? ("vt")
+          if @state_alpha.eql? ("vt")
               for i in 0...this_array.length
                   if this_array[i]["fips_class"].eql?("h1")
                       this_array[i] = []
@@ -207,6 +204,16 @@ module PermitmeHelper
       def PermitmeHelper.rule4 (this_array)
           #if any county has H4 or H6 fips_class, then check if there is another county with same name
           #if another county with same name exists, then remove H4 or H6 county
+          for i in 0...this_array.length
+              if this_array[i]["fips_class"].eql?("h4")
+                for j in 0...this_array.length
+                    if this_array[j]["county_name_full"].eql?(this_array[i]["county_name_full"])
+                        this_array[i] = []
+                    end
+                end
+              end
+          end
+          
           this_array
       end
 end

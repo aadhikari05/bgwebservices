@@ -15703,3 +15703,115 @@ SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
   [4;36;1mPermitmeResourceGroup Columns (0.001407)[0m   [0;1mSHOW FIELDS FROM `permitme_resource_groups`[0m
   [4;35;1mSite Columns (0.001684)[0m   [0mSHOW FIELDS FROM `sites`[0m
 Completed in 0.07820 (12 reqs/sec) | Rendering: 0.01278 (16%) | DB: 0.02117 (27%) | 200 OK [http://localhost/permitme/state_and_city/child%20care%20services/va/arlington.xml]
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-19 11:27:24) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"arlington", "alpha"=>"va", "format"=>"xml", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mPermitmeSubcategory Load (0.000443)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;35;1mState Load (0.000320)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'va') [0m
+  [4;36;1mState Columns (0.002590)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.005993)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'arlington' and state_id = '29' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'arlington' and state_id = '29'[0m
+  [4;36;1mFeature Columns (0.002153)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.000666)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000321)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000181)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mSite Load (0.000326)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000309)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1494175' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000177)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '41439' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000174)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '41439' and url is not null) [0m
+  [4;36;1mSite Load (0.000233)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '41439' and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000230)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1480097' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000161)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '39432' and url is not null) [0m
+  [4;35;1mSite Load (0.000254)[0m   [0mSELECT url,name FROM `sites` WHERE (feature_id = '39432' and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeResourceGroup Load (0.001357)[0m   [0;1mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and (s.isExclusive <=> 0 or s.isExclusive is null) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;35;1mPermitmeSubcategory Columns (0.001663)[0m   [0mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;36;1mPermitmeResourceGroup Load (0.001227)[0m   [0;1mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 90) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;35;1mPermitmeResourceGroup Columns (0.001698)[0m   [0mSHOW FIELDS FROM `permitme_resource_groups`[0m
+  [4;36;1mSite Columns (0.001372)[0m   [0;1mSHOW FIELDS FROM `sites`[0m
+Completed in 0.07144 (13 reqs/sec) | Rendering: 0.01381 (19%) | DB: 0.02185 (30%) | 200 OK [http://localhost/permitme/state_and_city/child%20care%20services/va/arlington.xml]
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-19 11:28:05) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"arlington", "alpha"=>"va", "format"=>"xml", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;35;1mPermitmeSubcategory Load (0.000551)[0m   [0mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;36;1mState Load (0.000340)[0m   [0;1mSELECT id as state_id FROM `states` WHERE (alpha = 'va') [0m
+  [4;35;1mState Columns (0.002336)[0m   [0mSHOW FIELDS FROM `states`[0m
+  [4;36;1mFeature Load (0.004645)[0m   [0;1mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'arlington' and state_id = '29' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'arlington' and state_id = '29'[0m
+  [4;35;1mFeature Columns (0.002034)[0m   [0mSHOW FIELDS FROM `features`[0m
+  [4;36;1mFeature Load (0.001309)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000438)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000236)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mSite Load (0.000318)[0m   [0mSELECT url,name FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;36;1mFeature Load (0.000308)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1494175' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.001273)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '41439' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000837)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '41439' and url is not null) [0m
+  [4;35;1mSite Load (0.000543)[0m   [0mSELECT url,name FROM `sites` WHERE (feature_id = '41439' and is_primary = 1 and url is not null) [0m
+  [4;36;1mFeature Load (0.000466)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1480097' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000209)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '39432' and url is not null) [0m
+  [4;36;1mSite Load (0.000243)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '39432' and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeResourceGroup Load (0.001480)[0m   [0mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and (s.isExclusive <=> 0 or s.isExclusive is null) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeSubcategory Columns (0.002264)[0m   [0;1mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;35;1mPermitmeResourceGroup Load (0.001271)[0m   [0mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 90) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeResourceGroup Columns (0.001748)[0m   [0;1mSHOW FIELDS FROM `permitme_resource_groups`[0m
+  [4;35;1mSite Columns (0.002903)[0m   [0mSHOW FIELDS FROM `sites`[0m
+Completed in 0.18144 (5 reqs/sec) | Rendering: 0.01901 (10%) | DB: 0.02575 (14%) | 200 OK [http://localhost/permitme/state_and_city/child%20care%20services/va/arlington.xml]
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-19 11:32:40) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"arlington", "alpha"=>"va", "format"=>"xml", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mPermitmeSubcategory Load (0.000482)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;35;1mState Load (0.000242)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'va') [0m
+  [4;36;1mState Columns (0.002333)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.005352)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'arlington' and state_id = '29' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'arlington' and state_id = '29'[0m
+  [4;36;1mFeature Columns (0.002158)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.000931)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.001986)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.009630)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mSite Load (0.000292)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000289)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1494175' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000177)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '41439' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000162)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '41439' and url is not null) [0m
+  [4;36;1mSite Load (0.000174)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '41439' and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000504)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1480097' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000163)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '39432' and url is not null) [0m
+  [4;35;1mSite Load (0.000175)[0m   [0mSELECT url,name FROM `sites` WHERE (feature_id = '39432' and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeResourceGroup Load (0.001392)[0m   [0;1mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and (s.isExclusive <=> 0 or s.isExclusive is null) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;35;1mPermitmeSubcategory Columns (0.001596)[0m   [0mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;36;1mPermitmeResourceGroup Load (0.001918)[0m   [0;1mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 90) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;35;1mPermitmeResourceGroup Columns (0.001778)[0m   [0mSHOW FIELDS FROM `permitme_resource_groups`[0m
+  [4;36;1mSite Columns (0.001842)[0m   [0;1mSHOW FIELDS FROM `sites`[0m
+Completed in 0.08810 (11 reqs/sec) | Rendering: 0.01657 (18%) | DB: 0.03358 (38%) | 200 OK [http://localhost/permitme/state_and_city/child%20care%20services/va/arlington.xml]
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-19 11:33:03) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"arlington", "alpha"=>"va", "format"=>"xml", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;35;1mPermitmeSubcategory Load (0.000442)[0m   [0mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;36;1mState Load (0.000605)[0m   [0;1mSELECT id as state_id FROM `states` WHERE (alpha = 'va') [0m
+  [4;35;1mState Columns (0.002455)[0m   [0mSHOW FIELDS FROM `states`[0m
+  [4;36;1mFeature Load (0.005213)[0m   [0;1mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'arlington' and state_id = '29' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'arlington' and state_id = '29'[0m
+  [4;35;1mFeature Columns (0.002258)[0m   [0mSHOW FIELDS FROM `features`[0m
+  [4;36;1mFeature Load (0.000728)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.009162)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000246)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mSite Load (0.000307)[0m   [0mSELECT url,name FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;36;1mFeature Load (0.000308)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1494175' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000216)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '41439' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000162)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '41439' and url is not null) [0m
+  [4;35;1mSite Load (0.000166)[0m   [0mSELECT url,name FROM `sites` WHERE (feature_id = '41439' and is_primary = 1 and url is not null) [0m
+  [4;36;1mFeature Load (0.000324)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1480097' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000160)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '39432' and url is not null) [0m
+  [4;36;1mSite Load (0.000190)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '39432' and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeResourceGroup Load (0.001495)[0m   [0mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and (s.isExclusive <=> 0 or s.isExclusive is null) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeSubcategory Columns (0.001426)[0m   [0;1mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;35;1mPermitmeResourceGroup Load (0.001192)[0m   [0mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 90) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeResourceGroup Columns (0.001748)[0m   [0;1mSHOW FIELDS FROM `permitme_resource_groups`[0m
+  [4;35;1mSite Columns (0.001679)[0m   [0mSHOW FIELDS FROM `sites`[0m
+Completed in 0.08490 (11 reqs/sec) | Rendering: 0.01460 (17%) | DB: 0.03048 (35%) | 200 OK [http://localhost/permitme/state_and_city/child%20care%20services/va/arlington.xml]
