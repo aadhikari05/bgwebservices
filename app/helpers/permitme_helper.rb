@@ -47,6 +47,10 @@ module PermitmeHelper
             State.find(:all, :select => "id as state_id", :conditions => ["alpha = ?",state_alpha])
         end
 
+        def PermitmeHelper.getStateAlphaFromStateID (state_id)
+            State.find(:all, :select => "alpha as state_alpha", :conditions => ["id = ?",state_id])
+        end
+
         def PermitmeHelper.CountySpecsByNameQuery (feature_name, state_id)
             Feature.find(:all, :select => "id, fips_class", :conditions => ["feat_name = ? and state_id = ?",feature_name, state_id])
         end
@@ -169,8 +173,40 @@ module PermitmeHelper
       ####################################################
       # P E R M I T M E   R U L E S
       ####################################################
-      def process_rules (county_array)
-        
-        
+      def PermitmeHelper.process_rules (county_array)
+          county_array = rule1 (county_array)
+          county_array = rule2 (county_array)
+          county_array = rule3 (county_array)
+          county_array = rule4 (county_array)
+      end
+      
+      def PermitmeHelper.rule1 (this_array)
+          this_array
+      end
+      
+      def PermitmeHelper.rule2 (this_array)
+          this_array
+      end
+      
+      def PermitmeHelper.rule3 (this_array)
+          #get state alpha from state_id. 
+          state_alpha = PermitmeHelper.getStateAlphaFromStateID (@state_alpha)
+          
+          #If state is vermont, then drop any h1-h6 counties
+          if state_alpha.eql? ("vt")
+              for i in 0...this_array.length
+                  if this_array[i]["fips_class"].eql?("h1")
+                      this_array[i] = []
+                  end
+              end
+          end
+          
+          this_array
+      end
+      
+      def PermitmeHelper.rule4 (this_array)
+          #if any county has H4 or H6 fips_class, then check if there is another county with same name
+          #if another county with same name exists, then remove H4 or H6 county
+          this_array
       end
 end

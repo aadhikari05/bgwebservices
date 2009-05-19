@@ -15031,3 +15031,675 @@ SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
   [4;35;1mPermitmeResourceGroup Columns (0.008565)[0m   [0mSHOW FIELDS FROM `permitme_resource_groups`[0m
   [4;36;1mSite Columns (0.001646)[0m   [0;1mSHOW FIELDS FROM `sites`[0m
 Completed in 0.43624 (2 reqs/sec) | Rendering: 0.01793 (4%) | DB: 0.44595 (102%) | 200 OK [http://localhost/permitme/state_and_city/child%20care%20services/va/arlington.xml]
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-19 10:57:36) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"arlington", "alpha"=>"va", "format"=>"xml", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;35;1mPermitmeSubcategory Load (0.000986)[0m   [0mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;36;1mState Load (0.000583)[0m   [0;1mSELECT id as state_id FROM `states` WHERE (alpha = 'va') [0m
+  [4;35;1mState Columns (0.002385)[0m   [0mSHOW FIELDS FROM `states`[0m
+  [4;36;1mFeature Load (0.001753)[0m   [0;1mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'arlington' and state_id = '29' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'arlington' and state_id = '29'[0m
+  [4;35;1mFeature Columns (0.003184)[0m   [0mSHOW FIELDS FROM `features`[0m
+  [4;36;1mFeature Load (0.000943)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+
+
+NoMethodError (undefined method `process_rules' for PermitmeHelper:Module):
+    /app/helpers/permitme_helper.rb:139:in `findAllCountySitesByFeatureAndState'
+    /app/helpers/permitme_helper.rb:13:in `get_all_permitme_sites'
+    /app/helpers/permitme_helper.rb:11:in `each'
+    /app/helpers/permitme_helper.rb:11:in `get_all_permitme_sites'
+    /app/controllers/permitme_controller.rb:39:in `permitme_by_state_and_feature'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `perform_action_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:580:in `call_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:573:in `perform_action_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /Users/aadhikari/.gem/ruby/1.8/gems/activerecord-2.1.0/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /Users/aadhikari/.gem/ruby/1.8/gems/activerecord-2.1.0/lib/active_record/query_cache.rb:8:in `cache'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `process_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:569:in `process_without_session_management_support'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/session_management.rb:130:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:389:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:76:in `process'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `process'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:159:in `process_client'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:158:in `each'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:158:in `process_client'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `initialize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `new'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:268:in `initialize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:268:in `new'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:268:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:282:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:281:in `each'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:281:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:128:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/command.rb:212:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
+    /usr/bin/mongrel_rails:19:in `load'
+    /usr/bin/mongrel_rails:19
+
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-19 10:58:05) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"arlington", "alpha"=>"va", "format"=>"xml", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;35;1mPermitmeSubcategory Load (0.001366)[0m   [0mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;36;1mState Load (0.001177)[0m   [0;1mSELECT id as state_id FROM `states` WHERE (alpha = 'va') [0m
+  [4;35;1mState Columns (0.002470)[0m   [0mSHOW FIELDS FROM `states`[0m
+  [4;36;1mFeature Load (0.020576)[0m   [0;1mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'arlington' and state_id = '29' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'arlington' and state_id = '29'[0m
+  [4;35;1mFeature Columns (0.002652)[0m   [0mSHOW FIELDS FROM `features`[0m
+  [4;36;1mFeature Load (0.000571)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+
+
+NoMethodError (undefined method `rule1' for PermitmeHelper:Module):
+    /app/helpers/permitme_helper.rb:173:in `process_rules'
+    /app/helpers/permitme_helper.rb:139:in `findAllCountySitesByFeatureAndState'
+    /app/helpers/permitme_helper.rb:13:in `get_all_permitme_sites'
+    /app/helpers/permitme_helper.rb:11:in `each'
+    /app/helpers/permitme_helper.rb:11:in `get_all_permitme_sites'
+    /app/controllers/permitme_controller.rb:39:in `permitme_by_state_and_feature'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `perform_action_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:580:in `call_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:573:in `perform_action_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /Users/aadhikari/.gem/ruby/1.8/gems/activerecord-2.1.0/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /Users/aadhikari/.gem/ruby/1.8/gems/activerecord-2.1.0/lib/active_record/query_cache.rb:8:in `cache'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `process_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:569:in `process_without_session_management_support'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/session_management.rb:130:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:389:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:76:in `process'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `process'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:159:in `process_client'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:158:in `each'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:158:in `process_client'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `initialize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `new'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:268:in `initialize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:268:in `new'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:268:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:282:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:281:in `each'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:281:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:128:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/command.rb:212:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
+    /usr/bin/mongrel_rails:19:in `load'
+    /usr/bin/mongrel_rails:19
+
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-19 10:58:25) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"arlington", "alpha"=>"va", "format"=>"xml", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;35;1mPermitmeSubcategory Load (0.000449)[0m   [0mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;36;1mState Load (0.000310)[0m   [0;1mSELECT id as state_id FROM `states` WHERE (alpha = 'va') [0m
+  [4;35;1mState Columns (0.002427)[0m   [0mSHOW FIELDS FROM `states`[0m
+  [4;36;1mFeature Load (0.005959)[0m   [0;1mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'arlington' and state_id = '29' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'arlington' and state_id = '29'[0m
+  [4;35;1mFeature Columns (0.002115)[0m   [0mSHOW FIELDS FROM `features`[0m
+  [4;36;1mFeature Load (0.000874)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000425)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000244)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mSite Load (0.000317)[0m   [0mSELECT url,name FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;36;1mFeature Load (0.000294)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1494175' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000187)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '41439' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000198)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '41439' and url is not null) [0m
+  [4;35;1mSite Load (0.000170)[0m   [0mSELECT url,name FROM `sites` WHERE (feature_id = '41439' and is_primary = 1 and url is not null) [0m
+  [4;36;1mFeature Load (0.000267)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1480097' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000161)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '39432' and url is not null) [0m
+  [4;36;1mSite Load (0.000183)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '39432' and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeResourceGroup Load (0.065315)[0m   [0mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and (s.isExclusive <=> 0 or s.isExclusive is null) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeSubcategory Columns (0.002420)[0m   [0;1mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;35;1mPermitmeResourceGroup Load (0.001930)[0m   [0mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 90) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeResourceGroup Columns (0.002220)[0m   [0;1mSHOW FIELDS FROM `permitme_resource_groups`[0m
+  [4;35;1mSite Columns (0.003101)[0m   [0mSHOW FIELDS FROM `sites`[0m
+Completed in 0.97761 (1 reqs/sec) | Rendering: 0.06386 (6%) | DB: 0.12821 (13%) | 200 OK [http://localhost/permitme/state_and_city/child%20care%20services/va/arlington.xml]
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-19 11:01:43) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"arlington", "alpha"=>"va", "format"=>"xml", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mPermitmeSubcategory Load (0.000470)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;35;1mState Load (0.000259)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'va') [0m
+  [4;36;1mState Columns (0.148232)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.001434)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'arlington' and state_id = '29' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'arlington' and state_id = '29'[0m
+  [4;36;1mFeature Columns (0.001985)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.000548)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000253)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000164)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mSite Load (0.000245)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000355)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1494175' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000255)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '41439' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000160)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '41439' and url is not null) [0m
+  [4;36;1mSite Load (0.000160)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '41439' and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000235)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1480097' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000158)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '39432' and url is not null) [0m
+  [4;35;1mSite Load (0.000186)[0m   [0mSELECT url,name FROM `sites` WHERE (feature_id = '39432' and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeResourceGroup Load (0.001777)[0m   [0;1mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and (s.isExclusive <=> 0 or s.isExclusive is null) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;35;1mPermitmeSubcategory Columns (0.001774)[0m   [0mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;36;1mPermitmeResourceGroup Load (0.000839)[0m   [0;1mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 90) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;35;1mPermitmeResourceGroup Columns (0.001884)[0m   [0mSHOW FIELDS FROM `permitme_resource_groups`[0m
+  [4;36;1mSite Columns (0.001529)[0m   [0;1mSHOW FIELDS FROM `sites`[0m
+Completed in 0.21016 (4 reqs/sec) | Rendering: 0.01240 (5%) | DB: 0.16290 (77%) | 200 OK [http://localhost/permitme/state_and_city/child%20care%20services/va/arlington.xml]
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-19 11:07:56) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"arlington", "alpha"=>"va", "format"=>"xml", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;35;1mPermitmeSubcategory Load (0.000481)[0m   [0mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;36;1mState Load (0.000288)[0m   [0;1mSELECT id as state_id FROM `states` WHERE (alpha = 'va') [0m
+  [4;35;1mState Columns (0.002295)[0m   [0mSHOW FIELDS FROM `states`[0m
+  [4;36;1mFeature Load (0.001312)[0m   [0;1mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'arlington' and state_id = '29' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'arlington' and state_id = '29'[0m
+  [4;35;1mFeature Columns (0.002501)[0m   [0mSHOW FIELDS FROM `features`[0m
+  [4;36;1mFeature Load (0.000808)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+
+
+NameError (undefined local variable or method `state_id' for PermitmeHelper:Module):
+    /app/helpers/permitme_helper.rb:193:in `rule3'
+    /app/helpers/permitme_helper.rb:179:in `process_rules'
+    /app/helpers/permitme_helper.rb:143:in `findAllCountySitesByFeatureAndState'
+    /app/helpers/permitme_helper.rb:13:in `get_all_permitme_sites'
+    /app/helpers/permitme_helper.rb:11:in `each'
+    /app/helpers/permitme_helper.rb:11:in `get_all_permitme_sites'
+    /app/controllers/permitme_controller.rb:39:in `permitme_by_state_and_feature'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `perform_action_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:580:in `call_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:573:in `perform_action_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /Users/aadhikari/.gem/ruby/1.8/gems/activerecord-2.1.0/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /Users/aadhikari/.gem/ruby/1.8/gems/activerecord-2.1.0/lib/active_record/query_cache.rb:8:in `cache'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `process_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:569:in `process_without_session_management_support'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/session_management.rb:130:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:389:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:76:in `process'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `process'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:159:in `process_client'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:158:in `each'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:158:in `process_client'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `initialize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `new'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:268:in `initialize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:268:in `new'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:268:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:282:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:281:in `each'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:281:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:128:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/command.rb:212:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
+    /usr/bin/mongrel_rails:19:in `load'
+    /usr/bin/mongrel_rails:19
+
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-19 11:08:43) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"arlington", "alpha"=>"va", "format"=>"xml", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;35;1mPermitmeSubcategory Load (0.000480)[0m   [0mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;36;1mState Load (0.000248)[0m   [0;1mSELECT id as state_id FROM `states` WHERE (alpha = 'va') [0m
+  [4;35;1mState Columns (0.001807)[0m   [0mSHOW FIELDS FROM `states`[0m
+  [4;36;1mFeature Load (0.001307)[0m   [0;1mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'arlington' and state_id = '29' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'arlington' and state_id = '29'[0m
+  [4;35;1mFeature Columns (0.002523)[0m   [0mSHOW FIELDS FROM `features`[0m
+  [4;36;1mFeature Load (0.000363)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;35;1mState Load (0.000181)[0m   [0mSELECT alpha as state_alpha FROM `states` WHERE (alpha = NULL) [0m
+
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.each):
+    /app/helpers/permitme_helper.rb:148:in `findAllCountySitesByFeatureAndState'
+    /app/helpers/permitme_helper.rb:13:in `get_all_permitme_sites'
+    /app/helpers/permitme_helper.rb:11:in `each'
+    /app/helpers/permitme_helper.rb:11:in `get_all_permitme_sites'
+    /app/controllers/permitme_controller.rb:39:in `permitme_by_state_and_feature'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `perform_action_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:580:in `call_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:573:in `perform_action_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /Users/aadhikari/.gem/ruby/1.8/gems/activerecord-2.1.0/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /Users/aadhikari/.gem/ruby/1.8/gems/activerecord-2.1.0/lib/active_record/query_cache.rb:8:in `cache'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `process_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:569:in `process_without_session_management_support'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/session_management.rb:130:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:389:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:76:in `process'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `process'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:159:in `process_client'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:158:in `each'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:158:in `process_client'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `initialize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `new'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:268:in `initialize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:268:in `new'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:268:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:282:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:281:in `each'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:281:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:128:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/command.rb:212:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
+    /usr/bin/mongrel_rails:19:in `load'
+    /usr/bin/mongrel_rails:19
+
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-19 11:16:41) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"arlington", "alpha"=>"va", "format"=>"xml", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mPermitmeSubcategory Load (0.000432)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;35;1mState Load (0.000269)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'va') [0m
+  [4;36;1mState Columns (0.002913)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.005096)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'arlington' and state_id = '29' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'arlington' and state_id = '29'[0m
+  [4;36;1mFeature Columns (0.002163)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.000425)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;36;1mState Load (0.000255)[0m   [0;1mSELECT alpha as state_alpha FROM `states` WHERE (alpha = NULL) [0m
+  [4;35;1mPermitmeSite Load (0.000249)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000172)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mSite Load (0.000317)[0m   [0mSELECT url,name FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;36;1mFeature Load (0.000278)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1494175' and county_name_full is not null) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT alpha as state_alpha FROM `states` WHERE (alpha = NULL) [0m
+  [4;36;1mPermitmeSite Load (0.000173)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '41439' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000195)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '41439' and url is not null) [0m
+  [4;36;1mSite Load (0.000165)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '41439' and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000284)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1480097' and county_name_full is not null) [0m
+
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of ActiveRecord::Base.
+The error occurred while evaluating nil.[]):
+    /app/helpers/permitme_helper.rb:193:in `rule3'
+    /app/helpers/permitme_helper.rb:179:in `process_rules'
+    /app/helpers/permitme_helper.rb:143:in `findAllCountySitesByFeatureAndState'
+    /app/helpers/permitme_helper.rb:13:in `get_all_permitme_sites'
+    /app/helpers/permitme_helper.rb:11:in `each'
+    /app/helpers/permitme_helper.rb:11:in `get_all_permitme_sites'
+    /app/controllers/permitme_controller.rb:39:in `permitme_by_state_and_feature'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `perform_action_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:580:in `call_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:573:in `perform_action_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /Users/aadhikari/.gem/ruby/1.8/gems/activerecord-2.1.0/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /Users/aadhikari/.gem/ruby/1.8/gems/activerecord-2.1.0/lib/active_record/query_cache.rb:8:in `cache'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `process_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:569:in `process_without_session_management_support'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/session_management.rb:130:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:389:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:76:in `process'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `process'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:159:in `process_client'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:158:in `each'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:158:in `process_client'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `initialize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `new'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:268:in `initialize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:268:in `new'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:268:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:282:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:281:in `each'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:281:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:128:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/command.rb:212:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
+    /usr/bin/mongrel_rails:19:in `load'
+    /usr/bin/mongrel_rails:19
+
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-19 11:18:57) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"arlington", "alpha"=>"va", "format"=>"xml", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mPermitmeSubcategory Load (0.000660)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;35;1mState Load (0.000282)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'va') [0m
+  [4;36;1mState Columns (0.002128)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.001314)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'arlington' and state_id = '29' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'arlington' and state_id = '29'[0m
+  [4;36;1mFeature Columns (0.002562)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.000416)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;36;1mState Load (0.000130)[0m   [0;1mSELECT alpha as state_alpha FROM `states` WHERE (id = NULL) [0m
+  [4;35;1mPermitmeSite Load (0.000295)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000164)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mSite Load (0.000286)[0m   [0mSELECT url,name FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;36;1mFeature Load (0.000256)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1494175' and county_name_full is not null) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT alpha as state_alpha FROM `states` WHERE (id = NULL) [0m
+  [4;36;1mPermitmeSite Load (0.000171)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '41439' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000164)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '41439' and url is not null) [0m
+  [4;36;1mSite Load (0.000161)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '41439' and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000278)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1480097' and county_name_full is not null) [0m
+
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of ActiveRecord::Base.
+The error occurred while evaluating nil.[]):
+    /app/helpers/permitme_helper.rb:193:in `rule3'
+    /app/helpers/permitme_helper.rb:179:in `process_rules'
+    /app/helpers/permitme_helper.rb:143:in `findAllCountySitesByFeatureAndState'
+    /app/helpers/permitme_helper.rb:13:in `get_all_permitme_sites'
+    /app/helpers/permitme_helper.rb:11:in `each'
+    /app/helpers/permitme_helper.rb:11:in `get_all_permitme_sites'
+    /app/controllers/permitme_controller.rb:39:in `permitme_by_state_and_feature'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `perform_action_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:580:in `call_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:573:in `perform_action_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /Users/aadhikari/.gem/ruby/1.8/gems/activerecord-2.1.0/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /Users/aadhikari/.gem/ruby/1.8/gems/activerecord-2.1.0/lib/active_record/query_cache.rb:8:in `cache'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `process_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:569:in `process_without_session_management_support'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/session_management.rb:130:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:389:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:76:in `process'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:74:in `process'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:159:in `process_client'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:158:in `each'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:158:in `process_client'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `initialize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `new'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:285:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:268:in `initialize'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:268:in `new'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel.rb:268:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:282:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:281:in `each'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:281:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:128:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/command.rb:212:in `run'
+    /Library/Ruby/Gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
+    /usr/bin/mongrel_rails:19:in `load'
+    /usr/bin/mongrel_rails:19
+
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-19 11:19:49) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"arlington", "alpha"=>"va", "format"=>"xml", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mPermitmeSubcategory Load (0.000498)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;35;1mState Load (0.000273)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'va') [0m
+  [4;36;1mState Columns (0.002758)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.004157)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'arlington' and state_id = '29' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'arlington' and state_id = '29'[0m
+  [4;36;1mFeature Columns (0.003110)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.000487)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;36;1mState Load (0.000202)[0m   [0;1mSELECT alpha as state_alpha FROM `states` WHERE (id = 42) [0m
+  [4;35;1mPermitmeSite Load (0.000386)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.001076)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mSite Load (0.000304)[0m   [0mSELECT url,name FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;36;1mFeature Load (0.000308)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1494175' and county_name_full is not null) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT alpha as state_alpha FROM `states` WHERE (id = 42) [0m
+  [4;36;1mPermitmeSite Load (0.000191)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '41439' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000154)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '41439' and url is not null) [0m
+  [4;36;1mSite Load (0.000161)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '41439' and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000214)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1480097' and county_name_full is not null) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT alpha as state_alpha FROM `states` WHERE (id = 42) [0m
+  [4;35;1mPermitmeSite Load (0.000483)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '39432' and url is not null) [0m
+  [4;36;1mSite Load (0.000269)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '39432' and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeResourceGroup Load (0.001385)[0m   [0mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and (s.isExclusive <=> 0 or s.isExclusive is null) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeSubcategory Columns (0.002787)[0m   [0;1mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;35;1mPermitmeResourceGroup Load (0.001676)[0m   [0mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 90) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeResourceGroup Columns (0.002712)[0m   [0;1mSHOW FIELDS FROM `permitme_resource_groups`[0m
+  [4;35;1mSite Columns (0.001814)[0m   [0mSHOW FIELDS FROM `sites`[0m
+Completed in 0.15091 (6 reqs/sec) | Rendering: 0.01508 (9%) | DB: 0.06265 (41%) | 200 OK [http://localhost/permitme/state_and_city/child%20care%20services/va/arlington.xml]
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-19 11:22:13) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"arlington", "alpha"=>"va", "format"=>"xml", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mPermitmeSubcategory Load (0.000438)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;35;1mState Load (0.000237)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'va') [0m
+  [4;36;1mState Columns (0.002649)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.006244)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'arlington' and state_id = '29' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'arlington' and state_id = '29'[0m
+  [4;36;1mFeature Columns (0.002239)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.000889)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;36;1mState Load (0.000198)[0m   [0;1mSELECT alpha as state_alpha FROM `states` WHERE (id = 42) [0m
+  [4;35;1mPermitmeSite Load (0.000325)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000184)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mSite Load (0.000402)[0m   [0mSELECT url,name FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;36;1mFeature Load (0.000310)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1494175' and county_name_full is not null) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT alpha as state_alpha FROM `states` WHERE (id = 42) [0m
+  [4;36;1mPermitmeSite Load (0.000205)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '41439' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000178)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '41439' and url is not null) [0m
+  [4;36;1mSite Load (0.000187)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '41439' and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000229)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1480097' and county_name_full is not null) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT alpha as state_alpha FROM `states` WHERE (id = 42) [0m
+  [4;35;1mPermitmeSite Load (0.000167)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '39432' and url is not null) [0m
+  [4;36;1mSite Load (0.000177)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '39432' and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeResourceGroup Load (0.001459)[0m   [0mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and (s.isExclusive <=> 0 or s.isExclusive is null) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeSubcategory Columns (0.001553)[0m   [0;1mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;35;1mPermitmeResourceGroup Load (0.002028)[0m   [0mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 90) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeResourceGroup Columns (0.002148)[0m   [0;1mSHOW FIELDS FROM `permitme_resource_groups`[0m
+  [4;35;1mSite Columns (0.001912)[0m   [0mSHOW FIELDS FROM `sites`[0m
+Completed in 0.07441 (13 reqs/sec) | Rendering: 0.01384 (18%) | DB: 0.02436 (32%) | 200 OK [http://localhost/permitme/state_and_city/child%20care%20services/va/arlington.xml]
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-19 11:22:14) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"arlington", "alpha"=>"va", "format"=>"xml", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mPermitmeSubcategory Load (0.000453)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;35;1mState Load (0.000245)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'va') [0m
+  [4;36;1mState Columns (0.002510)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.002280)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'arlington' and state_id = '29' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'arlington' and state_id = '29'[0m
+  [4;36;1mFeature Columns (0.002762)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.000422)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;36;1mState Load (0.000166)[0m   [0;1mSELECT alpha as state_alpha FROM `states` WHERE (id = 42) [0m
+  [4;35;1mPermitmeSite Load (0.000302)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000168)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mSite Load (0.000289)[0m   [0mSELECT url,name FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;36;1mFeature Load (0.000275)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1494175' and county_name_full is not null) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT alpha as state_alpha FROM `states` WHERE (id = 42) [0m
+  [4;36;1mPermitmeSite Load (0.000231)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '41439' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000215)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '41439' and url is not null) [0m
+  [4;36;1mSite Load (0.000186)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '41439' and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000229)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1480097' and county_name_full is not null) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT alpha as state_alpha FROM `states` WHERE (id = 42) [0m
+  [4;35;1mPermitmeSite Load (0.000183)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '39432' and url is not null) [0m
+  [4;36;1mSite Load (0.000177)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '39432' and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeResourceGroup Load (0.001473)[0m   [0mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and (s.isExclusive <=> 0 or s.isExclusive is null) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeSubcategory Columns (0.002147)[0m   [0;1mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;35;1mPermitmeResourceGroup Load (0.001073)[0m   [0mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 90) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeResourceGroup Columns (0.001864)[0m   [0;1mSHOW FIELDS FROM `permitme_resource_groups`[0m
+  [4;35;1mSite Columns (0.001576)[0m   [0mSHOW FIELDS FROM `sites`[0m
+Completed in 0.06952 (14 reqs/sec) | Rendering: 0.01303 (18%) | DB: 0.01923 (27%) | 200 OK [http://localhost/permitme/state_and_city/child%20care%20services/va/arlington.xml]
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-19 11:22:33) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"arlington", "alpha"=>"va", "format"=>"xml", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mPermitmeSubcategory Load (0.000582)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;35;1mState Load (0.000364)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'va') [0m
+  [4;36;1mState Columns (0.002927)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.270130)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'arlington' and state_id = '29' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'arlington' and state_id = '29'[0m
+  [4;36;1mFeature Columns (0.003308)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.000692)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;36;1mState Load (0.000171)[0m   [0;1mSELECT alpha as state_alpha FROM `states` WHERE (id = NULL) [0m
+  [4;35;1mPermitmeSite Load (0.000442)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000312)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mSite Load (0.016616)[0m   [0mSELECT url,name FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;36;1mFeature Load (0.000950)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1494175' and county_name_full is not null) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT alpha as state_alpha FROM `states` WHERE (id = NULL) [0m
+  [4;36;1mPermitmeSite Load (0.000377)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '41439' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000181)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '41439' and url is not null) [0m
+  [4;36;1mSite Load (0.031614)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '41439' and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000851)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1480097' and county_name_full is not null) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT alpha as state_alpha FROM `states` WHERE (id = NULL) [0m
+  [4;35;1mPermitmeSite Load (0.000503)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '39432' and url is not null) [0m
+  [4;36;1mSite Load (0.000297)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '39432' and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeResourceGroup Load (0.001470)[0m   [0mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and (s.isExclusive <=> 0 or s.isExclusive is null) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeSubcategory Columns (0.001752)[0m   [0;1mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;35;1mPermitmeResourceGroup Load (0.002058)[0m   [0mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 90) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeResourceGroup Columns (0.002194)[0m   [0;1mSHOW FIELDS FROM `permitme_resource_groups`[0m
+  [4;35;1mSite Columns (0.001981)[0m   [0mSHOW FIELDS FROM `sites`[0m
+Completed in 0.46428 (2 reqs/sec) | Rendering: 0.01633 (3%) | DB: 0.33977 (73%) | 200 OK [http://localhost/permitme/state_and_city/child%20care%20services/va/arlington.xml]
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-19 11:25:39) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"arlington", "alpha"=>"va", "format"=>"xml", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mPermitmeSubcategory Load (0.000451)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;35;1mState Load (0.000323)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'va') [0m
+  [4;36;1mState Columns (0.002259)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.002523)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'arlington' and state_id = '29' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'arlington' and state_id = '29'[0m
+  [4;36;1mFeature Columns (0.002036)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.001041)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;36;1mState Load (0.000261)[0m   [0;1mSELECT alpha as state_alpha FROM `states` WHERE (id = NULL) [0m
+  [4;35;1mPermitmeSite Load (0.000440)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000369)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mSite Load (0.000381)[0m   [0mSELECT url,name FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;36;1mFeature Load (0.000311)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1494175' and county_name_full is not null) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT alpha as state_alpha FROM `states` WHERE (id = NULL) [0m
+  [4;36;1mPermitmeSite Load (0.000427)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '41439' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000177)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '41439' and url is not null) [0m
+  [4;36;1mSite Load (0.000185)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '41439' and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000312)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1480097' and county_name_full is not null) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT alpha as state_alpha FROM `states` WHERE (id = NULL) [0m
+  [4;35;1mPermitmeSite Load (0.000189)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '39432' and url is not null) [0m
+  [4;36;1mSite Load (0.000274)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '39432' and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeResourceGroup Load (0.001410)[0m   [0mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and (s.isExclusive <=> 0 or s.isExclusive is null) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeSubcategory Columns (0.001724)[0m   [0;1mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;35;1mPermitmeResourceGroup Load (0.000853)[0m   [0mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 90) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeResourceGroup Columns (0.001630)[0m   [0;1mSHOW FIELDS FROM `permitme_resource_groups`[0m
+  [4;35;1mSite Columns (0.001872)[0m   [0mSHOW FIELDS FROM `sites`[0m
+Completed in 0.07061 (14 reqs/sec) | Rendering: 0.01329 (18%) | DB: 0.01945 (27%) | 200 OK [http://localhost/permitme/state_and_city/child%20care%20services/va/arlington.xml]
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-19 11:25:59) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"arlington", "alpha"=>"va", "format"=>"xml", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mPermitmeSubcategory Load (0.000514)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;35;1mState Load (0.000253)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'va') [0m
+  [4;36;1mState Columns (0.002079)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.001674)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'arlington' and state_id = '29' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'arlington' and state_id = '29'[0m
+  [4;36;1mFeature Columns (0.003570)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.000695)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;36;1mState Load (0.000142)[0m   [0;1mSELECT alpha as state_alpha FROM `states` WHERE (id = NULL) [0m
+  [4;35;1mPermitmeSite Load (0.000291)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000169)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mSite Load (0.000625)[0m   [0mSELECT url,name FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
+  [4;36;1mFeature Load (0.000614)[0m   [0;1mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1494175' and county_name_full is not null) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT alpha as state_alpha FROM `states` WHERE (id = NULL) [0m
+  [4;36;1mPermitmeSite Load (0.000427)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '41439' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000403)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '41439' and url is not null) [0m
+  [4;36;1mSite Load (0.000188)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '41439' and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000261)[0m   [0mSELECT id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1480097' and county_name_full is not null) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT alpha as state_alpha FROM `states` WHERE (id = NULL) [0m
+  [4;35;1mPermitmeSite Load (0.001456)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '39432' and url is not null) [0m
+  [4;36;1mSite Load (0.000373)[0m   [0;1mSELECT url,name FROM `sites` WHERE (feature_id = '39432' and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeResourceGroup Load (0.001470)[0m   [0mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and (s.isExclusive <=> 0 or s.isExclusive is null) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeSubcategory Columns (0.001680)[0m   [0;1mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;35;1mPermitmeResourceGroup Load (0.001191)[0m   [0mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 90) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeResourceGroup Columns (0.001407)[0m   [0;1mSHOW FIELDS FROM `permitme_resource_groups`[0m
+  [4;35;1mSite Columns (0.001684)[0m   [0mSHOW FIELDS FROM `sites`[0m
+Completed in 0.07820 (12 reqs/sec) | Rendering: 0.01278 (16%) | DB: 0.02117 (27%) | 200 OK [http://localhost/permitme/state_and_city/child%20care%20services/va/arlington.xml]
