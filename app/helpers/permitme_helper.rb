@@ -4,24 +4,48 @@ module PermitmeHelper
         ####################################################
         # H E L P E R   F U N C T I O N S
         ####################################################
-        def PermitmeHelper.get_all_permitme_sites (state_and_feature_array, business_type_id)
+        def PermitmeHelper.get_all_permitme_sites (state_and_feature_array, business_type_id, query_type)
             @this_result = Result.new
  
+<<<<<<< HEAD:app/helpers/permitme_helper.rb
             for ss in 0...state_and_feature_array.length
                 #Get County Sites
                 @this_result.county_sites = findAllCountySitesByFeatureAndState(state_and_feature_array[ss]["state_id"], state_and_feature_array[ss]["fips_feat_id"], state_and_feature_array[ss]["feature_id"])
       
                 #Get Primary Local Sites
                 @this_result.local_sites = findAllSitesByFeatureId(state_and_feature_array[ss]["feature_id"])
+=======
+            if !query_type.eql? ("permitme_by_state_only")
+                for ss in 0...state_and_feature_array.length
+                    #Get County Sites
+                    @this_result.county_sites = findAllCountySitesByFeatureAndState (state_and_feature_array[ss]["state_id"], state_and_feature_array[ss]["fips_feat_id"], state_and_feature_array[ss]["feature_id"])
+
+                    #Get Primary Local Sites
+                    @this_result.local_sites = findAllSitesByFeatureId (state_and_feature_array[ss]["feature_id"])
+                end
+>>>>>>> permitme_draft4:app/helpers/permitme_helper.rb
             end
-  
+          
+            @this_result = get_state_business_type_permitme_sites (@this_result, state_and_feature_array[ss]["state_id"], business_type_id)
+
+            @this_result
+        end
+
+        def PermitmeHelper.get_state_business_type_permitme_sites (this_result, state_id, business_type_id)
             #Add State Results
+<<<<<<< HEAD:app/helpers/permitme_helper.rb
             @this_result.state_sites = PermitMeResultsByStateQuery(state_and_feature_array[ss]["state_id"])
 
             #Add Business Type Results
             @this_result.sites_for_business_type = PermitMeResultsByBusinessTypeQuery(state_and_feature_array[ss]["state_id"], @business_type_id)
+=======
+            this_result.state_sites = PermitMeResultsByStateQuery (state_id)
 
-            @this_result
+            #Add Business Type Results
+            this_result.sites_for_business_type = PermitMeResultsByBusinessTypeQuery (state_id, business_type_id)
+>>>>>>> permitme_draft4:app/helpers/permitme_helper.rb
+
+            this_result
         end
 
         #########################################################
@@ -33,6 +57,14 @@ module PermitmeHelper
 
         def PermitmeHelper.getFeatureAndStatebyZip (zip)
             Feature.find_by_sql(["select state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = ?",zip])
+        end
+
+        def PermitmeHelper.getStateIDFromStateAlpha (state_alpha)
+            State.find(:all, :select => "id as state_id", :conditions => ["alpha = ?",state_alpha])
+        end
+
+        def PermitmeHelper.getStateAlphaFromStateID (state_id)
+            State.find(:all, :select => "alpha as state_alpha", :conditions => ["id = ?",state_id])
         end
 
         def PermitmeHelper.CountySpecsByNameQuery (feature_name, state_id)
@@ -48,7 +80,8 @@ module PermitmeHelper
         end
 
         def  PermitmeHelper.PermitMeFeatureAltNameMappingQuery (alternate_name)
-            Feature.find_by_sql("select features.id, fips_class, state_id, feat_name,county_name_full,majorfeature, fips_feat_id from features,alternate_names where alternate_names.feature_id = features.id and county_seq = 1 and name = ?",alternate_name)
+            Feature.find_by_sql(["select features.id as feature_id, state_id, fips_feat_id from features,alternate_names where alternate_names.feature_id = features.id and county_seq = 1 and name = ?",alternate_name])
+#            Feature.find_by_sql("select features.id, fips_class, state_id, feat_name,county_name_full,majorfeature, fips_feat_id from features,alternate_names where alternate_names.feature_id = features.id and county_seq = 1 and name = ?",alternate_name)
         end
 
         def PermitmeHelper.permitMeCountySpecsByNameQuery (feature_id)
@@ -70,10 +103,10 @@ module PermitmeHelper
         end
 
         def  PermitmeHelper.PermitMeFeatureWithStateMappingQuery (feature_name, alternate_name, state_id)
-            strQuery = "select id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = ? "
+            strQuery = "select id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = ? "
         		strQuery += "and state_id = ? union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names "
         		strQuery += "where feature_id = features.id and county_seq = 1 and name = ? and state_id = ?"
-        		Feature.find_by_sql([strQuery,feature_name,alternate_name,state_id])
+        		Feature.find_by_sql([strQuery,feature_name,state_id,alternate_name,state_id])
       	end
 
         def PermitmeHelper.PermitMeResultsByStateQuery (state_id)
@@ -105,6 +138,7 @@ module PermitmeHelper
         end
 
         def PermitmeHelper.findAllFeatureSitesByFeatureAndState (feature_id, state_alpha)
+<<<<<<< HEAD:app/helpers/permitme_helper.rb
           foundSites = findAllSitesByFeatureId(feature_id)
         # May not be needed
         #-------------------   
@@ -115,6 +149,9 @@ module PermitmeHelper
         #   				site.setFipsClass(thisFeature.getFipsClass())
         # 			end
         #   	end	
+=======
+          foundSites = findAllSitesByFeatureId (feature_id)
+>>>>>>> permitme_draft4:app/helpers/permitme_helper.rb
          	return foundSites
         end
 
@@ -129,38 +166,132 @@ module PermitmeHelper
         end
 
         def  PermitmeHelper.findAllCountySitesByFeatureAndState  (state_id, fips_feature_id,feature_id)
+<<<<<<< HEAD:app/helpers/permitme_helper.rb
             #The following will return id, county_name_full and fips_class
             counties = getCountiesByFeature(state_id, fips_feature_id)
+=======
+            #The following will return id, county_name_full and fips_class for a given state_id and fips_feat_id
+            counties = getCountiesByFeature (state_id, fips_feature_id)
+            
+            counties = process_rules(counties)
+            
+>>>>>>> permitme_draft4:app/helpers/permitme_helper.rb
             localSites = Array.new
+#            sitesForThisCounty = Hash.new
 
             counties.each do |county|
                   # Special case for St. Louis because the St. is abbreviated in the county name
-      #           if (county.matches("^St\\.(.)*")) 
-       #               county(county.replaceFirst("St\\.","Saint"));
-        #          end
+#                  county_name = county["county_name_full"]
+
+#                  if (county_name.include?("^St\\.(.)*"))
+#                      find_string = "St."
+#                      replace_string = "Saint"
+#                      string_index = county_name.index(find_string)
+#                      county_name[string_index, find_string.length] = replace_string
+#                      county["county_name_full"] = county_name
+#                  end
 
                   # get county specs like id,description, url,name, feature_id from feature_id
                   countySpecs = permitMeCountySpecsByNameQuery(feature_id)
 
                   for currentSpec in 0...countySpecs.length
                         #For this county id get all the sites and set the name for each
-                      localSites = this.findAllSitesByFeatureId(countySpecs[currentSpec]["id"])
-
-  #                    if sitesForThisCounty.length > 0
-  #                       for site in sitesForThisCounty
-  #                            site.setFeatureName(countySpecs[currentSpec]["county_name_full"]county[.getName()])
-  #                            site.setStateAbbrev(countySpecs[currentSpec]["abbreviation"]thisState.getAbbreviation())
-  #                            site.setFipsClass(countySpecs[currentSpec]["fips_class"]thisSpec.fips_class)
-  #                       end
-
-  #                        localSites << sitesForThisCounty
-  #                    else 
-  #                        localSites << (createDummyLocalSite(thisState, c, thisSpec.fips_class)) 
-  #                    end
+                      localSites << this.findAllSitesByFeatureId(countySpecs[currentSpec]["id"])
                   end
            end
 
           return localSites
       end
 
+
+      ####################################################
+      # P E R M I T M E   R U L E S
+      ####################################################
+      def PermitmeHelper.process_rules (county_array)
+          county_array = prune_unincorporated_areas (county_array)
+          county_array = prune_vt_h1_6_counties (county_array)
+          county_array = prune_h4_h6_counties (county_array)
+          county_array = combine_multiple_urls (county_array)
+      end
+      
+      def PermitmeHelper.prune_array (this_array, fips_compare_array)
+          #prune this_array based on fips_compare_array
+          for i in 0...this_array.length
+              for j in 0...fips_compare_array.length
+                  if this_array[i]["fips_class"].eql?fips_compare_array[j]
+                      this_array[i] = []
+                  end
+              end
+          end
+          
+          this_array
+      end
+      
+      def PermitmeHelper.prune_unincorporated_areas (this_array)
+          #prune unincorporated areas when we have another option in same county
+          fips_compare_array = ["u1","u2","u3","u4","u5","u6"]
+
+          for i in 0...this_array.length
+              for j in 0...fips_compare_array.length
+                  if this_array[i]["fips_class"].eql?fips_compare_array[j]
+                      for k in 0...this_array.length
+                          if this_array[k]["county_name_full"].eql?this_array[i]["county_name_full"]
+                              if this_array[k]["fips_class"].eql?("h1")
+                                  this_array[i] = []
+                              end
+                          end
+                      end
+                  end
+              end
+          end
+          
+          this_array
+      end
+      
+      def PermitmeHelper.combine_multiple_urls (this_array)
+          #return multiple url's for same county as one set
+          count = 2
+
+          for i in 0...this_array.length
+              for k in 0...this_array.length
+                  if this_array[k]["county_name_full"].eql?this_array[i]["county_name_full"]
+                      this_array[i]["url"+count.to_s] = this_array[k]["url"]
+                      this_array[i]["link_title"+count.to_s] = this_array[k]["link_title"]
+                      this_array[k] = []
+                      count+= 1
+                  end
+              end
+          end
+          
+          this_array
+      end
+      
+      def PermitmeHelper.prune_vt_h1_6_counties (this_array)
+          #If state is vermont, then drop any h1-h6 counties
+          if @state_alpha.eql? ("vt")
+              fips_compare_array = ["h1","h2","h3","h4","h5","h6"]
+              this_array = PermitmeHelper.prune_array (this_array, fips_compare_array)
+          end
+          
+          this_array
+      end
+      
+      def PermitmeHelper.prune_h4_h6_counties (this_array)
+          #if any county has H4 or H6 fips_class, then check if there is another county with same name
+          #if another county with same name exists, then remove H4 or H6 county
+          #revisit this later
+          fips_compare_array = ["h4","h6"]
+
+          for i in 0...this_array.length
+              if this_array[i]["fips_class"].eql?("h4") or this_array[i]["fips_class"].eql?("h6")
+                  for k in 0...this_array.length
+                      if this_array[k]["county_name_full"].eql?this_array[i]["county_name_full"] and this_array[k]["fips_class"].eql?("h1")
+                          this_array[i] = []
+                      end
+                  end
+              end
+          end
+          
+          this_array
+      end
 end
