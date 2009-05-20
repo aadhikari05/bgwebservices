@@ -249,13 +249,13 @@ module PermitmeHelper
           fips_compare_array = ["h4","h6"]
 
           for i in 0...this_array.length
-                  if this_array[i]["fips_class"].eql?("h4") or this_array[i]["fips_class"].eql?("h6")
-                      for k in 0...this_array.length
-                          if this_array[k]["county_name_full"].eql?this_array[i]["county_name_full"] and this_array[k]["fips_class"].eql?("h1")
-                              this_array[i] = []
-                          end
+              if this_array[i]["fips_class"].eql?("h4") or this_array[i]["fips_class"].eql?("h6")
+                  for k in 0...this_array.length
+                      if this_array[k]["county_name_full"].eql?this_array[i]["county_name_full"] and this_array[k]["fips_class"].eql?("h1")
+                          this_array[i] = []
                       end
                   end
+              end
           end
           
           this_array
