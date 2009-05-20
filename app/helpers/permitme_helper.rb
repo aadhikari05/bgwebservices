@@ -180,6 +180,19 @@ module PermitmeHelper
           county_array = rule4 (county_array)
       end
       
+      def PermitmeHelper.prune_array (this_array, fips_compare_array)
+          #prune this_array based on fips_compare_array
+          for i in 0...this_array.length
+              for j in 0...fips_compare_array.length
+                  if this_array[i]["fips_class"].eql?fips_compare_array[j]
+                      this_array[i] = []
+                  end
+              end
+          end
+          
+          this_array
+      end
+      
       def PermitmeHelper.rule1 (this_array)
           #prune unincorporated areas when we have another option in same county
           this_array
@@ -193,11 +206,8 @@ module PermitmeHelper
       def PermitmeHelper.rule3 (this_array)
           #If state is vermont, then drop any h1-h6 counties
           if @state_alpha.eql? ("vt")
-              for i in 0...this_array.length
-                  if this_array[i]["fips_class"].eql?("h1")
-                      this_array[i] = []
-                  end
-              end
+              fips_compare_array = ["h1","h2","h3","h4","h5","h6"]
+              this_array = PermitmeHelper.prune_array (this_array, fips_compare_array)
           end
           
           this_array
@@ -206,13 +216,19 @@ module PermitmeHelper
       def PermitmeHelper.rule4 (this_array)
           #if any county has H4 or H6 fips_class, then check if there is another county with same name
           #if another county with same name exists, then remove H4 or H6 county
+          fips_compare_array = ["h4","h6"]
+
           for i in 0...this_array.length
-              if this_array[i]["fips_class"].eql?("h4")
-                for j in 0...this_array.length
-                    if this_array[j]["county_name_full"].eql?(this_array[i]["county_name_full"])
-                        this_array[i] = []
-                    end
-                end
+              for j in 0...fips_compare_array.length
+                  if this_array[i]["fips_class"].eql?fips_compare_array[j]
+                      for k in 0...this_array.length
+                          if this_array[k]["county_name_full"].eql?this_array[i]["county_name_full"]
+                              if this_array[k]["fips_class"].eql?("h1")
+                                  this_array[i] = []
+                              end
+                          end
+                      end
+                  end
               end
           end
           
