@@ -195,6 +195,22 @@ module PermitmeHelper
       
       def PermitmeHelper.rule1 (this_array)
           #prune unincorporated areas when we have another option in same county
+          fips_compare_array = ["u1","u2","u3","u4","u5","u6"]
+
+          for i in 0...this_array.length
+              for j in 0...fips_compare_array.length
+                  if this_array[i]["fips_class"].eql?fips_compare_array[j]
+                      for k in 0...this_array.length
+                          if this_array[k]["county_name_full"].eql?this_array[i]["county_name_full"]
+                              if this_array[k]["fips_class"].eql?("h1")
+                                  this_array[i] = []
+                              end
+                          end
+                      end
+                  end
+              end
+          end
+          
           this_array
       end
       
@@ -216,6 +232,7 @@ module PermitmeHelper
       def PermitmeHelper.rule4 (this_array)
           #if any county has H4 or H6 fips_class, then check if there is another county with same name
           #if another county with same name exists, then remove H4 or H6 county
+          #revisit this later
           fips_compare_array = ["h4","h6"]
 
           for i in 0...this_array.length
