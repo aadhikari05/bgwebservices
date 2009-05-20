@@ -7,14 +7,6 @@ module PermitmeHelper
         def PermitmeHelper.get_all_permitme_sites (state_and_feature_array, business_type_id, query_type)
             @this_result = Result.new
  
-<<<<<<< HEAD:app/helpers/permitme_helper.rb
-            for ss in 0...state_and_feature_array.length
-                #Get County Sites
-                @this_result.county_sites = findAllCountySitesByFeatureAndState(state_and_feature_array[ss]["state_id"], state_and_feature_array[ss]["fips_feat_id"], state_and_feature_array[ss]["feature_id"])
-      
-                #Get Primary Local Sites
-                @this_result.local_sites = findAllSitesByFeatureId(state_and_feature_array[ss]["feature_id"])
-=======
             if !query_type.eql? ("permitme_by_state_only")
                 for ss in 0...state_and_feature_array.length
                     #Get County Sites
@@ -23,7 +15,6 @@ module PermitmeHelper
                     #Get Primary Local Sites
                     @this_result.local_sites = findAllSitesByFeatureId (state_and_feature_array[ss]["feature_id"])
                 end
->>>>>>> permitme_draft4:app/helpers/permitme_helper.rb
             end
           
             @this_result = get_state_business_type_permitme_sites (@this_result, state_and_feature_array[ss]["state_id"], business_type_id)
@@ -33,17 +24,10 @@ module PermitmeHelper
 
         def PermitmeHelper.get_state_business_type_permitme_sites (this_result, state_id, business_type_id)
             #Add State Results
-<<<<<<< HEAD:app/helpers/permitme_helper.rb
-            @this_result.state_sites = PermitMeResultsByStateQuery(state_and_feature_array[ss]["state_id"])
-
-            #Add Business Type Results
-            @this_result.sites_for_business_type = PermitMeResultsByBusinessTypeQuery(state_and_feature_array[ss]["state_id"], @business_type_id)
-=======
             this_result.state_sites = PermitMeResultsByStateQuery (state_id)
 
             #Add Business Type Results
             this_result.sites_for_business_type = PermitMeResultsByBusinessTypeQuery (state_id, business_type_id)
->>>>>>> permitme_draft4:app/helpers/permitme_helper.rb
 
             this_result
         end
