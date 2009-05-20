@@ -220,8 +220,8 @@ module PermitmeHelper
               for k in 0...this_array.length
                   if this_array[k]["county_name_full"].eql?this_array[i]["county_name_full"]
                       count = 2
-                      this_array[i]["url"+count] = this_array[k]["url"]
-                      this_array[i]["link_title"+count] = this_array[k]["link_title"]
+                      this_array[i]["url"+count.to_s] = this_array[k]["url"]
+                      this_array[i]["link_title"+count.to_s] = this_array[k]["link_title"]
                       this_array[k] = []
                       count+= 1
                   end
@@ -248,17 +248,13 @@ module PermitmeHelper
           fips_compare_array = ["h4","h6"]
 
           for i in 0...this_array.length
-              for j in 0...fips_compare_array.length
-                  if this_array[i]["fips_class"].eql?fips_compare_array[j]
+                  if this_array[i]["fips_class"].eql?("h4") or this_array[i]["fips_class"].eql?("h6")
                       for k in 0...this_array.length
-                          if this_array[k]["county_name_full"].eql?this_array[i]["county_name_full"]
-                              if this_array[k]["fips_class"].eql?("h1")
-                                  this_array[i] = []
-                              end
+                          if this_array[k]["county_name_full"].eql?this_array[i]["county_name_full"] and this_array[k]["fips_class"].eql?("h1")
+                              this_array[i] = []
                           end
                       end
                   end
-              end
           end
           
           this_array
