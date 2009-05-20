@@ -174,10 +174,10 @@ module PermitmeHelper
       # P E R M I T M E   R U L E S
       ####################################################
       def PermitmeHelper.process_rules (county_array)
-          county_array = rule1 (county_array)
-          county_array = rule2 (county_array)
-          county_array = rule3 (county_array)
-          county_array = rule4 (county_array)
+          county_array = prune_unincorporated_areas (county_array)
+          county_array = prune_vt_h1_6_counties (county_array)
+          county_array = prune_h4_h6_counties (county_array)
+          county_array = combine_multiple_urls (county_array)
       end
       
       def PermitmeHelper.prune_array (this_array, fips_compare_array)
@@ -193,7 +193,7 @@ module PermitmeHelper
           this_array
       end
       
-      def PermitmeHelper.rule1 (this_array)
+      def PermitmeHelper.prune_unincorporated_areas (this_array)
           #prune unincorporated areas when we have another option in same county
           fips_compare_array = ["u1","u2","u3","u4","u5","u6"]
 
@@ -214,7 +214,7 @@ module PermitmeHelper
           this_array
       end
       
-      def PermitmeHelper.rule2 (this_array)
+      def PermitmeHelper.combine_multiple_urls (this_array)
           #return multiple url's for same county as one set
           for i in 0...this_array.length
               for k in 0...this_array.length
@@ -222,6 +222,7 @@ module PermitmeHelper
                       count = 2
                       this_array[i]["url"+count] = this_array[k]["url"]
                       this_array[i]["link_title"+count] = this_array[k]["link_title"]
+                      this_array[k] = []
                       count+= 1
                   end
               end
@@ -230,7 +231,7 @@ module PermitmeHelper
           this_array
       end
       
-      def PermitmeHelper.rule3 (this_array)
+      def PermitmeHelper.prune_vt_h1_6_counties (this_array)
           #If state is vermont, then drop any h1-h6 counties
           if @state_alpha.eql? ("vt")
               fips_compare_array = ["h1","h2","h3","h4","h5","h6"]
@@ -240,7 +241,7 @@ module PermitmeHelper
           this_array
       end
       
-      def PermitmeHelper.rule4 (this_array)
+      def PermitmeHelper.prune_h4_h6_counties (this_array)
           #if any county has H4 or H6 fips_class, then check if there is another county with same name
           #if another county with same name exists, then remove H4 or H6 county
           #revisit this later
