@@ -216,10 +216,11 @@ module PermitmeHelper
       
       def PermitmeHelper.combine_multiple_urls (this_array)
           #return multiple url's for same county as one set
+          count = 2
+
           for i in 0...this_array.length
               for k in 0...this_array.length
                   if this_array[k]["county_name_full"].eql?this_array[i]["county_name_full"]
-                      count = 2
                       this_array[i]["url"+count.to_s] = this_array[k]["url"]
                       this_array[i]["link_title"+count.to_s] = this_array[k]["link_title"]
                       this_array[k] = []
