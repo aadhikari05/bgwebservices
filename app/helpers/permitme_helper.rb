@@ -122,44 +122,25 @@ module PermitmeHelper
         end
 
         def PermitmeHelper.findAllFeatureSitesByFeatureAndState (feature_id, state_alpha)
-<<<<<<< HEAD:app/helpers/permitme_helper.rb
-          foundSites = findAllSitesByFeatureId(feature_id)
-        # May not be needed
-        #-------------------   
-        # 		if foundSites.length > 0 
-        #    		for (LocalSite site: foundSites)
-        #    				site.setStateAbbrev(thisState.getAbbreviation())
-        #    				site.setFeatureName(thisFeature.getName())
-        #   				site.setFipsClass(thisFeature.getFipsClass())
-        # 			end
-        #   	end	
-=======
-          foundSites = findAllSitesByFeatureId (feature_id)
->>>>>>> permitme_draft4:app/helpers/permitme_helper.rb
-         	return foundSites
+            foundSites = findAllSitesByFeatureId(feature_id)
         end
 
         def  PermitmeHelper.findAllSitesByFeatureId (feature_id)
-          foundSites = PermitMeSitesByFeatureIdQuery(feature_id)
+            foundSites = PermitMeSitesByFeatureIdQuery(feature_id)
 
-          if foundSites.empty?
-        			foundSites =  SitesByFeatureIdQuery(feature_id)
-        	end
+            if foundSites.empty?
+          			foundSites =  SitesByFeatureIdQuery(feature_id)
+          	end
 
-          return foundSites
+            return foundSites
         end
 
         def  PermitmeHelper.findAllCountySitesByFeatureAndState  (state_id, fips_feature_id,feature_id)
-<<<<<<< HEAD:app/helpers/permitme_helper.rb
-            #The following will return id, county_name_full and fips_class
-            counties = getCountiesByFeature(state_id, fips_feature_id)
-=======
             #The following will return id, county_name_full and fips_class for a given state_id and fips_feat_id
             counties = getCountiesByFeature (state_id, fips_feature_id)
             
             counties = process_rules(counties)
             
->>>>>>> permitme_draft4:app/helpers/permitme_helper.rb
             localSites = Array.new
 #            sitesForThisCounty = Hash.new
 
