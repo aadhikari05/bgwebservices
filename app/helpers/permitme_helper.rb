@@ -216,6 +216,17 @@ module PermitmeHelper
       
       def PermitmeHelper.rule2 (this_array)
           #return multiple url's for same county as one set
+          for i in 0...this_array.length
+              for k in 0...this_array.length
+                  if this_array[k]["county_name_full"].eql?this_array[i]["county_name_full"]
+                      count = 2
+                      this_array[i]["url"+count] = this_array[k]["url"]
+                      this_array[i]["link_title"+count] = this_array[k]["link_title"]
+                      count+= 1
+                  end
+              end
+          end
+          
           this_array
       end
       
