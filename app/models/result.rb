@@ -40,9 +40,9 @@ class Result
         xml.county_sites do |site|
             for current_site in 0...@county_sites.length
               xml.site do
-                site.link_title (@county_sites[current_site][0]["link_title"])
-                site.description (@county_sites[current_site][0]["description"])
-                site.url (@county_sites[current_site][0]["url"])
+                site.link_title(@county_sites[current_site][0]["link_title"])
+                site.description(@county_sites[current_site][0]["description"])
+                site.url(@county_sites[current_site][0]["url"])
               end
             end
         end
@@ -50,9 +50,9 @@ class Result
         xml.local_sites do |site|
             for current_site in 0...@local_sites.length
               xml.site do
-                site.link_title (@local_sites[current_site]["link_title"])
-                site.description (@local_sites[current_site]["description"])
-                site.url (@local_sites[current_site]["url"])
+                site.link_title(@local_sites[current_site]["link_title"])
+                site.description(@local_sites[current_site]["description"])
+                site.url(@local_sites[current_site]["url"])
               end
             end
         end
@@ -60,9 +60,9 @@ class Result
         xml.state_sites do |site|
             for current_site in 0...@state_sites.length
               xml.site do
-                site.link_title (@state_sites[current_site]["link_title"])
-                site.description (@state_sites[current_site]["description"])
-                site.url (@state_sites[current_site]["url"])
+                site.link_title(@state_sites[current_site]["link_title"])
+                site.description(@state_sites[current_site]["description"])
+                site.url(@state_sites[current_site]["url"])
               end
             end
         end
@@ -70,9 +70,9 @@ class Result
         xml.sites_for_business_type do |site|
             for current_site in 0...@sites_for_business_type.length
               xml.site do
-                site.link_title (@sites_for_business_type[current_site]["link_title"])
-                site.description (@sites_for_business_type[current_site]["description"])
-                site.url (@sites_for_business_type[current_site]["url"])
+                site.link_title(@sites_for_business_type[current_site]["link_title"])
+                site.description(@sites_for_business_type[current_site]["description"])
+                site.url(@sites_for_business_type[current_site]["url"])
               end
             end
         end
