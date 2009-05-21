@@ -42,9 +42,14 @@ class PermitmeController < ApplicationController
           @state_and_feature = PermitmeHelper.PermitMeFeatureWithStateMappingQuery (params[:feature], params[:feature], @state_id[0]["state_id"])
 
           #We pass the state_id and fips_feat_id to the function below to get the list of County Sites
+          #resultArray = Array.new
+          #@state_and_feature.each do |sf|
+          #  resultArray.push(PermitmeHelper.get_all_permitme_sites (sf, @business_type_id, "permitme_by_state_and_feature"))
+         # end
+          
+         # puts 'b'
           respond_to_format (PermitmeHelper.get_all_permitme_sites (@state_and_feature, @business_type_id, "permitme_by_state_and_feature"))
       end
-  
     
       def respond_to_format (resultArray)
           respond_to do |format|
@@ -53,5 +58,4 @@ class PermitmeController < ApplicationController
               format.json {render :json => resultArray}
           end
       end
-    
 end

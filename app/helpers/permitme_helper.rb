@@ -56,7 +56,7 @@ module PermitmeHelper
         end
 
         def PermitmeHelper.SitesByFeatureIdQuery (feature_id)
-            Site.find(:all, :select => "url,name", :conditions => ["feature_id = ? and is_primary = 1 and url is not null",feature_id])
+            Site.find(:all, :select => "url,name, name as link_title", :conditions => ["feature_id = ? and is_primary = 1 and url is not null",feature_id])
         end
 
         def  PermitmeHelper.PermitMeSitesByFeatureIdQuery (feature_id)
@@ -73,7 +73,12 @@ module PermitmeHelper
         end
 
         def PermitmeHelper.getCountiesByFeature (state_id, fips_feature_id)
-        		Feature.find(:all, :select => "id, county_name_full, fips_class", :conditions => ["state_id = ? and fips_feat_id=? and county_name_full is not null", state_id, fips_feature_id])
+        		Feature.find(:all, :select => "id, state_id, county_name_full, fips_class", :conditions => ["state_id = ? and fips_feat_id=? and county_name_full is not null", state_id, fips_feature_id])
+        end
+        
+        #Adding in the getFeatureByCountyName to get information using the countyName as a feat_name.  schoe 5/20/09
+        def PermitmeHelper.getFeatureByCountyName(state_id, countyName)
+            Feature.find(:all, :select=>"id, fips_class", :conditions=>["feat_name=? and state_id=?", countyName,state_id])
         end
 
         ####################################################
@@ -164,7 +169,14 @@ module PermitmeHelper
                       localSites << this.findAllSitesByFeatureId(countySpecs[currentSpec]["id"])
                   end
            end
-
+           
+          #converting from java List<LocalSite> findAllSitesByFeatureId in PermitMeFeatureQuery.java where 
+          #if the result coming back from the permitSite is empty, the site result gets copied. 
+          #this case the counties are the only local sites.  schoe 5/20/09
+          if localSites.blank?
+            localSites=counties
+          end
+          
           return localSites
       end
 
@@ -216,17 +228,37 @@ module PermitmeHelper
       def PermitmeHelper.combine_multiple_urls (this_array)
           #return multiple url's for same county as one set
           count = 2
-
-          for i in 0...this_array.length
-              for k in 0...this_array.length
-                  if this_array[k]["county_name_full"].eql?this_array[i]["county_name_full"]
-                      this_array[i]["url"+count.to_s] = this_array[k]["url"]
-                      this_array[i]["link_title"+count.to_s] = this_array[k]["link_title"]
-                      this_array[k] = []
-                      count+= 1
-                  end
+          localSites=Array.new
+          this_array.each do |countyArray|
+              templocalsite=PermitMeSitesByFeatureIdQuery(countyArray["id"])
+              if !templocalsite.blank?
+                localSites.push(templocalsite)  
               end
           end
+
+          if localSites.blank?
+            this_array.each do |d|
+            templocalsite=getFeatureByCountyName(d["state_id"],d["county_name_full"])
+            if !templocalsite.blank?
+              localSites.push(SitesByFeatureIdQuery(templocalsite[0]["id"]))
+            end
+          end
+          
+          
+          
+        end
+          
+         this_array=localSites
+          #for i in 0...this_array.length
+          #    for k in 0...this_array.length
+          #        if this_array[k]["county_name_full"].eql?this_array[i]["county_name_full"]
+          #            this_array[i]["url"+count.to_s] = this_array[k]["url"]
+          #            this_array[i]["link_title"+count.to_s] = this_array[k]["link_title"]
+          #           this_array[k] = []
+          #            count+= 1
+          #        end
+          #    end
+          #end
           
           this_array
       end

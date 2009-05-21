@@ -1,7 +1,9 @@
 class Result
   
-  attr_reader :county_sites, :local_sites, :state_sites, :sites_for_business_type
-  attr_writer :county_sites, :local_sites, :state_sites, :sites_for_business_type
+  #using attr_accessor both reader and writer is using the same attributes. schoe 5/20/09
+  attr_accessor :county_sites, :local_sites, :state_sites, :sites_for_business_type 
+  #attr_reader :county_sites, :local_sites, :state_sites, :sites_for_business_type
+  #attr_writer :county_sites, :local_sites, :state_sites, :sites_for_business_type
   
   def initialize
     @county_sites = Array.new
@@ -27,7 +29,9 @@ class Result
   def to_xml(options = {})
     xml = options[:builder] ||= Builder::XmlMarkup.new(:indent => options[:indent])
     xml.instruct! unless options[:skip_instruct => true, :dasherize => false]
-    @county_sites.sort! {|a,b| a.link_title <=> b.link_title }
+    
+    #commenting out the county_sites sort as the link title will always be nil from the sites. schoe 5/20/09
+    #@county_sites.sort! {|a,b| a.link_title <=> b.link_title}
     @local_sites.sort! {|a,b| a.link_title <=> b.link_title }
     @state_sites.sort! {|a,b| a.link_title <=> b.link_title }
     @sites_for_business_type.sort! {|a,b| a.link_title <=> b.link_title }
@@ -36,9 +40,9 @@ class Result
         xml.county_sites do |site|
             for current_site in 0...@county_sites.length
               xml.site do
-                site.link_title (@county_sites[current_site]["link_title"])
-                site.description (@county_sites[current_site]["description"])
-                site.url (@county_sites[current_site]["url"])
+                site.link_title (@county_sites[current_site][0]["link_title"])
+                site.description (@county_sites[current_site][0]["description"])
+                site.url (@county_sites[current_site][0]["url"])
               end
             end
         end
@@ -119,11 +123,11 @@ class Result
 
     for current_site in 0...@county_sites.length
         county_site_value=Array.new
-        county_site_value.push({"title"=>@county_sites[current_site]["link_title"]})
-        county_site_value.push({"description"=>@county_sites[current_site]["description"]})
-        county_site_value.push({"url"=>@county_sites[current_site]["url"]})
-
-        h1={"county_sites_item"+current_site.to_s =>state_site_value}
+        county_site_value.push({"title"=>@county_sites[current_site][0]["link_title"]})
+        county_site_value.push({"description"=>@county_sites[current_site][0]["description"]})
+        county_site_value.push({"url"=>@county_sites[current_site][0]["url"]})
+        # fixing spell mistake.  schoe 5/20/09
+        h1={"county_sites_item"+current_site.to_s =>county_site_value}
 
         result.merge!(h1) 
     end
