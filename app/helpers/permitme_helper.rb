@@ -9,8 +9,16 @@ module PermitmeHelper
  
             if !query_type.eql? ("permitme_by_state_only")
                 for ss in 0...state_and_feature_array.length
+                    
                     #Get County Sites
-                    @this_result.county_sites = findAllCountySitesByFeatureAndState (state_and_feature_array[ss]["state_id"], state_and_feature_array[ss]["fips_feat_id"], state_and_feature_array[ss]["feature_id"])
+                      #Fixed so that the county result gets into one permit me item.(Example springfield, va)
+                      #as local county site is the only values that are not shared.
+                      #This can be changed to 3 different items.  schoe 5/20/09 
+                    #@this_result.county_sites = findAllCountySitesByFeatureAndState (state_and_feature_array[ss]["state_id"], state_and_feature_array[ss]["fips_feat_id"], state_and_feature_array[ss]["feature_id"])
+                    tempCountySites = findAllCountySitesByFeatureAndState (state_and_feature_array[ss]["state_id"], state_and_feature_array[ss]["fips_feat_id"], state_and_feature_array[ss]["feature_id"])
+                    tempCountySites.each do |tc|
+                      @this_result.county_sites.push(tc)
+                    end
 
                     #Get Primary Local Sites
                     @this_result.local_sites = findAllSitesByFeatureId (state_and_feature_array[ss]["feature_id"])

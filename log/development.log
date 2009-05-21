@@ -22534,3 +22534,359 @@ NoMethodError (undefined method `length' for #<Feature:0x27bc4b8>):
     -e:2
 
 Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-20 23:34:25) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"springfield", "alpha"=>"va", "format"=>"xml", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"electrician"}
+  [4;36;1mPermitmeSubcategory Load (0.000369)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'electrician') [0m
+  [4;35;1mState Load (0.000174)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'va') [0m
+  [4;36;1mState Columns (0.006310)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.001130)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'springfield' and state_id = '29' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'springfield' and state_id = '29'[0m
+  [4;36;1mFeature Columns (0.007795)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.006002)[0m   [0mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1493642' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000198)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 114662 and url is not null) [0m
+  [4;35;1mFeature Load (0.000196)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Fairfax County' and state_id=29) [0m
+  [4;36;1mSite Load (0.000207)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39454 and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000396)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '114662' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000313)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '114662' and url is not null) [0m
+  [4;35;1mSite Load (0.000334)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = '114662' and is_primary = 1 and url is not null) [0m
+  [4;36;1mFeature Load (0.000408)[0m   [0;1mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1496246' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000175)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 95339 and url is not null) [0m
+  [4;36;1mFeature Load (0.000246)[0m   [0;1mSELECT id, fips_class FROM `features` WHERE (feat_name='Page County' and state_id=29) [0m
+  [4;35;1mSite Load (0.000213)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39492 and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000330)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '95339' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000313)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '95339' and url is not null) [0m
+  [4;36;1mSite Load (0.000390)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = '95339' and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.001412)[0m   [0mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1497161' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000206)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 95340 and url is not null) [0m
+  [4;35;1mFeature Load (0.000236)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Rockbridge County' and state_id=29) [0m
+  [4;36;1mSite Load (0.000175)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39503 and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000322)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '95340' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000314)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '95340' and url is not null) [0m
+  [4;35;1mSite Load (0.000331)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = '95340' and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeResourceGroup Load (0.001211)[0m   [0;1mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and (s.isExclusive <=> 0 or s.isExclusive is null) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;35;1mPermitmeSubcategory Columns (0.006175)[0m   [0mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;36;1mPermitmeResourceGroup Load (0.004815)[0m   [0;1mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 93) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;35;1mPermitmeResourceGroup Columns (0.009685)[0m   [0mSHOW FIELDS FROM `permitme_resource_groups`[0m
+
+
+TypeError (can't convert String into Integer):
+    /app/models/result.rb:43:in `[]'
+    /app/models/result.rb:43:in `to_xml'
+    /Library/Ruby/Gems/1.8/gems/builder-2.1.2/lib/builder/xmlbase.rb:134:in `call'
+    /Library/Ruby/Gems/1.8/gems/builder-2.1.2/lib/builder/xmlbase.rb:134:in `_nested_structures'
+    /Library/Ruby/Gems/1.8/gems/builder-2.1.2/lib/builder/xmlbase.rb:58:in `method_missing'
+    /app/models/result.rb:42:in `to_xml'
+    /app/models/result.rb:41:in `each'
+    /app/models/result.rb:41:in `to_xml'
+    /Library/Ruby/Gems/1.8/gems/builder-2.1.2/lib/builder/xmlbase.rb:134:in `call'
+    /Library/Ruby/Gems/1.8/gems/builder-2.1.2/lib/builder/xmlbase.rb:134:in `_nested_structures'
+    /Library/Ruby/Gems/1.8/gems/builder-2.1.2/lib/builder/xmlbase.rb:58:in `method_missing'
+    /app/models/result.rb:40:in `to_xml'
+    /Library/Ruby/Gems/1.8/gems/builder-2.1.2/lib/builder/xmlbase.rb:134:in `call'
+    /Library/Ruby/Gems/1.8/gems/builder-2.1.2/lib/builder/xmlbase.rb:134:in `_nested_structures'
+    /Library/Ruby/Gems/1.8/gems/builder-2.1.2/lib/builder/xmlbase.rb:58:in `method_missing'
+    /app/models/result.rb:39:in `to_xml'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:885:in `render_with_no_layout'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/layout.rb:259:in `render_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:51:in `render'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/core_ext/benchmark.rb:8:in `realtime'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:51:in `render'
+    /app/controllers/permitme_controller.rb:57:in `respond_to_format'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/mime_responds.rb:131:in `call'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/mime_responds.rb:131:in `custom'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/mime_responds.rb:160:in `call'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/mime_responds.rb:160:in `respond'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/mime_responds.rb:154:in `each'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/mime_responds.rb:154:in `respond'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/mime_responds.rb:107:in `respond_to'
+    /app/controllers/permitme_controller.rb:55:in `respond_to_format'
+    /app/controllers/permitme_controller.rb:51:in `permitme_by_state_and_feature'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `perform_action_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:580:in `call_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:573:in `perform_action_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.1.0/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.1.0/lib/active_record/query_cache.rb:8:in `cache'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `process_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:569:in `process_without_session_management_support'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/session_management.rb:130:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:389:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:76:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:74:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:159:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:282:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:128:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/command.rb:212:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:281
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:354:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/rails-2.1.0/lib/commands/servers/mongrel.rb:64
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:509:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:354:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:509:in `require'
+    /Library/Ruby/Gems/1.8/gems/rails-2.1.0/lib/commands/server.rb:39
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    ./script/server:3
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/lib/ruby-debug.rb:101:in `debug_load'
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/lib/ruby-debug.rb:101:in `debug_program'
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/bin/rdebug-ide:82
+    /usr/bin/rdebug-ide:19:in `load'
+    /usr/bin/rdebug-ide:19
+    -e:2:in `load'
+    -e:2
+
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-20 23:35:24) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"springfield", "alpha"=>"va", "format"=>"xml", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"electrician"}
+  [4;36;1mPermitmeSubcategory Load (0.000385)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'electrician') [0m
+  [4;35;1mState Load (0.000197)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'va') [0m
+  [4;36;1mState Columns (0.006255)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.001535)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'springfield' and state_id = '29' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'springfield' and state_id = '29'[0m
+  [4;36;1mFeature Columns (0.009203)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.005412)[0m   [0mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1493642' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000361)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 114662 and url is not null) [0m
+  [4;35;1mFeature Load (0.000189)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Fairfax County' and state_id=29) [0m
+  [4;36;1mSite Load (0.000274)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39454 and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000342)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '114662' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000340)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '114662' and url is not null) [0m
+  [4;35;1mSite Load (0.000190)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = '114662' and is_primary = 1 and url is not null) [0m
+  [4;36;1mFeature Load (0.000254)[0m   [0;1mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1496246' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000379)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 95339 and url is not null) [0m
+  [4;36;1mFeature Load (0.000262)[0m   [0;1mSELECT id, fips_class FROM `features` WHERE (feat_name='Page County' and state_id=29) [0m
+  [4;35;1mSite Load (0.000161)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39492 and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000377)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '95339' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.001218)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '95339' and url is not null) [0m
+  [4;36;1mSite Load (0.000229)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = '95339' and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000385)[0m   [0mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1497161' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000195)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 95340 and url is not null) [0m
+  [4;35;1mFeature Load (0.000206)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Rockbridge County' and state_id=29) [0m
+  [4;36;1mSite Load (0.000239)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39503 and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.006619)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '95340' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000728)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '95340' and url is not null) [0m
+  [4;35;1mSite Load (0.000344)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = '95340' and is_primary = 1 and url is not null) [0m
+  [4;36;1mSite Columns (0.007406)[0m   [0;1mSHOW FIELDS FROM `sites`[0m
+  [4;35;1mPermitmeResourceGroup Load (0.001222)[0m   [0mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and (s.isExclusive <=> 0 or s.isExclusive is null) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeSubcategory Columns (0.006527)[0m   [0;1mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;35;1mPermitmeResourceGroup Load (0.004029)[0m   [0mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 93) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeResourceGroup Columns (0.008489)[0m   [0;1mSHOW FIELDS FROM `permitme_resource_groups`[0m
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-20 23:41:11) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"springfield", "format"=>"xml", "alpha"=>"va", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"electrician"}
+  [4;36;1mSQL (0.000192)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000070)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mPermitmeSubcategory Load (0.000417)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'electrician') [0m
+  [4;35;1mState Load (0.000180)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'va') [0m
+  [4;36;1mState Columns (0.006328)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.001267)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'springfield' and state_id = '29' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'springfield' and state_id = '29'[0m
+  [4;36;1mFeature Columns (0.010399)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.003904)[0m   [0mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1493642' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000167)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 114662 and url is not null) [0m
+  [4;35;1mFeature Load (0.000173)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Fairfax County' and state_id=29) [0m
+  [4;36;1mSite Load (0.000177)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39454 and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000151)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '114662' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000155)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '114662' and url is not null) [0m
+  [4;35;1mSite Load (0.000148)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = '114662' and is_primary = 1 and url is not null) [0m
+  [4;36;1mFeature Load (0.000190)[0m   [0;1mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1496246' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000133)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 95339 and url is not null) [0m
+  [4;36;1mFeature Load (0.000177)[0m   [0;1mSELECT id, fips_class FROM `features` WHERE (feat_name='Page County' and state_id=29) [0m
+  [4;35;1mSite Load (0.000162)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39492 and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000142)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '95339' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000114)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '95339' and url is not null) [0m
+  [4;36;1mSite Load (0.000152)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = '95339' and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000278)[0m   [0mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1497161' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000118)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 95340 and url is not null) [0m
+  [4;35;1mFeature Load (0.000170)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Rockbridge County' and state_id=29) [0m
+  [4;36;1mSite Load (0.000155)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39503 and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000137)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '95340' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000137)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '95340' and url is not null) [0m
+  [4;35;1mSite Load (0.000203)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = '95340' and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeResourceGroup Load (0.001100)[0m   [0;1mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and (s.isExclusive <=> 0 or s.isExclusive is null) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;35;1mPermitmeSubcategory Columns (0.006799)[0m   [0mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;36;1mPermitmeResourceGroup Load (0.004283)[0m   [0;1mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 93) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;35;1mPermitmeResourceGroup Columns (0.006666)[0m   [0mSHOW FIELDS FROM `permitme_resource_groups`[0m
+  [4;36;1mSite Columns (0.012372)[0m   [0;1mSHOW FIELDS FROM `sites`[0m
+Completed in 0.10190 (9 reqs/sec) | Rendering: 0.01183 (11%) | DB: 0.05722 (56%) | 200 OK [http://localhost/permitme/state_and_city/electrician/va/springfield.xml]
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-20 23:41:25) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"vienna", "format"=>"xml", "alpha"=>"va", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"electrician"}
+  [4;35;1mPermitmeSubcategory Load (0.000356)[0m   [0mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'electrician') [0m
+  [4;36;1mState Load (0.000170)[0m   [0;1mSELECT id as state_id FROM `states` WHERE (alpha = 'va') [0m
+  [4;35;1mState Columns (0.006258)[0m   [0mSHOW FIELDS FROM `states`[0m
+  [4;36;1mFeature Load (0.001309)[0m   [0;1mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'vienna' and state_id = '29' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'vienna' and state_id = '29'[0m
+  [4;35;1mFeature Columns (0.006615)[0m   [0mSHOW FIELDS FROM `features`[0m
+  [4;36;1mFeature Load (0.003565)[0m   [0;1mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1500258' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000216)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 33742 and url is not null) [0m
+  [4;36;1mFeature Load (0.000180)[0m   [0;1mSELECT id, fips_class FROM `features` WHERE (feat_name='Fairfax County' and state_id=29) [0m
+  [4;35;1mSite Load (0.000218)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39454 and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000135)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '33742' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000119)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '33742' and url is not null) [0m
+  [4;36;1mSite Load (0.000146)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = '33742' and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeResourceGroup Load (0.001240)[0m   [0mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and (s.isExclusive <=> 0 or s.isExclusive is null) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeSubcategory Columns (0.006204)[0m   [0;1mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;35;1mPermitmeResourceGroup Load (0.004399)[0m   [0mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and (s.id = 93) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeResourceGroup Columns (0.005780)[0m   [0;1mSHOW FIELDS FROM `permitme_resource_groups`[0m
+  [4;35;1mSite Columns (0.009414)[0m   [0mSHOW FIELDS FROM `sites`[0m
+Completed in 0.09508 (10 reqs/sec) | Rendering: 0.01271 (13%) | DB: 0.04632 (48%) | 200 OK [http://localhost/permitme/state_and_city/electrician/va/vienna.xml]
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-20 23:41:37) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"dallas", "format"=>"xml", "alpha"=>"tx", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"electrician"}
+  [4;36;1mPermitmeSubcategory Load (0.000390)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'electrician') [0m
+  [4;35;1mState Load (0.000170)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'tx') [0m
+  [4;36;1mState Columns (0.006412)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.000827)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'dallas' and state_id = '34' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'dallas' and state_id = '34'[0m
+  [4;36;1mFeature Columns (0.006668)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.005524)[0m   [0mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 34 and fips_feat_id='1380944' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000213)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 32311 and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000135)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 32312 and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000133)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 32313 and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000130)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 32314 and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000132)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 32315 and url is not null) [0m
+  [4;35;1mFeature Load (0.000181)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Collin County' and state_id=34) [0m
+  [4;36;1mSite Load (0.000177)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39185 and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000193)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Dallas County' and state_id=34) [0m
+  [4;36;1mSite Load (0.000153)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39199 and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000164)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Denton County' and state_id=34) [0m
+  [4;36;1mSite Load (0.000184)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39203 and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000170)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Kaufman County' and state_id=34) [0m
+  [4;36;1mSite Load (0.000155)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39271 and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000164)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Rockwall County' and state_id=34) [0m
+  [4;36;1mSite Load (0.000151)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39341 and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000145)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000150)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;35;1mSite Load (0.000174)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = '32312' and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeResourceGroup Load (0.001106)[0m   [0;1mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 34 and (s.isExclusive <=> 0 or s.isExclusive is null) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;35;1mPermitmeSubcategory Columns (0.006135)[0m   [0mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;36;1mPermitmeResourceGroup Load (0.004386)[0m   [0;1mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 34 and url is not null and (s.id = 93) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;35;1mPermitmeResourceGroup Columns (0.005831)[0m   [0mSHOW FIELDS FROM `permitme_resource_groups`[0m
+  [4;36;1mSite Columns (0.011380)[0m   [0;1mSHOW FIELDS FROM `sites`[0m
+Completed in 0.15596 (6 reqs/sec) | Rendering: 0.01341 (8%) | DB: 0.05173 (33%) | 200 OK [http://localhost/permitme/state_and_city/electrician/tx/dallas.xml]
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-20 23:45:49) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"dallas", "format"=>"json", "alpha"=>"tx", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"electrician"}
+  [4;35;1mPermitmeSubcategory Load (0.000360)[0m   [0mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'electrician') [0m
+  [4;36;1mState Load (0.000167)[0m   [0;1mSELECT id as state_id FROM `states` WHERE (alpha = 'tx') [0m
+  [4;35;1mState Columns (0.006304)[0m   [0mSHOW FIELDS FROM `states`[0m
+  [4;36;1mFeature Load (0.000750)[0m   [0;1mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'dallas' and state_id = '34' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'dallas' and state_id = '34'[0m
+  [4;35;1mFeature Columns (0.006458)[0m   [0mSHOW FIELDS FROM `features`[0m
+  [4;36;1mFeature Load (0.003553)[0m   [0;1mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 34 and fips_feat_id='1380944' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000168)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 32311 and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000134)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 32312 and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000131)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 32313 and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000130)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 32314 and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000131)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 32315 and url is not null) [0m
+  [4;36;1mFeature Load (0.000180)[0m   [0;1mSELECT id, fips_class FROM `features` WHERE (feat_name='Collin County' and state_id=34) [0m
+  [4;35;1mSite Load (0.000183)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39185 and is_primary = 1 and url is not null) [0m
+  [4;36;1mFeature Load (0.000191)[0m   [0;1mSELECT id, fips_class FROM `features` WHERE (feat_name='Dallas County' and state_id=34) [0m
+  [4;35;1mSite Load (0.000151)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39199 and is_primary = 1 and url is not null) [0m
+  [4;36;1mFeature Load (0.000146)[0m   [0;1mSELECT id, fips_class FROM `features` WHERE (feat_name='Denton County' and state_id=34) [0m
+  [4;35;1mSite Load (0.000132)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39203 and is_primary = 1 and url is not null) [0m
+  [4;36;1mFeature Load (0.000147)[0m   [0;1mSELECT id, fips_class FROM `features` WHERE (feat_name='Kaufman County' and state_id=34) [0m
+  [4;35;1mSite Load (0.000132)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39271 and is_primary = 1 and url is not null) [0m
+  [4;36;1mFeature Load (0.000148)[0m   [0;1mSELECT id, fips_class FROM `features` WHERE (feat_name='Rockwall County' and state_id=34) [0m
+  [4;35;1mSite Load (0.000133)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39341 and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000124)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000302)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;36;1mSite Load (0.000144)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = '32312' and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeResourceGroup Load (0.001104)[0m   [0mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 34 and (s.isExclusive <=> 0 or s.isExclusive is null) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeSubcategory Columns (0.006080)[0m   [0;1mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;35;1mPermitmeResourceGroup Load (0.004358)[0m   [0mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 34 and url is not null and (s.id = 93) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mSite Columns (0.005836)[0m   [0;1mSHOW FIELDS FROM `sites`[0m
+  [4;35;1mPermitmeResourceGroup Columns (0.009548)[0m   [0mSHOW FIELDS FROM `permitme_resource_groups`[0m
+Completed in 0.08191 (12 reqs/sec) | Rendering: 0.00487 (5%) | DB: 0.04732 (57%) | 200 OK [http://localhost/permitme/state_and_city/electrician/tx/dallas.json]
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-20 23:46:41) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"dallas", "format"=>"xml", "alpha"=>"tx", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"electrician"}
+  [4;36;1mPermitmeSubcategory Load (0.000363)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'electrician') [0m
+  [4;35;1mState Load (0.000175)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'tx') [0m
+  [4;36;1mState Columns (0.006298)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.000719)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'dallas' and state_id = '34' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'dallas' and state_id = '34'[0m
+  [4;36;1mFeature Columns (0.006404)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.003653)[0m   [0mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 34 and fips_feat_id='1380944' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000157)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 32311 and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000179)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 32312 and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000129)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 32313 and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000126)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 32314 and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000145)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 32315 and url is not null) [0m
+  [4;35;1mFeature Load (0.000178)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Collin County' and state_id=34) [0m
+  [4;36;1mSite Load (0.000184)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39185 and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000184)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Dallas County' and state_id=34) [0m
+  [4;36;1mSite Load (0.000154)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39199 and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.001463)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Denton County' and state_id=34) [0m
+  [4;36;1mSite Load (0.000155)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39203 and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000159)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Kaufman County' and state_id=34) [0m
+  [4;36;1mSite Load (0.000142)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39271 and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000155)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Rockwall County' and state_id=34) [0m
+  [4;36;1mSite Load (0.000153)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39341 and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000146)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000177)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;35;1mSite Load (0.000152)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = '32312' and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeResourceGroup Load (0.001210)[0m   [0;1mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 34 and (s.isExclusive <=> 0 or s.isExclusive is null) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;35;1mPermitmeSubcategory Columns (0.006231)[0m   [0mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;36;1mPermitmeResourceGroup Load (0.004383)[0m   [0;1mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 34 and url is not null and (s.id = 93) and (s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;35;1mPermitmeResourceGroup Columns (0.006008)[0m   [0mSHOW FIELDS FROM `permitme_resource_groups`[0m
+  [4;36;1mSite Columns (0.009038)[0m   [0;1mSHOW FIELDS FROM `sites`[0m
+Completed in 0.09229 (10 reqs/sec) | Rendering: 0.01259 (13%) | DB: 0.04862 (52%) | 200 OK [http://localhost/permitme/state_and_city/electrician/tx/dallas.xml]
