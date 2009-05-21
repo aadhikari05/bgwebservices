@@ -23082,3 +23082,46 @@ SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
   [4;36;1mPermitmeResourceGroup Columns (0.006954)[0m   [0;1mSHOW FIELDS FROM `permitme_resource_groups`[0m
   [4;35;1mSite Columns (0.008561)[0m   [0mSHOW FIELDS FROM `sites`[0m
 Completed in 0.07354 (13 reqs/sec) | Rendering: 0.01082 (14%) | DB: 0.03562 (48%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/22209.xml]
+
+
+Processing PermitmeController#permitme_by_zip (for 127.0.0.1 at 2009-05-21 00:17:02) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"zip"=>"22152", "format"=>"xml", "action"=>"permitme_by_zip", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mSQL (0.000206)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000091)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mFeature Load (0.000586)[0m   [0;1mselect state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = '22152'[0m
+  [4;35;1mPermitmeSubcategory Load (0.000526)[0m   [0mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;36;1mFeature Columns (0.013155)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mState Load (0.000234)[0m   [0mSELECT alpha as state_alpha FROM `states` WHERE (id = 29) [0m
+  [4;36;1mFeature Load (0.000410)[0m   [0;1mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1493642' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000278)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 114662 and url is not null) [0m
+  [4;36;1mFeature Load (0.000180)[0m   [0;1mSELECT id, fips_class FROM `features` WHERE (feat_name='Fairfax County' and state_id=29) [0m
+  [4;35;1mSite Load (0.000299)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39454 and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000477)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '114662' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000333)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '114662' and url is not null) [0m
+  [4;36;1mSite Load (0.000224)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = '114662' and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeResourceGroup Load (0.001258)[0m   [0mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and(s.isExclusive <=> 0 or s.isExclusive is null) and(s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeSubcategory Columns (0.006401)[0m   [0;1mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;35;1mPermitmeResourceGroup Load (0.004460)[0m   [0mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 29 and url is not null and(s.id = 90) and(s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeResourceGroup Columns (0.009281)[0m   [0;1mSHOW FIELDS FROM `permitme_resource_groups`[0m
+  [4;35;1mSite Columns (0.013188)[0m   [0mSHOW FIELDS FROM `sites`[0m
+Completed in 14.22359 (0 reqs/sec) | Rendering: 4.80089 (33%) | DB: 0.05159 (0%) | 200 OK [http://localhost/permitme/by_zip/child%20care%20services/22152.xml]
+
+
+Processing PermitmeController#permitme_by_zip (for 127.0.0.1 at 2009-05-21 00:20:12) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"zip"=>"22209", "format"=>"xml", "action"=>"permitme_by_zip", "controller"=>"permitme", "business_type"=>"child care services"}
+  [4;36;1mFeature Load (0.000355)[0m   [0;1mselect state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = '22209'[0m
+  [4;35;1mPermitmeSubcategory Load (0.000446)[0m   [0mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'child care services') [0m
+  [4;36;1mFeature Columns (0.009634)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mState Load (0.000229)[0m   [0mSELECT alpha as state_alpha FROM `states` WHERE (id = 29) [0m
+  [4;36;1mFeature Load (0.000436)[0m   [0;1mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 29 and fips_feat_id='1783506' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000234)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 106243 and url is not null) [0m
+  [4;36;1mFeature Load (0.000189)[0m   [0;1mSELECT id, fips_class FROM `features` WHERE (feat_name='Arlington County' and state_id=29) [0m
+  [4;35;1mSite Load (0.000208)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39432 and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000370)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mSite Columns (0.006624)[0m   [0mSHOW FIELDS FROM `sites`[0m
+  [4;36;1mPermitmeSite Load (0.000323)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '106243' and url is not null) [0m
+  [4;35;1mSite Load (0.000343)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = '106243' and is_primary = 1 and url is not null) [0m
