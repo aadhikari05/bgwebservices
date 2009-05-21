@@ -218,7 +218,7 @@ module PermitmeHelper
 
           for i in 0...this_array.length
               for j in 0...fips_compare_array.length
-                  if this_array[i]["fips_class"].eql?fips_compare_array[j]
+                  if this_array[i]["fips_class"].downcase.eql?fips_compare_array[j]  #put downcase as this_array has the value as Upper case.
                       for k in 0...this_array.length
                           if this_array[k]["county_name_full"].eql?this_array[i]["county_name_full"]
                               if this_array[k]["fips_class"].eql?("h1")
