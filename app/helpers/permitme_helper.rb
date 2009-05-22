@@ -12,8 +12,8 @@ module PermitmeHelper
             # dallas,tx has one city with 5 counties(same fips_feature_id), but for (georgetown, id) has two features with different fips_feat_id.
             # so if each feature gets into the PermitmeHelper.prune_unincorporated_areas @state_and_feature_array will be used and spit out county_array
             # this way I don't touch other structures.  schoe 5/21/09
-#            @state_and_feature_array=state_and_feature_array
-                        
+            @state_and_feature_array=state_and_feature_array
+            
             if !query_type.eql?("permitme_by_state_only")
                 for ss in 0...state_and_feature_array.length
                     
@@ -230,7 +230,7 @@ module PermitmeHelper
           # dallas,tx has one city with 5 counties(same fips_feature_id), but for (georgetown, id) has two features with different fips_feat_id.
           # so if each feature gets into the PermitmeHelper.prune_unincorporated_areas @state_and_feature_array will be used and spit out county_array
           @state_and_feature_array.each do |sfa|
-            if sfa.fips_class =~ /U\d/
+            if sfa["fips_class"] =~ /U\d/
               tempFeatureToCompare=sfa
             end
           end
