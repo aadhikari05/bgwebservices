@@ -6,7 +6,14 @@ module PermitmeHelper
         ####################################################
         def PermitmeHelper.get_all_permitme_sites(state_and_feature_array, business_type_id, query_type)
             @this_result = Result.new
- 
+            
+            # Making this new @state_and_feature_array for prune_unincorporated_area only for now.  unincorporated area can be from diferrent fips_feat_id
+            # but currently findAllCountySitesByFeatureAndState=>getCountiesByFeature(state_id, fips_feature_id) uses fips_features_id only.
+            # dallas,tx has one city with 5 counties(same fips_feature_id), but for (georgetown, id) has two features with different fips_feat_id.
+            # so if each feature gets into the PermitmeHelper.prune_unincorporated_areas @state_and_feature_array will be used and spit out county_array
+            # this way I don't touch other structures.  schoe 5/21/09
+            @state_and_feature_array=state_and_feature_array
+            
             if !query_type.eql?("permitme_by_state_only")
                 for ss in 0...state_and_feature_array.length
                     
@@ -215,10 +222,33 @@ module PermitmeHelper
       def PermitmeHelper.prune_unincorporated_areas(this_array)
           #prune unincorporated areas when we have another option in same county
           fips_compare_array = ["u1","u2","u3","u4","u5","u6"]
-
+          tempFeatureToCompare=nil
+          
+          ############################################################################
+          # The following loop is necessary for this perticular structure as unincorporated area can be from diferrent fips_feat_id
+          # but currently findAllCountySitesByFeatureAndState=>getCountiesByFeature(state_id, fips_feature_id) uses fips_features_id only.
+          # dallas,tx has one city with 5 counties(same fips_feature_id), but for (georgetown, id) has two features with different fips_feat_id.
+          # so if each feature gets into the PermitmeHelper.prune_unincorporated_areas @state_and_feature_array will be used and spit out county_array
+          @state_and_feature_array.each do |sfa|
+            if sfa.fips_class =~ /U\d/
+              tempFeatureToCompare=sfa
+            end
+          end
+          
+          for f in 0...@state_and_feature_array.size
+            if !tempFeatureToCompare.eql?(nil) && tempFeatureToCompare.state_id==@state_and_feature_array[f]["state_id"] && tempFeatureToCompare.county_name_full.eql?(@state_and_feature_array[f]["county_name_full"]) && !tempFeatureToCompare.fips_class.eql?(@state_and_feature_array[f]["fips_class"])
+              for g in 0...this_array.length
+                if tempFeatureToCompare.feature_id.eql?(this_array[g]["id"].to_s) && this_array[g]["fips_class"] =~ /U\d/
+                  this_array[g]=@state_and_feature_array[f]
+                end  
+              end
+            end
+          end
+          ############################################################################
+          
           for i in 0...this_array.length
               for j in 0...fips_compare_array.length
-                  if this_array[i]["fips_class"].downcase.eql?fips_compare_array[j]  #put downcase as this_array has the value as Upper case.
+                  if !this_array[i].blank? && this_array[i]["fips_class"].downcase.eql?(fips_compare_array[j])  #put downcase as this_array has the value as Upper case.
                       for k in 0...this_array.length
                           if this_array[k]["county_name_full"].eql?this_array[i]["county_name_full"]
                               if this_array[k]["fips_class"].eql?("h1")

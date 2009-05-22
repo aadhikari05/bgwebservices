@@ -23334,3 +23334,1168 @@ SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
   [4;35;1mPermitmeSite Load (0.000300)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '4295' and url is not null) [0m
   [4;36;1mSite Load (0.000330)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = '4295' and is_primary = 1 and url is not null) [0m
   [4;35;1mFeature Load (0.000462)[0m   [0mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 33 and fips_feat_id='397734' and county_name_full is not null) [0m
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-21 10:56:32) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"georgetown", "format"=>"xml", "alpha"=>"id", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"electrician"}
+  [4;36;1mSQL (0.000177)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000062)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mPermitmeSubcategory Load (0.000428)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'electrician') [0m
+  [4;35;1mState Load (0.000281)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'id') [0m
+  [4;36;1mState Columns (0.009191)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.011177)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'georgetown' and state_id = '33' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'georgetown' and state_id = '33'[0m
+  [4;36;1mFeature Columns (0.007900)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.005186)[0m   [0mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 33 and fips_feat_id='397735' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000157)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 4295 and url is not null) [0m
+  [4;35;1mFeature Load (0.000159)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Bear Lake County' and state_id=33) [0m
+  [4;36;1mSite Load (0.000166)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 37198 and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000123)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '4295' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000113)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '4295' and url is not null) [0m
+  [4;35;1mSite Load (0.000211)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = '4295' and is_primary = 1 and url is not null) [0m
+  [4;36;1mFeature Load (0.000176)[0m   [0;1mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 33 and fips_feat_id='397734' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000114)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 61760 and url is not null) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT id, fips_class FROM `features` WHERE (feat_name='Bear Lake County' and state_id=33) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 37198 and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000121)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '61760' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000113)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '61760' and url is not null) [0m
+  [4;36;1mSite Load (0.000201)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = '61760' and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeResourceGroup Load (0.001166)[0m   [0mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 33 and(s.isExclusive <=> 0 or s.isExclusive is null) and(s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeSubcategory Columns (0.006102)[0m   [0;1mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;35;1mPermitmeResourceGroup Load (0.007487)[0m   [0mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 33 and url is not null and(s.id = 93) and(s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeResourceGroup Columns (0.006530)[0m   [0;1mSHOW FIELDS FROM `permitme_resource_groups`[0m
+  [4;35;1mSite Columns (0.008329)[0m   [0mSHOW FIELDS FROM `sites`[0m
+Completed in 0.11485 (8 reqs/sec) | Rendering: 0.01540 (13%) | DB: 0.06567 (57%) | 200 OK [http://localhost/permitme/state_and_city/electrician/id/georgetown.xml]
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-21 13:43:49) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"georgetown", "format"=>"xml", "alpha"=>"id", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"electrician"}
+  [4;36;1mSQL (0.000194)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000095)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mPermitmeSubcategory Load (0.000435)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'electrician') [0m
+  [4;35;1mState Load (0.000237)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'id') [0m
+  [4;36;1mPermitmeSubcategory Columns (0.025374)[0m   [0;1mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;35;1mState Columns (0.040810)[0m   [0mSHOW FIELDS FROM `states`[0m
+  [4;36;1mFeature Load (0.001745)[0m   [0;1mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'georgetown' and state_id = '33' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'georgetown' and state_id = '33'[0m
+  [4;35;1mFeature Columns (0.036109)[0m   [0mSHOW FIELDS FROM `features`[0m
+  [4;36;1mFeature Load (0.000408)[0m   [0;1mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 33 and fips_feat_id='397735' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000268)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 4295 and url is not null) [0m
+  [4;36;1mFeature Load (0.000226)[0m   [0;1mSELECT id, fips_class FROM `features` WHERE (feat_name='Bear Lake County' and state_id=33) [0m
+  [4;35;1mSite Load (0.000241)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 37198 and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000347)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '4295' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000313)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '4295' and url is not null) [0m
+  [4;36;1mSite Load (0.000330)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = '4295' and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000521)[0m   [0mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 33 and fips_feat_id='397734' and county_name_full is not null) [0m
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-21 14:34:21) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"georgetown", "alpha"=>"id", "format"=>"xml", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"electrician"}
+  [4;36;1mSQL (0.000202)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000070)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mPermitmeSubcategory Load (0.000455)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'electrician') [0m
+  [4;35;1mState Load (0.000273)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'id') [0m
+  [4;36;1mState Columns (0.020532)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mPermitmeSubcategory Columns (0.256820)[0m   [0mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;36;1mFeature Load (0.001533)[0m   [0;1mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'georgetown' and state_id = '33' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'georgetown' and state_id = '33'[0m
+  [4;35;1mFeature Columns (0.016943)[0m   [0mSHOW FIELDS FROM `features`[0m
+  [4;36;1mFeature Load (0.000499)[0m   [0;1mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 33 and fips_feat_id='397735' and county_name_full is not null) [0m
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-21 14:37:59) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"georgetown", "alpha"=>"id", "format"=>"xml", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"electrician"}
+  [4;36;1mSQL (0.000208)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000092)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mPermitmeSubcategory Load (0.000414)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'electrician') [0m
+  [4;35;1mState Load (0.000687)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'id') [0m
+  [4;36;1mState Columns (0.011315)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.001965)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'georgetown' and state_id = '33' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'georgetown' and state_id = '33'[0m
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-21 14:39:04) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"dallas", "alpha"=>"tx", "format"=>"xml", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"electrician"}
+  [4;36;1mSQL (0.000228)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000081)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mPermitmeSubcategory Load (0.000539)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'electrician') [0m
+  [4;35;1mState Load (0.000309)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'tx') [0m
+  [4;36;1mState Columns (0.010908)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.001889)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'dallas' and state_id = '34' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'dallas' and state_id = '34'[0m
+  [4;36;1mFeature Columns (0.017870)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.000556)[0m   [0mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 34 and fips_feat_id='1380944' and county_name_full is not null) [0m
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-21 14:43:22) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"georgetown", "alpha"=>"id", "format"=>"xml", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"electrician"}
+  [4;36;1mSQL (0.000206)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000093)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mPermitmeSubcategory Load (0.000421)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'electrician') [0m
+  [4;35;1mState Load (0.000272)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'id') [0m
+  [4;36;1mState Columns (0.007420)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mPermitmeSubcategory Columns (0.015836)[0m   [0mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;36;1mFeature Load (0.001562)[0m   [0;1mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'georgetown' and state_id = '33' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'georgetown' and state_id = '33'[0m
+  [4;35;1mFeature Columns (0.010158)[0m   [0mSHOW FIELDS FROM `features`[0m
+  [4;36;1mFeature Load (0.000749)[0m   [0;1mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 33 and fips_feat_id='397735' and county_name_full is not null) [0m
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-21 15:20:55) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"georgetown", "format"=>"xml", "alpha"=>"id", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"electrician"}
+  [4;36;1mSQL (0.000190)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000068)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mPermitmeSubcategory Load (0.000524)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'electrician') [0m
+  [4;35;1mState Load (0.000284)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'id') [0m
+  [4;36;1mState Columns (0.015741)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mPermitmeSubcategory Columns (0.047312)[0m   [0mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;36;1mFeature Load (0.001290)[0m   [0;1mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'georgetown' and state_id = '33' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'georgetown' and state_id = '33'[0m
+  [4;35;1mFeature Columns (0.015468)[0m   [0mSHOW FIELDS FROM `features`[0m
+  [4;36;1mFeature Load (0.000417)[0m   [0;1mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 33 and fips_feat_id='397735' and county_name_full is not null) [0m
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-21 15:23:57) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"georgetown", "format"=>"xml", "alpha"=>"id", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"electrician"}
+  [4;36;1mSQL (0.000186)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000069)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mPermitmeSubcategory Load (0.000425)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'electrician') [0m
+  [4;35;1mState Load (0.000237)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'id') [0m
+  [4;36;1mState Columns (0.016059)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.001604)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'georgetown' and state_id = '33' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'georgetown' and state_id = '33'[0m
+  [4;36;1mFeature Columns (0.021173)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.000488)[0m   [0mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 33 and fips_feat_id='397735' and county_name_full is not null) [0m
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-21 15:27:10) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"georgetown", "format"=>"xml", "alpha"=>"id", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"electrician"}
+  [4;36;1mSQL (0.000194)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000078)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mPermitmeSubcategory Load (0.000417)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'electrician') [0m
+  [4;35;1mState Load (0.000294)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'id') [0m
+  [4;36;1mState Columns (0.016202)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.004889)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'georgetown' and state_id = '33' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'georgetown' and state_id = '33'[0m
+  [4;36;1mFeature Columns (0.014866)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.000649)[0m   [0mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 33 and fips_feat_id='397735' and county_name_full is not null) [0m
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-21 15:31:07) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"georgetown", "format"=>"xml", "alpha"=>"id", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"electrician"}
+  [4;36;1mSQL (0.000183)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000070)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mPermitmeSubcategory Load (0.000427)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'electrician') [0m
+  [4;35;1mState Load (0.000295)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'id') [0m
+  [4;36;1mState Columns (0.012508)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.001293)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'georgetown' and state_id = '33' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'georgetown' and state_id = '33'[0m
+  [4;36;1mFeature Columns (0.011232)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.001071)[0m   [0mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 33 and fips_feat_id='397735' and county_name_full is not null) [0m
+
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of ActiveRecord::Base.
+The error occurred while evaluating nil.[]):
+    /app/helpers/permitme_helper.rb:233:in `prune_unincorporated_areas'
+    /app/helpers/permitme_helper.rb:232:in `each'
+    /app/helpers/permitme_helper.rb:232:in `prune_unincorporated_areas'
+    /app/helpers/permitme_helper.rb:203:in `process_rules'
+    /app/helpers/permitme_helper.rb:162:in `findAllCountySitesByFeatureAndState'
+    /app/helpers/permitme_helper.rb:25:in `get_all_permitme_sites'
+    /app/helpers/permitme_helper.rb:18:in `each'
+    /app/helpers/permitme_helper.rb:18:in `get_all_permitme_sites'
+    /app/controllers/permitme_controller.rb:51:in `permitme_by_state_and_feature'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `perform_action_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:580:in `call_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:573:in `perform_action_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.1.0/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.1.0/lib/active_record/query_cache.rb:8:in `cache'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `process_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:569:in `process_without_session_management_support'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/session_management.rb:130:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:389:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:76:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:74:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:159:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:282:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:128:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/command.rb:212:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:281
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:354:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/rails-2.1.0/lib/commands/servers/mongrel.rb:64
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:509:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:354:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:509:in `require'
+    /Library/Ruby/Gems/1.8/gems/rails-2.1.0/lib/commands/server.rb:39
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    ./script/server:3
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/lib/ruby-debug.rb:101:in `debug_load'
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/lib/ruby-debug.rb:101:in `debug_program'
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/bin/rdebug-ide:82
+    /usr/bin/rdebug-ide:19:in `load'
+    /usr/bin/rdebug-ide:19
+    -e:2:in `load'
+    -e:2
+
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-21 15:34:09) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"georgetown", "format"=>"xml", "alpha"=>"id", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"electrician"}
+  [4;36;1mPermitmeSubcategory Load (0.000368)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'electrician') [0m
+  [4;35;1mState Load (0.000213)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'id') [0m
+  [4;36;1mState Columns (0.008952)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.001296)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'georgetown' and state_id = '33' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'georgetown' and state_id = '33'[0m
+  [4;36;1mFeature Columns (0.010404)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.000428)[0m   [0mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 33 and fips_feat_id='397735' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000279)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 4295 and url is not null) [0m
+  [4;35;1mFeature Load (0.000193)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Bear Lake County' and state_id=33) [0m
+  [4;36;1mSite Load (0.000236)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 37198 and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000332)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '4295' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000292)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '4295' and url is not null) [0m
+  [4;35;1mSite Load (0.000495)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = '4295' and is_primary = 1 and url is not null) [0m
+  [4;36;1mFeature Load (0.000503)[0m   [0;1mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 33 and fips_feat_id='397734' and county_name_full is not null) [0m
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-21 15:37:44) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"georgetown", "format"=>"xml", "alpha"=>"id", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"electrician"}
+  [4;36;1mSQL (0.000186)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000070)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mPermitmeSubcategory Load (0.000457)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'electrician') [0m
+  [4;35;1mState Load (0.000251)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'id') [0m
+  [4;36;1mState Columns (0.008771)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mPermitmeSubcategory Columns (0.018060)[0m   [0mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;36;1mFeature Load (0.001623)[0m   [0;1mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'georgetown' and state_id = '33' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'georgetown' and state_id = '33'[0m
+  [4;35;1mFeature Columns (0.006742)[0m   [0mSHOW FIELDS FROM `features`[0m
+  [4;36;1mFeature Load (0.001325)[0m   [0;1mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 33 and fips_feat_id='397735' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000406)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 4295 and url is not null) [0m
+  [4;36;1mFeature Load (0.000191)[0m   [0;1mSELECT id, fips_class FROM `features` WHERE (feat_name='Bear Lake County' and state_id=33) [0m
+  [4;35;1mSite Load (0.000197)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 37198 and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000337)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '4295' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.008638)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '4295' and url is not null) [0m
+  [4;36;1mSite Load (0.000330)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = '4295' and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.011803)[0m   [0mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 33 and fips_feat_id='397734' and county_name_full is not null) [0m
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-21 15:54:50) [GET]
+  Session ID: 3196f9c64860bbcb16ebeaa5257c4f2f
+  Parameters: {"feature"=>"dallas", "format"=>"xml", "alpha"=>"tx", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"electrician"}
+  [4;36;1mSQL (0.000203)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000124)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mPermitmeSubcategory Load (0.000417)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'electrician') [0m
+  [4;35;1mState Load (0.000250)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'tx') [0m
+  [4;36;1mState Columns (0.018474)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.000864)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'dallas' and state_id = '34' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'dallas' and state_id = '34'[0m
+  [4;36;1mFeature Columns (0.014276)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.000469)[0m   [0mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 34 and fips_feat_id='1380944' and county_name_full is not null) [0m
+
+
+NoMethodError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.state_id):
+    /app/helpers/permitme_helper.rb:233:in `prune_unincorporated_areas'
+    /app/helpers/permitme_helper.rb:232:in `each'
+    /app/helpers/permitme_helper.rb:232:in `prune_unincorporated_areas'
+    /app/helpers/permitme_helper.rb:203:in `process_rules'
+    /app/helpers/permitme_helper.rb:162:in `findAllCountySitesByFeatureAndState'
+    /app/helpers/permitme_helper.rb:25:in `get_all_permitme_sites'
+    /app/helpers/permitme_helper.rb:18:in `each'
+    /app/helpers/permitme_helper.rb:18:in `get_all_permitme_sites'
+    /app/controllers/permitme_controller.rb:51:in `permitme_by_state_and_feature'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `perform_action_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:580:in `call_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:573:in `perform_action_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.1.0/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.1.0/lib/active_record/query_cache.rb:8:in `cache'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `process_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:569:in `process_without_session_management_support'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/session_management.rb:130:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:389:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:76:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:74:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:159:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:282:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:128:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/command.rb:212:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:281
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:354:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/rails-2.1.0/lib/commands/servers/mongrel.rb:64
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:509:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:354:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:509:in `require'
+    /Library/Ruby/Gems/1.8/gems/rails-2.1.0/lib/commands/server.rb:39
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    ./script/server:3
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/lib/ruby-debug.rb:101:in `debug_load'
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/lib/ruby-debug.rb:101:in `debug_program'
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/bin/rdebug-ide:82
+    /usr/bin/rdebug-ide:19:in `load'
+    /usr/bin/rdebug-ide:19
+    -e:2:in `load'
+    -e:2
+
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-21 16:11:54) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"dallas", "format"=>"xml", "alpha"=>"tx", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"electrician"}
+  [4;36;1mPermitmeSubcategory Load (0.000365)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'electrician') [0m
+  [4;35;1mState Load (0.000223)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'tx') [0m
+  [4;36;1mState Columns (0.012274)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.001100)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'dallas' and state_id = '34' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'dallas' and state_id = '34'[0m
+  [4;36;1mFeature Columns (0.011214)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.003964)[0m   [0mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 34 and fips_feat_id='1380944' and county_name_full is not null) [0m
+
+
+NoMethodError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.state_id):
+    /app/helpers/permitme_helper.rb:233:in `prune_unincorporated_areas'
+    /app/helpers/permitme_helper.rb:232:in `each'
+    /app/helpers/permitme_helper.rb:232:in `prune_unincorporated_areas'
+    /app/helpers/permitme_helper.rb:203:in `process_rules'
+    /app/helpers/permitme_helper.rb:162:in `findAllCountySitesByFeatureAndState'
+    /app/helpers/permitme_helper.rb:25:in `get_all_permitme_sites'
+    /app/helpers/permitme_helper.rb:18:in `each'
+    /app/helpers/permitme_helper.rb:18:in `get_all_permitme_sites'
+    /app/controllers/permitme_controller.rb:51:in `permitme_by_state_and_feature'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `perform_action_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:580:in `call_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:573:in `perform_action_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.1.0/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.1.0/lib/active_record/query_cache.rb:8:in `cache'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `process_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:569:in `process_without_session_management_support'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/session_management.rb:130:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:389:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:76:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:74:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:159:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:282:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:128:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/command.rb:212:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:281
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:354:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/rails-2.1.0/lib/commands/servers/mongrel.rb:64
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:509:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:354:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:509:in `require'
+    /Library/Ruby/Gems/1.8/gems/rails-2.1.0/lib/commands/server.rb:39
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    ./script/server:3
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/lib/ruby-debug.rb:101:in `debug_load'
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/lib/ruby-debug.rb:101:in `debug_program'
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/bin/rdebug-ide:82
+    /usr/bin/rdebug-ide:19:in `load'
+    /usr/bin/rdebug-ide:19
+    -e:2:in `load'
+    -e:2
+
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-21 16:13:41) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"dallas", "format"=>"xml", "alpha"=>"tx", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"electrician"}
+  [4;36;1mPermitmeSubcategory Load (0.000356)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'electrician') [0m
+  [4;35;1mState Load (0.000186)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'tx') [0m
+  [4;36;1mState Columns (0.014252)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.001389)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'dallas' and state_id = '34' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'dallas' and state_id = '34'[0m
+  [4;36;1mFeature Columns (0.009643)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.005899)[0m   [0mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 34 and fips_feat_id='1380944' and county_name_full is not null) [0m
+
+
+NoMethodError (You have a nil object when you didn't expect it!
+The error occurred while evaluating nil.state_id):
+    /app/helpers/permitme_helper.rb:233:in `prune_unincorporated_areas'
+    /app/helpers/permitme_helper.rb:232:in `each'
+    /app/helpers/permitme_helper.rb:232:in `prune_unincorporated_areas'
+    /app/helpers/permitme_helper.rb:203:in `process_rules'
+    /app/helpers/permitme_helper.rb:162:in `findAllCountySitesByFeatureAndState'
+    /app/helpers/permitme_helper.rb:25:in `get_all_permitme_sites'
+    /app/helpers/permitme_helper.rb:18:in `each'
+    /app/helpers/permitme_helper.rb:18:in `get_all_permitme_sites'
+    /app/controllers/permitme_controller.rb:51:in `permitme_by_state_and_feature'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `perform_action_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:580:in `call_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:573:in `perform_action_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.1.0/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.1.0/lib/active_record/query_cache.rb:8:in `cache'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `process_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:569:in `process_without_session_management_support'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/session_management.rb:130:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:389:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:76:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:74:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:159:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:282:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:128:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/command.rb:212:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:281
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:354:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/rails-2.1.0/lib/commands/servers/mongrel.rb:64
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:509:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:354:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:509:in `require'
+    /Library/Ruby/Gems/1.8/gems/rails-2.1.0/lib/commands/server.rb:39
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    ./script/server:3
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/lib/ruby-debug.rb:101:in `debug_load'
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/lib/ruby-debug.rb:101:in `debug_program'
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/bin/rdebug-ide:82
+    /usr/bin/rdebug-ide:19:in `load'
+    /usr/bin/rdebug-ide:19
+    -e:2:in `load'
+    -e:2
+
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-21 16:14:26) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"dallas", "format"=>"xml", "alpha"=>"tx", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"electrician"}
+  [4;36;1mPermitmeSubcategory Load (0.000356)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'electrician') [0m
+  [4;35;1mState Load (0.000234)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'tx') [0m
+  [4;36;1mState Columns (0.023129)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.000840)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'dallas' and state_id = '34' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'dallas' and state_id = '34'[0m
+  [4;36;1mFeature Columns (0.015419)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.000424)[0m   [0mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 34 and fips_feat_id='1380944' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000291)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 32311 and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000122)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 32312 and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000120)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 32313 and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000120)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 32314 and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000119)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 32315 and url is not null) [0m
+  [4;35;1mFeature Load (0.000369)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Collin County' and state_id=34) [0m
+  [4;36;1mSite Load (0.000392)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39185 and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000404)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Dallas County' and state_id=34) [0m
+  [4;36;1mSite Load (0.000143)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39199 and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000229)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Denton County' and state_id=34) [0m
+  [4;36;1mSite Load (0.000149)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39203 and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000230)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Kaufman County' and state_id=34) [0m
+  [4;36;1mSite Load (0.000140)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39271 and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000302)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Rockwall County' and state_id=34) [0m
+  [4;36;1mSite Load (0.000143)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39341 and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000320)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000307)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;35;1mSite Load (0.000619)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = '32312' and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeResourceGroup Load (0.001194)[0m   [0;1mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 34 and(s.isExclusive <=> 0 or s.isExclusive is null) and(s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;35;1mPermitmeSubcategory Columns (0.006321)[0m   [0mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;36;1mPermitmeResourceGroup Load (0.006138)[0m   [0;1mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 34 and url is not null and(s.id = 93) and(s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;35;1mPermitmeResourceGroup Columns (0.012925)[0m   [0mSHOW FIELDS FROM `permitme_resource_groups`[0m
+  [4;36;1mSite Columns (0.009936)[0m   [0;1mSHOW FIELDS FROM `sites`[0m
+Completed in 53.66375 (0 reqs/sec) | Rendering: 14.88000 (27%) | DB: 0.17738 (0%) | 200 OK [http://localhost/permitme/state_and_city/electrician/tx/dallas.xml]
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-21 16:23:26) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"georgetown", "format"=>"xml", "alpha"=>"id", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"electrician"}
+  [4;35;1mPermitmeSubcategory Load (0.000359)[0m   [0mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'electrician') [0m
+  [4;36;1mState Load (0.000215)[0m   [0;1mSELECT id as state_id FROM `states` WHERE (alpha = 'id') [0m
+  [4;35;1mState Columns (0.008939)[0m   [0mSHOW FIELDS FROM `states`[0m
+  [4;36;1mFeature Load (0.001930)[0m   [0;1mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'georgetown' and state_id = '33' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'georgetown' and state_id = '33'[0m
+  [4;35;1mFeature Columns (0.012537)[0m   [0mSHOW FIELDS FROM `features`[0m
+  [4;36;1mFeature Load (0.000406)[0m   [0;1mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 33 and fips_feat_id='397735' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000270)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 4295 and url is not null) [0m
+  [4;36;1mFeature Load (0.000192)[0m   [0;1mSELECT id, fips_class FROM `features` WHERE (feat_name='Bear Lake County' and state_id=33) [0m
+  [4;35;1mSite Load (0.000195)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 37198 and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.001109)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '4295' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000302)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '4295' and url is not null) [0m
+  [4;36;1mSite Load (0.000335)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = '4295' and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000443)[0m   [0mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 33 and fips_feat_id='397734' and county_name_full is not null) [0m
+
+
+NoMethodError (You have a nil object when you didn't expect it!
+You might have expected an instance of ActiveRecord::Base.
+The error occurred while evaluating nil.[]):
+    /app/helpers/permitme_helper.rb:244:in `prune_unincorporated_areas'
+    /app/helpers/permitme_helper.rb:243:in `each'
+    /app/helpers/permitme_helper.rb:243:in `prune_unincorporated_areas'
+    /app/helpers/permitme_helper.rb:242:in `each'
+    /app/helpers/permitme_helper.rb:242:in `prune_unincorporated_areas'
+    /app/helpers/permitme_helper.rb:203:in `process_rules'
+    /app/helpers/permitme_helper.rb:162:in `findAllCountySitesByFeatureAndState'
+    /app/helpers/permitme_helper.rb:25:in `get_all_permitme_sites'
+    /app/helpers/permitme_helper.rb:18:in `each'
+    /app/helpers/permitme_helper.rb:18:in `get_all_permitme_sites'
+    /app/controllers/permitme_controller.rb:51:in `permitme_by_state_and_feature'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `perform_action_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:580:in `call_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:573:in `perform_action_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.1.0/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.1.0/lib/active_record/query_cache.rb:8:in `cache'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `process_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:569:in `process_without_session_management_support'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/session_management.rb:130:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:389:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:76:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:74:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:159:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:282:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:128:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/command.rb:212:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:281
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:354:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/rails-2.1.0/lib/commands/servers/mongrel.rb:64
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:509:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:354:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:509:in `require'
+    /Library/Ruby/Gems/1.8/gems/rails-2.1.0/lib/commands/server.rb:39
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    ./script/server:3
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/lib/ruby-debug.rb:101:in `debug_load'
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/lib/ruby-debug.rb:101:in `debug_program'
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/bin/rdebug-ide:82
+    /usr/bin/rdebug-ide:19:in `load'
+    /usr/bin/rdebug-ide:19
+    -e:2:in `load'
+    -e:2
+
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-21 16:25:41) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"georgetown", "format"=>"xml", "alpha"=>"id", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"electrician"}
+  [4;36;1mPermitmeSubcategory Load (0.000352)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'electrician') [0m
+  [4;35;1mState Load (0.000180)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'id') [0m
+  [4;36;1mState Columns (0.008420)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.001633)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'georgetown' and state_id = '33' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'georgetown' and state_id = '33'[0m
+  [4;36;1mFeature Columns (0.010552)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.000414)[0m   [0mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 33 and fips_feat_id='397735' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000274)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 4295 and url is not null) [0m
+  [4;35;1mFeature Load (0.000211)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Bear Lake County' and state_id=33) [0m
+  [4;36;1mSite Load (0.000228)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 37198 and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000327)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '4295' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.006568)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '4295' and url is not null) [0m
+  [4;35;1mSite Load (0.000320)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = '4295' and is_primary = 1 and url is not null) [0m
+  [4;36;1mFeature Load (0.000397)[0m   [0;1mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 33 and fips_feat_id='397734' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSubcategory Columns (0.012922)[0m   [0mSHOW FIELDS FROM `permitme_subcategories`[0m
+
+
+TypeError (can't convert String into Integer):
+    /app/helpers/permitme_helper.rb:244:in `[]'
+    /app/helpers/permitme_helper.rb:244:in `prune_unincorporated_areas'
+    /app/helpers/permitme_helper.rb:243:in `each'
+    /app/helpers/permitme_helper.rb:243:in `prune_unincorporated_areas'
+    /app/helpers/permitme_helper.rb:242:in `each'
+    /app/helpers/permitme_helper.rb:242:in `prune_unincorporated_areas'
+    /app/helpers/permitme_helper.rb:203:in `process_rules'
+    /app/helpers/permitme_helper.rb:162:in `findAllCountySitesByFeatureAndState'
+    /app/helpers/permitme_helper.rb:25:in `get_all_permitme_sites'
+    /app/helpers/permitme_helper.rb:18:in `each'
+    /app/helpers/permitme_helper.rb:18:in `get_all_permitme_sites'
+    /app/controllers/permitme_controller.rb:51:in `permitme_by_state_and_feature'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `perform_action_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:580:in `call_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:573:in `perform_action_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.1.0/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.1.0/lib/active_record/query_cache.rb:8:in `cache'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `process_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:569:in `process_without_session_management_support'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/session_management.rb:130:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:389:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:76:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:74:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:159:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:282:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:128:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/command.rb:212:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:281
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:354:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/rails-2.1.0/lib/commands/servers/mongrel.rb:64
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:509:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:354:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:509:in `require'
+    /Library/Ruby/Gems/1.8/gems/rails-2.1.0/lib/commands/server.rb:39
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    ./script/server:3
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/lib/ruby-debug.rb:101:in `debug_load'
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/lib/ruby-debug.rb:101:in `debug_program'
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/bin/rdebug-ide:82
+    /usr/bin/rdebug-ide:19:in `load'
+    /usr/bin/rdebug-ide:19
+    -e:2:in `load'
+    -e:2
+
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing Base#index (for 127.0.0.1 at 2009-05-21 16:28:01) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {}
+
+
+SyntaxError (/Users/songchoe/projects/rubyprojects/finalTemp/bgwebservices/app/helpers/permitme_helper.rb:244: syntax error, unexpected tIDENTIFIER
+...owncase.eql?fips_compare_array[j]  #put downcase as this_arr...
+                              ^
+/Users/songchoe/projects/rubyprojects/finalTemp/bgwebservices/app/helpers/permitme_helper.rb:325: syntax error, unexpected kEND, expecting $end):
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:215:in `load_without_new_constant_marking'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:215:in `load_file'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:354:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:214:in `load_file'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:95:in `require_or_load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:60:in `depend_on'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:456:in `require_dependency'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/helpers.rb:122:in `helper'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/helpers.rb:111:in `each'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/helpers.rb:111:in `helper'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/helpers.rb:116:in `helper'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/helpers.rb:111:in `each'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/helpers.rb:111:in `helper'
+    /app/controllers/application.rb:5
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:215:in `load_without_new_constant_marking'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:215:in `load_file'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:354:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:214:in `load_file'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:95:in `require_or_load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:60:in `depend_on'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:456:in `require_dependency'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:18:in `define_dispatcher_callbacks'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:177:in `call'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:177:in `evaluate_method'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:161:in `call'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:90:in `run'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:90:in `each'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:90:in `send'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:90:in `run'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:272:in `run_callbacks'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:128:in `reload_application'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:173:in `send'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:173:in `evaluate_method'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:161:in `call'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:90:in `run'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:90:in `each'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:90:in `send'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:90:in `run'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:272:in `run_callbacks'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:106:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:76:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:74:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:159:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:282:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:128:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/command.rb:212:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:281
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:354:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/rails-2.1.0/lib/commands/servers/mongrel.rb:64
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:509:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:354:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:509:in `require'
+    /Library/Ruby/Gems/1.8/gems/rails-2.1.0/lib/commands/server.rb:39
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    ./script/server:3
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/lib/ruby-debug.rb:101:in `debug_load'
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/lib/ruby-debug.rb:101:in `debug_program'
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/bin/rdebug-ide:82
+    /usr/bin/rdebug-ide:19:in `load'
+    /usr/bin/rdebug-ide:19
+    -e:2:in `load'
+    -e:2
+
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing Base#index (for 127.0.0.1 at 2009-05-21 16:28:04) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {}
+
+
+SyntaxError (/Users/songchoe/projects/rubyprojects/finalTemp/bgwebservices/app/helpers/permitme_helper.rb:244: syntax error, unexpected tIDENTIFIER
+...owncase.eql?fips_compare_array[j]  #put downcase as this_arr...
+                              ^
+/Users/songchoe/projects/rubyprojects/finalTemp/bgwebservices/app/helpers/permitme_helper.rb:325: syntax error, unexpected kEND, expecting $end):
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:215:in `load_without_new_constant_marking'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:215:in `load_file'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:354:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:214:in `load_file'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:95:in `require_or_load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:60:in `depend_on'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:456:in `require_dependency'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/helpers.rb:122:in `helper'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/helpers.rb:111:in `each'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/helpers.rb:111:in `helper'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/helpers.rb:116:in `helper'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/helpers.rb:111:in `each'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/helpers.rb:111:in `helper'
+    /app/controllers/application.rb:5
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:215:in `load_without_new_constant_marking'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:215:in `load_file'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:354:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:214:in `load_file'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:95:in `require_or_load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:60:in `depend_on'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:456:in `require_dependency'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:18:in `define_dispatcher_callbacks'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:177:in `call'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:177:in `evaluate_method'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:161:in `call'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:90:in `run'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:90:in `each'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:90:in `send'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:90:in `run'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:272:in `run_callbacks'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:128:in `reload_application'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:173:in `send'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:173:in `evaluate_method'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:161:in `call'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:90:in `run'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:90:in `each'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:90:in `send'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:90:in `run'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/callbacks.rb:272:in `run_callbacks'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:106:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:76:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:74:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:159:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:282:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:128:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/command.rb:212:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:281
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:354:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/rails-2.1.0/lib/commands/servers/mongrel.rb:64
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:509:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:354:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:509:in `require'
+    /Library/Ruby/Gems/1.8/gems/rails-2.1.0/lib/commands/server.rb:39
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    ./script/server:3
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/lib/ruby-debug.rb:101:in `debug_load'
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/lib/ruby-debug.rb:101:in `debug_program'
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/bin/rdebug-ide:82
+    /usr/bin/rdebug-ide:19:in `load'
+    /usr/bin/rdebug-ide:19
+    -e:2:in `load'
+    -e:2
+
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-21 16:29:28) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"georgetown", "format"=>"xml", "alpha"=>"id", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"electrician"}
+  [4;36;1mPermitmeSubcategory Load (0.000355)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'electrician') [0m
+  [4;35;1mState Load (0.000187)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'id') [0m
+  [4;36;1mState Columns (0.023176)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mPermitmeSubcategory Columns (0.018543)[0m   [0mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;36;1mFeature Load (0.001390)[0m   [0;1mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'georgetown' and state_id = '33' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'georgetown' and state_id = '33'[0m
+  [4;35;1mFeature Columns (0.019992)[0m   [0mSHOW FIELDS FROM `features`[0m
+  [4;36;1mFeature Load (0.000399)[0m   [0;1mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 33 and fips_feat_id='397735' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000366)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 4295 and url is not null) [0m
+  [4;36;1mFeature Load (0.000256)[0m   [0;1mSELECT id, fips_class FROM `features` WHERE (feat_name='Bear Lake County' and state_id=33) [0m
+  [4;35;1mSite Load (0.000213)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 37198 and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000312)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '4295' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000415)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '4295' and url is not null) [0m
+  [4;36;1mSite Load (0.000347)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = '4295' and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000396)[0m   [0mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 33 and fips_feat_id='397734' and county_name_full is not null) [0m
+
+
+TypeError (can't convert String into Integer):
+    /app/helpers/permitme_helper.rb:314:in `[]'
+    /app/helpers/permitme_helper.rb:314:in `prune_h4_h6_counties'
+    /app/helpers/permitme_helper.rb:313:in `each'
+    /app/helpers/permitme_helper.rb:313:in `prune_h4_h6_counties'
+    /app/helpers/permitme_helper.rb:205:in `process_rules'
+    /app/helpers/permitme_helper.rb:162:in `findAllCountySitesByFeatureAndState'
+    /app/helpers/permitme_helper.rb:25:in `get_all_permitme_sites'
+    /app/helpers/permitme_helper.rb:18:in `each'
+    /app/helpers/permitme_helper.rb:18:in `get_all_permitme_sites'
+    /app/controllers/permitme_controller.rb:51:in `permitme_by_state_and_feature'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:1162:in `perform_action_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:580:in `call_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:573:in `perform_action_without_benchmark'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/benchmarking.rb:68:in `perform_action_without_rescue'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/rescue.rb:201:in `perform_action_without_caching'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:13:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.1.0/lib/active_record/connection_adapters/abstract/query_cache.rb:33:in `cache'
+    /Library/Ruby/Gems/1.8/gems/activerecord-2.1.0/lib/active_record/query_cache.rb:8:in `cache'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/caching/sql_cache.rb:12:in `perform_action'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `send'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:529:in `process_without_filters'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/filters.rb:569:in `process_without_session_management_support'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/session_management.rb:130:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/base.rb:389:in `process'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:149:in `handle_request'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:107:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `synchronize'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:104:in `dispatch'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:120:in `dispatch_cgi'
+    /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/dispatcher.rb:35:in `dispatch'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:76:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:74:in `synchronize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/../lib/mongrel/rails.rb:74:in `process'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:159:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:158:in `process_client'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:285:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `initialize'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `new'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel.rb:268:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:282:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `each'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/configurator.rb:281:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:128:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/lib/mongrel/command.rb:212:in `run'
+    /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/gems/1.8/gems/mongrel-1.1.4/bin/mongrel_rails:281
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:354:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:502:in `load'
+    /Library/Ruby/Gems/1.8/gems/rails-2.1.0/lib/commands/servers/mongrel.rb:64
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:509:in `require'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:354:in `new_constants_in'
+    /Library/Ruby/Gems/1.8/gems/activesupport-2.1.0/lib/active_support/dependencies.rb:509:in `require'
+    /Library/Ruby/Gems/1.8/gems/rails-2.1.0/lib/commands/server.rb:39
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Library/Ruby/Site/1.8/rubygems/custom_require.rb:31:in `require'
+    ./script/server:3
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/lib/ruby-debug.rb:101:in `debug_load'
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/lib/ruby-debug.rb:101:in `debug_program'
+    /Library/Ruby/Gems/1.8/gems/ruby-debug-ide-0.4.5/bin/rdebug-ide:82
+    /usr/bin/rdebug-ide:19:in `load'
+    /usr/bin/rdebug-ide:19
+    -e:2:in `load'
+    -e:2
+
+Rendering /Library/Ruby/Gems/1.8/gems/actionpack-2.1.0/lib/action_controller/templates/rescues/layout.erb (internal_server_error)
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-21 16:33:28) [GET]
+  Session ID: BAh7BiIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxlcjo6Rmxhc2g6OkZsYXNo
+SGFzaHsABjoKQHVzZWR7AA==--f906297a167d37fb889c0f578a253670d3966e0e
+  Parameters: {"feature"=>"georgetown", "format"=>"xml", "alpha"=>"id", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"electrician"}
+  [4;36;1mPermitmeSubcategory Load (0.000357)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'electrician') [0m
+  [4;35;1mState Load (0.000183)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'id') [0m
+  [4;36;1mState Columns (0.031878)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mPermitmeSubcategory Columns (0.029446)[0m   [0mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;36;1mFeature Load (0.001245)[0m   [0;1mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'georgetown' and state_id = '33' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'georgetown' and state_id = '33'[0m
+  [4;35;1mFeature Columns (0.027207)[0m   [0mSHOW FIELDS FROM `features`[0m
+  [4;36;1mFeature Load (0.000395)[0m   [0;1mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 33 and fips_feat_id='397735' and county_name_full is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000267)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 4295 and url is not null) [0m
+  [4;36;1mFeature Load (0.000233)[0m   [0;1mSELECT id, fips_class FROM `features` WHERE (feat_name='Bear Lake County' and state_id=33) [0m
+  [4;35;1mSite Load (0.000279)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 37198 and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.001465)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '4295' and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000328)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '4295' and url is not null) [0m
+  [4;36;1mSite Load (0.000316)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = '4295' and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000409)[0m   [0mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 33 and fips_feat_id='397734' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000463)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = NULL and url is not null) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Bear Lake County' and state_id=33) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 37198 and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000339)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '61760' and url is not null) [0m
+  [4;36;1mSite Columns (0.007019)[0m   [0;1mSHOW FIELDS FROM `sites`[0m
+  [4;35;1mPermitmeSite Load (0.000462)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '61760' and url is not null) [0m
+  [4;36;1mSite Load (0.001799)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = '61760' and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeResourceGroup Load (0.001187)[0m   [0mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 33 and(s.isExclusive <=> 0 or s.isExclusive is null) and(s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;36;1mPermitmeResourceGroup Load (0.000477)[0m   [0;1mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 33 and url is not null and(s.id = 93) and(s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;35;1mPermitmeResourceGroup Columns (0.008426)[0m   [0mSHOW FIELDS FROM `permitme_resource_groups`[0m
+Completed in 281.63013 (0 reqs/sec) | Rendering: 27.66988 (9%) | DB: 0.25056 (0%) | 200 OK [http://localhost/permitme/state_and_city/electrician/id/georgetown.xml]
+
+
+Processing PermitmeController#permitme_by_state_and_feature (for 127.0.0.1 at 2009-05-22 09:57:07) [GET]
+  Session ID: 1b16d8c32613b1657402e7c19f3c493b
+  Parameters: {"feature"=>"dallas", "format"=>"xml", "alpha"=>"tx", "action"=>"permitme_by_state_and_feature", "controller"=>"permitme", "business_type"=>"electrician"}
+  [4;36;1mSQL (0.000339)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.000118)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mPermitmeSubcategory Load (0.000575)[0m   [0;1mSELECT id FROM `permitme_subcategories` WHERE (isExclusive=1 and isActive=1 and name = 'electrician') [0m
+  [4;35;1mState Load (0.000285)[0m   [0mSELECT id as state_id FROM `states` WHERE (alpha = 'tx') [0m
+  [4;36;1mState Columns (0.008520)[0m   [0;1mSHOW FIELDS FROM `states`[0m
+  [4;35;1mFeature Load (0.001055)[0m   [0mselect id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = 'dallas' and state_id = '34' union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names where feature_id = features.id and county_seq = 1 and name = 'dallas' and state_id = '34'[0m
+  [4;36;1mFeature Columns (0.008070)[0m   [0;1mSHOW FIELDS FROM `features`[0m
+  [4;35;1mFeature Load (0.004512)[0m   [0mSELECT id, state_id, county_name_full, fips_class FROM `features` WHERE (state_id = 34 and fips_feat_id='1380944' and county_name_full is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000220)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 32311 and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000169)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 32312 and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000161)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 32313 and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000157)[0m   [0mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 32314 and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000157)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = 32315 and url is not null) [0m
+  [4;35;1mFeature Load (0.000215)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Collin County' and state_id=34) [0m
+  [4;36;1mSite Load (0.000257)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39185 and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000250)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Dallas County' and state_id=34) [0m
+  [4;36;1mSite Load (0.000192)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39199 and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000203)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Denton County' and state_id=34) [0m
+  [4;36;1mSite Load (0.000185)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39203 and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000201)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Kaufman County' and state_id=34) [0m
+  [4;36;1mSite Load (0.000190)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39271 and is_primary = 1 and url is not null) [0m
+  [4;35;1mFeature Load (0.000224)[0m   [0mSELECT id, fips_class FROM `features` WHERE (feat_name='Rockwall County' and state_id=34) [0m
+  [4;36;1mSite Load (0.000193)[0m   [0;1mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = 39341 and is_primary = 1 and url is not null) [0m
+  [4;35;1mPermitmeSite Load (0.000222)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT id,description, url,name, feature_id FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;36;1mPermitmeSite Load (0.000164)[0m   [0;1mSELECT url,name FROM `permitme_sites` WHERE (feature_id = '32312' and url is not null) [0m
+  [4;35;1mSite Load (0.000186)[0m   [0mSELECT url,name, name as link_title FROM `sites` WHERE (feature_id = '32312' and is_primary = 1 and url is not null) [0m
+  [4;36;1mPermitmeResourceGroup Load (0.001338)[0m   [0;1mselect s.name as subcategory,rg.description, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 34 and(s.isExclusive <=> 0 or s.isExclusive is null) and(s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;35;1mPermitmeSubcategory Columns (0.006230)[0m   [0mSHOW FIELDS FROM `permitme_subcategories`[0m
+  [4;36;1mPermitmeResourceGroup Load (0.004260)[0m   [0;1mselect s.name as subcategory, p.url, p.link_title from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id left join permitme_categories c on rg.permitme_category_id <=> c.id join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id left join permitme_sections sec on rg.permitme_section_id <=> sec.id where state_id= 34 and url is not null and(s.id = 93) and(s.isActive = 1 or s.isActive is null) order by permitme_category_id, permitme_subcategory_id, permitme_section_id[0m
+  [4;35;1mPermitmeResourceGroup Columns (0.006014)[0m   [0mSHOW FIELDS FROM `permitme_resource_groups`[0m
+  [4;36;1mSite Columns (0.008936)[0m   [0;1mSHOW FIELDS FROM `sites`[0m
+Completed in 0.14292 (6 reqs/sec) | Rendering: 0.01296 (9%) | DB: 0.05380 (37%) | 200 OK [http://localhost/permitme/state_and_city/electrician/tx/dallas.xml]
