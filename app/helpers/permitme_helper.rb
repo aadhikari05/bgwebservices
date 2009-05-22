@@ -32,7 +32,7 @@ module PermitmeHelper
                 end
             end
           
-            @this_result = get_state_business_type_permitme_sites(@this_result, state_and_feature_array[ss]["state_id"], business_type_id)
+            @this_result = get_state_business_type_permitme_sites(@this_result, state_and_feature_array[0]["state_id"], business_type_id)
 
             @this_result
         end
