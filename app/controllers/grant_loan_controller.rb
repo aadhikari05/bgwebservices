@@ -1,21 +1,22 @@
 class GrantLoanController < ApplicationController
   
-  before_filter :login_required
-  
-  layout "admin"
-  active_scaffold :grant_loan do |config|
- 
-    config.columns = [:agency, :url, :title, :description, :loan_type, :gov_type, :states, :business_type, :industries, :is_general_purpose, :is_development, :is_exporting, :is_contractor, :is_green, :is_military, :is_minority, :is_woman, :is_disabled, :is_rural, :is_disaster]
- 
-    config.list.columns = [:agency, :gov_type, :title, :url]
-
-    config.columns.exclude  :state_name, :state_id
-
-    config.label = 'Grants and Loans'
-
-    columns[:states].form_ui = :select    
-
-    columns[:industries].form_ui = :select 
+  #grant_loan/:state_alpha/:business_type/:industry/:business_task
+  def show_all
+      state_alpha = params[:state_alpha]
+      business_type = params[:business_type]
+      industry = params[:industry]
+      business_task = params[:business_task]
+      
+      respond_to_format(get_grant_loan())
   end
+  
+  def respond_to_format(resultArray)
+      respond_to do |format|
+ 		      format.html { render :text => resultArray.to_json }
+          format.xml {render :xml => resultArray}
+          format.json {render :json => resultArray}
+      end
+  end
+  
 end
 
