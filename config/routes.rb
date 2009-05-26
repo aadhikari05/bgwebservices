@@ -54,5 +54,5 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'permitme/state_and_city/:business_type/:alpha/:feature.:format', :controller => "permitme", :action => "permitme_by_state_and_feature"
 
   #GRANT_LOAN ROUTES
-  map.connect 'grant_loan/:state_alpha/:business_type/:industry/:business_task', :controller => "grant_loan", :action => "show_all"
+  map.connect 'grant_loan/:state_alpha/:business_type/:industry/:business_task.:format', :controller => "grant_loan", :action => "show_all"
 end
