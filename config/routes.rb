@@ -1,7 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
 
-#  map.resources :rec_sites
-
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
@@ -39,7 +37,6 @@ ActionController::Routing::Routes.draw do |map|
   # See how all your routes lay out with "rake routes"
 
   # Install the default routes as the lowest priority.
-  # map.connect 'rec_site/edit/:id', :controller => "albums", :action => "edit"  
   map.connect 'rec_sites/keywords/', :controller => "rec_sites", :action => "keywords"
   map.connect 'rec_sites/keywords/:keyword', :controller => "rec_sites", :action => "keywords"
   map.connect 'rec_sites/show/:keyword', :controller => "rec_sites", :action => "show"
@@ -55,4 +52,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'permitme/by_zip/:business_type/:zip.:format', :controller => "permitme", :action => "permitme_by_zip"
   map.connect 'permitme/state_only/:business_type/:alpha.:format', :controller => "permitme", :action => "permitme_by_state_only"
   map.connect 'permitme/state_and_city/:business_type/:alpha/:feature.:format', :controller => "permitme", :action => "permitme_by_state_and_feature"
+
+  #GRANT_LOAN ROUTES
+  map.connect 'grant_loan/:state_alpha/:business_type/:industry/:business_task', :controller => "grant_loan", :action => "show_all"
 end
