@@ -7,7 +7,7 @@ class GrantLoanController < ApplicationController
       industry = params[:industry]
       business_task = params[:business_task]
       
-      respond_to_format(GrantLoanHelper.get_grant_loans)
+      respond_to_format(GrantLoanHelper.get_grant_loans(state_alpha))
   end
   
   def respond_to_format(resultArray)
