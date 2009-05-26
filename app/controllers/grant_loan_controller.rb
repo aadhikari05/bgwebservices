@@ -9,7 +9,7 @@ class GrantLoanController < ApplicationController
       
       state_id = GrantLoanHelper.getStateIDFromStateAlpha(params[:state_alpha])
       
-      respond_to_format(GrantLoanHelper.get_grant_loans(state_alpha))
+      respond_to_format(GrantLoanHelper.get_grants_and_loans(state_id))
   end
   
   def respond_to_format(resultArray)
