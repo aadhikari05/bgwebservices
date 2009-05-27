@@ -8,12 +8,30 @@ module GrantLoanHelper
 #        type_array = ["general_purpose","development","exporting","contractor","green","military","minority","woman","disabled","rural","disaster"]
         type_array = business_task.split("-")
         result_array = Array.new
+        this_result = GrantLoanResult.new
         
         type_array.each do |type_name|
             result_array << GrantLoanHelper.get_is_type_results(business_type, type_name)
         end
         
          result_array << GrantLoanHelper.get_industry_results (business_type, industry)
+         
+         for i in 0...result_array.length
+           this_result.tax_results << result_array[i]
+            #Check whether each grant_loan is federal (state is empty) or for the state requested
+#            if result_array[i]["state_name"].empty? or result_array[i]["state_name"].eql?(state_name)
+#                if result_array[i]["loan_type"].eql?("Venture Capital")
+#                    this_result.venture_results << result_array[i]
+#                elsif result_array[i]["loan_type"].eql?("grant")
+#                    this_result.grant_results << result_array[i]
+#                elsif result_array[i]["loan_type"].eql?("Tax Incentive")
+#                    this_result.tax_results << result_array[i]
+#                else
+#                    this_result.loan_results << result_array[i]
+#                end
+#            end
+        end
+        
         return result_array
     end
     
