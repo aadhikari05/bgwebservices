@@ -19,7 +19,6 @@ module GrantLoanHelper
         end
         
         return result_array
-#        GrantLoan.find(:all, :select => "agency, title, description, url", :conditions => ["state_id = ?", state_id])
     end
     
     def GrantLoanHelper.get_is_type_results (business_type, is_type)
