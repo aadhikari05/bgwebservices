@@ -9,8 +9,14 @@ module GrantLoanHelper
     
     def GrantLoanHelper.get_grants_and_loans (state_alpha, business_type, industry, business_task)
         state_id = GrantLoanHelper.getStateIDFromStateAlpha(state_alpha)
-      
-        GrantLoan.find(:all, :select => "agency, title, description, url", :conditions => ["state_id = ?", state_id])
+        
+        #Get results individually based on the parameters and then add to the results
+        GrantLoanHelper.get_general_purpose_results (business_type)
+#        GrantLoan.find(:all, :select => "agency, title, description, url", :conditions => ["state_id = ?", state_id])
+    end
+    
+    def GrantLoanHelper.get_general_purpose_results (business_type)
+        GrantLoan.find(:all, :select => "title, description, url,loan_type, state_name, agency,gov_type", :conditions => ["business_type like ? and is_general_purpose=1", '%'+business_type+'%'])
     end
     
     def GrantLoanHelper.getStateIDFromStateAlpha(state_alpha)
