@@ -11,12 +11,16 @@ module GrantLoanHelper
         state_id = GrantLoanHelper.getStateIDFromStateAlpha(state_alpha)
         
         #Get results individually based on the parameters and then add to the results
-        GrantLoanHelper.get_general_purpose_results (business_type)
+        type_array = ["general_purpose","development","exporting","contractor","green","military","minority","woman","disabled","rural","disaster"]
+        #"select title, description, url,loan_type, state_name, agency, gov_type from grant_loans g, grant_loans_industry gli where " +
+        						" business_type like '%"+q1+"%' and g.id= any (select gli.grant_loans_id from grant_loans_industry gli, industries i " +
+        						" where gli.industry_id=i.id and i.name='"+q5+"') and gli.grant_loans_id=g.id"
+        GrantLoanHelper.get_general_purpose_results (business_type, "general_purpose")
 #        GrantLoan.find(:all, :select => "agency, title, description, url", :conditions => ["state_id = ?", state_id])
     end
     
-    def GrantLoanHelper.get_general_purpose_results (business_type)
-        GrantLoan.find(:all, :select => "title, description, url,loan_type, state_name, agency,gov_type", :conditions => ["business_type like ? and is_general_purpose=1", '%'+business_type+'%'])
+    def GrantLoanHelper.get_general_purpose_results (business_type, is_type)
+        GrantLoan.find(:all, :select => "title, description, url,loan_type, state_name, agency,gov_type", :conditions => ["business_type like ? and is_"+is_type+"=1", '%'+business_type+'%'])
     end
     
     def GrantLoanHelper.getStateIDFromStateAlpha(state_alpha)
