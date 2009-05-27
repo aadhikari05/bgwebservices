@@ -12,12 +12,17 @@ module GrantLoanHelper
         
         #Get results individually based on the parameters and then add to the results
         type_array = ["general_purpose","development","exporting","contractor","green","military","minority","woman","disabled","rural","disaster"]
-
-        GrantLoanHelper.get_general_purpose_results (business_type, "general_purpose")
+        result_array = Array.new
+        
+        type_array.each do |type_name|
+            result_array << GrantLoanHelper.get_is_type_results(business_type, type_name)
+        end
+        
+        return result_array
 #        GrantLoan.find(:all, :select => "agency, title, description, url", :conditions => ["state_id = ?", state_id])
     end
     
-    def GrantLoanHelper.get_general_purpose_results (business_type, is_type)
+    def GrantLoanHelper.get_is_type_results (business_type, is_type)
         GrantLoan.find(:all, :select => "title, description, url,loan_type, state_name, agency,gov_type", :conditions => ["business_type like ? and is_"+is_type+"=1", '%'+business_type+'%'])
     end
     
