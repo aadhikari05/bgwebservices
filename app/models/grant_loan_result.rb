@@ -20,46 +20,46 @@ class GrantLoanResult
     @tax_results.sort! {|a,b| a.title <=> b.title }
     
     xml.result do
-        xml.grant_results do |site|
+        xml.grant_results do |grant|
             for current_site in 0...@grant_results.length
-              xml.site do
-                site.title(@grant_results[current_site][0]["agency"])
-                site.title(@grant_results[current_site][0]["title"])
-                site.description(@grant_results[current_site][0]["description"])
-                site.url(@grant_results[current_site][0]["url"])
+              xml.grant do
+                grant.agency(@grant_results[current_site]["agency"])
+                grant.title(@grant_results[current_site]["title"])
+                grant.description(@grant_results[current_site]["description"])
+                grant.url(@grant_results[current_site]["url"])
               end
             end
         end
         
-        xml.loan_results do |site|
+        xml.loan_results do |loan|
             for current_site in 0...@loan_results.length
-              xml.site do
-                site.title(@loan_results[current_site]["agency"])
-                site.title(@loan_results[current_site]["title"])
-                site.description(@loan_results[current_site]["description"])
-                site.url(@loan_results[current_site]["url"])
+              xml.loan do
+                loan.agency(@loan_results[current_site]["agency"])
+                loan.title(@loan_results[current_site]["title"])
+                loan.description(@loan_results[current_site]["description"])
+                loan.url(@loan_results[current_site]["url"])
               end
             end
         end
         
-        xml.venture_results do |site|
+        xml.venture_capital_results do |venture_capital|
             for current_site in 0...@venture_results.length
-              xml.site do
-                site.title(@venture_results[current_site]["agency"])
-                site.title(@venture_results[current_site]["title"])
-                site.description(@venture_results[current_site]["description"])
-                site.url(@venture_results[current_site]["url"])
+              xml.venture_capital do
+                venture_capital.agency(@venture_results[current_site]["agency"])
+                venture_capital.title(@venture_results[current_site]["title"])
+                venture_capital.description(@venture_results[current_site]["description"])
+                venture_capital.url(@venture_results[current_site]["url"])
               end
             end
         end
         
-        xml.tax_results do |site|
+        xml.tax_incentive_results do |tax_incentive|
             for current_site in 0...@tax_results.length
-              xml.site do
-                site.title(@tax_results[current_site]["agency"])
-                site.title(@tax_results[current_site]["title"])
-                site.description(@tax_results[current_site]["description"])
-                site.url(@tax_results[current_site]["url"])
+              xml.tax_incentive do
+                tax_incentive.agency(@tax_results[current_site]["agency"])
+                tax_incentive.title(@tax_results[current_site]["title"])
+                tax_incentive.description(@tax_results[current_site]["description"])
+                tax_incentive.url(@tax_results[current_site]["url"])
               end
             end
         end

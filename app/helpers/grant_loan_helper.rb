@@ -12,27 +12,30 @@ module GrantLoanHelper
         
         type_array.each do |type_name|
             result_array << GrantLoanHelper.get_is_type_results(business_type, type_name)
+#            result_array = GrantLoan.find(:all, :select => "title, description, url,loan_type, state_name, agency,gov_type", :conditions => ["business_type like ? and is_"+type_name+"=1", '%'+business_type+'%'])
         end
         
-         result_array << GrantLoanHelper.get_industry_results (business_type, industry)
-         
-         for i in 0...result_array.length
-           this_result.tax_results << result_array[i]
-            #Check whether each grant_loan is federal (state is empty) or for the state requested
-#            if result_array[i]["state_name"].empty? or result_array[i]["state_name"].eql?(state_name)
-#                if result_array[i]["loan_type"].eql?("Venture Capital")
-#                    this_result.venture_results << result_array[i]
-#                elsif result_array[i]["loan_type"].eql?("grant")
-#                    this_result.grant_results << result_array[i]
-#                elsif result_array[i]["loan_type"].eql?("Tax Incentive")
-#                    this_result.tax_results << result_array[i]
-#                else
-#                    this_result.loan_results << result_array[i]
-#                end
-#            end
-        end
-        
-        return result_array
+        result_array << GrantLoanHelper.get_industry_results (business_type, industry)
+
+                    result_array.collect do |result|
+                      for j in 0...result.length
+                         #Check whether each grant_loan is federal (state is empty) or for the state requested
+                         if result[j]["state_name"].empty? or result[j]["state_name"].eql?(state_name)
+                             if result[j]["loan_type"].eql?("Venture Capital")
+                                 this_result.venture_results << result[j]
+                             elsif result[j]["loan_type"].eql?("grant")
+                                 this_result.grant_results << result[j]
+                             elsif result[j]["loan_type"].eql?("Tax Incentive")
+                                 this_result.tax_results << result[j]
+                             else
+                                 this_result.loan_results << result[j]
+                             end
+                         end
+                      end
+                    end
+
+
+        return this_result
     end
     
     def GrantLoanHelper.get_is_type_results (business_type, is_type)
