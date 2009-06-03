@@ -60,34 +60,33 @@ class RecSitesController < ApplicationController
     respond_to_format(@this_result)
   end
   
-  def notFound
-    @queryResults={"NotFound"=>"No Results"}
-  end
+  #def notFound
+   # @queryResults={"NotFound"=>"No Results"}
+  #end
 #end
 
 
   	 #http://localhost:3000/rec_sites/states/nevada
        def states
+         @this_result = Result.new
+         
            @recType='states'
             queryResults = StateRecommendedSite.find(:all, :include => :state, :conditions => ['states.name = ?', "#{params[:name]}"])
-            if queryResults.blank?
-             @doc = RecommendedSiteXML.getRecommendedSiteNotFoundXML(@recType)
-            else
-             @doc = RecommendedSiteXML.getRecommendedSiteXML(queryResults, @recType)
-            end
-            render :xml => @doc
+            
+             @this_result.rec_sites=queryResults
+             respond_to_format(@this_result)
+           # render :xml => @doc
         end
 
      	 #http://localhost:3000/rec_sites/states
       def all_states
            @recType='states'
+           @this_result = Result.new
+           
            queryResults = StateRecommendedSite.find(:all)
-           if queryResults.blank?
-              @doc = RecommendedSiteXML.getRecommendedSiteNotFoundXML(@recType)
-           else
-                @doc = RecommendedSiteXML.getRecommendedSiteXML(queryResults, @recType)
-           end
-          render :xml => @doc
+           
+             @this_result.rec_sites=queryResults
+             respond_to_format(@this_result)
       end
 
 end
