@@ -7,12 +7,12 @@ class RecSitesController < ApplicationController
   
   def respond_to_format(resultArray)
     respond_to do |format|
-              format.html { render :text =>  resultArray.to_recSitejson }
-              format.xml {render :xml => resultArray.to_recSitexml}
-              format.json {render :json => resultArray.to_recSitejson}
+      format.html { render :text =>  resultArray.to_recSitejson }
+      format.xml {render :xml => resultArray.to_recSitexml}
+      format.json {render :json => resultArray.to_recSitejson}
     end
   end
-      
+  
   def keywords
     @recType='keywords'
     keywords = params[:keyword]
@@ -61,32 +61,32 @@ class RecSitesController < ApplicationController
   end
   
   #def notFound
-   # @queryResults={"NotFound"=>"No Results"}
+  # @queryResults={"NotFound"=>"No Results"}
   #end
-#end
-
-
-  	 #http://localhost:3000/rec_sites/states/nevada
-       def states
-         @this_result = Result.new
-         
-           @recType='states'
-            queryResults = StateRecommendedSite.find(:all, :include => :state, :conditions => ['states.name = ?', "#{params[:name]}"])
-            
-             @this_result.rec_sites=queryResults
-             respond_to_format(@this_result)
-           # render :xml => @doc
-        end
-
-     	 #http://localhost:3000/rec_sites/states
-      def all_states
-           @recType='states'
-           @this_result = Result.new
-           
-           queryResults = StateRecommendedSite.find(:all)
-           
-             @this_result.rec_sites=queryResults
-             respond_to_format(@this_result)
-      end
-
+  #end
+  
+  
+  #http://localhost:3000/rec_sites/states/nevada
+  def states
+    @this_result = Result.new
+    
+    @recType='states'
+    queryResults = StateRecommendedSite.find(:all, :include => :state, :conditions => ['states.name = ?', "#{params[:name]}"])
+    
+    @this_result.rec_sites=queryResults
+    respond_to_format(@this_result)
+    # render :xml => @doc
+  end
+  
+  #http://localhost:3000/rec_sites/states
+  def all_states
+    @recType='states'
+    @this_result = Result.new
+    
+    queryResults = StateRecommendedSite.find(:all)
+    
+    @this_result.rec_sites=queryResults
+    respond_to_format(@this_result)
+  end
+  
 end
