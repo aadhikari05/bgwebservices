@@ -1,7 +1,7 @@
 class Result
   
   #using attr_accessor both reader and writer is using the same attributes. schoe 5/20/09
-  attr_accessor :county_sites, :local_sites, :state_sites, :sites_for_business_type 
+  attr_accessor :county_sites, :local_sites, :state_sites, :sites_for_business_type , :rec_sites
   #attr_reader :county_sites, :local_sites, :state_sites, :sites_for_business_type
   #attr_writer :county_sites, :local_sites, :state_sites, :sites_for_business_type
   
@@ -10,7 +10,7 @@ class Result
     @local_sites = Array.new
     @state_sites = Array.new
     @sites_for_business_type = Array.new
-
+    @rec_sites = Array.new
 #    @is_normal = true
 #    @is_disambig = false
 #    @is_invalid = false
@@ -25,7 +25,42 @@ class Result
 #    @business_type = 0
 #    @business_type_name = ""
   end
+  
+  def to_recSitexml(options ={})
+    xml = options[:builder] ||= Builder::XmlMarkup.new(:indent => options[:indent])
+    xml.instruct! unless options[:skip_instruct => true, :dasherize => false]
     
+     xml.result do
+        xml.rec_sites do |site|
+            for rec_site in 0...@rec_sites.length
+              xml.site do
+                site.link_title(@rec_sites[rec_site]["title"])
+                site.description(@rec_sites[rec_site]["description"])
+                site.url(@rec_sites[rec_site]["url"])
+              end
+            end
+        end
+    end
+    
+  end
+  
+  def to_recSitejson(options = {})
+
+    result = Hash.new
+
+    for current_site in 0...@rec_sites.length
+        county_site_value=Array.new
+        county_site_value.push({"title"=>@rec_sites[current_site]["title"]})
+        county_site_value.push({"description"=>@rec_sites[current_site]["description"]})
+        county_site_value.push({"url"=>@rec_sites[current_site]["url"]})
+        
+        h1={"recommended_sites_item"+current_site.to_s =>county_site_value}
+
+        result.merge!(h1) 
+    end
+    result.to_json 
+  end
+  
   def to_xml(options = {})
     xml = options[:builder] ||= Builder::XmlMarkup.new(:indent => options[:indent])
     xml.instruct! unless options[:skip_instruct => true, :dasherize => false]
