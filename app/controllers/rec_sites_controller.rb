@@ -36,14 +36,14 @@ class RecSitesController < ApplicationController
   
   #this "show" def might not needed.  Revisit again. 3/30/09 - songchoe. 
   #http://localhost:3000/rec_sites/94117
-  def show
-    @recType='features'
-    zipcode=params[:keyword]
-    @queryResults = RecommendedSiteCategory.find_by_sql(RecommendedSiteQuery.getFeaturedQueryByZipcode(zipcode))
-    if @queryResults.blank?
-      notFound
-    end
-  end
+  #def show
+  #  @recType='features'
+  #  zipcode=params[:keyword]
+  #  @queryResults = RecommendedSiteCategory.find_by_sql(RecommendedSiteQuery.getFeaturedQueryByZipcode(zipcode))
+    #if @queryResults.blank?
+    #  notFound
+    #end
+  #end
   
   # http://localhost:3000/rec_sites/20121/taxes
   def features
