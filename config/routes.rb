@@ -43,7 +43,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'rec_sites/states/:name', :controller => "rec_sites", :action => "states"
   map.connect 'rec_sites/states', :controller => "rec_sites", :action => "all_states"
   map.connect 'rec_sites/:keyword',      :controller => "rec_sites", :action => "show"
-  map.connect 'rec_sites/:keyword/:name',      :controller => "rec_sites", :action => "features"        
+  map.connect 'rec_sites/:keyword/:name',      :controller => "rec_sites", :action => "features"
+  map.connect 'rec_sites/:keyword/:name.:format',      :controller => "rec_sites", :action => "features"
   map.connect ':controller/:action/:keyword'
   map.connect ':controller/:action/:keyword.:format'
   

@@ -29,9 +29,9 @@ class RecSitesController < ApplicationController
       @this_result.rec_sites=@queryResults
       respond_to_format(@this_result)
     end
-    if @queryResults.blank?
-      notFound
-    end
+    #if @queryResults.blank?
+    #  notFound
+    #end
   end
   
   #this "show" def might not needed.  Revisit again. 3/30/09 - songchoe. 
@@ -49,11 +49,15 @@ class RecSitesController < ApplicationController
   def features
     zipcode=params[:keyword]
     keywords=params[:name]
+    @this_result = Result.new
+    
     @recType='features'
     @queryResults = RecommendedSiteCategory.find_by_sql(RecommendedSiteQuery.getFeaturedQueryByZipKeywords(keywords,zipcode))
-    if @queryResults.blank?
-      notFound
-    end
+    #if @queryResults.blank?
+    #  notFound
+    #end
+    @this_result.rec_sites=@queryResults
+    respond_to_format(@this_result)
   end
   
   def notFound
