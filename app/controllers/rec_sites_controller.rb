@@ -2,9 +2,6 @@ require 'QueryHelper/StructureQuery'
 
 class RecSitesController < ApplicationController
   
-  #http://localhost:3000/rec_sites/keywords/bankruptcy
-  #http://localhost:3000/rec_sites/keywords/ebay
-  
   def respond_to_format(resultArray)
     respond_to do |format|
       format.html { render :text =>  resultArray.to_recSitejson }
@@ -13,80 +10,52 @@ class RecSitesController < ApplicationController
     end
   end
   
+  #http://localhost:3000/rec_sites/keywords/bankruptcy
+  #http://localhost:3000/rec_sites/keywords/ebay.xml
   def keywords
     @recType='keywords'
-    keywords = params[:keyword]
+    keywords = params[:name]
     @this_result = Result.new
     #if the path is /rec_sites  then show every keywords.
     if keywords.blank?
-      #@queryResults= RecommendedSiteCategory.find_by_sql(RecommendedSiteQuery.getAllKeywordsQuery()) 
-      @queryResults= KeywordRecommendedSiteKeyword.all(:select=>"id,keywords", :order => "id ASC")
+      
+      @queryResults= RecSitesHelper.getKeywordRecommendedSiteKeywordAll
+      @this_result.rec_sites=@queryResults
+      render :xml => @queryResults
     else
-      @queryResults=KeywordRecommendedSiteKeyword.find_all_by_keywords("#{keywords}", 
-      :joins =>'Left outer join keyword_recommended_sites k ON k.id= keyword_recommended_site_keywords.keyword_recommended_site_id',
-      :select=>"k.title,k.description,k.url")
-      #@queryResults = RecommendedSiteCategory.find_by_sql(RecommendedSiteQuery.getKeywordsQuery(keywords)) 
+      @queryResults=RecSitesHelper.getKeywordRecommendedSiteKeywords(keywords)
       @this_result.rec_sites=@queryResults
       respond_to_format(@this_result)
     end
-    #if @queryResults.blank?
-    #  notFound
-    #end
   end
   
-  #this "show" def might not needed.  Revisit again. 3/30/09 - songchoe. 
-  #http://localhost:3000/rec_sites/94117
-  #def show
-  #  @recType='features'
-  #  zipcode=params[:keyword]
-  #  @queryResults = RecommendedSiteCategory.find_by_sql(RecommendedSiteQuery.getFeaturedQueryByZipcode(zipcode))
-    #if @queryResults.blank?
-    #  notFound
-    #end
-  #end
-  
-  # http://localhost:3000/rec_sites/20121/taxes
+  #http://localhost:3000/rec_sites/features/20121/taxes.xml
   def features
-    zipcode=params[:keyword]
-    keywords=params[:name]
+    zipcode=params[:zip]
+    keywords=params[:keyword]
     @this_result = Result.new
     
     @recType='features'
-    @queryResults = RecommendedSiteCategory.find_by_sql(RecommendedSiteQuery.getFeaturedQueryByZipKeywords(keywords,zipcode))
-    #if @queryResults.blank?
-    #  notFound
-    #end
+    @queryResults = RecSitesHelper.getFeaturedQueryByZipKeywords(keywords, zipcode)
     @this_result.rec_sites=@queryResults
     respond_to_format(@this_result)
   end
   
-  #def notFound
-  # @queryResults={"NotFound"=>"No Results"}
-  #end
-  #end
-  
-  
-  #http://localhost:3000/rec_sites/states/nevada
+  #http://localhost:3000/rec_sites/states/florida.xml
   def states
     @this_result = Result.new
-    
     @recType='states'
-    queryResults = StateRecommendedSite.find(:all, :include => :state, :conditions => ['states.name = ?', "#{params[:name]}"])
-    
+    queryResults = RecSitesHelper.getStateRecommendedSite(params[:name])
     @this_result.rec_sites=queryResults
     respond_to_format(@this_result)
-    # render :xml => @doc
   end
   
-  #http://localhost:3000/rec_sites/states
+  #http://localhost:3000/rec_sites/states.xml
   def all_states
     @recType='states'
     @this_result = Result.new
-    
-    queryResults = StateRecommendedSite.find(:all)
-    
+    queryResults = RecSitesHelper.getAllStateRecommendedSite
     @this_result.rec_sites=queryResults
     respond_to_format(@this_result)
   end
-  
 end
