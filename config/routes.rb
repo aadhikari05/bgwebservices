@@ -47,10 +47,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'rec_sites/states/:name.:format', :controller => "rec_sites", :action => "states"
   map.connect 'rec_sites/states', :controller => "rec_sites", :action => "all_states"
   map.connect 'rec_sites/states.:format', :controller => "rec_sites", :action => "all_states"
-#  map.connect 'rec_sites/features/keywords',      :controller => "rec_sites", :action => "show"
 
   #FEATURE RECOMMENDED SITES
-  map.connect 'rec_sites/features/:zip',      :controller => "rec_sites", :action => "features"
   map.connect 'rec_sites/features/:zip/:keyword',      :controller => "rec_sites", :action => "features"
   map.connect 'rec_sites/features/:zip/:keyword.:format',      :controller => "rec_sites", :action => "features"
 
