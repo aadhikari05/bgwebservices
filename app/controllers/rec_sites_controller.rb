@@ -17,8 +17,7 @@ class RecSitesController < ApplicationController
     keywords = params[:name]
     @this_result = Result.new
     #if the path is /rec_sites  then show every keywords.
-    if keywords.blank?
-      
+    if keywords.blank?      
       @queryResults= RecSitesHelper.getKeywordRecommendedSiteKeywordAll
       @this_result.rec_sites=@queryResults
       render :xml => @queryResults
