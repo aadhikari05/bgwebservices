@@ -38,13 +38,13 @@ ActionController::Routing::Routes.draw do |map|
 
   # Install the default routes as the lowest priority.
   #KEYWORD RECOMMENDED SITES
+  map.connect 'rec_sites/keywords/:keyword', :controller => "rec_sites", :action => "keywords"
+  map.connect 'rec_sites/keywords/:keyword.:format', :controller => "rec_sites", :action => "keywords"
   map.connect 'rec_sites/keywords/', :controller => "rec_sites", :action => "keywords"
-  map.connect 'rec_sites/keywords/:name', :controller => "rec_sites", :action => "keywords"
-  map.connect 'rec_sites/keywords/:name.:format', :controller => "rec_sites", :action => "keywords"
 
   #STATE RECOMMENDED SITES
-  map.connect 'rec_sites/states/:name', :controller => "rec_sites", :action => "states"
-  map.connect 'rec_sites/states/:name.:format', :controller => "rec_sites", :action => "states"
+  map.connect 'rec_sites/states/:keyword', :controller => "rec_sites", :action => "states"
+  map.connect 'rec_sites/states/:keyword.:format', :controller => "rec_sites", :action => "states"
   map.connect 'rec_sites/states', :controller => "rec_sites", :action => "all_states"
   map.connect 'rec_sites/states.:format', :controller => "rec_sites", :action => "all_states"
 
@@ -52,8 +52,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'rec_sites/features/:zip/:keyword',      :controller => "rec_sites", :action => "features"
   map.connect 'rec_sites/features/:zip/:keyword.:format',      :controller => "rec_sites", :action => "features"
 
-  map.connect ':controller/:action/:keyword'
-  map.connect ':controller/:action/:keyword.:format'
+#  map.connect ':controller/:action/:keyword'
+ # map.connect ':controller/:action/:keyword.:format'
   
   #PERMITME ROUTES
   map.connect 'permitme/by_zip/:business_type/:zip', :controller => "permitme", :action => "permitme_by_zip"

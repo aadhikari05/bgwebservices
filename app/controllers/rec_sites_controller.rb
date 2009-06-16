@@ -14,7 +14,7 @@ class RecSitesController < ApplicationController
   #http://localhost:3000/rec_sites/keywords/ebay.xml
   def keywords
     @recType='keywords'
-    keywords = params[:name]
+    keywords = params[:keyword]
     @this_result = Result.new
     #if the path is /rec_sites  then show every keywords.
     if keywords.blank?      
@@ -44,7 +44,7 @@ class RecSitesController < ApplicationController
   def states
     @this_result = Result.new
     @recType='states'
-    queryResults = RecSitesHelper.getStateRecommendedSite(params[:name])
+    queryResults = RecSitesHelper.getStateRecommendedSite(params[:keyword])
     @this_result.rec_sites=queryResults
     respond_to_format(@this_result)
   end
