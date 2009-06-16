@@ -37,18 +37,24 @@ ActionController::Routing::Routes.draw do |map|
   # See how all your routes lay out with "rake routes"
 
   # Install the default routes as the lowest priority.
+  #KEYWORD RECOMMENDED SITES
   map.connect 'rec_sites/keywords/', :controller => "rec_sites", :action => "keywords"
   map.connect 'rec_sites/keywords/:name', :controller => "rec_sites", :action => "keywords"
   map.connect 'rec_sites/keywords/:name.:format', :controller => "rec_sites", :action => "keywords"
   map.connect 'rec_sites/show/:keyword', :controller => "rec_sites", :action => "show"
+
+  #STATE RECOMMENDED SITES
   map.connect 'rec_sites/states/:name', :controller => "rec_sites", :action => "states"
   map.connect 'rec_sites/states/:name.:format', :controller => "rec_sites", :action => "states"
   map.connect 'rec_sites/states', :controller => "rec_sites", :action => "all_states"
   map.connect 'rec_sites/states.:format', :controller => "rec_sites", :action => "all_states"
 #  map.connect 'rec_sites/features/keywords',      :controller => "rec_sites", :action => "show"
+
+  #FEATURE RECOMMENDED SITES
   map.connect 'rec_sites/features/:zip',      :controller => "rec_sites", :action => "features"
   map.connect 'rec_sites/features/:zip/:keyword',      :controller => "rec_sites", :action => "features"
   map.connect 'rec_sites/features/:zip/:keyword.:format',      :controller => "rec_sites", :action => "features"
+
   map.connect ':controller/:action/:keyword'
   map.connect ':controller/:action/:keyword.:format'
   
