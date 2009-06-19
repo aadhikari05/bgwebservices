@@ -23,6 +23,7 @@ class RecSitesController < ApplicationController
       render :xml => @queryResults
     else
       @queryResults=RecSitesHelper.getKeywordRecommendedSiteKeywords(keywords)
+      @queryResults=RecSitesHelper.cleanEmptyResults(@queryResults)   #Cleaning the empty or blank results. Bug SBA-436 6/19/09
       @this_result.rec_sites=@queryResults
       respond_to_format(@this_result)
     end
@@ -36,6 +37,7 @@ class RecSitesController < ApplicationController
     
     @recType='features'
     @queryResults = RecSitesHelper.getFeaturedQueryByZipKeywords(keywords, zipcode)
+    @queryResults = RecSitesHelper.cleanEmptyResults(@queryResults)
     @this_result.rec_sites=@queryResults
     respond_to_format(@this_result)
   end
@@ -45,6 +47,7 @@ class RecSitesController < ApplicationController
     @this_result = Result.new
     @recType='states'
     queryResults = RecSitesHelper.getStateRecommendedSite(params[:keyword])
+    queryResults = RecSitesHelper.cleanEmptyResults(queryResults)
     @this_result.rec_sites=queryResults
     respond_to_format(@this_result)
   end
@@ -54,6 +57,7 @@ class RecSitesController < ApplicationController
     @recType='states'
     @this_result = Result.new
     queryResults = RecSitesHelper.getAllStateRecommendedSite
+    queryResults = RecSitesHelper.cleanEmptyResults(queryResults)
     @this_result.rec_sites=queryResults
     respond_to_format(@this_result)
   end

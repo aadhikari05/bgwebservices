@@ -10,7 +10,22 @@ module RecSitesHelper
   def RecSitesHelper.KeywordRecommendedSiteKeyword
     RecSitesHelper.getKeywordRecommendedSiteKeywordAll
   end
-
+  
+  #Cleaning the empty or blank results.
+  #
+  #Song Choe. 6/19/09
+  def RecSitesHelper.cleanEmptyResults(queryResults)
+    tempQueryResult=Array.new
+    i=0
+    for ss in 0..queryResults.length-1
+      if !queryResults[ss]["title"].blank? || !queryResults[ss]["url"].blank?
+        tempQueryResult[i]=queryResults[ss]
+        i=i+1
+      end
+    end
+    tempQueryResult
+  end
+  
   ####################################################
   # RecommendedSite   Q U E R I E S
   ####################################################

@@ -17,7 +17,7 @@
 development:
   adapter: mysql
   encoding: utf8
-  database: bgsearch_development
+  database: bgsearch_production
   username: bgdata
   password: bgdata
   host: localhost
