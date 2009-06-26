@@ -34,7 +34,6 @@ class GrantLoanResult
         xml.loan_results do |loan|
             for current_site in 0...@loan_results.length
               xml.loan do
-                loan.state(@loan_results[current_site]["state_name"])
                 loan.agency(@loan_results[current_site]["agency"])
                 loan.title(@loan_results[current_site]["title"])
                 loan.description(@loan_results[current_site]["description"])
