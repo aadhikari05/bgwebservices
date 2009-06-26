@@ -28,7 +28,7 @@ module GrantLoanHelper
                              elsif result[j]["loan_type"].eql?("Tax Incentive")
                                  this_result.tax_results << result[j]
                              else
-                                result[j]["state_name"] = "test"
+                                result[j]["state_name"] = state_name["name"]
                                  this_result.loan_results << result[j]
                              end
                          end
