@@ -20,7 +20,7 @@ module GrantLoanHelper
                     result_array.collect do |result|
                       for j in 0...result.length
                          #Check whether each grant_loan is federal (state is empty) or for the state requested
-                         if result[j]["state_name"].empty? or result[j]["state_name"].eql?(state_name)
+#                         if result[j]["state_name"].empty? or result[j]["state_name"].eql?(state_name)
                              if result[j]["loan_type"].eql?("Venture Capital")
                                  this_result.venture_results << result[j]
                              elsif result[j]["loan_type"].eql?("grant")
@@ -32,7 +32,7 @@ module GrantLoanHelper
                              end
                          end
                       end
-                    end
+#                    end
 
 
         return this_result
