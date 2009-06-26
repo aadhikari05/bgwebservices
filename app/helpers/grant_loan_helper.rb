@@ -2,7 +2,7 @@ module GrantLoanHelper
     
     def GrantLoanHelper.get_grants_and_loans (state_alpha, business_type, industry, business_task)
         state_id = GrantLoanHelper.getStateIDFromStateAlpha(state_alpha)
-        state_name = GrantLoanHelper.getStateIDFromStateAlpha(state_alpha)
+        state_name = GrantLoanHelper.getStateNameFromStateAlpha(state_alpha)
         
         #Get results individually based on the parameters and then add to the results
 #        type_array = ["general_purpose","development","exporting","contractor","green","military","minority","woman","disabled","rural","disaster"]
