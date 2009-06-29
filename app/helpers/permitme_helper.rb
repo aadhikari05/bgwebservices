@@ -75,7 +75,7 @@ module PermitmeHelper
         end
 
         def  PermitmeHelper.PermitMeSitesByFeatureIdQuery(feature_id)
-            PermitmeSite.find(:all, :select => "url,name", :conditions => ["feature_id = ? and url is not null",feature_id])
+            PermitmeSite.find(:all, :select => "url,name, name as link_title", :conditions => ["feature_id = ? and url is not null",feature_id])
         end
 
         def  PermitmeHelper.PermitMeFeatureAltNameMappingQuery(alternate_name)
@@ -88,7 +88,7 @@ module PermitmeHelper
         end
 
         def PermitmeHelper.getCountiesByFeature(state_id, fips_feature_id)
-        		Feature.find(:all, :select => "id, state_id, county_name_full, fips_class", :conditions => ["state_id = ? and fips_feat_id=? and county_name_full is not null", state_id, fips_feature_id])
+        		Feature.find(:all, :select => "id, state_id, county_name_full, county_name_full as link_title, fips_class", :conditions => ["state_id = ? and fips_feat_id=? and county_name_full is not null", state_id, fips_feature_id])
         end
         
         #Adding in the getFeatureByCountyName to get information using the countyName as a feat_name.  schoe 5/20/09
@@ -152,6 +152,10 @@ module PermitmeHelper
           			foundSites =  SitesByFeatureIdQuery(feature_id)
           	end
 
+#            for counter1 in 0...foundSites.length
+#                foundSites[counter1]["link_title"] = "Test"
+#            end
+            
             return foundSites
         end
 
