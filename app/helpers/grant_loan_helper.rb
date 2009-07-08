@@ -15,15 +15,20 @@ module GrantLoanHelper
 #            result_array = GrantLoan.find(:all, :select => "title, description, url,loan_type, state_name, agency,gov_type", :conditions => ["business_type like ? and is_"+type_name+"=1", '%'+business_type+'%'])
         end
         
+        if !GrantLoanHelper.is_industry(industry).empty?
         result_array << GrantLoanHelper.get_industry_results (business_type, industry)
+        else
+        return this_result
+        end
 
+        #  Adding the state_name="" check as the table value structure has changed. schoe 7/8/09
+        #  For bug #435
         result_array.collect do |result|
-            for j in 0...result.length
-               #Check whether each grant_loan is federal (state is empty) or for the state requested
-                if result[j]["state_name"].nil?  or result[j]["state_name"].eql?(state_name["name"])
+            for j in 0...result.length               
+                if result[j]["state_name"].nil? or result[j]["state_name"].eql?("")  or result[j]["state_name"].eql?(state_name["name"])
                    if result[j]["loan_type"].eql?("Venture Capital")
                        this_result.venture_results << result[j]
-                   elsif result[j]["loan_type"].eql?("grant")
+                   elsif result[j]["loan_type"].eql?("Grant")
                        this_result.grant_results << result[j]
                    elsif result[j]["loan_type"].eql?("Tax Incentive")
                        this_result.tax_results << result[j]
@@ -40,6 +45,11 @@ module GrantLoanHelper
     def GrantLoanHelper.get_is_type_results (business_type, is_type)
         GrantLoan.find(:all, :select => "title, description, url,loan_type, state_name, agency,gov_type", :conditions => ["business_type like ? and is_"+is_type+"=1", '%'+business_type+'%'])
     end
+
+    #  Checking to see if Industry exists from user's input.  schoe 7/8/09  For bug #435
+    def GrantLoanHelper.is_industry(industry)
+        Industry.find(:all, :select =>"name", :conditions =>["name = ?", industry])
+    end
     
     def GrantLoanHelper.get_industry_results (business_type, industry)
         industry_sql = "select title, description, url,loan_type, state_name, agency, gov_type from grant_loans g, grant_loans_industry gli where "
@@ -55,7 +65,5 @@ module GrantLoanHelper
 
     def GrantLoanHelper.getStateNameFromStateAlpha(state_alpha)
         State.find(:first, :select => "name", :conditions => ["alpha = ?",state_alpha])
-    end
-
-    
+    end    
 end
