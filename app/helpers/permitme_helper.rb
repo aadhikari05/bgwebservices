@@ -70,12 +70,16 @@ module PermitmeHelper
             Feature.find(:all, :select => "id, fips_class", :conditions => ["feat_name = ? and state_id = ?",feature_name, state_id])
         end
 
+        def PermitmeHelper.FeatureNameByFeatureIDQuery(feature_id)
+            Feature.find(:all, :select => "feat_name, county_name_full, state_id", :conditions => ["id = ?",feature_id])
+        end
+
         def PermitmeHelper.SitesByFeatureIdQuery(feature_id)
-            Site.find(:all, :select => "url,name, name as link_title", :conditions => ["feature_id = ? and is_primary = 1 and url is not null",feature_id])
+            Site.find(:all, :select => "url,name, feature_id", :conditions => ["feature_id = ? and is_primary = 1 and url is not null",feature_id])
         end
 
         def  PermitmeHelper.PermitMeSitesByFeatureIdQuery(feature_id)
-            PermitmeSite.find(:all, :select => "url,name, name as link_title", :conditions => ["feature_id = ? and url is not null",feature_id])
+            PermitmeSite.find(:all, :select => "url,name, feature_id", :conditions => ["feature_id = ? and url is not null",feature_id])
         end
 
         def  PermitmeHelper.PermitMeFeatureAltNameMappingQuery(alternate_name)
@@ -152,8 +156,11 @@ module PermitmeHelper
           			foundSites =  SitesByFeatureIdQuery(feature_id)
           	end
 
-            for counter1 in 0...foundSites.length
-                foundSites[counter1]["link_title"] = "Test"
+            for counter in 0...foundSites.length
+                sites = PermitmeHelper.FeatureNameByFeatureIDQuery(foundSites[counter]["feature_id"])
+                state_id = sites[0]["state_id"]
+                state_name = PermitmeHelper.getStateAlphaFromStateID(state_id)
+                foundSites[counter]["link_title"] = sites[0]["feat_name"] + ", " + state_name[0]["state_alpha"]
             end
             
             return foundSites
