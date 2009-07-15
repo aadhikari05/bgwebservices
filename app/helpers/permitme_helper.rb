@@ -171,10 +171,12 @@ module PermitmeHelper
             counties = getCountiesByFeature(state_id, fips_feature_id)
             
             county_name = counties[0]["county_name_full"]
+            state_id = counties[0]["state_id"]
+            state_name = PermitmeHelper.getStateAlphaFromStateID(state_id)
 
             counties = process_rules(counties)
             
-            counties[0][0]["link_title"] = county_name
+            counties[0][0]["link_title"] = county_name + ", " + state_name[0]["state_alpha"]
 
 #           localSites = Array.new
 #            sitesForThisCounty = Hash.new
