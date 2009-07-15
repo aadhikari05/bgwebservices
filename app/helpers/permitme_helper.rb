@@ -152,9 +152,9 @@ module PermitmeHelper
           			foundSites =  SitesByFeatureIdQuery(feature_id)
           	end
 
-#            for counter1 in 0...foundSites.length
-#                foundSites[counter1]["link_title"] = "Test"
-#            end
+            for counter1 in 0...foundSites.length
+                foundSites[counter1]["link_title"] = "Test"
+            end
             
             return foundSites
         end
