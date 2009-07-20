@@ -41,6 +41,9 @@ module PermitmeHelper
             #Add State Results
             this_result.state_sites = PermitMeResultsByStateQuery(state_id)
 
+            #Added check for link_title is blank for state_sites. 
+            #If link_title is blank, makes it equal to empty string, so it doesn't get sent as a nil object 
+            #and doesn't break sort in to_xml.
             for counter in 0...this_result.state_sites.length
               if this_result.state_sites[counter]["link_title"].nil?
                   this_result.state_sites[counter]["link_title"] = ""
@@ -49,6 +52,12 @@ module PermitmeHelper
 
             #Add Business Type Results
             this_result.sites_for_business_type = PermitMeResultsByBusinessTypeQuery(state_id, business_type_id)
+
+            for counter in 0...this_result.sites_for_business_type.length
+              if this_result.sites_for_business_type[counter]["link_title"].nil?
+                  this_result.sites_for_business_type[counter]["link_title"] = ""
+              end
+            end
 
             this_result
         end
