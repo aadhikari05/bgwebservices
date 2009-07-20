@@ -66,9 +66,9 @@ class Result
     xml.instruct! unless options[:skip_instruct => true, :dasherize => false]
     
     #commenting out the county_sites sort as the link title will always be nil from the sites. schoe 5/20/09
-    #@county_sites.sort! {|a,b| a.link_title <=> b.link_title}
+    @county_sites.sort! {|a,b| a.link_title <=> b.link_title}
     @local_sites.sort! {|a,b| a.link_title <=> b.link_title }
-    @state_sites.sort! {|a,b| a.link_title <=> b.link_title }
+    @state_sites.sort! {|a,b| a.link_title <=> b.link_title}
     @sites_for_business_type.sort! {|a,b| a.link_title <=> b.link_title }
     
     xml.result do

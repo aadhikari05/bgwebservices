@@ -41,6 +41,12 @@ module PermitmeHelper
             #Add State Results
             this_result.state_sites = PermitMeResultsByStateQuery(state_id)
 
+            for counter in 0...this_result.state_sites.length
+              if this_result.state_sites[counter]["link_title"].nil?
+                  this_result.state_sites[counter]["link_title"] = ""
+              end
+            end
+
             #Add Business Type Results
             this_result.sites_for_business_type = PermitMeResultsByBusinessTypeQuery(state_id, business_type_id)
 
@@ -177,40 +183,6 @@ module PermitmeHelper
             counties = process_rules(counties)
             
             counties[0][0]["link_title"] = county_name + ", " + state_name[0]["state_alpha"]
-
-#           localSites = Array.new
-#            sitesForThisCounty = Hash.new
-
-#            for counter1 in 0...counties.length
-#              for counter2 in 0...counties[counter1].length
-                  # Special case for St. Louis because the St. is abbreviated in the county name
-#                  county_name = county["county_name_full"]
-
-#                  if(county_name.include?("^St\\.(.)*"))
-#                      find_string = "St."
-#                      replace_string = "Saint"
-#                      string_index = county_name.index(find_string)
-#                      county_name[string_index, find_string.length] = replace_string
-#                      county["county_name_full"] = county_name
-#                  end
-
-                  # get county specs like id,description, url,name, feature_id from Permitme site using feature_id
-#                  countySpecs = permitMeCountySpecsByNameQuery(counties[counter1][counter2]["id"])
-
-#                  for currentSpec in 0...countySpecs.length
-                      #For this county id get all the sites and set the name for each
-                      #localSites << this.findAllSitesByFeatureId(countySpecs[currentSpec]["id"])
-#                      localSites << countySpecs
-#                  end
-#              end
-#           end
-           
-          #converting from java List<LocalSite> findAllSitesByFeatureId in PermitMeFeatureQuery.java where 
-          #if the result coming back from the permitSite is empty, the site result gets copied. 
-          #this case the counties are the only local sites.  schoe 5/20/09
-#          if localSites.blank?
-#              localSites=counties
-#          end
           
           return counties
       end
