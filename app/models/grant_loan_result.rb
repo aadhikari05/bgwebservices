@@ -20,17 +20,7 @@ class GrantLoanResult
     @tax_results.sort! {|a,b| a.title <=> b.title }
     
     xml.result do
-        xml.grant_results do |grant|
-            for current_site in 0...@grant_results.length
-              xml.grant do
-                grant.agency(@grant_results[current_site]["agency"])
-                grant.title(@grant_results[current_site]["title"])
-                grant.description(@grant_results[current_site]["description"])
-                grant.url(@grant_results[current_site]["url"])
-              end
-            end
-        end
-        
+       
         xml.loan_results do |loan|
             for current_site in 0...@loan_results.length
               xml.loan do
@@ -63,6 +53,17 @@ class GrantLoanResult
               end
             end
         end
+         xml.grant_results do |grant|
+            for current_site in 0...@grant_results.length
+              xml.grant do
+                grant.agency(@grant_results[current_site]["agency"])
+                grant.title(@grant_results[current_site]["title"])
+                grant.description(@grant_results[current_site]["description"])
+                grant.url(@grant_results[current_site]["url"])
+              end
+            end
+        end
+        
     end
   end
   
