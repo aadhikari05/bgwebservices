@@ -63,4 +63,10 @@ ActionController::Routing::Routes.draw do |map|
 
   #GRANT_LOAN ROUTES
   map.connect 'grant_loan/:state_alpha/:business_type/:industry/:business_task.:format', :controller => "grant_loan", :action => "show_all"
+  
+  #GEODATA ROUTES
+  map.connect 'geodata/by_zip/:zip', :controller => "geodata", :action => "geodata_by_zip"
+  map.connect 'geodata/by_zip/:zip.:format', :controller => "geodata", :action => "geodata_by_zip"
+  map.connect 'geodata/state_and_city/:alpha/:feature.:format', :controller => "geodata", :action => "geodata_by_state_and_feature"
+
 end
