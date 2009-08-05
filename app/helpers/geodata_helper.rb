@@ -4,26 +4,21 @@ module GeodataHelper
         ####################################################
         # H E L P E R   F U N C T I O N S
         ####################################################
-        def GeodataHelper.get_all_geodata_sites(state_and_feature_array, business_type_id, query_type)
+        def GeodataHelper.get_all_geodata_sites(features)
             @this_result = Result.new
             
-            @state_and_feature_array=state_and_feature_array
+            @features = features
             
-            if !query_type.eql?("geodata_by_state_only")
-                for ss in 0...state_and_feature_array.length
-                    
-                    tempCountySites = findAllCountySitesByFeatureAndState(state_and_feature_array[ss]["state_id"], state_and_feature_array[ss]["fips_feat_id"], state_and_feature_array[ss]["feature_id"])
-                    tempCountySites.each do |tc|
-                      @this_result.county_sites.push(tc)
-                    end
-
-                    #Get Primary Local Sites
-                    @this_result.local_sites = findAllSitesByFeatureId(state_and_feature_array[ss]["feature_id"])
+            for ss in 0...state_and_feature_array.length
+                tempCountySites = findAllCountySitesByFeatureAndState(features[ss]["state_id"], features[ss]["fips_feat_id"], features[ss]["feature_id"])
+                tempCountySites.each do |tc|
+                  @this_result.county_sites.push(tc)
                 end
+
+                #Get Primary Local Sites
+                @this_result.local_sites = findAllSitesByFeatureId(features[ss]["feature_id"])
             end
           
-            @this_result = get_state_business_type_geodata_sites(@this_result, state_and_feature_array[0]["state_id"], business_type_id)
-
             @this_result
         end
 
