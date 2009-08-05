@@ -5,7 +5,7 @@ class GeodataController < ApplicationController
       ####################################################
       @state_alpha;
       
-      def permitmgeodatae_by_zip
+      def geodata_by_zip
           #http://localhost:3000/geodata/by_zip/22209.xml
           #We take the zip and use it to get state_id, fips_feature_id, feature_id for a particular zip
           @state_and_feature = GeodataHelper.getFeatureAndStatebyZip (params[:zip])
