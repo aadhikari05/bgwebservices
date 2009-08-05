@@ -7,7 +7,7 @@ class GeodataController < ApplicationController
       
       def geodata_by_zip
           #http://localhost:3000/geodata/by_zip/22209.xml
-          #We take the zip and use it to get state_id, fips_feature_id, feature_id for a particular zip
+          #We take the zip and use it to get feature_id for a particular zip
           @features = GeodataHelper.getFeaturebyZip (params[:zip])
         
           #We pass the state_id and fips_feat_id to the function below to get the list of County Sites
