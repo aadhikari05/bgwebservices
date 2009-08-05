@@ -27,7 +27,7 @@ module GeodataHelper
         # S Q L   Q U E R I E S   T O   S I N G L E   T A B L E S
         #########################################################
         def GeodataHelper.getFeaturebyZip(zip)
-            Feature.find_by_sql(["select fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = ?",zip])
+            Feature.find_by_sql(["select fips_feat_id, feature_id, state_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = ?",zip])
         end
 
         def GeodataHelper.getStateIDFromStateAlpha(state_alpha)
