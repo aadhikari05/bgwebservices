@@ -1,9 +1,6 @@
 class Result
   
-  #using attr_accessor both reader and writer is using the same attributes. schoe 5/20/09
   attr_accessor :county_sites, :local_sites, :state_sites, :sites_for_business_type , :rec_sites
-  #attr_reader :county_sites, :local_sites, :state_sites, :sites_for_business_type
-  #attr_writer :county_sites, :local_sites, :state_sites, :sites_for_business_type
   
   def initialize
     @county_sites = Array.new
