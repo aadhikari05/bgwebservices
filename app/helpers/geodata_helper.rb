@@ -5,7 +5,7 @@ module GeodataHelper
         # H E L P E R   F U N C T I O N S
         ####################################################
         def GeodataHelper.get_all_geodata_sites(features)
-            @this_result = Result.new
+            @this_result = GeodataResult.new
             
             @features = features
             
