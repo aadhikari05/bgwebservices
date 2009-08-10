@@ -43,11 +43,11 @@ module GeodataHelper
         end
 
         def GeodataHelper.SitesByFeatureIdQuery(feature_id)
-            Site.find(:all, :select => "url,name, feature_id", :conditions => ["feature_id = ? and is_primary = 1 and url is not null",feature_id])
+            Site.find(:all, :select => "url,name as link_title, feature_id", :conditions => ["feature_id = ? and is_primary = 1 and url is not null",feature_id])
         end
 
         def GeodataHelper.SiteFiltersByFeatureIdQuery(feature_id)
-            SiteFilter.find(:all, :select => "url,name, feature_id", :conditions => ["feature_id = ? and is_primary = 1 and url is not null",feature_id])
+            SiteFilter.find(:all, :select => "url,name as link_title, feature_id", :conditions => ["feature_id = ? and is_primary = 1 and url is not null",feature_id])
         end
 
         def GeodataHelper.getCountiesByFeature(state_id, fips_feature_id)
