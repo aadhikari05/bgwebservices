@@ -9,10 +9,10 @@ module GeodataHelper
             
             @features = features
             
-            for ss in 0...state_and_feature_array.length
+            for ss in 0...features.length
                 tempCountySites = findAllCountySitesByFeatureAndState(features[ss]["state_id"], features[ss]["fips_feat_id"], features[ss]["feature_id"])
                 tempCountySites.each do |tc|
-                  @this_result.county_sites.push(tc)
+                    @this_result.county_sites.push(tc)
                 end
 
                 #Get Primary Local Sites
@@ -23,9 +23,9 @@ module GeodataHelper
         end
 
 
-        #########################################################
-        # S Q L   Q U E R I E S   T O   S I N G L E   T A B L E S
-        #########################################################
+        ###########################
+        # F I N D   Q U E R I E S
+        ###########################
         def GeodataHelper.getFeaturebyZip(zip)
             Feature.find_by_sql(["select fips_feat_id, feature_id, state_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = ?",zip])
         end
@@ -38,8 +38,16 @@ module GeodataHelper
             State.find(:all, :select => "alpha as state_alpha", :conditions => ["id = ?",state_id])
         end
 
+        def GeodataHelper.FeatureNameByFeatureIDQuery(feature_id)
+            Feature.find(:all, :select => "feat_name, county_name_full, state_id", :conditions => ["id = ?",feature_id])
+        end
+
         def GeodataHelper.SitesByFeatureIdQuery(feature_id)
             Site.find(:all, :select => "url,name, feature_id", :conditions => ["feature_id = ? and is_primary = 1 and url is not null",feature_id])
+        end
+
+        def GeodataHelper.SiteFiltersByFeatureIdQuery(feature_id)
+            SiteFilter.find(:all, :select => "url,name, feature_id", :conditions => ["feature_id = ? and is_primary = 1 and url is not null",feature_id])
         end
 
         def GeodataHelper.getCountiesByFeature(state_id, fips_feature_id)
@@ -51,6 +59,7 @@ module GeodataHelper
             Feature.find(:all, :select=>"id, fips_class", :conditions=>["feat_name=? and state_id=?", countyName,state_id])
         end
 
+
         ####################################################
         # G E O D A T A   Q U E R I E S
         ####################################################
@@ -60,10 +69,10 @@ module GeodataHelper
         end
 
         def  GeodataHelper.findAllSitesByFeatureId(feature_id)
-            foundSites = PermitMeSitesByFeatureIdQuery(feature_id)
+            foundSites = SitesByFeatureIdQuery(feature_id)
 
             if foundSites.empty?
-          			foundSites =  SitesByFeatureIdQuery(feature_id)
+          			foundSites =  SiteFiltersByFeatureIdQuery(feature_id)
           	end
 
             for counter in 0...foundSites.length
@@ -83,13 +92,10 @@ module GeodataHelper
             county_name = counties[0]["county_name_full"]
             state_id = counties[0]["state_id"]
             state_name = GeodataHelper.getStateAlphaFromStateID(state_id)
-
-            counties = process_rules(counties)
             
-            counties[0][0]["link_title"] = county_name + ", " + state_name[0]["state_alpha"]
+            counties[0]["link_title"] = county_name + ", " + state_name[0]["state_alpha"]
           
-          return counties
-      end
-
+            return counties
+        end
 
 end

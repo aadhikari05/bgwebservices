@@ -11,7 +11,7 @@ class GeodataController < ApplicationController
           @features = GeodataHelper.getFeaturebyZip (params[:zip])
         
           #We pass the state_id and fips_feat_id to the function below to get the list of County Sites
-          respond_to_format(@features)
+          respond_to_format(GeodataHelper.get_all_geodata_sites(@features))
       end
 
       def geodata_by_state_only
