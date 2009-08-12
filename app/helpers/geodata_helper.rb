@@ -93,9 +93,11 @@ module GeodataHelper
             state_id = counties[0]["state_id"]
             state_name = GeodataHelper.getStateAlphaFromStateID(state_id)
             
-            counties[0]["link_title"] = county_name + ", " + state_name[0]["state_alpha"]
+            for counter in 0...counties.length
+                county_sites = GeodataHelper.findAllSitesByFeatureId(counties[counter]["id"])
+            end
           
-            return counties
+            return county_sites
         end
 
 end
