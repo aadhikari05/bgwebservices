@@ -63,7 +63,7 @@ module GeodataHelper
         
         #Adding in the getFeatureByCountyName to get information using the countyName as a feat_name.  schoe 5/20/09
         def GeodataHelper.getFeatureByCountyName(state_id, countyName)
-            Feature.find(:all, :select=>"id, fips_class", :conditions=>["feat_name=? and state_id=?", countyName,state_id])
+            Feature.find(:all, :select=>"id, fips_id, fips_class, fips_feat_id, fips_st_cd, fips_county_cd, majorfeature", :conditions=>["feat_name=? and state_id=?", countyName,state_id])
         end
 
 
