@@ -5,7 +5,6 @@ class GeodataResult
   def initialize
     @county_sites = Array.new
     @local_sites = Array.new
-    @state_sites = Array.new
   end
   
   
@@ -15,7 +14,6 @@ class GeodataResult
     
       @county_sites.sort! {|a,b| a.link_title <=> b.link_title}
       @local_sites.sort! {|a,b| a.link_title <=> b.link_title }
-      @state_sites.sort! {|a,b| a.link_title <=> b.link_title}
     
       xml.result do
           xml.county_sites do |site|
@@ -46,22 +44,6 @@ class GeodataResult
                   site.fips_st_cd(@local_sites[current_site]["fips_st_cd"])
                   site.fips_place_cd(@local_sites[current_site]["fips_place_cd"])
                   site.fips_county_cd(@local_sites[current_site]["fips_county_cd"])
-                end
-              end
-          end
-        
-          xml.state_sites do |site|
-              for current_site in 0...@state_sites.length
-                xml.site do
-                  site.link_title(@state_sites[current_site]["link_title"])
-                  site.description(@state_sites[current_site]["description"])
-                  site.url(@state_sites[current_site]["url"])
-                  site.fips_id(@state_sites[current_site]["fips_id"])
-                  site.fips_class(@state_sites[current_site]["fips_class"])
-                  site.fips_feat_id(@state_sites[current_site]["fips_feat_id"])
-                  site.fips_st_cd(@state_sites[current_site]["fips_st_cd"])
-                  site.fips_place_cd(@state_sites[current_site]["fips_place_cd"])
-                  site.fips_county_cd(@state_sites[current_site]["fips_county_cd"])
                 end
               end
           end
@@ -97,20 +79,6 @@ class GeodataResult
     		local_site_value.push({"fips_place_cd"=>@local_sites[current_site]["fips_place_cd"]})
     		local_site_value.push({"fips_county_cd"=>@local_sites[current_site]["fips_county_cd"]})
     		h1={"local_site_item"+current_site.to_s =>local_site_value}
-    		result.merge!(h1) 
-    	end
-    	for current_site in 0...@state_sites.length
-    		state_site_value=Array.new
-    		state_site_value.push({"title"=>@state_sites[current_site]["link_title"]})
-    		state_site_value.push({"description"=>@state_sites[current_site]["description"]})
-    		state_site_value.push({"url"=>@state_sites[current_site]["url"]})
-    		state_site_value.push({"fips_id"=>@state_sites[current_site]["fips_id"]})
-    		state_site_value.push({"fips_class"=>@state_sites[current_site]["fips_class"]})
-    		state_site_value.push({"fips_feat_id"=>@state_sites[current_site]["fips_feat_id"]})
-    		state_site_value.push({"fips_st_cd"=>@state_sites[current_site]["fips_st_cd"]})
-    		state_site_value.push({"fips_place_cd"=>@state_sites[current_site]["fips_place_cd"]})
-    		state_site_value.push({"fips_county_cd"=>@state_sites[current_site]["fips_county_cd"]})
-    		h1={"state_site_item"+current_site.to_s =>state_site_value}
     		result.merge!(h1) 
     	end
       result.to_json  

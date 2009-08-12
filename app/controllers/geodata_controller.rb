@@ -14,14 +14,14 @@ class GeodataController < ApplicationController
           respond_to_format(GeodataHelper.get_all_geodata_sites(@features))
       end
 
-      def geodata_by_state_only
-          #http://localhost:3000/geodata/state_only/il.xml        
+      def geodata_by_major_city
+          #http://localhost:3000/geodata/major_city/anchorage.xml        
           #We take the state alpha and use it to get state_id,(fips_feature_id, feature_id will be blank in this cases)
           @state_and_feature = GeodataHelper.getStateIDFromStateAlpha(params[:alpha])
           @state_alpha = params[:alpha]
         
           #We pass the state_id and fips_feat_id to the function below to get the list of County Sites
-          respond_to_format(GeodataHelper.get_all_geodata_sites(@state_and_feature, @business_type_id, "geodata_by_state_only"))
+          respond_to_format(GeodataHelper.get_all_geodata_sites(@state_and_feature))
       end
 
       def geodata_by_state_and_feature
