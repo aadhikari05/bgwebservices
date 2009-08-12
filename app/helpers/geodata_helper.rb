@@ -46,7 +46,7 @@ module GeodataHelper
         end
 
         def GeodataHelper.FeatureNameByFeatureIDQuery(feature_id)
-            Feature.find(:all, :select => "feat_name, county_name_full, state_id, fips_id, fips_class, fips_feat_id, fips_st_cd, fips_county_cd, majorfeature", :conditions => ["id = ?",feature_id])
+            Feature.find(:all, :select => "feat_name, county_name_full, state_id, fips_id, fips_class, fips_feat_id, fips_st_cd, fips_county_cd, fips_place_cd, majorfeature", :conditions => ["id = ?",feature_id])
         end
 
         def GeodataHelper.SitesByFeatureIdQuery(feature_id)
@@ -85,7 +85,14 @@ module GeodataHelper
                 sites = GeodataHelper.FeatureNameByFeatureIDQuery(foundSites[counter]["feature_id"])
                 state_id = sites[0]["state_id"]
                 state_name = GeodataHelper.getStateAlphaFromStateID(state_id)
+                
                 foundSites[counter]["link_title"] = sites[0]["feat_name"] + ", " + state_name[0]["state_alpha"]
+                foundSites[counter]["fips_id"] = sites[0]["fips_id"]
+                foundSites[counter]["fips_class"] = sites[0]["fips_class"]
+                foundSites[counter]["fips_feat_id"] = sites[0]["fips_feat_id"]
+                foundSites[counter]["fips_st_cd"] = sites[0]["fips_st_cd"]
+                foundSites[counter]["fips_county_cd"] = sites[0]["fips_county_cd"]
+                foundSites[counter]["fips_place_cd"] = sites[0]["fips_place_cd"]
             end
             
             return foundSites
