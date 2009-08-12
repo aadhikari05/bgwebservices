@@ -93,8 +93,15 @@ module GeodataHelper
             state_id = counties[0]["state_id"]
             state_name = GeodataHelper.getStateAlphaFromStateID(state_id)
             
+            county_sites = Array.new
+            county_site_counter = 0
+            
             for counter in 0...counties.length
-                county_sites = GeodataHelper.findAllSitesByFeatureId(counties[counter]["id"])
+                temp_county_sites = GeodataHelper.findAllSitesByFeatureId(counties[counter]["id"])
+                for temp_counter in 0...temp_county_sites.length
+                    county_sites[county_site_counter] = temp_county_sites[temp_counter]
+                    county_site_counter = county_site_counter + 1
+                end
             end
           
             return county_sites
