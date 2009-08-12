@@ -49,6 +49,10 @@ module GeodataHelper
             Feature.find(:all, :select => "feat_name, county_name_full, state_id, fips_id, fips_class, fips_feat_id, fips_st_cd, fips_county_cd, fips_place_cd, majorfeature", :conditions => ["id = ?",feature_id])
         end
 
+        def GeodataHelper.getMajorFeatureByFeatureName(feature)
+            Feature.find(:all, :select => "id, feat_name, county_name_full, state_id, fips_id, fips_class, fips_feat_id, fips_st_cd, fips_county_cd, fips_place_cd, majorfeature", :conditions => ["feat_name = ? and majorfeature = 1",feature])
+        end
+
         def GeodataHelper.SitesByFeatureIdQuery(feature_id)
             Site.find(:all, :select => "url,name as link_title, feature_id", :conditions => ["feature_id = ? and is_primary = 1 and url is not null",feature_id])
         end
