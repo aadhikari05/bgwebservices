@@ -40,12 +40,12 @@ class GeodataResult
                   site.link_title(@local_sites[current_site]["link_title"])
                   site.description(@local_sites[current_site]["description"])
                   site.url(@local_sites[current_site]["url"])
-                  site.fips_id(@county_sites[current_site]["fips_id"])
-                  site.fips_class(@county_sites[current_site]["fips_class"])
-                  site.fips_feat_id(@county_sites[current_site]["fips_feat_id"])
-                  site.fips_st_cd(@county_sites[current_site]["fips_st_cd"])
-                  site.fips_place_cd(@county_sites[current_site]["fips_place_cd"])
-                  site.fips_county_cd(@county_sites[current_site]["fips_county_cd"])
+                  site.fips_id(@local_sites[current_site]["fips_id"])
+                  site.fips_class(@local_sites[current_site]["fips_class"])
+                  site.fips_feat_id(@local_sites[current_site]["fips_feat_id"])
+                  site.fips_st_cd(@local_sites[current_site]["fips_st_cd"])
+                  site.fips_place_cd(@local_sites[current_site]["fips_place_cd"])
+                  site.fips_county_cd(@local_sites[current_site]["fips_county_cd"])
                 end
               end
           end
@@ -56,12 +56,12 @@ class GeodataResult
                   site.link_title(@state_sites[current_site]["link_title"])
                   site.description(@state_sites[current_site]["description"])
                   site.url(@state_sites[current_site]["url"])
-                  site.fips_id(@county_sites[current_site]["fips_id"])
-                  site.fips_class(@county_sites[current_site]["fips_class"])
-                  site.fips_feat_id(@county_sites[current_site]["fips_feat_id"])
-                  site.fips_st_cd(@county_sites[current_site]["fips_st_cd"])
-                  site.fips_place_cd(@county_sites[current_site]["fips_place_cd"])
-                  site.fips_county_cd(@county_sites[current_site]["fips_county_cd"])
+                  site.fips_id(@state_sites[current_site]["fips_id"])
+                  site.fips_class(@state_sites[current_site]["fips_class"])
+                  site.fips_feat_id(@state_sites[current_site]["fips_feat_id"])
+                  site.fips_st_cd(@state_sites[current_site]["fips_st_cd"])
+                  site.fips_place_cd(@state_sites[current_site]["fips_place_cd"])
+                  site.fips_county_cd(@state_sites[current_site]["fips_county_cd"])
                 end
               end
           end
