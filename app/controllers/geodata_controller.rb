@@ -32,9 +32,9 @@ class GeodataController < ApplicationController
           @state_alpha = params[:alpha]
 
           #Get state_id, fips_feature_id and feature_id based on feature_name
-          @state_and_feature = GeodataHelper.PermitMeFeatureWithStateMappingQuery(params[:feature], params[:feature], @state_id[0]["state_id"])
+          @state_and_feature = GeodataHelper.GeodataFeatureWithStateMappingQuery(params[:feature], params[:feature], @state_id[0]["state_id"])
 
-          respond_to_format(GeodataHelper.get_all_geodata_sites(@state_and_feature, @business_type_id, "geodata_by_state_and_feature"))
+          respond_to_format(GeodataHelper.get_all_geodata_sites(@state_and_feature))
       end
     
       def respond_to_format(resultArray)

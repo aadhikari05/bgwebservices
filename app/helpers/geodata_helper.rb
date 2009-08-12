@@ -26,6 +26,13 @@ module GeodataHelper
         ###########################
         # F I N D   Q U E R I E S
         ###########################
+        def  GeodataHelper.GeodataFeatureWithStateMappingQuery(feature_name, alternate_name, state_id)
+            strQuery = "select id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = ? "
+        		strQuery += "and state_id = ? union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names "
+        		strQuery += "where feature_id = features.id and county_seq = 1 and name = ? and state_id = ?"
+        		Feature.find_by_sql([strQuery,feature_name,state_id,alternate_name,state_id])
+      	end
+
         def GeodataHelper.getFeaturebyZip(zip)
             Feature.find_by_sql(["select fips_feat_id, feature_id, state_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = ?",zip])
         end
@@ -47,7 +54,7 @@ module GeodataHelper
         end
 
         def GeodataHelper.SiteFiltersByFeatureIdQuery(feature_id)
-            SiteFilter.find(:all, :select => "url,name as link_title, feature_id", :conditions => ["feature_id = ? and is_primary = 1 and url is not null",feature_id])
+            SiteFilter.find(:all, :select => "url,name as link_title, feature_id", :conditions => ["feature_id = ? and url is not null",feature_id])
         end
 
         def GeodataHelper.getCountiesByFeature(state_id, fips_feature_id)
