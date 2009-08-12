@@ -58,10 +58,9 @@ module GeodataHelper
         end
 
         def GeodataHelper.getCountiesByFeature(state_id, fips_feature_id)
-        		Feature.find(:all, :select => "id, state_id, county_name_full, county_name_full as link_title, fips_class", :conditions => ["state_id = ? and fips_feat_id=? and county_name_full is not null", state_id, fips_feature_id])
+        		Feature.find(:all, :select => "id, state_id, county_name_full, county_name_full as link_title, fips_id, fips_class, fips_feat_id, fips_st_cd, fips_county_cd, fips_place_cd, majorfeature", :conditions => ["state_id = ? and fips_feat_id=? and county_name_full is not null", state_id, fips_feature_id])
         end
         
-        #Adding in the getFeatureByCountyName to get information using the countyName as a feat_name.  schoe 5/20/09
         def GeodataHelper.getFeatureByCountyName(state_id, countyName)
             Feature.find(:all, :select=>"id, fips_id, fips_class, fips_feat_id, fips_st_cd, fips_county_cd, majorfeature", :conditions=>["feat_name=? and state_id=?", countyName,state_id])
         end
@@ -103,6 +102,12 @@ module GeodataHelper
                 temp_county_sites = GeodataHelper.findAllSitesByFeatureId(counties[counter]["id"])
                 for temp_counter in 0...temp_county_sites.length
                     county_sites[county_site_counter] = temp_county_sites[temp_counter]
+                    county_sites[county_site_counter]["fips_id"] = counties[counter]["fips_id"]
+                    county_sites[county_site_counter]["fips_class"] = counties[counter]["fips_class"]
+                    county_sites[county_site_counter]["fips_feat_id"] = counties[counter]["fips_feat_id"]
+                    county_sites[county_site_counter]["fips_st_cd"] = counties[counter]["fips_st_cd"]
+                    county_sites[county_site_counter]["fips_county_cd"] = counties[counter]["fips_county_cd"]
+                    county_sites[county_site_counter]["fips_place_cd"] = counties[counter]["fips_place_cd"]
                     county_site_counter = county_site_counter + 1
                 end
             end
