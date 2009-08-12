@@ -96,10 +96,6 @@ module GeodataHelper
             #The following will return id, county_name_full and fips_class for a given state_id and fips_feat_id
             counties = getCountiesByFeature(state_id, fips_feature_id)
             
-            county_name = counties[0]["county_name_full"]
-            state_id = counties[0]["state_id"]
-            state_name = GeodataHelper.getStateAlphaFromStateID(state_id)
-            
             county_sites = Array.new
             county_site_counter = 0
             
