@@ -17,6 +17,9 @@ module GeodataHelper
 
                 #Get Primary Local Sites
                 @this_result.local_sites = findAllSitesByFeatureId(features[ss]["feature_id"])
+
+                #Get State Sites
+                @this_result.state_sites = get_state_sites(@this_result, features[ss]["state_id"])
             end
           
             @this_result
@@ -73,6 +76,22 @@ module GeodataHelper
         ####################################################
         # G E O D A T A   Q U E R I E S
         ####################################################
+
+        def GeodataHelper.get_state_sites(this_result, state_id)
+            #Add State Results
+#            this_result.state_sites = SitesByStateQuery(state_id)
+
+            #Added check for link_title is blank for state_sites. 
+            #If link_title is blank, makes it equal to empty string, so it doesn't get sent as a nil object 
+            #and doesn't break sort in to_xml.
+#            for counter in 0...this_result.state_sites.length
+#              if this_result.state_sites[counter]["link_title"].nil?
+#                  this_result.state_sites[counter]["link_title"] = ""
+#              end
+#            end
+
+            this_result
+        end
 
         def GeodataHelper.findAllFeatureSitesByFeatureAndState(feature_id, state_alpha)
             foundSites = findAllSitesByFeatureId(feature_id)
