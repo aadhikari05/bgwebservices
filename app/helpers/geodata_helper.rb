@@ -64,6 +64,14 @@ module GeodataHelper
             SiteFilter.find(:all, :select => "url,name as link_title, feature_id", :conditions => ["feature_id = ? and url is not null",feature_id])
         end
 
+        def GeodataHelper.SitesByStateQuery(state_id)
+            Site.find(:all, :select => "url,name as link_title, feature_id", :joins => :feature, :conditions => ["state_id=? and is_primary = 1 and url is not null",state_id])
+        end
+
+        def GeodataHelper.SiteFiltersByStateQuery(state_id)
+            SiteFilter.find(:all, :select => "url,name as link_title, feature_id", :joins => :feature, :conditions => ["state_id=? and url is not null",state_id])
+        end
+
         def GeodataHelper.getCountiesByFeature(state_id, fips_feature_id)
         		Feature.find(:all, :select => "id, state_id, county_name_full, county_name_full as link_title, fips_id, fips_class, fips_feat_id, fips_st_cd, fips_county_cd, fips_place_cd, majorfeature", :conditions => ["state_id = ? and fips_feat_id=? and county_name_full is not null", state_id, fips_feature_id])
         end
@@ -79,7 +87,11 @@ module GeodataHelper
 
         def GeodataHelper.get_state_sites(this_result, state_id)
             #Add State Results
-#            this_result.state_sites = SitesByStateQuery(state_id)
+            this_result.state_sites = GeodataHelper.SitesByStateQuery(state_id)
+            
+            if this_result.state_sites.empty?
+                this_result.state_sites = GeodataHelper.SiteFiltersByStateQuery(state_id)
+            end
 
             #Added check for link_title is blank for state_sites. 
             #If link_title is blank, makes it equal to empty string, so it doesn't get sent as a nil object 
@@ -90,7 +102,7 @@ module GeodataHelper
 #              end
 #            end
 
-            this_result
+            this_result.state_sites
         end
 
         def GeodataHelper.findAllFeatureSitesByFeatureAndState(feature_id, state_alpha)

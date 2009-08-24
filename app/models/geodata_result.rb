@@ -15,6 +15,7 @@ class GeodataResult
     
       @county_sites.sort! {|a,b| a.link_title <=> b.link_title}
       @local_sites.sort! {|a,b| a.link_title <=> b.link_title }
+#      @state_sites.sort! {|a,b| a.link_title <=> b.link_title }
     
       xml.result do
           xml.county_sites do |site|
