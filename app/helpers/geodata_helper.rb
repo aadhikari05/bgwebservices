@@ -76,6 +76,10 @@ module GeodataHelper
         		Feature.find(:all, :select => "id, state_id, county_name_full, county_name_full as link_title, fips_id, fips_class, fips_feat_id, fips_st_cd, fips_county_cd, fips_place_cd, majorfeature", :conditions => ["state_id = ? and fips_feat_id=? and county_name_full is not null", state_id, fips_feature_id])
         end
         
+        def GeodataHelper.getCountyNameByFeature(state_id, fips_feature_id)
+        		Feature.find(:all, :select => "county_name_full", :conditions => ["state_id = ? and fips_feat_id=? and county_name_full is not null", state_id, fips_feature_id])
+        end
+        
         def GeodataHelper.getFeatureByCountyName(state_id, countyName)
             Feature.find(:all, :select=>"id, fips_id, fips_class, fips_feat_id, fips_st_cd, fips_county_cd, majorfeature", :conditions=>["feat_name=? and state_id=?", countyName,state_id])
         end
