@@ -10,11 +10,12 @@ module GeodataHelper
             @features = features
             
             for ss in 0...features.length
+              if !features[ss]["county_name_full"].nil?
                 tempCountySites = findAllCountySitesByFeatureAndState(features[ss]["state_id"], features[ss]["fips_feat_id"], features[ss]["feature_id"])
                 tempCountySites.each do |tc|
                     @this_result.county_sites.push(tc)
                 end
-
+              end
                 #Get Primary Local Sites
                 @this_result.local_sites = findAllSitesByFeatureId(features[ss]["feature_id"])
 
@@ -76,8 +77,8 @@ module GeodataHelper
         		Feature.find(:all, :select => "id, state_id, county_name_full, county_name_full as link_title, fips_id, fips_class, fips_feat_id, fips_st_cd, fips_county_cd, fips_place_cd, majorfeature", :conditions => ["state_id = ? and fips_feat_id=? and county_name_full is not null", state_id, fips_feature_id])
         end
         
-        def GeodataHelper.getCountyNameByFeature(state_id, fips_feature_id)
-        		Feature.find(:all, :select => "county_name_full", :conditions => ["state_id = ? and fips_feat_id=? and county_name_full is not null", state_id, fips_feature_id])
+        def GeodataHelper.getCountyNameByFeature(state_id, feature_id)
+        		Feature.find(:all, :select => "county_name_full", :conditions => ["state_id = ? and id=? and county_name_full is not null", state_id, feature_id])
         end
         
         def GeodataHelper.getFeatureByCountyName(state_id, countyName)
@@ -139,7 +140,9 @@ module GeodataHelper
 
         def  GeodataHelper.findAllCountySitesByFeatureAndState (state_id, fips_feature_id,feature_id)
             #The following will return id, county_name_full and fips_class for a given state_id and fips_feat_id
-            counties = getCountiesByFeature(state_id, fips_feature_id)
+            countyNameArray = getCountyNameByFeature(state_id, feature_id)
+            countyName = countyNameArray[0]["county_name_full"]
+            counties = getFeatureByCountyName(state_id, countyName)
             
             county_sites = Array.new
             county_site_counter = 0
