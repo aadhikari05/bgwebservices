@@ -32,8 +32,11 @@ class Result
             for rec_site in 0...@rec_sites.length
               xml.site do
                 site.link_title(@rec_sites[rec_site]["title"])
-                site.description(@rec_sites[rec_site]["description"])
                 site.url(@rec_sites[rec_site]["url"])
+                site.description(@rec_sites[rec_site]["description"])
+                site.keywords(@rec_sites[rec_site]["keywords"])
+                site.category(@rec_sites[rec_site]["category"])
+                site.orders(@rec_sites[rec_site]["orders"])
               end
             end
         end
@@ -48,8 +51,11 @@ class Result
     for current_site in 0...@rec_sites.length
         county_site_value=Array.new
         county_site_value.push({"title"=>@rec_sites[current_site]["title"]})
-        county_site_value.push({"description"=>@rec_sites[current_site]["description"]})
         county_site_value.push({"url"=>@rec_sites[current_site]["url"]})
+        county_site_value.push({"description"=>@rec_sites[current_site]["description"]})
+        county_site_value.push({"keywords"=>@rec_sites[current_site]["keywords"]})
+        county_site_value.push({"category"=>@rec_sites[current_site]["category"]})
+        county_site_value.push({"orders"=>@rec_sites[current_site]["orders"]})
         
         h1={"recommended_sites_item"+current_site.to_s =>county_site_value}
 

@@ -31,8 +31,8 @@ module RecSitesHelper
   ####################################################
   def RecSitesHelper.getKeywordRecommendedSiteKeywords(keywords)
     KeywordRecommendedSiteKeyword.find_all_by_keywords("#{keywords}", 
-    :joins =>'Left outer join keyword_recommended_sites k ON k.id= keyword_recommended_site_keywords.keyword_recommended_site_id',
-    :select=>"k.title,k.description,k.url")
+    :joins =>'Left outer join keyword_recommended_sites k ON k.id= keyword_recommended_site_keywords.keyword_recommended_site_id left join recommended_site_categories rsc on k.category_id = rsc.id',
+    :select=>"k.title,k.description,k.url, keywords, rsc.name as category, k.orders")
   end
   
   def RecSitesHelper.getFeaturedQueryByZipKeywords(keywords, zipcode)

@@ -41,24 +41,23 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'rec_sites/keywords/:keyword', :controller => "rec_sites", :action => "keywords"
   map.connect 'rec_sites/keywords/:keyword.:format', :controller => "rec_sites", :action => "keywords"
   map.connect 'rec_sites/keywords/', :controller => "rec_sites", :action => "keywords"
-  map.connect 'rec_sites/category/:category', :controller => "rec_sites", :action => "keywords"
-  map.connect 'rec_sites/category/:category.:format', :controller => "rec_sites", :action => "keywords"
-  map.connect 'rec_sites/domain/:domain', :controller => "rec_sites", :action => "keywords"
-  map.connect 'rec_sites/domain/:domain.:format', :controller => "rec_sites", :action => "keywords"
+  
+  map.connect 'rec_sites/category/:category', :controller => "rec_sites", :action => "category"
+  map.connect 'rec_sites/category/:category.:format', :controller => "rec_sites", :action => "category"
+  
+  map.connect 'rec_sites/domain/:domain', :controller => "rec_sites", :action => "domain"
+  map.connect 'rec_sites/domain/:domain.:format', :controller => "rec_sites", :action => "domain"
 
   #STATE RECOMMENDED SITES
-  map.connect 'rec_sites/states/:keyword', :controller => "rec_sites", :action => "states"
-  map.connect 'rec_sites/states/:keyword.:format', :controller => "rec_sites", :action => "states"
-  map.connect 'rec_sites/states', :controller => "rec_sites", :action => "all_states"
-  map.connect 'rec_sites/states.:format', :controller => "rec_sites", :action => "all_states"
+#  map.connect 'rec_sites/states/:keyword', :controller => "rec_sites", :action => "states"
+#  map.connect 'rec_sites/states/:keyword.:format', :controller => "rec_sites", :action => "states"
+#  map.connect 'rec_sites/states', :controller => "rec_sites", :action => "all_states"
+#  map.connect 'rec_sites/states.:format', :controller => "rec_sites", :action => "all_states"
 
   #FEATURE RECOMMENDED SITES
-  map.connect 'rec_sites/features/:zip/:keyword',      :controller => "rec_sites", :action => "features"
-  map.connect 'rec_sites/features/:zip/:keyword.:format',      :controller => "rec_sites", :action => "features"
+#  map.connect 'rec_sites/features/:zip/:keyword',      :controller => "rec_sites", :action => "features"
+#  map.connect 'rec_sites/features/:zip/:keyword.:format',      :controller => "rec_sites", :action => "features"
 
-#  map.connect ':controller/:action/:keyword'
- # map.connect ':controller/:action/:keyword.:format'
-  
   #PERMITME ROUTES
   map.connect 'permitme/by_zip/:business_type/:zip', :controller => "permitme", :action => "permitme_by_zip"
   map.connect 'permitme/by_zip/:business_type/:zip.:format', :controller => "permitme", :action => "permitme_by_zip"
