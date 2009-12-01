@@ -29,6 +29,15 @@ class RecSitesController < ApplicationController
     end
   end
   
+  def category
+    @recType='category'
+    category = params[:category]
+    @this_result = Result.new
+    @queryResults=RecSitesHelper.getRecommendedSitesByCategory(category)
+    @this_result.rec_sites=@queryResults
+    respond_to_format(@this_result)
+  end
+  
   #http://localhost:3000/rec_sites/features/20121/taxes.xml
   def features
     zipcode=params[:zip]

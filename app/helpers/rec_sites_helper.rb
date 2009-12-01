@@ -35,6 +35,14 @@ module RecSitesHelper
     :select=>"k.title,k.description,k.url, keywords, rsc.name as category, k.orders")
   end
   
+  def RecSitesHelper.getRecommendedSitesByCategory(category)
+    strQuery= "SELECT url, title, description, keywords, name as category, orders FROM `keyword_recommended_site_keywords` krsk " + 
+        "Left outer join keyword_recommended_sites k ON k.id= krsk.keyword_recommended_site_id  " + 
+        "left join recommended_site_categories rsc on k.category_id = rsc.id " + 
+        "WHERE (rsc.name = 'financing') and url is not null";
+    KeywordRecommendedSiteKeyword.find_by_sql(strQuery)            
+  end
+  
   def RecSitesHelper.getFeaturedQueryByZipKeywords(keywords, zipcode)
     strQuery= "select k.id, k.title, k.description, k.url from feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r, " + 
                  " feature_recommended_site_keywords kk where k.id in(select feature_recommended_site_id from feature_recommended_site_keywords where "+
