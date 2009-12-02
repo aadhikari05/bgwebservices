@@ -30,16 +30,26 @@ module RecSitesHelper
   # RecommendedSite   Q U E R I E S
   ####################################################
   def RecSitesHelper.getKeywordRecommendedSiteKeywords(keywords)
-    KeywordRecommendedSiteKeyword.find_all_by_keywords("#{keywords}", 
-    :joins =>'Left outer join keyword_recommended_sites k ON k.id= keyword_recommended_site_keywords.keyword_recommended_site_id left join recommended_site_categories rsc on k.category_id = rsc.id',
-    :select=>"k.title,k.description,k.url, keywords, rsc.name as category, k.orders")
+    strQuery= "SELECT url, title, description, keywords, name as category, orders FROM `keyword_recommended_site_keywords` krsk " + 
+        "Left outer join keyword_recommended_sites k ON k.id= krsk.keyword_recommended_site_id  " + 
+        "left join recommended_site_categories rsc on k.category_id = rsc.id " + 
+        "WHERE (krsk.keywords = '"+keywords+"') and url is not null";
+    KeywordRecommendedSiteKeyword.find_by_sql(strQuery)            
   end
   
   def RecSitesHelper.getRecommendedSitesByCategory(category)
     strQuery= "SELECT url, title, description, keywords, name as category, orders FROM `keyword_recommended_site_keywords` krsk " + 
         "Left outer join keyword_recommended_sites k ON k.id= krsk.keyword_recommended_site_id  " + 
         "left join recommended_site_categories rsc on k.category_id = rsc.id " + 
-        "WHERE (rsc.name = 'financing') and url is not null";
+        "WHERE (rsc.name = '"+category+"') and url is not null";
+    KeywordRecommendedSiteKeyword.find_by_sql(strQuery)            
+  end
+  
+  def RecSitesHelper.getRecommendedSitesByDomain(domain)
+    strQuery= "SELECT url, title, description, keywords, name as category, orders FROM `keyword_recommended_site_keywords` krsk " + 
+        "Left outer join keyword_recommended_sites k ON k.id= krsk.keyword_recommended_site_id  " + 
+        "left join recommended_site_categories rsc on k.category_id = rsc.id " + 
+        "WHERE (k.url like 'http://www."+domain+"%') and url is not null";
     KeywordRecommendedSiteKeyword.find_by_sql(strQuery)            
   end
   

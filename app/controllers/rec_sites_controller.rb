@@ -38,6 +38,15 @@ class RecSitesController < ApplicationController
     respond_to_format(@this_result)
   end
   
+  def domain
+    @recType='domain'
+    domain = params[:domain]
+    @this_result = Result.new
+    @queryResults=RecSitesHelper.getRecommendedSitesByDomain(domain)
+    @this_result.rec_sites=@queryResults
+    respond_to_format(@this_result)
+  end
+  
   #http://localhost:3000/rec_sites/features/20121/taxes.xml
   def features
     zipcode=params[:zip]
