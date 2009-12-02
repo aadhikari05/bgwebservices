@@ -24,6 +24,7 @@ class GrantLoanResult
         xml.loan_results do |loan|
             for current_site in 0...@loan_results.length
               xml.loan do
+                loan.gov_type(@loan_results[current_site]["gov_type"])
                 loan.agency(@loan_results[current_site]["agency"])
                 loan.title(@loan_results[current_site]["title"])
                 loan.description(@loan_results[current_site]["description"])
@@ -35,6 +36,7 @@ class GrantLoanResult
         xml.venture_capital_results do |venture_capital|
             for current_site in 0...@venture_results.length
               xml.venture_capital do
+                venture_capital.gov_type(@venture_results[current_site]["gov_type"])
                 venture_capital.agency(@venture_results[current_site]["agency"])
                 venture_capital.title(@venture_results[current_site]["title"])
                 venture_capital.description(@venture_results[current_site]["description"])
@@ -46,6 +48,7 @@ class GrantLoanResult
         xml.tax_incentive_results do |tax_incentive|
             for current_site in 0...@tax_results.length
               xml.tax_incentive do
+                tax_incentive.gov_type(@tax_results[current_site]["gov_type"])
                 tax_incentive.agency(@tax_results[current_site]["agency"])
                 tax_incentive.title(@tax_results[current_site]["title"])
                 tax_incentive.description(@tax_results[current_site]["description"])
@@ -56,6 +59,7 @@ class GrantLoanResult
          xml.grant_results do |grant|
             for current_site in 0...@grant_results.length
               xml.grant do
+                grant.gov_type(@grant_results[current_site]["gov_type"])
                 grant.agency(@grant_results[current_site]["agency"])
                 grant.title(@grant_results[current_site]["title"])
                 grant.description(@grant_results[current_site]["description"])
