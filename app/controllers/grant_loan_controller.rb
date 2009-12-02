@@ -10,15 +10,18 @@ class GrantLoanController < ApplicationController
       respond_to_format(GrantLoanHelper.get_grants_and_loans(state_alpha, business_type, industry, business_task))
   end
   
+  #http://localhost:3000/grant_loan/federal.xml
   def all_federal
       respond_to_format(GrantLoanHelper.get_all_federal())
   end
   
+  #http://localhost:3000/grant_loan/state_financing_for/va.xml
   def state_financing
       state_alpha = params[:state_alpha]
       respond_to_format(GrantLoanHelper.get_state_financing(state_alpha))
   end
   
+  #http://localhost:3000/grant_loan/federal_and_state_financing_for/va.xml
   def federal_and_state_financing
       state_alpha = params[:state_alpha]
       respond_to_format(GrantLoanHelper.get_federal_and_state_financing(state_alpha))

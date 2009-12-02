@@ -10,7 +10,8 @@ module GrantLoanHelper
   end
 
   def GrantLoanHelper.get_federal_and_state_financing (state_alpha)
-      GrantLoan.find(:all, :select => "title, description, url, loan_type, agency, gov_type", :conditions => "gov_type = 'federal'")
+    state_id = GrantLoanHelper.getStateIDFromStateAlpha(state_alpha)
+    GrantLoan.find(:all, :select => "title, description, url, loan_type, agency, gov_type", :conditions => ["(gov_type = 'federal') or (gov_type = 'state' and state_id=?)",state_id])
   end
 
     def GrantLoanHelper.get_grants_and_loans (state_alpha, business_type, industry, business_task)
