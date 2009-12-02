@@ -29,6 +29,7 @@ class RecSitesController < ApplicationController
     end
   end
   
+  #http://localhost:3000/rec_sites/category/financing.xml
   def category
     @recType='category'
     category = params[:category]
@@ -38,6 +39,7 @@ class RecSitesController < ApplicationController
     respond_to_format(@this_result)
   end
   
+  #http://localhost:3000/rec_sites/domain/business.xml
   def domain
     @recType='domain'
     domain = params[:domain]
