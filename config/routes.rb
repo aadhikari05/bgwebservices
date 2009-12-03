@@ -77,9 +77,12 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'grant_loan/:state_alpha/:business_type/:industry/:business_task.:format', :controller => "grant_loan", :action => "show_all"
   
   #GEODATA ROUTES
+  map.connect 'geodata/links_for_city_of/:feature', :controller => "geodata", :action => "links_for_city_of"
+  map.connect 'geodata/links_for_city_of/:feature.:format', :controller => "geodata", :action => "links_for_city_of"
+
   map.connect 'geodata/by_zip/:zip', :controller => "geodata", :action => "geodata_by_zip"
   map.connect 'geodata/by_zip/:zip.:format', :controller => "geodata", :action => "geodata_by_zip"
-  map.connect 'geodata/state_and_city/:alpha/:feature.:format', :controller => "geodata", :action => "geodata_by_state_and_feature"
-  map.connect 'geodata/major_city/:feature.:format', :controller => "geodata", :action => "geodata_by_major_city"
+#  map.connect 'geodata/state_and_city/:alpha/:feature.:format', :controller => "geodata", :action => "geodata_by_state_and_feature"
+#  map.connect 'geodata/major_city/:feature.:format', :controller => "geodata", :action => "geodata_by_major_city"
 
 end

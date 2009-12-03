@@ -30,7 +30,19 @@ module GeodataHelper
         ###########################
         # F I N D   Q U E R I E S
         ###########################
-        def  GeodataHelper.GeodataFeatureWithStateMappingQuery(feature_name, alternate_name, state_id)
+         def  GeodataHelper.get_links_for_city_of(feature)
+            strQuery = "SELECT f.id, s.feature_id, feat_class, fips_class, feat_name as 'name', st.alpha as 'state_abbreviation', fips_county_cd, " +
+            "county_name as 'county_name', primary_lat as 'primary_lattitude', primary_lon as 'primary_longitude', st.name as 'state_name', " +
+            "county_name_full as 'full_county_name', url, s.name as link_title " +
+            "FROM `sites` s " +
+            "INNER JOIN `features`f ON f.id = s.feature_id " +
+            "left join alternate_names an on f.id = an.feature_id " +
+            "left join states st on f.state_id = st.id " +
+            "WHERE ((feat_name = ? or an.name=?) and is_primary = 1 and url is not null)"
+        		Site.find_by_sql([strQuery,feature, feature])
+      	end
+        
+         def  GeodataHelper.GeodataFeatureWithStateMappingQuery(feature_name, alternate_name, state_id)
             strQuery = "select id as feature_id, state_id, feat_name, county_name_full, fips_id, fips_class, fips_feat_id, fips_st_cd, fips_county_cd, majorfeature from features where county_seq = 1 and feat_name = ? "
         		strQuery += "and state_id = ? union select features.id as feature_id, state_id, feat_name, county_name_full, fips_id, fips_class, fips_feat_id, fips_st_cd, fips_county_cd, majorfeature from features, alternate_names "
         		strQuery += "where feature_id = features.id and county_seq = 1 and name = ? and state_id = ?"

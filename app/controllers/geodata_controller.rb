@@ -5,6 +5,12 @@ class GeodataController < ApplicationController
       ####################################################
       @state_alpha;
       
+      def links_for_city_of
+          #http://localhost:3000/geodata/links_for_city_of/:feature.xml
+        
+          respond_to_format(GeodataHelper.get_links_for_city_of(params[:feature]))
+      end
+      
       def geodata_by_zip
           #http://localhost:3000/geodata/by_zip/22209.xml
           #We take the zip and use it to get feature_id for a particular zip
