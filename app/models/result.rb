@@ -68,15 +68,16 @@ class Result
     xml = options[:builder] ||= Builder::XmlMarkup.new(:indent => options[:indent])
     xml.instruct! unless options[:skip_instruct => true, :dasherize => false]
     
-    #commenting out the county_sites sort as the link title will always be nil from the sites. schoe 5/20/09
-    @county_sites.sort! {|a,b| a.link_title <=> b.link_title}
+    if !@county_sites[0][0].nil?
+        @county_sites.sort! {|a,b| a.link_title <=> b.link_title}
+    end
     @local_sites.sort! {|a,b| a.link_title <=> b.link_title }
     @state_sites.sort! {|a,b| a.link_title <=> b.link_title}
     @sites_for_business_type.sort! {|a,b| a.link_title <=> b.link_title }
     
     xml.result do
         xml.county_sites do |site|
-            for current_site in 0...@county_sites.length
+            for current_site in 0...@county_sites[0].length
               xml.site do
                 site.link_title(@county_sites[current_site][0]["link_title"])
                 site.description(@county_sites[current_site][0]["description"])

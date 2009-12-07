@@ -75,6 +75,10 @@ module PermitmeHelper
             Feature.find_by_sql(["select state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = ?",zip])
         end
 
+        def PermitmeHelper.getFeatureAndStatebyFeature(feature)
+            Feature.find_by_sql(["select distinct (feature_id), state_id, fips_feat_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and feat_name = ?",feature])
+        end
+
         def PermitmeHelper.getStateIDFromStateAlpha(state_alpha)
             State.find(:all, :select => "id as state_id", :conditions => ["alpha = ?",state_alpha])
         end
@@ -192,10 +196,11 @@ module PermitmeHelper
             state_name = PermitmeHelper.getStateAlphaFromStateID(state_id)
 
             counties = process_rules(counties)
-            
-            counties[0][0]["link_title"] = county_name + ", " + state_name[0]["state_alpha"]
+            if !counties[0][0].nil?
+                counties[0][0]["link_title"] = county_name + ", " + state_name[0]["state_alpha"]
+            end
           
-          return counties
+            return counties
       end
 
 
@@ -278,14 +283,15 @@ module PermitmeHelper
           end
 
           if localSites.blank?
-            this_array.each do |d|
-            templocalsite=getFeatureByCountyName(d["state_id"],d["county_name_full"])
-            if !templocalsite.blank?
-              localSites.push(SitesByFeatureIdQuery(templocalsite[0]["id"]))
-            end
+              this_array.each do |d|
+              templocalsite=getFeatureByCountyName(d["state_id"],d["county_name_full"])
+              if !templocalsite.blank?
+                  sites_by_feature_id = SitesByFeatureIdQuery(templocalsite[0]["id"])
+                  sites_by_feature_id
+                  localSites.push(sites_by_feature_id)
+              end
           end
-          
-          
+
           
         end
           

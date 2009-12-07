@@ -19,7 +19,7 @@ class PermitmeController < ApplicationController
       def permitme_by_city
           #http://localhost:3000/permitme/by_city/child%20care%20services/vienna.xml
           #We take the zip and use it to get state_id, fips_feature_id, feature_id for a particular zip
-          @state_and_feature = PermitmeHelper.getFeatureAndStatebyZip (params[:feature])
+          @state_and_feature = PermitmeHelper.getFeatureAndStatebyFeature (params[:feature])
           @business_type_id = PermitmeHelper.getBusinessTypeIdFromBusinessType(params[:business_type])
         
           respond_to_format(PermitmeHelper.get_all_permitme_sites(@state_and_feature, @business_type_id, "permitme_by_zip"))
