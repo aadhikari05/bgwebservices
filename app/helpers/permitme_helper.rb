@@ -6,32 +6,32 @@ module PermitmeHelper
         ####################################################
         def PermitmeHelper.get_all_permitme_sites(state_and_feature_array, business_type_id, query_type)
             @this_result = Result.new
-            
+
             # Making this new @state_and_feature_array for prune_unincorporated_area only for now.  unincorporated area can be from diferrent fips_feat_id
             # but currently findAllCountySitesByFeatureAndState=>getCountiesByFeature(state_id, fips_feature_id) uses fips_features_id only.
             # dallas,tx has one city with 5 counties(same fips_feature_id), but for (georgetown, id) has two features with different fips_feat_id.
             # so if each feature gets into the PermitmeHelper.prune_unincorporated_areas @state_and_feature_array will be used and spit out county_array
             # this way I don't touch other structures.  schoe 5/21/09
             @state_and_feature_array=state_and_feature_array
-            
+
             if !query_type.eql?("permitme_by_state_only")
                 for ss in 0...state_and_feature_array.length
-                    
                     #Get County Sites
-                      #Fixed so that the county result gets into one permit me item.(Example springfield, va)
-                      #as local county site is the only values that are not shared.
-                      #This can be changed to 3 different items.  schoe 5/20/09 
-                    #@this_result.county_sites = findAllCountySitesByFeatureAndState(state_and_feature_array[ss]["state_id"], state_and_feature_array[ss]["fips_feat_id"], state_and_feature_array[ss]["feature_id"])
+                    #Fixed so that the county result gets into one permit me item.(Example springfield, va)
+                    #as local county site is the only values that are not shared.
+                    #This can be changed to 3 different items.  schoe 5/20/09 
+                    #@this_result.county_sites = findAllCountySitesByFeatureAndState(state_and_feature_array[ss]["state_id"],
+                    #state_and_feature_array[ss]["fips_feat_id"], state_and_feature_array[ss]["feature_id"])
                     tempCountySites = findAllCountySitesByFeatureAndState(state_and_feature_array[ss]["state_id"], state_and_feature_array[ss]["fips_feat_id"], state_and_feature_array[ss]["feature_id"])
                     tempCountySites.each do |tc|
-                      @this_result.county_sites.push(tc)
+                        @this_result.county_sites.push(tc)
                     end
 
                     #Get Primary Local Sites
                     @this_result.local_sites = findAllSitesByFeatureId(state_and_feature_array[ss]["feature_id"])
                 end
             end
-          
+
             @this_result = get_state_business_type_permitme_sites(@this_result, state_and_feature_array[0]["state_id"], business_type_id)
 
             @this_result
@@ -45,18 +45,18 @@ module PermitmeHelper
             #If link_title is blank, makes it equal to empty string, so it doesn't get sent as a nil object 
             #and doesn't break sort in to_xml.
             for counter in 0...this_result.state_sites.length
-              if this_result.state_sites[counter]["link_title"].nil?
-                  this_result.state_sites[counter]["link_title"] = ""
-              end
+                if this_result.state_sites[counter]["link_title"].nil?
+                    this_result.state_sites[counter]["link_title"] = ""
+                end
             end
 
             #Add Business Type Results
             this_result.sites_for_business_type = PermitMeResultsByBusinessTypeQuery(state_id, business_type_id)
 
             for counter in 0...this_result.sites_for_business_type.length
-              if this_result.sites_for_business_type[counter]["link_title"].nil?
-                  this_result.sites_for_business_type[counter]["link_title"] = ""
-              end
+                if this_result.sites_for_business_type[counter]["link_title"].nil?
+                    this_result.sites_for_business_type[counter]["link_title"] = ""
+                end
             end
 
             this_result

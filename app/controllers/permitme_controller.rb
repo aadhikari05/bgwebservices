@@ -28,6 +28,16 @@ class PermitmeController < ApplicationController
           respond_to_format(PermitmeHelper.get_all_permitme_sites(@state_and_feature, @business_type_id, "permitme_by_state_only"))
       end
 
+      def all_permitme_by_state
+          #http://localhost:3000/permitme/all_by_state/child%20care%20services/il.xml
+          #We take the state alpha and use it to get state_id,(fips_feature_id, feature_id will be blank in this cases)
+          @state_and_feature = PermitmeHelper.getStateIDFromStateAlpha(params[:alpha])
+          @state_alpha = params[:alpha]
+        
+          #We pass the state_id and fips_feat_id to the function below to get the list of County Sites
+          respond_to_format(PermitmeHelper.get_all_permitme_sites(@state_and_feature, @business_type_id, "all_permitme_by_state"))
+      end
+
       def permitme_by_state_and_feature
           #http://localhost:3000/permitme/state_and_city/child%20care%20services/il/baldwin.xml
 
