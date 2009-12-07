@@ -50,8 +50,8 @@ module GeodataHelper
             "INNER JOIN `features`f ON f.id = s.feature_id " +
             "left join alternate_names an on f.id = an.feature_id " +
             "left join states st on f.state_id = st.id " +
-            "WHERE ((county_name_full like ?) and is_primary = 1 and url is not null)"
-        		Site.find_by_sql([strQuery,'%'+feature+'%'])
+            "WHERE ((county_name_full like ? or feat_name = ?) and is_primary = 1 and url is not null)"
+        		Site.find_by_sql([strQuery,'%'+feature+'%', feature])
       	end
         
          def  GeodataHelper.get_city_links_for_state_of(alpha)

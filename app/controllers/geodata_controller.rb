@@ -12,7 +12,7 @@ class GeodataController < ApplicationController
       end
       
       def all_links_for_county_of
-          #http://localhost:3000/geodata/all_links_for_county_of/:feature.xml
+          #http://localhost:3000/geodata/all_links_for_county_of/fairfax county.xml
         
           respond_to_format(GeodataHelper.get_links_for_county_of(params[:feature]))
       end
