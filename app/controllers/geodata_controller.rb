@@ -55,6 +55,31 @@ class GeodataController < ApplicationController
           respond_to_format(GeodataHelper.get_city_links_for_state_of(params[:alpha]))
       end
       
+      def all_data_for_city_of
+          #http://localhost:3000/geodata/all_data_for_city_of/:feature.xml      
+          respond_to_format(GeodataHelper.get_data_for_city_of(params[:feature]))
+      end
+      
+      def all_data_for_county_of
+          #http://localhost:3000/geodata/all_data_for_county_of/fairfax county.xml    
+          respond_to_format(GeodataHelper.get_data_for_county_of(params[:feature]))
+      end
+      
+      def city_data_for_state_of
+          #http://localhost:3000/geodata/city_data_for_state_of/ca.xml
+          respond_to_format(GeodataHelper.get_city_data_for_state_of(params[:alpha]))
+      end
+      
+      def county_data_for_state_of
+          #http://localhost:3000/geodata/county_data_for_state_of/va.xml
+          respond_to_format(GeodataHelper.get_county_data_for_city_of(params[:alpha]))
+      end
+      
+      def city_county_data_for_state_of
+          #http://localhost:3000/geodata/city_county_data_for_state_of/ny.xml
+          respond_to_format(GeodataHelper.get_city_data_for_state_of(params[:alpha]))
+      end
+      
       def geodata_by_zip
           #http://localhost:3000/geodata/by_zip/22209.xml
           #We take the zip and use it to get feature_id for a particular zip
