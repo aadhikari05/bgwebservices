@@ -6,32 +6,52 @@ class GeodataController < ApplicationController
       @state_alpha;
       
       def all_links_for_city_of
-          #http://localhost:3000/geodata/all_links_for_city_of/:feature.xml
-        
+          #http://localhost:3000/geodata/all_links_for_city_of/:feature.xml      
           respond_to_format(GeodataHelper.get_links_for_city_of(params[:feature]))
       end
       
       def all_links_for_county_of
-          #http://localhost:3000/geodata/all_links_for_county_of/fairfax county.xml
-        
+          #http://localhost:3000/geodata/all_links_for_county_of/fairfax county.xml    
           respond_to_format(GeodataHelper.get_links_for_county_of(params[:feature]))
       end
       
       def city_links_for_state_of
           #http://localhost:3000/geodata/city_links_for_state_of/ca.xml
-        
           respond_to_format(GeodataHelper.get_city_links_for_state_of(params[:alpha]))
       end
       
       def county_links_for_state_of
           #http://localhost:3000/geodata/county_links_for_state_of/va.xml
-        
           respond_to_format(GeodataHelper.get_county_links_for_city_of(params[:alpha]))
       end
       
       def city_county_links_for_state_of
           #http://localhost:3000/geodata/city_county_links_for_state_of/ny.xml
-        
+          respond_to_format(GeodataHelper.get_city_links_for_state_of(params[:alpha]))
+      end
+      
+      def primary_links_for_city_of
+          #http://localhost:3000/geodata/primary_links_for_city_of/:feature.xml      
+          respond_to_format(GeodataHelper.primary_link_for_city_of(params[:feature]))
+      end
+      
+      def primary_links_for_county_of
+          #http://localhost:3000/geodata/primary_links_for_county_of/fairfax county.xml    
+          respond_to_format(GeodataHelper.primary_link_for_county_of(params[:feature]))
+      end
+      
+      def primary_city_links_for_state_of
+          #http://localhost:3000/geodata/primary_city_links_for_state_of/ca.xml
+          respond_to_format(GeodataHelper.get_city_links_for_state_of(params[:alpha]))
+      end
+      
+      def primary_county_links_for_state_of
+          #http://localhost:3000/geodata/primary_county_links_for_state_of/va.xml
+          respond_to_format(GeodataHelper.get_county_links_for_city_of(params[:alpha]))
+      end
+      
+      def primary_city_county_links_for_state_of
+          #http://localhost:3000/geodata/primary_city_county_links_for_state_of/ny.xml
           respond_to_format(GeodataHelper.get_city_links_for_state_of(params[:alpha]))
       end
       

@@ -40,9 +40,7 @@ ActionController::Routing::Routes.draw do |map|
   #KEYWORD RECOMMENDED SITES
   map.connect 'rec_sites/keywords/:keyword.:format', :controller => "rec_sites", :action => "keywords"
   map.connect 'rec_sites/keywords/', :controller => "rec_sites", :action => "keywords"
-  
   map.connect 'rec_sites/category/:category.:format', :controller => "rec_sites", :action => "category"
-  
   map.connect 'rec_sites/domain/:domain.:format', :controller => "rec_sites", :action => "domain"
 
   #STATE RECOMMENDED SITES
@@ -54,38 +52,31 @@ ActionController::Routing::Routes.draw do |map|
 
   #PERMITME ROUTES
   map.connect 'permitme/by_zip/:business_type/:zip.:format', :controller => "permitme", :action => "permitme_by_zip"
-  
   map.connect 'permitme/by_city/:business_type/:feature.:format', :controller => "permitme", :action => "permitme_by_city"
-  
   map.connect 'permitme/by_county/:business_type/:feature.:format', :controller => "permitme", :action => "permitme_by_county"
-  
   map.connect 'permitme/state_only/:business_type/:alpha.:format', :controller => "permitme", :action => "permitme_by_state_only"
-  
   map.connect 'permitme/all_by_state/:alpha.:format', :controller => "permitme", :action => "all_permitme_by_state"
-  
   map.connect 'permitme/state_and_city/:business_type/:alpha/:feature.:format', :controller => "permitme", :action => "permitme_by_state_and_feature"
-
   map.connect 'permitme/by_business_type/:business_type.:format', :controller => "permitme", :action => "permitme_by_business_type"
 
   #GRANT_LOAN ROUTES
   map.connect 'grant_loan/federal.:format', :controller => "grant_loan", :action => "all_federal"
-  
   map.connect 'grant_loan/state_financing_for/:state_alpha.:format', :controller => "grant_loan", :action => "state_financing"
-
   map.connect 'grant_loan/federal_and_state_financing_for/:state_alpha.:format', :controller => "grant_loan", :action => "federal_and_state_financing"
-
   map.connect 'grant_loan/:state_alpha/:business_type/:industry/:business_task.:format', :controller => "grant_loan", :action => "show_all"
   
   #GEODATA ROUTES
   map.connect 'geodata/all_links_for_city_of/:feature.:format', :controller => "geodata", :action => "all_links_for_city_of"
-
   map.connect 'geodata/all_links_for_county_of/:feature.:format', :controller => "geodata", :action => "all_links_for_county_of"
-
   map.connect 'geodata/city_links_for_state_of/:alpha.:format', :controller => "geodata", :action => "city_links_for_state_of"
-
   map.connect 'geodata/county_links_for_state_of/:alpha.:format', :controller => "geodata", :action => "county_links_for_state_of"
-
   map.connect 'geodata/city_county_links_for_state_of/:alpha.:format', :controller => "geodata", :action => "city_county_links_for_state_of"
+
+  map.connect 'geodata/primary_links_for_city_of/:feature.:format', :controller => "geodata", :action => "primary_links_for_city_of"
+  map.connect 'geodata/primary_links_for_county_of/:feature.:format', :controller => "geodata", :action => "primary_links_for_county_of"
+  map.connect 'geodata/primary_city_links_for_state_of/:alpha.:format', :controller => "geodata", :action => "primary_city_links_for_state_of"
+  map.connect 'geodata/primary_county_links_for_state_of/:alpha.:format', :controller => "geodata", :action => "primary_county_links_for_state_of"
+  map.connect 'geodata/primary_city_county_links_for_state_of/:alpha.:format', :controller => "geodata", :action => "primary_city_county_links_for_state_of"
 
   map.connect 'geodata/by_zip/:zip.:format', :controller => "geodata", :action => "geodata_by_zip"
 #  map.connect 'geodata/state_and_city/:alpha/:feature.:format', :controller => "geodata", :action => "geodata_by_state_and_feature"
