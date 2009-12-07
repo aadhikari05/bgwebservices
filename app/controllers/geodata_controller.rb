@@ -17,10 +17,10 @@ class GeodataController < ApplicationController
           respond_to_format(GeodataHelper.get_links_for_county_of(params[:feature]))
       end
       
-      def all_links_for_state_of
-          #http://localhost:3000/geodata/all_links_for_state_of/ca.xml
+      def city_links_for_state_of
+          #http://localhost:3000/geodata/city_links_for_state_of/ca.xml
         
-          respond_to_format(GeodataHelper.get_links_for_state_of(params[:alpha]))
+          respond_to_format(GeodataHelper.get_city_links_for_state_of(params[:alpha]))
       end
       
       def county_links_for_state_of
