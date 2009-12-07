@@ -22,7 +22,12 @@ module PermitmeHelper
                     #This can be changed to 3 different items.  schoe 5/20/09 
                     #@this_result.county_sites = findAllCountySitesByFeatureAndState(state_and_feature_array[ss]["state_id"],
                     #state_and_feature_array[ss]["fips_feat_id"], state_and_feature_array[ss]["feature_id"])
-                    tempCountySites = findAllCountySitesByFeatureAndState(state_and_feature_array[ss]["state_id"], state_and_feature_array[ss]["fips_feat_id"], state_and_feature_array[ss]["feature_id"])
+                    if query_type.eql?("permitme_by_county")
+                        tempCountySites = findAllSitesByFeatureId(state_and_feature_array[ss]["feature_id"])
+                    else
+                        tempCountySites = findAllCountySitesByFeatureAndState(state_and_feature_array[ss]["state_id"], state_and_feature_array[ss]["fips_feat_id"], state_and_feature_array[ss]["feature_id"])
+                    end
+                    
                     tempCountySites.each do |tc|
                         @this_result.county_sites.push(tc)
                     end
@@ -76,7 +81,7 @@ module PermitmeHelper
         end
 
         def PermitmeHelper.getFeatureAndStatebyFeature(feature)
-            Feature.find_by_sql(["select distinct (feature_id), state_id, fips_feat_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and feat_name = ?",feature])
+            Feature.find(:all, :select => "id, state_id, fips_feat_id", :conditions => ["county_seq = 1 and feat_name = ?",feature])
         end
 
         def PermitmeHelper.getStateIDFromStateAlpha(state_alpha)
@@ -105,7 +110,6 @@ module PermitmeHelper
 
         def  PermitmeHelper.PermitMeFeatureAltNameMappingQuery(alternate_name)
             Feature.find_by_sql(["select features.id as feature_id, state_id, fips_feat_id from features,alternate_names where alternate_names.feature_id = features.id and county_seq = 1 and name = ?",alternate_name])
-#            Feature.find_by_sql("select features.id, fips_class, state_id, feat_name,county_name_full,majorfeature, fips_feat_id from features,alternate_names where alternate_names.feature_id = features.id and county_seq = 1 and name = ?",alternate_name)
         end
 
         def PermitmeHelper.permitMeCountySpecsByNameQuery(feature_id)

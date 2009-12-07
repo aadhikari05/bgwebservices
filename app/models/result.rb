@@ -68,8 +68,10 @@ class Result
     xml = options[:builder] ||= Builder::XmlMarkup.new(:indent => options[:indent])
     xml.instruct! unless options[:skip_instruct => true, :dasherize => false]
     
-    if !@county_sites[0][0].nil?
-        @county_sites.sort! {|a,b| a.link_title <=> b.link_title}
+    if !@county_sites[0].nil?
+      if !@county_sites[0][0].nil?
+          @county_sites.sort! {|a,b| a.link_title <=> b.link_title}
+      end
     end
     @local_sites.sort! {|a,b| a.link_title <=> b.link_title }
     @state_sites.sort! {|a,b| a.link_title <=> b.link_title}
@@ -77,6 +79,7 @@ class Result
     
     xml.result do
         xml.county_sites do |site|
+          if !@county_sites[0].nil?
             for current_site in 0...@county_sites[0].length
               xml.site do
                 site.link_title(@county_sites[current_site][0]["link_title"])
@@ -84,6 +87,7 @@ class Result
                 site.url(@county_sites[current_site][0]["url"])
               end
             end
+          end
         end
         
         xml.local_sites do |site|
