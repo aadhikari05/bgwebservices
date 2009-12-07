@@ -79,6 +79,13 @@ class PermitmeController < ApplicationController
           respond_to_format(PermitmeHelper.get_all_permitme_sites(@state_and_feature, @business_type_id, "permitme_by_state_and_feature"))
       end
     
+      def permitme_by_business_type
+          #http://localhost:3000/permitme/by_business_type/child%20care%20services.xml
+          @business_type_id = PermitmeHelper.getBusinessTypeIdFromBusinessType(params[:business_type])
+        
+          respond_to_format(PermitmeHelper.get_all_business_type_permitme_sites(@business_type_id))
+      end
+
       def respond_to_format(resultArray)
           respond_to do |format|
      		      format.html { render :text => resultArray.to_json }
