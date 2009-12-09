@@ -85,6 +85,11 @@ class PermitmeController < ApplicationController
         
           respond_to_format(PermitmeHelper.get_all_business_type_permitme_sites(@business_type_id))
       end
+  
+    def permitme_by_category
+        #http://localhost:3000/permitme/by_category/doing business as.xml
+        respond_to_format(PermitmeHelper.get_all_category_permitme_sites(params[:category]))
+    end
 
       def respond_to_format(resultArray)
           respond_to do |format|

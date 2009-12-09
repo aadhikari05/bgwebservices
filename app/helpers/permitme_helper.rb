@@ -78,6 +78,15 @@ module PermitmeHelper
             @this_result
         end
 
+        def PermitmeHelper.get_all_category_permitme_sites(category)
+          @this_result = Result.new
+
+            #Add Business Type Results
+            @this_result.sites_for_business_type = PermitMeResultsByCategoryOnly(category)
+
+            @this_result
+        end
+
         #########################################################
         # S Q L   Q U E R I E S   T O   S I N G L E   T A B L E S
         #########################################################
@@ -190,6 +199,17 @@ module PermitmeHelper
         		strQuery += "and(s.isActive = 1 or s.isActive is null) "
         		strQuery += "order by permitme_category_id, permitme_subcategory_id, permitme_section_id"
         		PermitmeResourceGroup.find_by_sql([strQuery,business_type_id])
+        end
+
+        def PermitmeHelper.PermitMeResultsByCategoryOnly(category)
+            strQuery = "select p.url, p.link_title, p.link_description from permitme_resources p "
+          	strQuery += "left join permitme_resource_groups rg on p.permitme_resource_group_id <=> rg.id "
+          	strQuery += "left join permitme_categories c on rg.permitme_category_id <=> c.id "
+          	strQuery += "left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id "
+          	strQuery += "left join permitme_sections sec on rg.permitme_section_id <=> sec.id "
+          	strQuery += "where url is not null and (c.name like ?) and (s.isActive = 1 or s.isActive is null) "
+          	strQuery += "order by permitme_category_id, permitme_subcategory_id, permitme_section_id"
+        		PermitmeResourceGroup.find_by_sql([strQuery,'%'+category+'%'])
         end
 
         def PermitmeHelper.findAllFeatureSitesByFeatureAndState(feature_id, state_alpha)
