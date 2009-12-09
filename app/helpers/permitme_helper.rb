@@ -169,9 +169,9 @@ module PermitmeHelper
       	end
 
         def PermitmeHelper.PermitMeResultsByStateQuery(state_id)
-            strQuery = "select c.name as category, c.description as category_description, "
-            strQuery += "s.name as business_type, s.description as business_type_description, "
-            strQuery += "sec.name as section, sec.description as section_description, "
+            strQuery = "select c.name as category, "
+            strQuery += "s.name as business_type, "
+            strQuery += "sec.name as section, rg.description as resource_group_description, "
             strQuery += "p.url, p.link_title, p.link_description "
         		strQuery += "from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id "
         		strQuery += "left join permitme_categories c on rg.permitme_category_id <=> c.id "
@@ -185,9 +185,9 @@ module PermitmeHelper
         end
 
         def PermitmeHelper.PermitMeResultsByBusinessTypeQuery(state_id, business_type_id)
-            strQuery = "select c.name as category, c.description as category_description, "
-            strQuery += "s.name as business_type, s.description as business_type_description, "
-            strQuery += "sec.name as section, sec.description as section_description, "
+            strQuery = "select c.name as category, "
+            strQuery += "s.name as business_type, "
+            strQuery += "sec.name as section, rg.description as resource_group_description, "
             strQuery += "p.url, p.link_title, p.link_description "
         		strQuery += "from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id "
         		strQuery += "left join permitme_categories c on rg.permitme_category_id <=> c.id "
@@ -201,9 +201,9 @@ module PermitmeHelper
         end
 
         def PermitmeHelper.PermitMeResultsByBusinessTypeOnly(business_type)
-            strQuery = "select c.name as category, c.description as category_description, "
-            strQuery += "s.name as business_type, s.description as business_type_description, "
-            strQuery += "sec.name as section, sec.description as section_description, "
+            strQuery = "select c.name as category, "
+            strQuery += "s.name as business_type, "
+            strQuery += "sec.name as section, rg.description as resource_group_description, "
             strQuery += "p.url, p.link_title, p.link_description from permitme_resources p "
           	strQuery += "left join permitme_resource_groups rg on p.permitme_resource_group_id <=> rg.id "
           	strQuery += "left join permitme_categories c on rg.permitme_category_id <=> c.id "
@@ -215,9 +215,9 @@ module PermitmeHelper
         end
 
         def PermitmeHelper.PermitMeResultsByCategoryOnly(category)
-            strQuery = "select c.name as category, c.description as category_description, "
-            strQuery += "s.name as business_type, s.description as business_type_description, "
-            strQuery += "sec.name as section, sec.description as section_description, "
+            strQuery = "select c.name as category, "
+            strQuery += "s.name as business_type, "
+            strQuery += "sec.name as section, rg.description as resource_group_description, "
             strQuery += "p.url, p.link_title, p.link_description from permitme_resources p "
           	strQuery += "left join permitme_resource_groups rg on p.permitme_resource_group_id <=> rg.id "
           	strQuery += "left join permitme_categories c on rg.permitme_category_id <=> c.id "

@@ -73,7 +73,11 @@ class Result
               xml.site do
                 site.link_title(@county_sites[current_site][0]["link_title"])
                 site.description(@county_sites[current_site][0]["description"])
-                site.url(@county_sites[current_site][0]["url"])
+                site.url(@county_sites[current_site][0]["url"]) 
+                site.category(@county_sites[current_site][0]["category"])
+                site.business_type(@county_sites[current_site][0]["business_type"])
+                site.section(@county_sites[current_site][0]["section"])
+                site.resource_group_description(@county_sites[current_site][0]["resource_group_description"])
               end
             end
           end
@@ -85,6 +89,10 @@ class Result
                 site.link_title(@local_sites[current_site]["link_title"])
                 site.description(@local_sites[current_site]["description"])
                 site.url(@local_sites[current_site]["url"])
+                site.category(@local_sites[current_site]["category"])
+                site.business_type(@local_sites[current_site]["business_type"])
+                site.section(@local_sites[current_site]["section"])
+                site.resource_group_description(@local_sites[current_site]["resource_group_description"])
               end
             end
         end
@@ -95,6 +103,10 @@ class Result
                 site.link_title(@state_sites[current_site]["link_title"])
                 site.description(@state_sites[current_site]["description"])
                 site.url(@state_sites[current_site]["url"])
+                site.category(@state_sites[current_site]["category"])
+                site.business_type(@state_sites[current_site]["business_type"])
+                site.section(@state_sites[current_site]["section"])
+                site.resource_group_description(@state_sites[current_site]["resource_group_description"])
               end
             end
         end
@@ -105,6 +117,10 @@ class Result
                 site.link_title(@sites_for_business_type[current_site]["link_title"])
                 site.description(@sites_for_business_type[current_site]["description"])
                 site.url(@sites_for_business_type[current_site]["url"])
+                site.category(@sites_for_business_type[current_site]["category"])
+                site.business_type(@sites_for_business_type[current_site]["business_type"])
+                site.section(@sites_for_business_type[current_site]["section"])
+                site.resource_group_description(@sites_for_business_type[current_site]["resource_group_description"])
               end
             end
         end
@@ -115,6 +131,10 @@ class Result
                 site.link_title(@sites_for_category[current_site]["link_title"])
                 site.description(@sites_for_category[current_site]["description"])
                 site.url(@sites_for_category[current_site]["url"])
+                site.category(@sites_for_category[current_site]["category"])
+                site.business_type(@sites_for_category[current_site]["business_type"])
+                site.section(@sites_for_category[current_site]["section"])
+                site.resource_group_description(@sites_for_category[current_site]["resource_group_description"])
               end
             end
         end
@@ -130,6 +150,10 @@ class Result
 		county_site_value.push({"title"=>@county_sites[current_site]["link_title"]})
 		county_site_value.push({"description"=>@county_sites[current_site]["description"]})
 		county_site_value.push({"url"=>@county_sites[current_site]["url"]})
+		county_site_value.push({"category"=>@county_sites[current_site]["category"]})
+		county_site_value.push({"business_type"=>@county_sites[current_site]["business_type"]})
+		county_site_value.push({"section"=>@county_sites[current_site]["section"]})
+		county_site_value.push({"resource_group_description"=>@county_sites[current_site]["resource_group_description"]})
 		h1={"county_sites_item"+current_site.to_s =>state_site_value}
 		result.merge!(h1) 
 	end
@@ -138,6 +162,10 @@ class Result
 		local_site_value.push({"title"=>@local_sites[current_site]["link_title"]})
 		local_site_value.push({"description"=>@local_sites[current_site]["description"]})
 		local_site_value.push({"url"=>@local_sites[current_site]["url"]})
+		local_site_value.push({"category"=>@local_sites[current_site]["category"]})
+		local_site_value.push({"business_type"=>@local_sites[current_site]["business_type"]})
+		local_site_value.push({"section"=>@local_sites[current_site]["section"]})
+		local_site_value.push({"resource_group_description"=>@local_sites[current_site]["resource_group_description"]})
 		h1={"local_site_item"+current_site.to_s =>local_site_value}
 		result.merge!(h1) 
 	end
@@ -146,6 +174,10 @@ class Result
 		state_site_value.push({"title"=>@state_sites[current_site]["link_title"]})
 		state_site_value.push({"description"=>@state_sites[current_site]["description"]})
 		state_site_value.push({"url"=>@state_sites[current_site]["url"]})
+		state_site_value.push({"category"=>@state_sites[current_site]["category"]})
+		state_site_value.push({"business_type"=>@state_sites[current_site]["business_type"]})
+		state_site_value.push({"section"=>@state_sites[current_site]["section"]})
+		state_site_value.push({"resource_group_description"=>@state_sites[current_site]["resource_group_description"]})
 		h1={"state_site_item"+current_site.to_s =>state_site_value}
 		result.merge!(h1) 
 	end
@@ -154,6 +186,10 @@ class Result
 		sites_for_business_value.push({"title"=>@sites_for_business_type[current_site]["link_title"]})
 		sites_for_business_value.push({"description"=>@sites_for_business_type[current_site]["description"]})
 		sites_for_business_value.push({"url"=>@sites_for_business_type[current_site]["url"]})
+		sites_for_business_value.push({"category"=>@sites_for_business_type[current_site]["category"]})
+		sites_for_business_value.push({"business_type"=>@sites_for_business_type[current_site]["business_type"]})
+		sites_for_business_value.push({"section"=>@sites_for_business_type[current_site]["section"]})
+		sites_for_business_value.push({"resource_group_description"=>@sites_for_business_type[current_site]["resource_group_description"]})
 		h1={"business_type_site_item"+current_site.to_s =>sites_for_business_value}
 		result.merge!(h1) 
 	end
@@ -163,6 +199,10 @@ class Result
 		sites_for_category_value.push({"title"=>@sites_for_category[current_site]["link_title"]})
 		sites_for_category_value.push({"description"=>@sites_for_category[current_site]["description"]})
 		sites_for_category_value.push({"url"=>@sites_for_category[current_site]["url"]})
+		sites_for_category_value.push({"category"=>@sites_for_category[current_site]["category"]})
+		sites_for_category_value.push({"business_type"=>@sites_for_category[current_site]["business_type"]})
+		sites_for_category_value.push({"section"=>@sites_for_category[current_site]["section"]})
+		sites_for_category_value.push({"resource_group_description"=>@sites_for_category[current_site]["resource_group_description"]})
 		h1={"category_site_item"+current_site.to_s =>sites_for_category_value}
 		result.merge!(h1) 
 	end
@@ -170,7 +210,7 @@ class Result
     result.to_json  
   end
 
-  def to_json(options = {})
+  def to_json2(options = {})
 
     result = Hash.new
 
