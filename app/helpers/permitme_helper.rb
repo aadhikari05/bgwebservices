@@ -7,10 +7,14 @@ module PermitmeHelper
         def PermitmeHelper.get_all_permitme_sites(state_and_feature_array, business_type_id, query_type)
             @this_result = Result.new
 
-            # Making this new @state_and_feature_array for prune_unincorporated_area only for now.  unincorporated area can be from diferrent fips_feat_id
-            # but currently findAllCountySitesByFeatureAndState=>getCountiesByFeature(state_id, fips_feature_id) uses fips_features_id only.
-            # dallas,tx has one city with 5 counties(same fips_feature_id), but for (georgetown, id) has two features with different fips_feat_id.
-            # so if each feature gets into the PermitmeHelper.prune_unincorporated_areas @state_and_feature_array will be used and spit out county_array
+            # Making this new @state_and_feature_array for prune_unincorporated_area only for now.  
+            # unincorporated area can be from diferrent fips_feat_id
+            # but currently findAllCountySitesByFeatureAndState=>getCountiesByFeature(state_id, fips_feature_id) 
+            # uses fips_features_id only.
+            # dallas,tx has one city with 5 counties(same fips_feature_id), but 
+            # for (georgetown, id) has two features with different fips_feat_id.
+            # so if each feature gets into the PermitmeHelper.prune_unincorporated_areas 
+            # @state_and_feature_array will be used and spit out county_array
             # this way I don't touch other structures.  schoe 5/21/09
             @state_and_feature_array=state_and_feature_array
 
@@ -147,15 +151,19 @@ module PermitmeHelper
         # P E R M I T M E   Q U E R I E S
         ####################################################
         def  PermitmeHelper.PermitMeFeatureMappingQuery(feature_name, alternate_name)
-            strQuery = "select id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = ? "
-        		strQuery +=	"union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names "
+            strQuery = "select id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id "
+            strQuery += "from features where county_seq = 1 and feat_name = ? "
+        		strQuery +=	"union select features.id, state_id, fips_class, feat_name, county_name_full, majorfeature, "
+            strQuery += "fips_feat_id from features, alternate_names "
         		strQuery += "where feature_id = features.id and county_seq = 1 and name = ?"
         		Feature.find_by_sql([strQuery,feature_name,alternate_name])
         end
 
         def  PermitmeHelper.PermitMeFeatureWithStateMappingQuery(feature_name, alternate_name, state_id)
-            strQuery = "select id as feature_id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features where county_seq = 1 and feat_name = ? "
-        		strQuery += "and state_id = ? union select features.id, state_id, fips_class, feat_name,county_name_full,majorfeature, fips_feat_id from features, alternate_names "
+            strQuery = "select id as feature_id, state_id, fips_class, feat_name, county_name_full, majorfeature, "
+            strQuery += "fips_feat_id from features where county_seq = 1 and feat_name = ? "
+        		strQuery += "and state_id = ? union select features.id, state_id, fips_class, feat_name, "
+            strQuery += "county_name_full, majorfeature, fips_feat_id from features, alternate_names "
         		strQuery += "where feature_id = features.id and county_seq = 1 and name = ? and state_id = ?"
         		Feature.find_by_sql([strQuery,feature_name,state_id,alternate_name,state_id])
       	end
