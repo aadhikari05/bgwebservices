@@ -295,10 +295,14 @@ module PermitmeHelper
           tempFeatureToCompare=nil
           
           ############################################################################
-          # The following loop is necessary for this perticular structure as unincorporated area can be from diferrent fips_feat_id
-          # but currently findAllCountySitesByFeatureAndState=>getCountiesByFeature(state_id, fips_feature_id) uses fips_features_id only.
-          # dallas,tx has one city with 5 counties(same fips_feature_id), but for (georgetown, id) has two features with different fips_feat_id.
-          # so if each feature gets into the PermitmeHelper.prune_unincorporated_areas @state_and_feature_array will be used and spit out county_array
+          # The following loop is necessary for this perticular structure as 
+          # unincorporated area can be from diferrent fips_feat_id
+          # but currently findAllCountySitesByFeatureAndState=>getCountiesByFeature(state_id, fips_feature_id) 
+          # uses fips_features_id only.
+          # dallas,tx has one city with 5 counties(same fips_feature_id), but for (georgetown, id) 
+          # has two features with different fips_feat_id.
+          # so if each feature gets into the PermitmeHelper.prune_unincorporated_areas @state_and_feature_array 
+          # will be used and spit out county_array
           @state_and_feature_array.each do |sfa|
             if sfa["fips_class"] =~ /U\d/
               tempFeatureToCompare=sfa
