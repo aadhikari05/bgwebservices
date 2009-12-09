@@ -27,6 +27,13 @@ class GrantLoanController < ApplicationController
       respond_to_format(GrantLoanHelper.get_federal_and_state_financing(state_alpha))
   end
   
+  #http://localhost:3000/grant_loan/all_financing_for/:business_task.xml
+  def all_business_task_financing
+      business_task = params[:business_task]
+      
+      respond_to_format(GrantLoanHelper.get_grants_and_loans(state_alpha, business_type, industry, business_task))
+  end
+  
   def respond_to_format(resultArray)
       respond_to do |format|
  		      format.html { render :text => resultArray.to_json }

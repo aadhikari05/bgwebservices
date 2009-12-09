@@ -87,7 +87,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'geodata/county_data_for_state_of/:alpha.:format', :controller => "geodata", :action => "county_data_for_state_of"
   map.connect 'geodata/city_county_data_for_state_of/:alpha.:format', :controller => "geodata", :action => "city_county_data_for_state_of"
 
-  map.connect 'geodata/by_zip/:zip.:format', :controller => "geodata", :action => "geodata_by_zip"
+#  map.connect 'geodata/by_zip/:zip.:format', :controller => "geodata", :action => "geodata_by_zip"
 #  map.connect 'geodata/state_and_city/:alpha/:feature.:format', :controller => "geodata", :action => "geodata_by_state_and_feature"
 #  map.connect 'geodata/major_city/:feature.:format', :controller => "geodata", :action => "geodata_by_major_city"
 
