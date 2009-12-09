@@ -47,7 +47,7 @@ class PermitmeController < ApplicationController
       end
 
       def all_permitme_by_state
-          #http://localhost:3000/permitme/all_by_state/child%20care%20services/il.xml
+          #http://localhost:3000/permitme/all_by_state/il.xml
           #We take the state alpha and use it to get state_id,(fips_feature_id, feature_id will be blank in this cases)
           @state_and_feature = PermitmeHelper.getStateIDFromStateAlpha(params[:alpha])
           @state_alpha = params[:alpha]

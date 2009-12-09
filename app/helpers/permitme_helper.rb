@@ -18,7 +18,7 @@ module PermitmeHelper
             # this way I don't touch other structures.  schoe 5/21/09
             @state_and_feature_array=state_and_feature_array
 
-            if !query_type.eql?("permitme_by_state_only") or !query_type.eql?("all_permitme_by_state")
+            if !query_type.eql?("permitme_by_state_only") and !query_type.eql?("all_permitme_by_state")
                 for ss in 0...state_and_feature_array.length
                     #Get County Sites
                     #Fixed so that the county result gets into one permit me item.(Example springfield, va)
@@ -43,6 +43,11 @@ module PermitmeHelper
 
             if !query_type.eql?("all_permitme_by_state")
                 @this_result = get_state_business_type_permitme_sites(@this_result, state_and_feature_array[0]["state_id"], business_type_id)
+            end
+
+            if query_type.eql?("all_permitme_by_state")
+                state_id = state_and_feature_array[0]["state_id"]
+                @this_result.state_sites = PermitMeResultsByStateQuery(state_id)
             end
 
             @this_result
