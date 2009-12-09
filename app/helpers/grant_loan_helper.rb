@@ -1,17 +1,17 @@
 module GrantLoanHelper
     
   def GrantLoanHelper.get_all_federal ()
-      GrantLoan.find(:all, :select => "title, description, url, loan_type, agency, gov_type", :conditions => "gov_type = 'federal'")
+      GrantLoan.find(:all, :select => "state_name, business_type, title, description, url, loan_type, agency, gov_type, is_general_purpose, is_development, is_exporting, is_contractor, is_green, is_military, is_minority, is_woman, is_disabled, is_rural, is_disaster", :conditions => "gov_type = 'federal'")
   end
 
   def GrantLoanHelper.get_state_financing (state_alpha)
       state_id = GrantLoanHelper.getStateIDFromStateAlpha(state_alpha)
-      GrantLoan.find(:all, :select => "title, description, url, loan_type, agency, gov_type", :conditions => ["gov_type = 'state' and state_id=?",state_id])
+      GrantLoan.find(:all, :select => "state_name, business_type, title, description, url, loan_type, agency, gov_type, is_general_purpose, is_development, is_exporting, is_contractor, is_green, is_military, is_minority, is_woman, is_disabled, is_rural, is_disaster", :conditions => ["gov_type = 'state' and state_id=?",state_id])
   end
 
   def GrantLoanHelper.get_federal_and_state_financing (state_alpha)
     state_id = GrantLoanHelper.getStateIDFromStateAlpha(state_alpha)
-    GrantLoan.find(:all, :select => "title, description, url, loan_type, agency, gov_type", :conditions => ["(gov_type = 'federal') or (gov_type = 'state' and state_id=?)",state_id])
+    GrantLoan.find(:all, :select => "state_name, business_type, title, description, url, loan_type, agency, gov_type, is_general_purpose, is_development, is_exporting, is_contractor, is_green, is_military, is_minority, is_woman, is_disabled, is_rural, is_disaster", :conditions => ["(gov_type = 'federal') or (gov_type = 'state' and state_id=?)",state_id])
   end
 
     def GrantLoanHelper.get_grants_and_loans (state_alpha, business_type, industry, business_task)
@@ -64,11 +64,11 @@ module GrantLoanHelper
     end
     
     def GrantLoanHelper.get_is_type_results (is_type)
-        GrantLoan.find(:all, :select => "title, description, url,loan_type, state_name, agency,gov_type", :conditions => ["is_"+is_type+"=1"])
+        GrantLoan.find(:all, :select => "state_name, business_type, title, description, url,loan_type, state_name, agency,gov_type, is_general_purpose, is_development, is_exporting, is_contractor, is_green, is_military, is_minority, is_woman, is_disabled, is_rural, is_disaster", :conditions => ["is_"+is_type+"=1"])
     end
 
     def GrantLoanHelper.get_business_type_results (business_type)
-        GrantLoan.find(:all, :select => "title, description, url,loan_type, state_name, agency,gov_type", :conditions => ["business_type like ?", '%'+business_type+'%'])
+        GrantLoan.find(:all, :select => "state_name, business_type, title, description, url,loan_type, state_name, agency,gov_type, is_general_purpose, is_development, is_exporting, is_contractor, is_green, is_military, is_minority, is_woman, is_disabled, is_rural, is_disaster", :conditions => ["business_type like ?", '%'+business_type+'%'])
     end
 
     def GrantLoanHelper.is_industry(industry)
@@ -76,11 +76,11 @@ module GrantLoanHelper
     end
     
     def GrantLoanHelper.get_state_results (state_name)
-        GrantLoan.find(:all, :select => "title, description, url, loan_type, state_name, agency, gov_type", :conditions => ["state_name = ?",state_name])
+        GrantLoan.find(:all, :select => "state_name, business_type, title, description, url, loan_type, state_name, agency, gov_type, is_general_purpose, is_development, is_exporting, is_contractor, is_green, is_military, is_minority, is_woman, is_disabled, is_rural, is_disaster", :conditions => ["state_name = ?",state_name])
     end
 
     def GrantLoanHelper.get_industry_results (business_type, industry)
-        industry_sql = "select title, description, url,loan_type, state_name, agency, gov_type "
+        industry_sql = "select state_name, business_type, title, description, url,loan_type, state_name, agency, gov_type, is_general_purpose, is_development, is_exporting, is_contractor, is_green, is_military, is_minority, is_woman, is_disabled, is_rural, is_disaster "
         industry_sql += "from grant_loans g, grant_loans_industry gli where "
         industry_sql += " business_type like ? and g.id= any "
         industry_sql += "(select gli.grant_loans_id from grant_loans_industry gli, industries i "
