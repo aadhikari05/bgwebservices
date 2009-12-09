@@ -64,6 +64,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'grant_loan/federal.:format', :controller => "grant_loan", :action => "all_federal"
   map.connect 'grant_loan/state_financing_for/:state_alpha.:format', :controller => "grant_loan", :action => "state_financing"
   map.connect 'grant_loan/federal_and_state_financing_for/:state_alpha.:format', :controller => "grant_loan", :action => "federal_and_state_financing"
+  map.connect 'grant_loan/all_financing_for/:business_task.:format', :controller => "grant_loan", :action => "all_business_task_financing"
+  map.connect 'grant_loan/all_financing_by_business_type/:business_type.:format', :controller => "grant_loan", :action => "all_business_type_financing"
   map.connect 'grant_loan/:state_alpha/:business_type/:industry/:business_task.:format', :controller => "grant_loan", :action => "show_all"
   
   #GEODATA ROUTES

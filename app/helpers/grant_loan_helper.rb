@@ -66,8 +66,10 @@ module GrantLoanHelper
     end
     
     def GrantLoanHelper.get_industry_results (business_type, industry)
-        industry_sql = "select title, description, url,loan_type, state_name, agency, gov_type from grant_loans g, grant_loans_industry gli where "
-        industry_sql += " business_type like ? and g.id= any (select gli.grant_loans_id from grant_loans_industry gli, industries i "
+        industry_sql = "select title, description, url,loan_type, state_name, agency, gov_type "
+        industry_sql += "from grant_loans g, grant_loans_industry gli where "
+        industry_sql += " business_type like ? and g.id= any "
+        industry_sql += "(select gli.grant_loans_id from grant_loans_industry gli, industries i "
         industry_sql += " where gli.industry_id=i.id and i.name=?) and gli.grant_loans_id=g.id"
         
         GrantLoan.find_by_sql([industry_sql, '%'+business_type+'%', industry])

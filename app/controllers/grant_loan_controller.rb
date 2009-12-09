@@ -1,6 +1,6 @@
 class GrantLoanController < ApplicationController
   
-  #grant_loan/:state_alpha/:business_type/:industry/:business_task
+  #http://localhost:3000/grant_loan/va/:business_type/:industry/:business_task
   def show_all
       state_alpha = params[:state_alpha]
       business_type = params[:business_type]
