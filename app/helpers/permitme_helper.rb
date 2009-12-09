@@ -189,7 +189,7 @@ module PermitmeHelper
         end
 
         def PermitmeHelper.PermitMeResultsByBusinessTypeOnly(business_type_id)
-          strQuery = "select p.url, p.link_title, p.link_description "
+            strQuery = "select p.url, p.link_title, p.link_description "
         		strQuery += "from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id "
         		strQuery += "left join permitme_categories c on rg.permitme_category_id <=> c.id "
         		strQuery += "join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id "
