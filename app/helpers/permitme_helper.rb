@@ -69,11 +69,11 @@ module PermitmeHelper
             this_result
         end
 
-        def PermitmeHelper.get_all_business_type_permitme_sites(business_type_id)
+        def PermitmeHelper.get_all_business_type_permitme_sites(business_type)
           @this_result = Result.new
 
             #Add Business Type Results
-            @this_result.sites_for_business_type = PermitMeResultsByBusinessTypeOnly(business_type_id)
+            @this_result.sites_for_business_type = PermitMeResultsByBusinessTypeOnly(business_type)
 
             @this_result
         end
@@ -188,17 +188,15 @@ module PermitmeHelper
         		PermitmeResourceGroup.find_by_sql([strQuery,state_id,business_type_id])
         end
 
-        def PermitmeHelper.PermitMeResultsByBusinessTypeOnly(business_type_id)
-            strQuery = "select p.url, p.link_title, p.link_description "
-        		strQuery += "from permitme_resource_groups rg join permitme_resources p on p.permitme_resource_group_id = rg.id "
-        		strQuery += "left join permitme_categories c on rg.permitme_category_id <=> c.id "
-        		strQuery += "join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id "
-        		strQuery += "left join permitme_sections sec on rg.permitme_section_id <=> sec.id "
-        		strQuery += "where url is not null "
-        		strQuery += "and(s.id = ?) "
-        		strQuery += "and(s.isActive = 1 or s.isActive is null) "
-        		strQuery += "order by permitme_category_id, permitme_subcategory_id, permitme_section_id"
-        		PermitmeResourceGroup.find_by_sql([strQuery,business_type_id])
+        def PermitmeHelper.PermitMeResultsByBusinessTypeOnly(business_type)
+          strQuery = "select p.url, p.link_title, p.link_description from permitme_resources p "
+        	strQuery += "left join permitme_resource_groups rg on p.permitme_resource_group_id <=> rg.id "
+        	strQuery += "left join permitme_categories c on rg.permitme_category_id <=> c.id "
+        	strQuery += "left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id "
+        	strQuery += "left join permitme_sections sec on rg.permitme_section_id <=> sec.id "
+        	strQuery += "where url is not null and (s.name like ?) and (s.isActive = 1 or s.isActive is null) "
+        	strQuery += "order by permitme_category_id, permitme_subcategory_id, permitme_section_id"
+        		PermitmeResourceGroup.find_by_sql([strQuery,'%'+business_type+'%'])
         end
 
         def PermitmeHelper.PermitMeResultsByCategoryOnly(category)

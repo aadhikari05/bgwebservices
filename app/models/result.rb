@@ -8,6 +8,7 @@ class Result
     @state_sites = Array.new
     @sites_for_business_type = Array.new
     @rec_sites = Array.new
+    @sites_for_category = Array.new
 #    @is_normal = true
 #    @is_disambig = false
 #    @is_invalid = false
@@ -76,6 +77,7 @@ class Result
     @local_sites.sort! {|a,b| a.link_title <=> b.link_title }
     @state_sites.sort! {|a,b| a.link_title <=> b.link_title}
     @sites_for_business_type.sort! {|a,b| a.link_title <=> b.link_title }
+    @sites_for_category.sort! {|a,b| a.link_title <=> b.link_title }
     
     xml.result do
         xml.county_sites do |site|
@@ -119,6 +121,17 @@ class Result
               end
             end
         end
+
+        xml.sites_for_category do |site|
+            for current_site in 0...@sites_for_category.length
+              xml.site do
+                site.link_title(@sites_for_category[current_site]["link_title"])
+                site.description(@sites_for_category[current_site]["description"])
+                site.url(@sites_for_category[current_site]["url"])
+              end
+            end
+        end
+
     end
   end
   
@@ -138,7 +151,7 @@ class Result
 		local_site_value.push({"title"=>@local_sites[current_site]["link_title"]})
 		local_site_value.push({"description"=>@local_sites[current_site]["description"]})
 		local_site_value.push({"url"=>@local_sites[current_site]["url"]})
-		h1={"state_site_item"+current_site.to_s =>local_site_value}
+		h1={"local_site_item"+current_site.to_s =>local_site_value}
 		result.merge!(h1) 
 	end
 	for current_site in 0...@state_sites.length
@@ -154,9 +167,19 @@ class Result
 		sites_for_business_value.push({"title"=>@sites_for_business_type[current_site]["link_title"]})
 		sites_for_business_value.push({"description"=>@sites_for_business_type[current_site]["description"]})
 		sites_for_business_value.push({"url"=>@sites_for_business_type[current_site]["url"]})
-		h1={"state_site_item"+current_site.to_s =>sites_for_business_value}
+		h1={"business_type_site_item"+current_site.to_s =>sites_for_business_value}
 		result.merge!(h1) 
 	end
+
+	for current_site in 0...@sites_for_category.length
+		sites_for_category_value=Array.new
+		sites_for_category_value.push({"title"=>@sites_for_category[current_site]["link_title"]})
+		sites_for_category_value.push({"description"=>@sites_for_category[current_site]["description"]})
+		sites_for_category_value.push({"url"=>@sites_for_category[current_site]["url"]})
+		h1={"category_site_item"+current_site.to_s =>sites_for_category_value}
+		result.merge!(h1) 
+	end
+
     result.to_json  
   end
 
@@ -181,7 +204,7 @@ class Result
         local_site_value.push({"description"=>@local_sites[current_site]["description"]})
         local_site_value.push({"url"=>@local_sites[current_site]["url"]})
 
-        h1={"state_site_item"+current_site.to_s =>local_site_value}
+        h1={"local_site_item"+current_site.to_s =>local_site_value}
 
         result.merge!(h1) 
     end
@@ -203,7 +226,18 @@ class Result
         sites_for_business_value.push({"description"=>@sites_for_business_type[current_site]["description"]})
         sites_for_business_value.push({"url"=>@sites_for_business_type[current_site]["url"]})
 
-        h1={"state_site_item"+current_site.to_s =>sites_for_business_value}
+        h1={"business_type_site_item"+current_site.to_s =>sites_for_business_value}
+
+        result.merge!(h1) 
+    end
+
+    for current_site in 0...@sites_for_category.length
+        sites_for_category_value=Array.new
+        sites_for_category_value.push({"title"=>@sites_for_category[current_site]["link_title"]})
+        sites_for_category_value.push({"description"=>@sites_for_category[current_site]["description"]})
+        sites_for_category.push({"url"=>@sites_for_category[current_site]["url"]})
+
+        h1={"category_site_item"+current_site.to_s =>sites_for_category_value}
 
         result.merge!(h1) 
     end

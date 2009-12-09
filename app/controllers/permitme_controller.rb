@@ -81,9 +81,7 @@ class PermitmeController < ApplicationController
     
       def permitme_by_business_type
           #http://localhost:3000/permitme/by_business_type/child%20care%20services.xml
-          @business_type_id = PermitmeHelper.getBusinessTypeIdFromBusinessType(params[:business_type])
-        
-          respond_to_format(PermitmeHelper.get_all_business_type_permitme_sites(@business_type_id))
+          respond_to_format(PermitmeHelper.get_all_business_type_permitme_sites(params[:business_type]))
       end
   
     def permitme_by_category
