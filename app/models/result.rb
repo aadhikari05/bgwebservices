@@ -9,19 +9,6 @@ class Result
     @sites_for_business_type = Array.new
     @rec_sites = Array.new
     @sites_for_category = Array.new
-#    @is_normal = true
-#    @is_disambig = false
-#    @is_invalid = false
-#    
-#    @state = ""
-#    @has_multiple_counties = false
-#    @outcome = Array.new
-#    @errors = Array.new
-#    @root_resource_group = Hash.new
-#    @status = ""
-#    @user_query = ""
-#    @business_type = 0
-#    @business_type_name = ""
   end
   
   def to_recSitexml(options ={})
