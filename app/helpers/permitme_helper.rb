@@ -82,7 +82,7 @@ module PermitmeHelper
           @this_result = Result.new
 
             #Add Business Type Results
-            @this_result.sites_for_business_type = PermitMeResultsByCategoryOnly(category)
+            @this_result.sites_for_category = PermitMeResultsByCategoryOnly(category)
 
             @this_result
         end

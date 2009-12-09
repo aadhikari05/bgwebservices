@@ -1,6 +1,6 @@
 class Result
   
-  attr_accessor :county_sites, :local_sites, :state_sites, :sites_for_business_type , :rec_sites
+  attr_accessor :county_sites, :local_sites, :state_sites, :sites_for_business_type , :rec_sites, :sites_for_category
   
   def initialize
     @county_sites = Array.new
