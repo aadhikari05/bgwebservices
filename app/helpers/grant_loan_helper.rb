@@ -64,7 +64,7 @@ module GrantLoanHelper
     end
     
     def GrantLoanHelper.get_is_type_results (is_type)
-        GrantLoan.find(:all, :select => "state_name, business_type, title, description, url,loan_type, state_name, agency,gov_type, is_general_purpose, is_development, is_exporting, is_contractor, is_green, is_military, is_minority, is_woman, is_disabled, is_rural, is_disaster", :conditions => ["is_"+is_type+"=1"])
+        GrantLoan.find(:all, :select => "state_name, business_type, title, description, url, loan_type, state_name, agency, gov_type, is_general_purpose, is_development, is_exporting, is_contractor, is_green, is_military, is_minority, is_woman, is_disabled, is_rural, is_disaster", :conditions => ["is_"+is_type+"=1"])
     end
 
     def GrantLoanHelper.get_business_type_results (business_type)
