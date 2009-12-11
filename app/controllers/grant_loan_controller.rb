@@ -1,13 +1,13 @@
 class GrantLoanController < ApplicationController
   
-  #http://localhost:3000/grant_loan/va/:business_type/:industry/:business_task
+  #http://localhost:3000/grant_loan/va/:business_type/:industry/:specialty_type
   def show_all
       state_alpha = params[:state_alpha]
       business_type = params[:business_type]
       industry = params[:industry]
-      business_task = params[:business_task]
+      specialty_type = params[:specialty_type]
       
-      respond_to_format(GrantLoanHelper.get_grants_and_loans(state_alpha, business_type, industry, business_task))
+      respond_to_format(GrantLoanHelper.get_grants_and_loans(state_alpha, business_type, industry, specialty_type))
   end
   
   #http://localhost:3000/grant_loan/federal.xml
@@ -27,11 +27,11 @@ class GrantLoanController < ApplicationController
       respond_to_format(GrantLoanHelper.get_federal_and_state_financing(state_alpha))
   end
   
-  #http://localhost:3000/grant_loan/all_financing_for/:business_task.xml
-  def all_business_task_financing
-      business_task = params[:business_task]
+  #http://localhost:3000/grant_loan/all_financing_for/:specialty_type.xml
+  def all_specialty_type_financing
+      specialty_type = params[:specialty_type]
       
-      respond_to_format(GrantLoanHelper.get_grants_and_loans(state_alpha, business_type, industry, business_task))
+      respond_to_format(GrantLoanHelper.get_grants_and_loans(state_alpha, business_type, industry, specialty_type))
   end
   
   def respond_to_format(resultArray)

@@ -14,7 +14,7 @@ module GrantLoanHelper
     GrantLoan.find(:all, :select => "state_name, business_type, title, description, url, loan_type, agency, gov_type, is_general_purpose, is_development, is_exporting, is_contractor, is_green, is_military, is_minority, is_woman, is_disabled, is_rural, is_disaster", :conditions => ["(gov_type = 'federal') or (gov_type = 'state' and state_id=?)",state_id])
   end
 
-    def GrantLoanHelper.get_grants_and_loans (state_alpha, business_type, industry, business_task)
+    def GrantLoanHelper.get_grants_and_loans (state_alpha, business_type, industry, specialty_type)
         result_array = Array.new
         this_result = GrantLoanResult.new
   
@@ -23,10 +23,10 @@ module GrantLoanHelper
             result_array << GrantLoanHelper.get_state_results (state_name["name"])
         end
         
-        if !business_task.eql?("nil")
+        if !specialty_type.eql?("nil")
             #Get results individually based on the parameters and then add to the results
             #type_array = ["general_purpose","development","exporting","contractor","green","military","minority","woman","disabled","rural","disaster"]
-            type_array = business_task.split("-")
+            type_array = specialty_type.split("-")
             type_array.each do |type_name|
                 result_array << GrantLoanHelper.get_is_type_results(type_name)
             end
