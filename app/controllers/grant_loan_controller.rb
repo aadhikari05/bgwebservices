@@ -1,6 +1,7 @@
 class GrantLoanController < ApplicationController
   
-  #http://localhost:3000/grant_loan/va/:business_type/:industry/:specialty_type
+  #http://localhost:3000/grant_loan/va/for_profit/nil/nil.xml
+  #http://localhost:3000/grant_loan/nil/non_profit/nil/woman.xml  
   def show_all
       state_alpha = params[:state_alpha]
       business_type = params[:business_type]

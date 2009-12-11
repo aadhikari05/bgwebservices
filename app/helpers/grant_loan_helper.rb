@@ -20,29 +20,30 @@ module GrantLoanHelper
   
         if !state_alpha.eql?("nil")
             state_name = GrantLoanHelper.getStateNameFromStateAlpha(state_alpha)
-            result_array << GrantLoanHelper.get_state_results (state_name["name"])
+#            result_array << GrantLoanHelper.get_state_results (state_name["name"])
         end
         
         if !specialty_type.eql?("nil")
             #Get results individually based on the parameters and then add to the results
-            #type_array = ["general_purpose","development","exporting","contractor","green","military","minority","woman","disabled","rural","disaster"]
+            #type_array = ["general_purpose", "development", "exporting", "contractor", "green", 
+            # "military", "minority", "woman", "disabled", "rural", "disaster"]
             type_array = specialty_type.split("-")
             type_array.each do |type_name|
-                result_array << GrantLoanHelper.get_is_type_results(type_name)
+                result_array << GrantLoanHelper.get_specialty_type_results(business_type, type_name)
             end
         end
 
         if !industry.eql?("nil")
             if !GrantLoanHelper.is_industry(industry).empty?
-                result_array << GrantLoanHelper.get_industry_results (industry)
+                result_array << GrantLoanHelper.get_industry_results (business_type, industry)
             else
                 return this_result
             end
         end
       
-        if !business_type.eql?("nil")
-            result_array << GrantLoanHelper.get_business_type_results (business_type)
-        end
+#        if !business_type.eql?("nil")
+#            result_array << GrantLoanHelper.get_business_type_results (business_type)
+#        end
       
         result_array.collect do |result|
             for j in 0...result.length               
@@ -63,7 +64,7 @@ module GrantLoanHelper
         return this_result
     end
     
-    def GrantLoanHelper.get_is_type_results (is_type)
+    def GrantLoanHelper.get_specialty_type_results (business_type, specialty_type)
         grant_loan_sql = "select i.name as industry, state_name, business_type, title, description, url, "
         grant_loan_sql += "loan_type, state_name, agency, gov_type, is_general_purpose, is_development, "
         grant_loan_sql += "is_exporting, is_contractor, is_green, is_military, is_minority, is_woman, "
@@ -71,19 +72,7 @@ module GrantLoanHelper
         grant_loan_sql += "from grant_loans gl "
         grant_loan_sql += "left join grant_loans_industry gli on gl.id = gli.grant_loans_id "
         grant_loan_sql += "left join industries i on i.id = gli.industry_id "
-        grant_loan_sql += "where is_"+is_type+"=1"
-        GrantLoan.find_by_sql([grant_loan_sql])
-    end
-
-    def GrantLoanHelper.get_business_type_results (business_type)
-        grant_loan_sql = "select i.name as industry, state_name, business_type, title, description, url, "
-        grant_loan_sql += "loan_type, state_name, agency, gov_type, is_general_purpose, is_development, "
-        grant_loan_sql += "is_exporting, is_contractor, is_green, is_military, is_minority, is_woman, "
-        grant_loan_sql += "is_disabled, is_rural, is_disaster "
-        grant_loan_sql += "from grant_loans gl "
-        grant_loan_sql += "left join grant_loans_industry gli on gl.id = gli.grant_loans_id "
-        grant_loan_sql += "left join industries i on i.id = gli.industry_id "
-        grant_loan_sql += "where business_type like ?"
+        grant_loan_sql += "where is_"+specialty_type+"=1 and business_type like ?"
         GrantLoan.find_by_sql([grant_loan_sql, '%'+business_type+'%'])
     end
 
@@ -91,7 +80,7 @@ module GrantLoanHelper
         Industry.find(:all, :select =>"name", :conditions =>["name = ?", industry])
     end
     
-    def GrantLoanHelper.get_state_results (state_name)
+    def GrantLoanHelper.get_state_results (business_type, state_name)
         grant_loan_sql = "select i.name as industry, state_name, business_type, title, description, url, "
         grant_loan_sql += "loan_type, state_name, agency, gov_type, is_general_purpose, is_development, "
         grant_loan_sql += "is_exporting, is_contractor, is_green, is_military, is_minority, is_woman, "
@@ -99,11 +88,11 @@ module GrantLoanHelper
         grant_loan_sql += "from grant_loans gl "
         grant_loan_sql += "left join grant_loans_industry gli on gl.id = gli.grant_loans_id "
         grant_loan_sql += "left join industries i on i.id = gli.industry_id "
-        grant_loan_sql += "where state_name = ?"
-        GrantLoan.find_by_sql([grant_loan_sql,state_name])
+        grant_loan_sql += "where state_name = ? and business_type like ?"
+        GrantLoan.find_by_sql([grant_loan_sql,state_name, '%'+business_type+'%'])
     end
 
-    def GrantLoanHelper.get_industry_results (industry)
+    def GrantLoanHelper.get_industry_results (business_type, industry)
       grant_loan_sql = "select i.name as industry, state_name, business_type, title, description, url, "
       grant_loan_sql += "loan_type, state_name, agency, gov_type, is_general_purpose, is_development, "
       grant_loan_sql += "is_exporting, is_contractor, is_green, is_military, is_minority, is_woman, "
@@ -111,8 +100,8 @@ module GrantLoanHelper
       grant_loan_sql += "from grant_loans gl "
       grant_loan_sql += "left join grant_loans_industry gli on gl.id = gli.grant_loans_id "
       grant_loan_sql += "left join industries i on i.id = gli.industry_id "
-      grant_loan_sql += "where i.name = ?"
-      GrantLoan.find_by_sql([grant_loan_sql,industry])
+      grant_loan_sql += "where i.name = ? and business_type like ?"
+      GrantLoan.find_by_sql([grant_loan_sql,industry, '%'+business_type+'%'])
     end
     
     def GrantLoanHelper.getStateIDFromStateAlpha(state_alpha)
