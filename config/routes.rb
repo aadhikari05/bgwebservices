@@ -52,11 +52,11 @@ ActionController::Routing::Routes.draw do |map|
 
   #PERMITME ROUTES
   map.connect 'permitme/by_zip/:business_type/:zip.:format', :controller => "permitme", :action => "permitme_by_zip"
-  map.connect 'permitme/by_city/:business_type/:feature.:format', :controller => "permitme", :action => "permitme_by_city"
-  map.connect 'permitme/by_county/:business_type/:feature.:format', :controller => "permitme", :action => "permitme_by_county"
+#  map.connect 'permitme/by_city/:business_type/:feature.:format', :controller => "permitme", :action => "permitme_by_city"
+  map.connect 'permitme/state_and_city/:business_type/:alpha/:feature.:format', :controller => "permitme", :action => "permitme_by_state_and_feature"
+  map.connect 'permitme/state_and_county/:business_type/:alpha/:feature.:format', :controller => "permitme", :action => "permitme_by_state_and_county"
   map.connect 'permitme/state_only/:business_type/:alpha.:format', :controller => "permitme", :action => "permitme_by_state_only"
   map.connect 'permitme/all_by_state/:alpha.:format', :controller => "permitme", :action => "all_permitme_by_state"
-  map.connect 'permitme/state_and_city/:business_type/:alpha/:feature.:format', :controller => "permitme", :action => "permitme_by_state_and_feature"
   map.connect 'permitme/by_business_type/:business_type.:format', :controller => "permitme", :action => "permitme_by_business_type"
   map.connect 'permitme/by_category/:category.:format', :controller => "permitme", :action => "permitme_by_category"
 

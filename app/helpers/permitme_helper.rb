@@ -111,6 +111,10 @@ module PermitmeHelper
             Feature.find(:all, :select => "id, state_id, fips_feat_id", :conditions => ["county_seq = 1 and feat_name = ?",feature])
         end
 
+        def PermitmeHelper.getFeatureAndStatebyCountyAndState (feature, state_id)
+            Feature.find(:all, :select => "id, state_id, fips_feat_id", :conditions => ["fips_class like 'H%' and feat_name = ? and state_id = ?",feature, state_id])
+        end
+        
         def PermitmeHelper.getStateIDFromStateAlpha(state_alpha)
             State.find(:all, :select => "id as state_id", :conditions => ["alpha = ?",state_alpha])
         end

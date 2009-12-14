@@ -16,19 +16,11 @@ class PermitmeController < ApplicationController
           respond_to_format(PermitmeHelper.get_all_permitme_sites(@state_and_feature, @business_type_id, "permitme_by_zip"))
       end
 
-      def permitme_by_city
-          #http://localhost:3000/permitme/by_city/child%20care%20services/vienna.xml
+      def permitme_by_state_and_county
+          #http://localhost:3000/permitme/state_and_county/child%20care%20services/va/fairfax%20county.xml
           #We take the zip and use it to get state_id, fips_feature_id, feature_id for a particular zip
-          @state_and_feature = PermitmeHelper.getFeatureAndStatebyFeature (params[:feature])
-          @business_type_id = PermitmeHelper.getBusinessTypeIdFromBusinessType(params[:business_type])
-        
-          respond_to_format(PermitmeHelper.get_all_permitme_sites(@state_and_feature, @business_type_id, "permitme_by_city"))
-      end
-
-      def permitme_by_county
-          #http://localhost:3000/permitme/by_county/child%20care%20services/fairfax%20county.xml
-          #We take the zip and use it to get state_id, fips_feature_id, feature_id for a particular zip
-          @state_and_feature = PermitmeHelper.getFeatureAndStatebyFeature (params[:feature])
+          @state_id = PermitmeHelper.getStateIDFromStateAlpha(params[:alpha])
+          @state_and_feature = PermitmeHelper.getFeatureAndStatebyCountyAndState (params[:feature], @state_id[0]["state_id"])
           @business_type_id = PermitmeHelper.getBusinessTypeIdFromBusinessType(params[:business_type])
         
           respond_to_format(PermitmeHelper.get_all_permitme_sites(@state_and_feature, @business_type_id, "permitme_by_county"))
