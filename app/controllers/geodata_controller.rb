@@ -6,13 +6,14 @@ class GeodataController < ApplicationController
       @state_alpha;
       
       def all_links_for_city_of
-          #http://localhost:3000/geodata/all_links_for_city_of/:feature.xml      
-          respond_to_format(GeodataHelper.get_links_for_city_of(params[:feature]))
+          #http://localhost:3000/geodata/all_links_for_city_of/springfield/il.xml      
+          respond_to_format(GeodataHelper.get_links_for_city_of(params[:feature], params[:alpha]))
       end
       
       def all_links_for_county_of
-          #http://localhost:3000/geodata/all_links_for_county_of/fairfax county.xml    
-          respond_to_format(GeodataHelper.get_links_for_county_of(params[:feature]))
+          #http://localhost:3000/geodata/all_links_for_county_of/fairfax%20county/va.xml
+          #http://localhost:3000/geodata/all_links_for_county_of/windsor%20county/vt.xml
+          respond_to_format(GeodataHelper.get_links_for_county_of(params[:feature], params[:alpha]))
       end
       
       def city_links_for_state_of
@@ -32,12 +33,12 @@ class GeodataController < ApplicationController
       
       def primary_links_for_city_of
           #http://localhost:3000/geodata/primary_links_for_city_of/:feature.xml      
-          respond_to_format(GeodataHelper.primary_link_for_city_of(params[:feature]))
+          respond_to_format(GeodataHelper.primary_link_for_city_of(params[:feature], params[:alpha]))
       end
       
       def primary_links_for_county_of
           #http://localhost:3000/geodata/primary_links_for_county_of/fairfax county.xml    
-          respond_to_format(GeodataHelper.primary_link_for_county_of(params[:feature]))
+          respond_to_format(GeodataHelper.primary_link_for_county_of(params[:feature], params[:alpha]))
       end
       
       def primary_city_links_for_state_of
@@ -57,12 +58,12 @@ class GeodataController < ApplicationController
       
       def all_data_for_city_of
           #http://localhost:3000/geodata/all_data_for_city_of/:feature.xml      
-          respond_to_format(GeodataHelper.get_data_for_city_of(params[:feature]))
+          respond_to_format(GeodataHelper.get_data_for_city_of(params[:feature], params[:alpha]))
       end
       
       def all_data_for_county_of
           #http://localhost:3000/geodata/all_data_for_county_of/fairfax county.xml    
-          respond_to_format(GeodataHelper.get_data_for_county_of(params[:feature]))
+          respond_to_format(GeodataHelper.get_data_for_county_of(params[:feature], params[:alpha]))
       end
       
       def city_data_for_state_of

@@ -69,20 +69,20 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'grant_loan/:state_alpha/:business_type/:industry/:specialty_type.:format', :controller => "grant_loan", :action => "show_all"
   
   #GEODATA ROUTES
-  map.connect 'geodata/all_links_for_city_of/:feature.:format', :controller => "geodata", :action => "all_links_for_city_of"
-  map.connect 'geodata/all_links_for_county_of/:feature.:format', :controller => "geodata", :action => "all_links_for_county_of"
+  map.connect 'geodata/all_links_for_city_of/:feature/:alpha.:format', :controller => "geodata", :action => "all_links_for_city_of"
+  map.connect 'geodata/all_links_for_county_of/:feature/:alpha.:format', :controller => "geodata", :action => "all_links_for_county_of"
   map.connect 'geodata/city_links_for_state_of/:alpha.:format', :controller => "geodata", :action => "city_links_for_state_of"
   map.connect 'geodata/county_links_for_state_of/:alpha.:format', :controller => "geodata", :action => "county_links_for_state_of"
   map.connect 'geodata/city_county_links_for_state_of/:alpha.:format', :controller => "geodata", :action => "city_county_links_for_state_of"
 
-  map.connect 'geodata/primary_links_for_city_of/:feature.:format', :controller => "geodata", :action => "primary_links_for_city_of"
-  map.connect 'geodata/primary_links_for_county_of/:feature.:format', :controller => "geodata", :action => "primary_links_for_county_of"
+  map.connect 'geodata/primary_links_for_city_of/:feature/:alpha.:format', :controller => "geodata", :action => "primary_links_for_city_of"
+  map.connect 'geodata/primary_links_for_county_of/:feature/:alpha.:format', :controller => "geodata", :action => "primary_links_for_county_of"
   map.connect 'geodata/primary_city_links_for_state_of/:alpha.:format', :controller => "geodata", :action => "primary_city_links_for_state_of"
   map.connect 'geodata/primary_county_links_for_state_of/:alpha.:format', :controller => "geodata", :action => "primary_county_links_for_state_of"
   map.connect 'geodata/primary_city_county_links_for_state_of/:alpha.:format', :controller => "geodata", :action => "primary_city_county_links_for_state_of"
 
-  map.connect 'geodata/all_data_for_city_of/:feature.:format', :controller => "geodata", :action => "all_data_for_city_of"
-  map.connect 'geodata/all_data_for_county_of/:feature.:format', :controller => "geodata", :action => "all_data_for_county_of"
+  map.connect 'geodata/all_data_for_city_of/:feature/:alpha.:format', :controller => "geodata", :action => "all_data_for_city_of"
+  map.connect 'geodata/all_data_for_county_of/:feature/:alpha.:format', :controller => "geodata", :action => "all_data_for_county_of"
   map.connect 'geodata/city_data_for_state_of/:alpha.:format', :controller => "geodata", :action => "city_data_for_state_of"
   map.connect 'geodata/county_data_for_state_of/:alpha.:format', :controller => "geodata", :action => "county_data_for_state_of"
   map.connect 'geodata/city_county_data_for_state_of/:alpha.:format', :controller => "geodata", :action => "city_county_data_for_state_of"
