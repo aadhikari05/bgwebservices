@@ -44,11 +44,11 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'rec_sites/domain/:domain.:format', :controller => "rec_sites", :action => "domain"
 
   #STATE RECOMMENDED SITES
-#  map.connect 'rec_sites/states/:keyword.:format', :controller => "rec_sites", :action => "states"
-#  map.connect 'rec_sites/states.:format', :controller => "rec_sites", :action => "all_states"
+  map.connect 'rec_sites/states/:keyword.:format', :controller => "rec_sites", :action => "states"
+  map.connect 'rec_sites/states.:format', :controller => "rec_sites", :action => "all_states"
 
   #FEATURE RECOMMENDED SITES
-#  map.connect 'rec_sites/features/:zip/:keyword.:format',      :controller => "rec_sites", :action => "features"
+  map.connect 'rec_sites/features/:zip/:keyword.:format',      :controller => "rec_sites", :action => "features"
 
   #PERMITME ROUTES
   map.connect 'permitme/by_zip/:business_type/:zip.:format', :controller => "permitme", :action => "permitme_by_zip"
