@@ -102,7 +102,12 @@ module PermitmeHelper
         end
 
         def PermitmeHelper.getFeatureAndStatebyZip(zip)
-            Feature.find_by_sql(["select state_id, fips_feat_id, feature_id from features,zipcodes where zipcodes.sequence = 1 and zipcodes.feature_id = features.id and county_seq = 1 and zip = ?",zip])
+            strSQL = "select f.state_id, s.name as state_name, f.fips_feat_id, z.feature_id, f.county_name_full "
+            strSQL += "from features f "
+            strSQL += "left join zipcodes z on z.feature_id = f.id "
+            strSQL += "left join states s on s.id = f.state_id "
+            strSQL += "where z.sequence = 1 and z.feature_id = f.id and county_seq = 1 and zip = ?"
+            Feature.find_by_sql([strSQL,zip])
         end
 
         def PermitmeHelper.getFeatureAndStatebyFeature(feature)
