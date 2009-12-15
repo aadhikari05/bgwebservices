@@ -33,6 +33,7 @@ module PermitmeHelper
                     end
                     
                     tempCountySites.each do |tc|
+                        tc[0]["state"] = state_and_feature_array[ss]["state_name"]
                         @this_result.county_sites.push(tc)
                     end
 
