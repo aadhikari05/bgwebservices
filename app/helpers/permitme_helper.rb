@@ -18,6 +18,11 @@ module PermitmeHelper
             # this way I don't touch other structures.  schoe 5/21/09
             @state_and_feature_array=state_and_feature_array
 
+            state_and_feature_array.each do |item|
+                temp = getStateNameFromStateID(item["state_id"])
+                item["state_name"] = temp[0]["state_name"]
+            end
+            
             if !query_type.eql?("permitme_by_state_only") and !query_type.eql?("all_permitme_by_state")
                 for ss in 0...state_and_feature_array.length
                     #Get County Sites
@@ -129,7 +134,7 @@ module PermitmeHelper
         end
 
         def PermitmeHelper.getFeatureAndStatebyCountyAndState (feature, state_id)
-            Feature.find(:all, :select => "id, state_id, fips_feat_id", :conditions => ["fips_class like 'H%' and feat_name = ? and state_id = ?",feature, state_id])
+            Feature.find(:all, :select => "id, state_id, fips_feat_id, county_name_full", :conditions => ["fips_class like 'H%' and feat_name = ? and state_id = ?",feature, state_id])
         end
         
         def PermitmeHelper.getStateIDFromStateAlpha(state_alpha)
@@ -138,6 +143,10 @@ module PermitmeHelper
 
         def PermitmeHelper.getStateAlphaFromStateID(state_id)
             State.find(:all, :select => "alpha as state_alpha", :conditions => ["id = ?",state_id])
+        end
+
+        def PermitmeHelper.getStateNameFromStateID(state_id)
+            State.find(:all, :select => "name as state_name", :conditions => ["id = ?",state_id])
         end
 
         def PermitmeHelper.CountySpecsByNameQuery(feature_name, state_id)
