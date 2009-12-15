@@ -42,7 +42,7 @@ module PermitmeHelper
             end
 
             if !query_type.eql?("all_permitme_by_state")
-                @this_result = get_state_business_type_permitme_sites(@this_result, state_and_feature_array[0]["state_id"], business_type_id)
+                @this_result.state_sites = get_state_business_type_permitme_sites(@this_result, state_and_feature_array[0]["state_id"], business_type_id)
             else
                 state_id = state_and_feature_array[0]["state_id"]
                 @this_result.state_sites = PermitMeResultsByStateQuery(state_id)
