@@ -43,16 +43,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'rec_sites/category/:category.:format', :controller => "rec_sites", :action => "category"
   map.connect 'rec_sites/domain/:domain.:format', :controller => "rec_sites", :action => "domain"
 
-  #STATE RECOMMENDED SITES
-  map.connect 'rec_sites/states/:keyword.:format', :controller => "rec_sites", :action => "states"
-  map.connect 'rec_sites/states.:format', :controller => "rec_sites", :action => "all_states"
-
-  #FEATURE RECOMMENDED SITES
-  map.connect 'rec_sites/features/:zip/:keyword.:format',      :controller => "rec_sites", :action => "features"
-
   #PERMITME ROUTES
   map.connect 'permitme/by_zip/:business_type/:zip.:format', :controller => "permitme", :action => "permitme_by_zip"
-#  map.connect 'permitme/by_city/:business_type/:feature.:format', :controller => "permitme", :action => "permitme_by_city"
   map.connect 'permitme/state_and_city/:business_type/:alpha/:feature.:format', :controller => "permitme", :action => "permitme_by_state_and_feature"
   map.connect 'permitme/state_and_county/:business_type/:alpha/:feature.:format', :controller => "permitme", :action => "permitme_by_state_and_county"
   map.connect 'permitme/state_only/:business_type/:alpha.:format', :controller => "permitme", :action => "permitme_by_state_only"
@@ -64,7 +56,6 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'grant_loan/federal.:format', :controller => "grant_loan", :action => "all_federal"
   map.connect 'grant_loan/state_financing_for/:state_alpha.:format', :controller => "grant_loan", :action => "state_financing"
   map.connect 'grant_loan/federal_and_state_financing_for/:state_alpha.:format', :controller => "grant_loan", :action => "federal_and_state_financing"
-#  map.connect 'grant_loan/all_financing_for/:specialty_type.:format', :controller => "grant_loan", :action => "all_specialty_type_financing"
   map.connect 'grant_loan/all_financing_by_business_type/:business_type.:format', :controller => "grant_loan", :action => "all_business_type_financing"
   map.connect 'grant_loan/:state_alpha/:business_type/:industry/:specialty_type.:format', :controller => "grant_loan", :action => "show_all"
   
@@ -86,9 +77,4 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'geodata/city_data_for_state_of/:alpha.:format', :controller => "geodata", :action => "city_data_for_state_of"
   map.connect 'geodata/county_data_for_state_of/:alpha.:format', :controller => "geodata", :action => "county_data_for_state_of"
   map.connect 'geodata/city_county_data_for_state_of/:alpha.:format', :controller => "geodata", :action => "city_county_data_for_state_of"
-
-#  map.connect 'geodata/by_zip/:zip.:format', :controller => "geodata", :action => "geodata_by_zip"
-#  map.connect 'geodata/state_and_city/:alpha/:feature.:format', :controller => "geodata", :action => "geodata_by_state_and_feature"
-#  map.connect 'geodata/major_city/:feature.:format', :controller => "geodata", :action => "geodata_by_major_city"
-
 end
