@@ -34,6 +34,7 @@ module PermitmeHelper
                     
                     tempCountySites.each do |tc|
                         tc[0]["state"] = state_and_feature_array[ss]["state_name"]
+                        tc[0]["county"] = state_and_feature_array[ss]["county_name_full"]
                         @this_result.county_sites.push(tc)
                     end
 
@@ -41,6 +42,7 @@ module PermitmeHelper
                     @this_result.local_sites = findAllSitesByFeatureId(state_and_feature_array[ss]["feature_id"])
                     @this_result.local_sites.each do |site|
                         site["state"] = state_and_feature_array[ss]["state_name"]
+                        site["county"] = state_and_feature_array[ss]["county_name_full"]
                     end
                 end
             end
@@ -49,12 +51,14 @@ module PermitmeHelper
                 @this_result = get_state_business_type_permitme_sites(@this_result, state_and_feature_array[0]["state_id"], business_type_id)
                 @this_result.sites_for_business_type.each do |site|
                     site["state"] = state_and_feature_array[ss]["state_name"]
+                    site["county"] = state_and_feature_array[ss]["county_name_full"]
                 end
             else
                 state_id = state_and_feature_array[0]["state_id"]
                 @this_result.state_sites = PermitMeResultsByStateQuery(state_id)
                 @this_result.state_sites.each do |site|
                     site["state"] = state_and_feature_array[ss]["state_name"]
+                    site["county"] = state_and_feature_array[ss]["county_name_full"]
                 end
             end
 
