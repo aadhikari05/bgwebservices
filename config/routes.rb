@@ -39,9 +39,9 @@ ActionController::Routing::Routes.draw do |map|
   # Install the default routes as the lowest priority.
   #KEYWORD RECOMMENDED SITES
   map.connect 'rec_sites/keywords/:keyword.:format', :controller => "rec_sites", :action => "keywords"
-  map.connect 'rec_sites/keywords/', :controller => "rec_sites", :action => "keywords"
+  map.connect 'rec_sites/all_sites/keywords', :controller => "rec_sites", :action => "all_keyword_sites"
+  map.connect 'rec_sites/keywords/domain/:domain.:format', :controller => "rec_sites", :action => "domain"
   map.connect 'rec_sites/category/:category.:format', :controller => "rec_sites", :action => "category"
-  map.connect 'rec_sites/domain/:domain.:format', :controller => "rec_sites", :action => "domain"
 
   #PERMITME ROUTES
   map.connect 'permitme/by_zip/:business_type/:zip.:format', :controller => "permitme", :action => "permitme_by_zip"
