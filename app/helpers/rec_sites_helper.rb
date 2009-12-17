@@ -22,6 +22,14 @@ module RecSitesHelper
     KeywordRecommendedSiteKeyword.find_by_sql(strQuery)            
   end
   
+  def RecSitesHelper.getAllKeywordRecommendedSites()
+    strQuery= "SELECT url, title, description, keywords, name as category, orders FROM `keyword_recommended_site_keywords` krsk " + 
+        "Left outer join keyword_recommended_sites k ON k.id= krsk.keyword_recommended_site_id  " + 
+        "left join recommended_site_categories rsc on k.category_id = rsc.id " + 
+        "WHERE url is not null";
+    KeywordRecommendedSiteKeyword.find_by_sql(strQuery)            
+  end
+  
   def RecSitesHelper.getRecommendedSitesByCategory(category)
     strQuery= "SELECT url, title, description, keywords, name as category, orders FROM `keyword_recommended_site_keywords` krsk " + 
         "Left outer join keyword_recommended_sites k ON k.id= krsk.keyword_recommended_site_id  " + 
