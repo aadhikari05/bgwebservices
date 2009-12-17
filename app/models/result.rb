@@ -157,8 +157,14 @@ class Result
 	
 	for current_site in 0...@county_sites.length
 		county_site_value=Array.new
-		if @county_sites[current_site][0]["link_title"].nil?
-		    @county_sites[current_site][0]["link_title"] = ""
+    if !@county_sites[0].nil?
+        if !@county_sites[current_site][0].nil?
+      
+        else
+  		      @county_sites[current_site][0] = ""
+  		  end
+		else
+	      @county_sites[current_site][0]["link_title"] = ""
 		end
 		county_site_value.push({"title"=>@county_sites[current_site][0]["link_title"]})
 		county_site_value.push({"description"=>@county_sites[current_site][0]["description"]})
