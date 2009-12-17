@@ -157,20 +157,26 @@ class Result
 	
 	for current_site in 0...@county_sites.length
 		county_site_value=Array.new
-		county_site_value.push({"title"=>@county_sites[current_site]["link_title"]})
-		county_site_value.push({"description"=>@county_sites[current_site]["description"]})
-		county_site_value.push({"url"=>@county_sites[current_site]["url"]})
-		county_site_value.push({"state"=>@county_sites[current_site]["state"]})
-		county_site_value.push({"category"=>@county_sites[current_site]["category"]})
-		county_site_value.push({"county"=>@county_sites[current_site]["county"]})
-		county_site_value.push({"business_type"=>@county_sites[current_site]["business_type"]})
-		county_site_value.push({"section"=>@county_sites[current_site]["section"]})
-		county_site_value.push({"resource_group_description"=>@county_sites[current_site]["resource_group_description"]})
-		h1={"county_sites_item"+current_site.to_s =>state_site_value}
+		if @county_sites[current_site][0]["link_title"].nil?
+		    @county_sites[current_site][0]["link_title"] = ""
+		end
+		county_site_value.push({"title"=>@county_sites[current_site][0]["link_title"]})
+		county_site_value.push({"description"=>@county_sites[current_site][0]["description"]})
+		county_site_value.push({"url"=>@county_sites[current_site][0]["url"]})
+		county_site_value.push({"state"=>@county_sites[current_site][0]["state"]})
+		county_site_value.push({"category"=>@county_sites[current_site][0]["category"]})
+		county_site_value.push({"county"=>@county_sites[current_site][0]["county"]})
+		county_site_value.push({"business_type"=>@county_sites[current_site][0]["business_type"]})
+		county_site_value.push({"section"=>@county_sites[current_site][0]["section"]})
+		county_site_value.push({"resource_group_description"=>@county_sites[current_site][0]["resource_group_description"]})
+		h1={"county_sites_item"+current_site.to_s =>county_site_value}
 		result.merge!(h1) 
 	end
 	for current_site in 0...@local_sites.length
 		local_site_value=Array.new
+		if @local_sites[current_site].nil?
+		    @local_sites[current_site] = ""
+		end
 		local_site_value.push({"title"=>@local_sites[current_site]["link_title"]})
 		local_site_value.push({"description"=>@local_sites[current_site]["description"]})
 		local_site_value.push({"url"=>@local_sites[current_site]["url"]})
@@ -185,6 +191,9 @@ class Result
 	end
 	for current_site in 0...@state_sites.length
 		state_site_value=Array.new
+		if @state_sites[current_site].nil?
+		    @state_sites[current_site] = ""
+		end
 		state_site_value.push({"title"=>@state_sites[current_site]["link_title"]})
 		state_site_value.push({"description"=>@state_sites[current_site]["description"]})
 		state_site_value.push({"url"=>@state_sites[current_site]["url"]})
@@ -199,6 +208,9 @@ class Result
 	end
 	for current_site in 0...@sites_for_business_type.length
 		sites_for_business_value=Array.new
+		if @sites_for_business_type[current_site].nil?
+		    @sites_for_business_type[current_site] = ""
+		end
 		sites_for_business_value.push({"title"=>@sites_for_business_type[current_site]["link_title"]})
 		sites_for_business_value.push({"description"=>@sites_for_business_type[current_site]["description"]})
 		sites_for_business_value.push({"url"=>@sites_for_business_type[current_site]["url"]})
@@ -214,6 +226,9 @@ class Result
 
 	for current_site in 0...@sites_for_category.length
 		sites_for_category_value=Array.new
+		if @sites_for_category[current_site]["link_title"].nil?
+		    @sites_for_category[current_site]["link_title"] = ""
+		end
 		sites_for_category_value.push({"title"=>@sites_for_category[current_site]["link_title"]})
 		sites_for_category_value.push({"description"=>@sites_for_category[current_site]["description"]})
 		sites_for_category_value.push({"url"=>@sites_for_category[current_site]["url"]})
