@@ -22,7 +22,7 @@ class RecSitesController < ApplicationController
       respond_to_format(@this_result)
   end
   
-  #http://localhost:3000/rec_sites/all_sites/keywords
+  #http://localhost:3000/rec_sites/all_sites/keywords.xml
   def all_keyword_sites
       @recType='keywords'
       @this_result = Result.new
