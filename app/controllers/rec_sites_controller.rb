@@ -27,6 +27,14 @@ class RecSitesController < ApplicationController
       @recType='keywords'
       @this_result = Result.new
       @queryResults=RecSitesHelper.getAllKeywordRecommendedSites()
+      @queryResults.each do |site|
+          arrKeywords = RecSitesHelper.getKeywordsBySiteID(site["id"])
+          temp = Array.new
+          for i in 0...arrKeywords.length - 1
+              temp[i] = arrKeywords[i]["keywords"]
+          end
+         site["keywords"] = temp.join(", ")
+      end
       @this_result.rec_sites=@queryResults
       respond_to_format(@this_result)
   end

@@ -29,6 +29,10 @@ module RecSitesHelper
     KeywordRecommendedSite.find_by_sql(strQuery)            
   end
   
+  def RecSitesHelper.getKeywordsBySiteID(site_id)
+      KeywordRecommendedSiteKeyword.find(:all, :select => "keywords", :conditions => ["keyword_recommended_site_id = ?", site_id])
+  end
+  
   def RecSitesHelper.getRecommendedSitesByCategory(category)
     strQuery= "SELECT url, title, description, keywords, name as category, orders FROM `keyword_recommended_site_keywords` krsk " + 
         "Left outer join keyword_recommended_sites k ON k.id= krsk.keyword_recommended_site_id  " + 
