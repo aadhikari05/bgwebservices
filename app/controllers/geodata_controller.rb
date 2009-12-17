@@ -33,12 +33,12 @@ class GeodataController < ApplicationController
       
       def primary_links_for_city_of
           #http://localhost:3000/geodata/primary_links_for_city_of/:feature.xml      
-          respond_to_format(GeodataHelper.primary_link_for_city_of(params[:feature], params[:alpha]))
+          respond_to_format(GeodataHelper.primary_links_for_city_of(params[:feature], params[:alpha]))
       end
       
       def primary_links_for_county_of
           #http://localhost:3000/geodata/primary_links_for_county_of/fairfax county.xml    
-          respond_to_format(GeodataHelper.primary_link_for_county_of(params[:feature], params[:alpha]))
+          respond_to_format(GeodataHelper.primary_links_for_county_of(params[:feature], params[:alpha]))
       end
       
       def primary_city_links_for_state_of
