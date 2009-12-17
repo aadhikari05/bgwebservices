@@ -13,20 +13,22 @@ class RecSitesController < ApplicationController
   #http://localhost:3000/rec_sites/keywords/bankruptcy
   #http://localhost:3000/rec_sites/keywords/ebay.xml
   def keywords
-    @recType='keywords'
-    keywords = params[:keyword]
-    @this_result = Result.new
-    #if the path is /rec_sites  then show every keywords.
-    if keywords.blank?      
-      @queryResults= RecSitesHelper.getKeywordRecommendedSiteKeywordAll
-      @this_result.rec_sites=@queryResults
-      render :xml => @queryResults
-    else
+      @recType='keywords'
+      keywords = params[:keyword]
+      @this_result = Result.new
+
       @queryResults=RecSitesHelper.getKeywordRecommendedSiteKeywords(keywords)
-      @queryResults=RecSitesHelper.cleanEmptyResults(@queryResults)   #Cleaning the empty or blank results. Bug SBA-436 6/19/09
       @this_result.rec_sites=@queryResults
       respond_to_format(@this_result)
-    end
+  end
+  
+  #http://localhost:3000/rec_sites/all_sites/keywords
+  def all_keyword_sites
+      @recType='keywords'
+      @this_result = Result.new
+      @queryResults=RecSitesHelper.getAllKeywordRecommendedSites()
+      @this_result.rec_sites=@queryResults
+      respond_to_format(@this_result)
   end
   
   #http://localhost:3000/rec_sites/category/financing.xml
