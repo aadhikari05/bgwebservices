@@ -61,10 +61,6 @@ module PermitmeHelper
             else
                 state_id = state_and_feature_array[0]["state_id"]
                 @this_result.state_sites = PermitMeResultsByStateQuery(state_id)
-                @this_result.state_sites.each do |site|
-                    site["state"] = state_and_feature_array[ss]["state_name"]
-                    site["county"] = state_and_feature_array[ss]["county_name_full"]
-                end
             end
 
             @this_result
@@ -204,7 +200,7 @@ module PermitmeHelper
       	end
 
         def PermitmeHelper.PermitMeResultsByStateQuery(state_id)
-            strQuery = "select c.name as category, "
+            strQuery = "select states.name as state, c.name as category, "
             strQuery += "s.name as business_type, "
             strQuery += "sec.name as section, rg.description as resource_group_description, "
             strQuery += "p.url, p.link_title, p.link_description "
@@ -212,6 +208,7 @@ module PermitmeHelper
         		strQuery += "left join permitme_categories c on rg.permitme_category_id <=> c.id "
         		strQuery += "left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id "
         		strQuery += "left join permitme_sections sec on rg.permitme_section_id <=> sec.id "
+        		strQuery += "left join states on state_id <=> states.id "
         		strQuery += "where state_id= ? "
         		strQuery += "and(s.isExclusive <=> 0 or s.isExclusive is null) "
         		strQuery += "and(s.isActive = 1 or s.isActive is null) "
