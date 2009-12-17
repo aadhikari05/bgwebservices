@@ -18,11 +18,6 @@ module PermitmeHelper
             # this way I don't touch other structures.  schoe 5/21/09
             @state_and_feature_array=state_and_feature_array
 
-            state_and_feature_array.each do |item|
-                temp = getStateNameFromStateID(item["state_id"])
-                item["state_name"] = temp[0]["state_name"]
-            end
-            
             if !query_type.eql?("permitme_by_state_only") and !query_type.eql?("all_permitme_by_state")
                 for ss in 0...state_and_feature_array.length
                     #Get County Sites
@@ -38,6 +33,10 @@ module PermitmeHelper
                     end
                     
                     tempCountySites.each do |tc|
+                        tc.each do |site|
+                            site["state"] = state_and_feature_array[ss]["state_name"]
+                            site["county"] = state_and_feature_array[ss]["county_name_full"]
+                        end
                         @this_result.county_sites.push(tc)
                     end
 
@@ -59,6 +58,10 @@ module PermitmeHelper
             else
                 state_id = state_and_feature_array[0]["state_id"]
                 @this_result.state_sites = PermitMeResultsByStateQuery(state_id)
+                @this_result.state_sites.each do |site|
+                    site["state"] = state_and_feature_array[ss]["state_name"]
+                    site["county"] = state_and_feature_array[ss]["county_name_full"]
+                end
             end
 
             @this_result
