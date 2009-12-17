@@ -38,8 +38,6 @@ module PermitmeHelper
                     end
                     
                     tempCountySites.each do |tc|
-                        tc[0]["state"] = state_and_feature_array[ss]["state_name"]
-                        tc[0]["county"] = state_and_feature_array[ss]["county_name_full"]
                         @this_result.county_sites.push(tc)
                     end
 
@@ -130,7 +128,10 @@ module PermitmeHelper
         end
 
         def PermitmeHelper.getFeatureAndStatebyCountyAndState (feature, state_id)
-            Feature.find(:all, :select => "id, state_id, fips_feat_id, county_name_full", :conditions => ["fips_class like 'H%' and feat_name = ? and state_id = ?",feature, state_id])
+            strSQL = "SELECT f.id, state_id, fips_feat_id, s.name as state_name, county_name_full FROM `features` f "
+            strSQL += "left join states s on state_id = s.id "
+            strSQL += "WHERE (fips_class like 'H%' and feat_name = ? and state_id = ?)"
+            Feature.find_by_sql([strSQL,feature, state_id])
         end
         
         def PermitmeHelper.getStateIDFromStateAlpha(state_alpha)
@@ -191,11 +192,18 @@ module PermitmeHelper
         end
 
         def  PermitmeHelper.PermitMeFeatureWithStateMappingQuery(feature_name, alternate_name, state_id)
-            strQuery = "select id as feature_id, state_id, fips_class, feat_name, county_name_full, majorfeature, "
-            strQuery += "fips_feat_id from features where county_seq = 1 and feat_name = ? "
-        		strQuery += "and state_id = ? union select features.id, state_id, fips_class, feat_name, "
-            strQuery += "county_name_full, majorfeature, fips_feat_id from features, alternate_names "
-        		strQuery += "where feature_id = features.id and county_seq = 1 and name = ? and state_id = ?"
+            strQuery = "select s.name as state_name, features.id as feature_id, state_id, fips_class, "
+        		strQuery += "feat_name, county_name_full, majorfeature, fips_feat_id "
+        		strQuery += "from features "
+        		strQuery += "left join states s on state_id = s.id "
+        		strQuery += "where county_seq = 1 and feat_name = ? and state_id = ? "
+        		strQuery += "union "
+        		strQuery += "select s.name as state_name, features.id as feature_id, state_id, fips_class, "
+        		strQuery += "feat_name, county_name_full, majorfeature, fips_feat_id "
+        		strQuery += "from features "
+        		strQuery += "left join alternate_names an on an.feature_id = features.id "
+        		strQuery += "left join states s on features.state_id = s.id "
+        		strQuery += "where feature_id = features.id and county_seq = 1 and an.name = ? and state_id = ?"
         		Feature.find_by_sql([strQuery,feature_name,state_id,alternate_name,state_id])
       	end
 
