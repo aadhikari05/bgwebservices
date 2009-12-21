@@ -10,7 +10,7 @@ class RecSitesController < ApplicationController
     end
   end
   
-  #http://localhost:3000/rec_sites/keywords/bankruptcy
+  #http://localhost:3000/rec_sites/keywords/bankruptcy.xml
   #http://localhost:3000/rec_sites/keywords/ebay.xml
   def keywords
       @recType='keywords'

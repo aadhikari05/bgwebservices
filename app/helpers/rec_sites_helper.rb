@@ -15,7 +15,7 @@ module RecSitesHelper
   # RecommendedSite   Q U E R I E S
   ####################################################
   def RecSitesHelper.getKeywordRecommendedSiteKeywords(keywords)
-    strQuery= "SELECT url, title, description, keywords, name as category, orders FROM `keyword_recommended_site_keywords` krsk " + 
+    strQuery= "SELECT url, title, description, keywords, name as category, orders, master_term FROM `keyword_recommended_site_keywords` krsk " + 
         "Left outer join keyword_recommended_sites k ON k.id= krsk.keyword_recommended_site_id  " + 
         "left join recommended_site_categories rsc on k.category_id = rsc.id " + 
         "WHERE (krsk.keywords = '"+keywords+"') and url is not null";
@@ -23,7 +23,7 @@ module RecSitesHelper
   end
   
   def RecSitesHelper.getAllKeywordRecommendedSites()
-    strQuery  = "SELECT krs.id, url, title, description, orders, rsc.name as category "
+    strQuery  = "SELECT krs.id, url, title, description, orders, rsc.name as category, master_term "
     strQuery += "FROM keyword_recommended_sites krs "
     strQuery += "left join recommended_site_categories rsc on rsc.id = krs.category_id"
     KeywordRecommendedSite.find_by_sql(strQuery)            
@@ -34,7 +34,7 @@ module RecSitesHelper
   end
   
   def RecSitesHelper.getRecommendedSitesByCategory(category)
-    strQuery= "SELECT url, title, description, keywords, name as category, orders FROM `keyword_recommended_site_keywords` krsk " + 
+    strQuery= "SELECT url, title, description, keywords, name as category, orders, master_term FROM `keyword_recommended_site_keywords` krsk " + 
         "Left outer join keyword_recommended_sites k ON k.id= krsk.keyword_recommended_site_id  " + 
         "left join recommended_site_categories rsc on k.category_id = rsc.id " + 
         "WHERE (rsc.name = '"+category+"') and url is not null";
@@ -42,7 +42,7 @@ module RecSitesHelper
   end
   
   def RecSitesHelper.getRecommendedSitesByDomain(domain)
-    strQuery= "SELECT url, title, description, keywords, name as category, orders FROM `keyword_recommended_site_keywords` krsk " + 
+    strQuery= "SELECT url, title, description, keywords, name as category, orders, master_term FROM `keyword_recommended_site_keywords` krsk " + 
         "Left outer join keyword_recommended_sites k ON k.id= krsk.keyword_recommended_site_id  " + 
         "left join recommended_site_categories rsc on k.category_id = rsc.id " + 
         "WHERE (k.url like 'http://www."+domain+"%') and url is not null";

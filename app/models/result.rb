@@ -25,6 +25,7 @@ class Result
                 site.keywords(@rec_sites[rec_site]["keywords"])
                 site.category(@rec_sites[rec_site]["category"])
                 site.orders(@rec_sites[rec_site]["orders"])
+                site.master_term(@rec_sites[rec_site]["master_term"])
               end
             end
         end
@@ -44,6 +45,7 @@ class Result
         county_site_value.push({"keywords"=>@rec_sites[current_site]["keywords"]})
         county_site_value.push({"category"=>@rec_sites[current_site]["category"]})
         county_site_value.push({"orders"=>@rec_sites[current_site]["orders"]})
+        county_site_value.push({"master_term"=>@rec_sites[current_site]["master_term"]})
         
         h1={"recommended_sites_item"+current_site.to_s =>county_site_value}
 
