@@ -17,7 +17,7 @@ class RecSitesController < ApplicationController
       keywords = params[:keyword]
       @this_result = Result.new
 
-      @queryResults=RecSitesHelper.getKeywordRecommendedSiteKeywords(keywords)
+      @queryResults=RecSitesHelper.getKeywordRecommendedSitesByKeyword(keywords)
       @this_result.rec_sites=@queryResults
       respond_to_format(@this_result)
   end
