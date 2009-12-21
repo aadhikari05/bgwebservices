@@ -104,6 +104,20 @@ module GrantLoanHelper
         end
     end
 
+    def GrantLoanHelper.get_business_type_results (business_type)
+        grant_loan_sql = "select i.name as industry, s.name as state_name, business_type, title, description, url, "
+        grant_loan_sql += "loan_type, agency, gov_type, is_general_purpose, is_development, "
+        grant_loan_sql += "is_exporting, is_contractor, is_green, is_military, is_minority, is_woman, "
+        grant_loan_sql += "is_disabled, is_rural, is_disaster "
+        grant_loan_sql += "from grant_loans gl "
+        grant_loan_sql += "left join grant_loans_industry gli on gl.id = gli.grant_loans_id "
+        grant_loan_sql += "left join industries i on i.id = gli.industry_id "
+        grant_loan_sql += "left join grant_loan_state gls on gls.grant_loan_id = gl.id "
+        grant_loan_sql += "left join states s on gls.state_id = s.id "
+        grant_loan_sql += "where business_type like ?"
+        GrantLoan.find_by_sql([grant_loan_sql, '%'+business_type+'%'])
+    end
+
     def GrantLoanHelper.get_state_results (business_type, state_name)
         grant_loan_sql = "select i.name as industry, business_type, title, description, url, "
         grant_loan_sql += "loan_type, s.name as state_name, agency, gov_type, is_general_purpose, is_development, "

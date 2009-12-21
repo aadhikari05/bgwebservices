@@ -28,11 +28,18 @@ class GrantLoanController < ApplicationController
       respond_to_format(GrantLoanHelper.get_federal_and_state_financing(state_alpha))
   end
   
-  #http://localhost:3000/grant_loan/all_financing_for/:specialty_type.xml
+  #http://localhost:3000/grant_loan/all_financing_for/woman.xml
   def all_specialty_type_financing
       specialty_type = params[:specialty_type]
       
       respond_to_format(GrantLoanHelper.get_grants_and_loans(state_alpha, business_type, industry, specialty_type))
+  end
+  
+  #http://localhost:3000/grant_loan/all_financing_by_business_type/for_profit.xml
+  def all_business_type_financing
+      business_type = params[:business_type]
+      
+      respond_to_format(GrantLoanHelper.get_business_type_results(business_type))
   end
   
   def respond_to_format(resultArray)
