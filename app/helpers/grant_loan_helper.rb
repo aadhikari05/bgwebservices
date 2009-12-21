@@ -1,7 +1,14 @@
 module GrantLoanHelper
     
   def GrantLoanHelper.get_all_federal ()
-      GrantLoan.find(:all, :select => "state_name, business_type, title, description, url, loan_type, agency, gov_type, is_general_purpose, is_development, is_exporting, is_contractor, is_green, is_military, is_minority, is_woman, is_disabled, is_rural, is_disaster", :conditions => "gov_type = 'federal'")
+    grant_loan_sql = "select s.name as state_name, business_type, title, description, url, loan_type, agency, gov_type, "
+    grant_loan_sql += "is_general_purpose, is_development, is_exporting, is_contractor, is_green, is_military, is_minority, "
+    grant_loan_sql += "is_woman, is_disabled, is_rural, is_disaster "
+    grant_loan_sql += "from grant_loans "
+    grant_loan_sql += "left join grant_loan_state gls on gls.grant_loan_id = grant_loans.id "
+    grant_loan_sql += "left join states s on gls.state_id = s.id "
+    grant_loan_sql += "where gov_type = 'federal' or gov_type = 'private'"
+    GrantLoan.find_by_sql([grant_loan_sql])
   end
 
   def GrantLoanHelper.get_state_financing (state_alpha)
@@ -11,7 +18,7 @@ module GrantLoanHelper
 
   def GrantLoanHelper.get_federal_and_state_financing (state_alpha)
     state_id = GrantLoanHelper.getStateIDFromStateAlpha(state_alpha)
-    GrantLoan.find(:all, :select => "state_name, business_type, title, description, url, loan_type, agency, gov_type, is_general_purpose, is_development, is_exporting, is_contractor, is_green, is_military, is_minority, is_woman, is_disabled, is_rural, is_disaster", :conditions => ["(gov_type = 'federal') or (gov_type = 'state' and state_id=?)",state_id])
+    GrantLoan.find(:all, :select => "state_name, business_type, title, description, url, loan_type, agency, gov_type, is_general_purpose, is_development, is_exporting, is_contractor, is_green, is_military, is_minority, is_woman, is_disabled, is_rural, is_disaster", :conditions => ["(gov_type = 'federal' or gov_type = 'private') or (gov_type = 'state' and state_id=?)",state_id])
   end
 
     def GrantLoanHelper.get_grants_and_loans (state_alpha, business_type, industry, specialty_type)
