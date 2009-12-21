@@ -1,24 +1,38 @@
 module GrantLoanHelper
     
   def GrantLoanHelper.get_all_federal ()
-    grant_loan_sql = "select s.name as state_name, business_type, title, description, url, loan_type, agency, gov_type, "
-    grant_loan_sql += "is_general_purpose, is_development, is_exporting, is_contractor, is_green, is_military, is_minority, "
-    grant_loan_sql += "is_woman, is_disabled, is_rural, is_disaster "
-    grant_loan_sql += "from grant_loans "
-    grant_loan_sql += "left join grant_loan_state gls on gls.grant_loan_id = grant_loans.id "
-    grant_loan_sql += "left join states s on gls.state_id = s.id "
-    grant_loan_sql += "where gov_type = 'federal' or gov_type = 'private'"
-    GrantLoan.find_by_sql([grant_loan_sql])
+      grant_loan_sql = "select s.name as state_name, business_type, title, description, url, loan_type, agency, gov_type, "
+      grant_loan_sql += "is_general_purpose, is_development, is_exporting, is_contractor, is_green, is_military, is_minority, "
+      grant_loan_sql += "is_woman, is_disabled, is_rural, is_disaster "
+      grant_loan_sql += "from grant_loans "
+      grant_loan_sql += "left join grant_loan_state gls on gls.grant_loan_id = grant_loans.id "
+      grant_loan_sql += "left join states s on gls.state_id = s.id "
+      grant_loan_sql += "where gov_type = 'federal' or gov_type = 'private'"
+      GrantLoan.find_by_sql([grant_loan_sql])
   end
 
   def GrantLoanHelper.get_state_financing (state_alpha)
       state_id = GrantLoanHelper.getStateIDFromStateAlpha(state_alpha)
-      GrantLoan.find(:all, :select => "state_name, business_type, title, description, url, loan_type, agency, gov_type, is_general_purpose, is_development, is_exporting, is_contractor, is_green, is_military, is_minority, is_woman, is_disabled, is_rural, is_disaster", :conditions => ["gov_type = 'state' and state_id=?",state_id])
+      grant_loan_sql = "select s.name as state_name, business_type, title, description, url, loan_type, agency, gov_type, "
+      grant_loan_sql += "is_general_purpose, is_development, is_exporting, is_contractor, is_green, is_military, is_minority, "
+      grant_loan_sql += "is_woman, is_disabled, is_rural, is_disaster "
+      grant_loan_sql += "from grant_loans "
+      grant_loan_sql += "left join grant_loan_state gls on gls.grant_loan_id = grant_loans.id "
+      grant_loan_sql += "left join states s on gls.state_id = s.id "
+      grant_loan_sql += "where gov_type = 'state' and state_id=?"
+      GrantLoan.find_by_sql([grant_loan_sql,state_id])
   end
 
-  def GrantLoanHelper.get_federal_and_state_financing (state_alpha)
-    state_id = GrantLoanHelper.getStateIDFromStateAlpha(state_alpha)
-    GrantLoan.find(:all, :select => "state_name, business_type, title, description, url, loan_type, agency, gov_type, is_general_purpose, is_development, is_exporting, is_contractor, is_green, is_military, is_minority, is_woman, is_disabled, is_rural, is_disaster", :conditions => ["(gov_type = 'federal' or gov_type = 'private') or (gov_type = 'state' and state_id=?)",state_id])
+    def GrantLoanHelper.get_federal_and_state_financing (state_alpha)
+      state_id = GrantLoanHelper.getStateIDFromStateAlpha(state_alpha)
+      grant_loan_sql = "select s.name as state_name, business_type, title, description, url, loan_type, agency, gov_type, "
+      grant_loan_sql += "is_general_purpose, is_development, is_exporting, is_contractor, is_green, is_military, is_minority, "
+      grant_loan_sql += "is_woman, is_disabled, is_rural, is_disaster "
+      grant_loan_sql += "from grant_loans "
+      grant_loan_sql += "left join grant_loan_state gls on gls.grant_loan_id = grant_loans.id "
+      grant_loan_sql += "left join states s on gls.state_id = s.id "
+      grant_loan_sql += "where (gov_type = 'federal') or (gov_type = 'private') or (gov_type = 'state' and state_id=?)"
+      GrantLoan.find_by_sql([grant_loan_sql,state_id])
   end
 
     def GrantLoanHelper.get_grants_and_loans (state_alpha, business_type, industry, specialty_type)
@@ -72,47 +86,53 @@ module GrantLoanHelper
     end
     
     def GrantLoanHelper.get_specialty_type_results (business_type, specialty_type, state_name)
-        grant_loan_sql = "select i.name as industry, state_name, business_type, title, description, url, "
-        grant_loan_sql += "loan_type, state_name, agency, gov_type, is_general_purpose, is_development, "
+        grant_loan_sql = "select i.name as industry, s.name as state_name, business_type, title, description, url, "
+        grant_loan_sql += "loan_type, agency, gov_type, is_general_purpose, is_development, "
         grant_loan_sql += "is_exporting, is_contractor, is_green, is_military, is_minority, is_woman, "
         grant_loan_sql += "is_disabled, is_rural, is_disaster "
         grant_loan_sql += "from grant_loans gl "
         grant_loan_sql += "left join grant_loans_industry gli on gl.id = gli.grant_loans_id "
         grant_loan_sql += "left join industries i on i.id = gli.industry_id "
+        grant_loan_sql += "left join grant_loan_state gls on gls.grant_loan_id = gl.id "
+        grant_loan_sql += "left join states s on gls.state_id = s.id "
         grant_loan_sql += "where is_"+specialty_type+"=1 and business_type like ?"
         if state_name.nil?
             GrantLoan.find_by_sql([grant_loan_sql, '%'+business_type+'%'])
         else
-            grant_loan_sql += "and state_name = ?"
+            grant_loan_sql += "and s.name = ?"
             GrantLoan.find_by_sql([grant_loan_sql, '%'+business_type+'%', state_name])
         end
     end
 
     def GrantLoanHelper.get_state_results (business_type, state_name)
-        grant_loan_sql = "select i.name as industry, state_name, business_type, title, description, url, "
-        grant_loan_sql += "loan_type, state_name, agency, gov_type, is_general_purpose, is_development, "
+        grant_loan_sql = "select i.name as industry, business_type, title, description, url, "
+        grant_loan_sql += "loan_type, s.name as state_name, agency, gov_type, is_general_purpose, is_development, "
         grant_loan_sql += "is_exporting, is_contractor, is_green, is_military, is_minority, is_woman, "
         grant_loan_sql += "is_disabled, is_rural, is_disaster "
         grant_loan_sql += "from grant_loans gl "
         grant_loan_sql += "left join grant_loans_industry gli on gl.id = gli.grant_loans_id "
         grant_loan_sql += "left join industries i on i.id = gli.industry_id "
-        grant_loan_sql += "where state_name = ? and business_type like ?"
+        grant_loan_sql += "left join grant_loan_state gls on gls.grant_loan_id = gl.id "
+        grant_loan_sql += "left join states s on gls.state_id = s.id "
+        grant_loan_sql += "where s.name = ? and business_type like ?"
         GrantLoan.find_by_sql([grant_loan_sql,state_name, '%'+business_type+'%'])
     end
 
     def GrantLoanHelper.get_industry_results (business_type, industry, state_name)
-        grant_loan_sql = "select i.name as industry, state_name, business_type, title, description, url, "
-        grant_loan_sql += "loan_type, state_name, agency, gov_type, is_general_purpose, is_development, "
+        grant_loan_sql = "select i.name as industry, business_type, title, description, url, "
+        grant_loan_sql += "loan_type, s.name as state_name, agency, gov_type, is_general_purpose, is_development, "
         grant_loan_sql += "is_exporting, is_contractor, is_green, is_military, is_minority, is_woman, "
         grant_loan_sql += "is_disabled, is_rural, is_disaster "
         grant_loan_sql += "from grant_loans gl "
         grant_loan_sql += "left join grant_loans_industry gli on gl.id = gli.grant_loans_id "
         grant_loan_sql += "left join industries i on i.id = gli.industry_id "
+        grant_loan_sql += "left join grant_loan_state gls on gls.grant_loan_id = gl.id "
+        grant_loan_sql += "left join states s on gls.state_id = s.id "
         grant_loan_sql += "where i.name = ? and business_type like ?"
         if state_name.nil?
             GrantLoan.find_by_sql([grant_loan_sql, industry, '%'+business_type+'%'])
         else
-            grant_loan_sql += "and state_name = ?"
+            grant_loan_sql += "and s.name = ?"
             GrantLoan.find_by_sql([grant_loan_sql, industry, '%'+business_type+'%', state_name])
         end
     end
