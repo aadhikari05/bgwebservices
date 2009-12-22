@@ -15,12 +15,12 @@ module RecSitesHelper
   # RecommendedSite   Q U E R I E S
   ####################################################
   def RecSitesHelper.getKeywordRecommendedSitesByKeyword(keywords)
-      strQuery = "SELECT url, title, description, keywords, name as category, orders, master_term "
-      strQuery += "FROM `keyword_recommended_site_keywords` krsk "
-      strQuery += "Left outer join keyword_recommended_sites k ON k.id= krsk.keyword_recommended_site_id "
-      strQuery += "left join recommended_site_categories rsc on k.category_id = rsc.id "
-      strQuery += "WHERE (krsk.keywords = '"+keywords+"') and url is not null"
-    KeywordRecommendedSiteKeyword.find_by_sql(strQuery)            
+      strQuery = "select url, title, description,  krsk.keywords, rsc.name as category, orders, master_term "
+      strQuery += "from keyword_recommended_sites krs "
+      strQuery += "left join recommended_site_categories rsc on rsc.id = krs.category_id "
+      strQuery += "left join keyword_recommended_site_keywords krsk on krsk.keyword_recommended_site_id = krs.id "
+      strQuery += "where (krsk.keywords = ?) and url is not null"
+    KeywordRecommendedSiteKeyword.find_by_sql([strQuery,keywords])            
   end
   
   def RecSitesHelper.getAllKeywordRecommendedSites()
@@ -44,27 +44,27 @@ module RecSitesHelper
   end
   
   def RecSitesHelper.getRecommendedSitesByDomain(domain)
-    strQuery= "SELECT url, title, description, keywords, name as category, orders, master_term "
-    strQuery += "FROM `keyword_recommended_site_keywords` krsk "
-    strQuery += "Left outer join keyword_recommended_sites k ON k.id= krsk.keyword_recommended_site_id "
-    strQuery += "left join recommended_site_categories rsc on k.category_id = rsc.id "
-    strQuery += "WHERE (k.url like 'http://www."+domain+"%') and url is not null"
-    KeywordRecommendedSiteKeyword.find_by_sql(strQuery)            
+      strQuery= "SELECT url, title, description, keywords, name as category, orders, master_term "
+      strQuery += "FROM `keyword_recommended_site_keywords` krsk "
+      strQuery += "Left outer join keyword_recommended_sites k ON k.id= krsk.keyword_recommended_site_id "
+      strQuery += "left join recommended_site_categories rsc on k.category_id = rsc.id "
+      strQuery += "WHERE (k.url like 'http://www."+domain+"%') and url is not null"
+      KeywordRecommendedSiteKeyword.find_by_sql(strQuery)            
   end
   
   def RecSitesHelper.getFeaturedQueryByZipKeywords(keywords, zipcode)
-    strQuery= "select k.id, k.title, k.description, k.url "
-    strQuery += "from feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r, "
-    strQuery += "feature_recommended_site_keywords kk "
-    strQuery += "where k.id in "
-    strQuery += "(select feature_recommended_site_id from feature_recommended_site_keywords "
-    strQuery += "where keywords='"+keywords+"') and k.category_id =r.id and k.id in "
-    strQuery += "(select feature_recommended_site_id from feature_recommended_site "
-    strQuery += "where feature_id in "
-    strQuery += "(select feature_id from zipcodes where zip='"+zipcode+"') and feature_recommended_site_id=k.id) and "
-    strQuery += "k.id=kk.feature_recommended_site_id and kk.feature_recommended_site_id=ref.feature_recommended_site_id "
-    strQuery += "and kk.keywords='"+keywords+"' order by k.orders"
-    RecommendedSiteCategory.find_by_sql(strQuery)            
+      strQuery= "select k.id, k.title, k.description, k.url "
+      strQuery += "from feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r, "
+      strQuery += "feature_recommended_site_keywords kk "
+      strQuery += "where k.id in "
+      strQuery += "(select feature_recommended_site_id from feature_recommended_site_keywords "
+      strQuery += "where keywords='"+keywords+"') and k.category_id =r.id and k.id in "
+      strQuery += "(select feature_recommended_site_id from feature_recommended_site "
+      strQuery += "where feature_id in "
+      strQuery += "(select feature_id from zipcodes where zip='"+zipcode+"') and feature_recommended_site_id=k.id) and "
+      strQuery += "k.id=kk.feature_recommended_site_id and kk.feature_recommended_site_id=ref.feature_recommended_site_id "
+      strQuery += "and kk.keywords='"+keywords+"' order by k.orders"
+      RecommendedSiteCategory.find_by_sql(strQuery)            
   end
  
   #########################################################

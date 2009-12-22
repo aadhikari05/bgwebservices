@@ -27,14 +27,6 @@ class RecSitesController < ApplicationController
       @recType='keywords'
       @this_result = Result.new
       @queryResults=RecSitesHelper.getAllKeywordRecommendedSites()
-      @queryResults.each do |site|
-          arrKeywords = RecSitesHelper.getKeywordsBySiteID(site["id"])
-          temp = Array.new
-          for i in 0...arrKeywords.length - 1
-              temp[i] = arrKeywords[i]["keywords"]
-          end
-         site["keywords"] = temp.join(", ")
-      end
       @this_result.rec_sites=@queryResults
       respond_to_format(@this_result)
   end
@@ -49,13 +41,14 @@ class RecSitesController < ApplicationController
     respond_to_format(@this_result)
   end
   
-  #http://localhost:3000/rec_sites/domain/business.xml
+  #http://localhost:3000/rec_sites/keywords/domain/business.xml
   def domain
     @recType='domain'
     domain = params[:domain]
     @this_result = Result.new
     @queryResults=RecSitesHelper.getRecommendedSitesByDomain(domain)
-    @this_result.rec_sites=@queryResults
+    @this_result.rec_sites=combine_keywords_for_site(@queryResults)
+ #   @queryResults = combine_keywords_for_site(@queryResults).to_xml
     respond_to_format(@this_result)
   end
   
@@ -90,5 +83,19 @@ class RecSitesController < ApplicationController
     queryResults = RecSitesHelper.cleanEmptyResults(queryResults)
     @this_result.rec_sites=queryResults
     respond_to_format(@this_result)
+  end
+  
+  def combine_keywords_for_site(results_array)
+    results_array.sort!{|x,y| x["url"] <=> y["url"]}
+    temp = Array.new
+    for i in 0...results_array.length
+        for j in i+1...results_array.length
+            if results_array[i]["url"] = results_array[j]["url"]
+                results_array[i]["keywords"] = "dup" + ", " + "dup" 
+                temp << results_array[i]
+            end
+        end
+    end
+    temp
   end
 end

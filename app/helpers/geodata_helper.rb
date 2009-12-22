@@ -74,7 +74,7 @@ module GeodataHelper
             "INNER JOIN `features`f ON f.id = s.feature_id " +
             "left join alternate_names an on f.id = an.feature_id " +
             "left join states st on f.state_id = st.id " +
-            "WHERE ((st.alpha=?) and (f.fips_class like 'H%') and url is not null)"
+            "WHERE ((st.alpha=?) and (f.fips_class like 'H%' or f.fips_class like 'C7') and url is not null)"
         		Site.find_by_sql([strQuery,alpha])
       	end
         
