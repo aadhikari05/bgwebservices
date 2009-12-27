@@ -43,6 +43,17 @@ class RecSitesController < ApplicationController
     respond_to_format(@this_result)
   end
   
+  #http://localhost:3000/rec_sites/keywords/master_term/grants.xml
+  def master_term
+    @recType='master_term'
+    master_term = params[:master_term]
+    @this_result = Result.new
+    @queryResults=RecSitesHelper.getRecommendedSitesByMasterTerm(master_term)
+    @queryResults = combine_keywords_for_site(@queryResults)
+    @this_result.rec_sites=@queryResults
+    respond_to_format(@this_result)
+  end
+  
   #http://localhost:3000/rec_sites/keywords/domain/business.xml
   def domain
     @recType='domain'

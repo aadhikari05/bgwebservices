@@ -41,6 +41,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'rec_sites/keywords/:keyword.:format', :controller => "rec_sites", :action => "keywords"
   map.connect 'rec_sites/all_sites/keywords.:format', :controller => "rec_sites", :action => "all_keyword_sites"
   map.connect 'rec_sites/keywords/domain/:domain.:format', :controller => "rec_sites", :action => "domain"
+  map.connect 'rec_sites/keywords/master_term/:master_term.:format', :controller => "rec_sites", :action => "master_term"
   map.connect 'rec_sites/category/:category.:format', :controller => "rec_sites", :action => "category"
 
   #PERMITME ROUTES

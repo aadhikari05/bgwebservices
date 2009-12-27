@@ -50,6 +50,14 @@ module RecSitesHelper
       KeywordRecommendedSiteKeyword.find_by_sql(strQuery)            
   end
   
+  def RecSitesHelper.getRecommendedSitesByMasterTerm(master_term)
+      strQuery= "SELECT k.id, url, title, description, name as category, orders, master_term "
+      strQuery += "FROM keyword_recommended_sites k "
+      strQuery += "left join recommended_site_categories rsc on k.category_id = rsc.id "
+      strQuery += "WHERE (k.master_term = '"+master_term+"') and url is not null"
+    KeywordRecommendedSiteKeyword.find_by_sql(strQuery)            
+  end
+  
   def RecSitesHelper.getFeaturedQueryByZipKeywords(keywords, zipcode)
       strQuery= "select k.id, k.title, k.description, k.url "
       strQuery += "from feature_recommended_site ref, feature_recommended_sites k, recommended_site_categories r, "
