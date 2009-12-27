@@ -27,6 +27,7 @@ class RecSitesController < ApplicationController
       @recType='keywords'
       @this_result = Result.new
       @queryResults=RecSitesHelper.getAllKeywordRecommendedSites()
+      @queryResults = combine_keywords_for_site(@queryResults)
       @this_result.rec_sites=@queryResults
       respond_to_format(@this_result)
   end
