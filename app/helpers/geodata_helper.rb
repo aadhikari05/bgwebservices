@@ -34,8 +34,8 @@ module GeodataHelper
             strQuery = "SELECT f.id, s.feature_id, feat_class, fips_class, feat_name as 'name', st.alpha as 'state_abbreviation', fips_county_cd, " +
             "county_name as 'county_name', primary_lat as 'primary_latitude', primary_lon as 'primary_longitude', st.name as 'state_name', " +
             "county_name_full as 'full_county_name', url, s.name as link_title, s.description " +
-            "FROM `sites` s " +
-            "INNER JOIN `features`f ON f.id = s.feature_id " +
+            "from features f " +
+            "left join sites s ON f.id = s.feature_id " +
             "left join alternate_names an on f.id = an.feature_id " +
             "left join states st on f.state_id = st.id " +
             "WHERE ((feat_name = ? or an.name=?) and st.alpha = ? and url is not null)"
@@ -46,8 +46,8 @@ module GeodataHelper
             strQuery = "SELECT f.id, s.feature_id, feat_class, fips_class, feat_name as 'name', st.alpha as 'state_abbreviation', fips_county_cd, " +
             "county_name as 'county_name', primary_lat as 'primary_latitude', primary_lon as 'primary_longitude', st.name as 'state_name', " +
             "county_name_full as 'full_county_name', url, s.name as link_title, s.description " +
-            "FROM `sites` s " +
-            "INNER JOIN `features`f ON f.id = s.feature_id " +
+            "from features f " +
+            "left join sites s ON f.id = s.feature_id " +
             "left join alternate_names an on f.id = an.feature_id " +
             "left join states st on f.state_id = st.id " +
             "WHERE ((county_name_full like ? or feat_name = ?) and st.alpha = ? and url is not null)"
@@ -58,8 +58,8 @@ module GeodataHelper
             strQuery = "SELECT f.id, s.feature_id, feat_class, fips_class, feat_name as 'name', st.alpha as 'state_abbreviation', fips_county_cd, " +
             "county_name as 'county_name', primary_lat as 'primary_latitude', primary_lon as 'primary_longitude', st.name as 'state_name', " +
             "county_name_full as 'full_county_name', url, s.name as link_title, s.description " +
-            "FROM `sites` s " +
-            "INNER JOIN `features`f ON f.id = s.feature_id " +
+            "from features f " +
+            "left join sites s ON f.id = s.feature_id " +
             "left join alternate_names an on f.id = an.feature_id " +
             "left join states st on f.state_id = st.id " +
             "WHERE ((st.alpha=?) and (f.fips_class not like 'H%') and url is not null)"
@@ -70,8 +70,8 @@ module GeodataHelper
             strQuery = "SELECT f.id, s.feature_id, feat_class, fips_class, feat_name as 'name', st.alpha as 'state_abbreviation', fips_county_cd, " +
             "county_name as 'county_name', primary_lat as 'primary_latitude', primary_lon as 'primary_longitude', st.name as 'state_name', " +
             "county_name_full as 'full_county_name', url, s.name as link_title, s.description " +
-            "FROM `sites` s " +
-            "INNER JOIN `features`f ON f.id = s.feature_id " +
+            "from features f " +
+            "left join sites s ON f.id = s.feature_id " +
             "left join alternate_names an on f.id = an.feature_id " +
             "left join states st on f.state_id = st.id " +
             "WHERE ((st.alpha=?) and (f.fips_class like 'H%' or f.fips_class like 'C7') and url is not null)"
@@ -82,8 +82,8 @@ module GeodataHelper
             strQuery = "SELECT f.id, s.feature_id, feat_class, fips_class, feat_name as 'name', st.alpha as 'state_abbreviation', fips_county_cd, " +
             "county_name as 'county_name', primary_lat as 'primary_latitude', primary_lon as 'primary_longitude', st.name as 'state_name', " +
             "county_name_full as 'full_county_name', url, s.name as link_title, s.description " +
-            "FROM `sites` s " +
-            "INNER JOIN `features`f ON f.id = s.feature_id " +
+            "from features f " +
+            "left join sites s ON f.id = s.feature_id " +
             "left join alternate_names an on f.id = an.feature_id " +
             "left join states st on f.state_id = st.id " +
             "WHERE ((st.alpha=?) and url is not null)"
@@ -94,8 +94,8 @@ module GeodataHelper
             strQuery = "SELECT f.id, s.feature_id, feat_class, fips_class, feat_name as 'name', st.alpha as 'state_abbreviation', fips_county_cd, " +
             "county_name as 'county_name', primary_lat as 'primary_latitude', primary_lon as 'primary_longitude', st.name as 'state_name', " +
             "county_name_full as 'full_county_name', url, s.name as link_title, s.description " +
-            "FROM `sites` s " +
-            "INNER JOIN `features`f ON f.id = s.feature_id " +
+            "from features f " +
+            "left join sites s ON f.id = s.feature_id " +
             "left join alternate_names an on f.id = an.feature_id " +
             "left join states st on f.state_id = st.id " +
             "WHERE ((feat_name = ? or an.name=?) and st.alpha = ? and is_primary = 1 and url is not null)"
@@ -106,8 +106,8 @@ module GeodataHelper
             strQuery = "SELECT f.id, s.feature_id, feat_class, fips_class, feat_name as 'name', st.alpha as 'state_abbreviation', fips_county_cd, " +
             "county_name as 'county_name', primary_lat as 'primary_latitude', primary_lon as 'primary_longitude', st.name as 'state_name', " +
             "county_name_full as 'full_county_name', url, s.name as link_title, s.description " +
-            "FROM `sites` s " +
-            "INNER JOIN `features`f ON f.id = s.feature_id " +
+            "from features f " +
+            "left join sites s ON f.id = s.feature_id " +
             "left join alternate_names an on f.id = an.feature_id " +
             "left join states st on f.state_id = st.id " +
             "WHERE ((county_name_full like ? or feat_name = ?) and st.alpha = ? and is_primary = 1 and url is not null)"
@@ -118,8 +118,8 @@ module GeodataHelper
             strQuery = "SELECT f.id, s.feature_id, feat_class, fips_class, feat_name as 'name', st.alpha as 'state_abbreviation', fips_county_cd, " +
             "county_name as 'county_name', primary_lat as 'primary_latitude', primary_lon as 'primary_longitude', st.name as 'state_name', " +
             "county_name_full as 'full_county_name', url, s.name as link_title, s.description " +
-            "FROM `sites` s " +
-            "INNER JOIN `features`f ON f.id = s.feature_id " +
+            "from features f " +
+            "left join sites s ON f.id = s.feature_id " +
             "left join alternate_names an on f.id = an.feature_id " +
             "left join states st on f.state_id = st.id " +
             "WHERE ((st.alpha=?) and (f.fips_class not like 'H%') and is_primary = 1 and url is not null)"
@@ -130,8 +130,8 @@ module GeodataHelper
             strQuery = "SELECT f.id, s.feature_id, feat_class, fips_class, feat_name as 'name', st.alpha as 'state_abbreviation', fips_county_cd, " +
             "county_name as 'county_name', primary_lat as 'primary_latitude', primary_lon as 'primary_longitude', st.name as 'state_name', " +
             "county_name_full as 'full_county_name', url, s.name as link_title, s.description " +
-            "FROM `sites` s " +
-            "INNER JOIN `features`f ON f.id = s.feature_id " +
+            "from features f " +
+            "left join sites s ON f.id = s.feature_id " +
             "left join alternate_names an on f.id = an.feature_id " +
             "left join states st on f.state_id = st.id " +
             "WHERE ((st.alpha=?) and (f.fips_class like 'H%') and is_primary = 1 and url is not null)"
@@ -142,8 +142,8 @@ module GeodataHelper
             strQuery = "SELECT f.id, s.feature_id, feat_class, fips_class, feat_name as 'name', st.alpha as 'state_abbreviation', fips_county_cd, " +
             "county_name as 'county_name', primary_lat as 'primary_latitude', primary_lon as 'primary_longitude', st.name as 'state_name', " +
             "county_name_full as 'full_county_name', url, s.name as link_title, s.description " +
-            "FROM `sites` s " +
-            "INNER JOIN `features`f ON f.id = s.feature_id " +
+            "from features f " +
+            "left join sites s ON f.id = s.feature_id " +
             "left join alternate_names an on f.id = an.feature_id " +
             "left join states st on f.state_id = st.id " +
             "WHERE ((st.alpha=?) and is_primary = 1 and url is not null)"
@@ -154,8 +154,8 @@ module GeodataHelper
             strQuery = "SELECT f.id, s.feature_id, feat_class, fips_class, feat_name as 'name', st.alpha as 'state_abbreviation', fips_county_cd, " +
             "county_name as 'county_name', primary_lat as 'primary_latitude', primary_lon as 'primary_longitude', st.name as 'state_name', " +
             "county_name_full as 'full_county_name', url, s.name as link_title, s.description " +
-            "FROM `sites` s " +
-            "INNER JOIN `features`f ON f.id = s.feature_id " +
+            "from features f " +
+            "left join sites s ON f.id = s.feature_id " +
             "left join alternate_names an on f.id = an.feature_id " +
             "left join states st on f.state_id = st.id " +
             "WHERE ((feat_name = ? or an.name=?) and st.alpha = ?)"
@@ -166,8 +166,8 @@ module GeodataHelper
             strQuery = "SELECT f.id, s.feature_id, feat_class, fips_class, feat_name as 'name', st.alpha as 'state_abbreviation', fips_county_cd, " +
             "county_name as 'county_name', primary_lat as 'primary_latitude', primary_lon as 'primary_longitude', st.name as 'state_name', " +
             "county_name_full as 'full_county_name', url, s.name as link_title, s.description " +
-            "FROM `sites` s " +
-            "INNER JOIN `features`f ON f.id = s.feature_id " +
+            "from features f " +
+            "left join sites s ON f.id = s.feature_id " +
             "left join alternate_names an on f.id = an.feature_id " +
             "left join states st on f.state_id = st.id " +
             "WHERE ((county_name_full like ? or feat_name = ?) and st.alpha = ?)"
@@ -178,8 +178,8 @@ module GeodataHelper
             strQuery = "SELECT f.id, s.feature_id, feat_class, fips_class, feat_name as 'name', st.alpha as 'state_abbreviation', fips_county_cd, " +
             "county_name as 'county_name', primary_lat as 'primary_latitude', primary_lon as 'primary_longitude', st.name as 'state_name', " +
             "county_name_full as 'full_county_name', url, s.name as link_title, s.description " +
-            "FROM `sites` s " +
-            "INNER JOIN `features`f ON f.id = s.feature_id " +
+            "from features f " +
+            "left join sites s ON f.id = s.feature_id " +
             "left join alternate_names an on f.id = an.feature_id " +
             "left join states st on f.state_id = st.id " +
             "WHERE ((st.alpha=?) and (f.fips_class not like 'H%'))"
@@ -190,8 +190,8 @@ module GeodataHelper
             strQuery = "SELECT f.id, s.feature_id, feat_class, fips_class, feat_name as 'name', st.alpha as 'state_abbreviation', fips_county_cd, " +
             "county_name as 'county_name', primary_lat as 'primary_latitude', primary_lon as 'primary_longitude', st.name as 'state_name', " +
             "county_name_full as 'full_county_name', url, s.name as link_title, s.description " +
-            "FROM `sites` s " +
-            "INNER JOIN `features`f ON f.id = s.feature_id " +
+            "from features f " +
+            "left join sites s ON f.id = s.feature_id " +
             "left join alternate_names an on f.id = an.feature_id " +
             "left join states st on f.state_id = st.id " +
             "WHERE ((st.alpha=?) and (f.fips_class like 'H%'))"
@@ -202,8 +202,8 @@ module GeodataHelper
             strQuery = "SELECT f.id, s.feature_id, feat_class, fips_class, feat_name as 'name', st.alpha as 'state_abbreviation', fips_county_cd, " +
             "county_name as 'county_name', primary_lat as 'primary_latitude', primary_lon as 'primary_longitude', st.name as 'state_name', " +
             "county_name_full as 'full_county_name', url, s.name as link_title, s.description " +
-            "FROM `sites` s " +
-            "INNER JOIN `features`f ON f.id = s.feature_id " +
+            "from features f " +
+            "left join sites s ON f.id = s.feature_id " +
             "left join alternate_names an on f.id = an.feature_id " +
             "left join states st on f.state_id = st.id " +
             "WHERE ((st.alpha=?))"
