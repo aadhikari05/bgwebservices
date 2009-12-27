@@ -47,8 +47,8 @@ class RecSitesController < ApplicationController
     domain = params[:domain]
     @this_result = Result.new
     @queryResults=RecSitesHelper.getRecommendedSitesByDomain(domain)
-    @this_result.rec_sites=combine_keywords_for_site(@queryResults)
- #   @queryResults = combine_keywords_for_site(@queryResults).to_xml
+    @queryResults = combine_keywords_for_site(@queryResults)
+    @this_result.rec_sites=@queryResults
     respond_to_format(@this_result)
   end
   
@@ -86,16 +86,13 @@ class RecSitesController < ApplicationController
   end
   
   def combine_keywords_for_site(results_array)
-    results_array.sort!{|x,y| x["url"] <=> y["url"]}
+#    results_array.sort!{|x,y| x["url"] <=> y["url"]}
     temp = Array.new
     for i in 0...results_array.length
-        for j in i+1...results_array.length
-            if results_array[i]["url"] = results_array[j]["url"]
-                results_array[i]["keywords"] = "dup" + ", " + "dup" 
-                temp << results_array[i]
-            end
-        end
+        temp = RecSitesHelper.getKeywordsBySiteID(results_array[i]["id"])
+        temp.collect!{|item| item = item["keywords"]}
+        results_array[i]["keywords"] =  temp.join(", ")
     end
-    temp
+    results_array
   end
 end

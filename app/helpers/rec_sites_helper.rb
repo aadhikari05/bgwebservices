@@ -44,9 +44,8 @@ module RecSitesHelper
   end
   
   def RecSitesHelper.getRecommendedSitesByDomain(domain)
-      strQuery= "SELECT url, title, description, keywords, name as category, orders, master_term "
-      strQuery += "FROM `keyword_recommended_site_keywords` krsk "
-      strQuery += "Left outer join keyword_recommended_sites k ON k.id= krsk.keyword_recommended_site_id "
+      strQuery= "SELECT k.id, url, title, description, name as category, orders, master_term "
+      strQuery += "FROM keyword_recommended_sites k "
       strQuery += "left join recommended_site_categories rsc on k.category_id = rsc.id "
       strQuery += "WHERE (k.url like 'http://www."+domain+"%') and url is not null"
       KeywordRecommendedSiteKeyword.find_by_sql(strQuery)            
