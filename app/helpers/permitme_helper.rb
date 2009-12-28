@@ -26,7 +26,9 @@ module PermitmeHelper
                         #as local county site is the only values that are not shared.
                         #This can be changed to 3 different items.  schoe 5/20/09 
                         if query_type.eql?("permitme_by_county")
-                            tempCountySites = findAllSitesByFeatureId(state_and_feature_array[ss]["feature_id"])
+                            sites = findAllSitesByFeatureId(state_and_feature_array[ss]["feature_id"])
+                            tempCountySites = Array.new
+                            tempCountySites << sites
                         else
                             tempCountySites = findAllCountySitesByFeatureAndState(state_and_feature_array[ss]["state_id"], state_and_feature_array[ss]["fips_feat_id"], state_and_feature_array[ss]["feature_id"])
                         end
@@ -135,7 +137,7 @@ module PermitmeHelper
         end
 
         def PermitmeHelper.getFeatureAndStatebyCountyAndState (feature, state_id)
-            strSQL = "SELECT f.id, state_id, fips_feat_id, s.name as state_name, county_name_full FROM `features` f "
+            strSQL = "SELECT f.id as feature_id, state_id, fips_feat_id, s.name as state_name, county_name_full FROM `features` f "
             strSQL += "left join states s on state_id = s.id "
             strSQL += "WHERE (fips_class like 'H%' and feat_name = ? and state_id = ?)"
             Feature.find_by_sql([strSQL,feature, state_id])
@@ -295,7 +297,7 @@ module PermitmeHelper
                 state_name = PermitmeHelper.getStateAlphaFromStateID(state_id)
                 foundSites[counter]["link_title"] = sites[0]["feat_name"] + ", " + state_name[0]["state_alpha"]
             end
-            
+
             return foundSites
         end
 
