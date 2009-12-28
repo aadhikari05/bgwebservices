@@ -227,7 +227,6 @@ module PermitmeHelper
         		strQuery += "left join permitme_sections sec on rg.permitme_section_id <=> sec.id "
         		strQuery += "left join states on state_id <=> states.id "
         		strQuery += "where state_id= ? "
-        		strQuery += "and(s.isExclusive <=> 0 or s.isExclusive is null) "
         		strQuery += "and(s.isActive = 1 or s.isActive is null) "
         		strQuery += "order by permitme_category_id, permitme_subcategory_id, permitme_section_id"
         		PermitmeResourceGroup.find_by_sql([strQuery,state_id])
@@ -243,7 +242,7 @@ module PermitmeHelper
         		strQuery += "join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id "
         		strQuery += "left join permitme_sections sec on rg.permitme_section_id <=> sec.id "
         		strQuery += "left join states on states.id = rg.state_id "            
-        		strQuery += "where state_id= ? and url is not null "
+        		strQuery += "where state_id= ? "
         		strQuery += "and(s.id = ?) "
         		strQuery += "and(s.isActive = 1 or s.isActive is null) "
         		strQuery += "order by permitme_category_id, permitme_subcategory_id, permitme_section_id"
@@ -260,7 +259,7 @@ module PermitmeHelper
           	strQuery += "left join permitme_subcategories s on rg.permitme_subcategory_id <=> s.id "
           	strQuery += "left join permitme_sections sec on rg.permitme_section_id <=> sec.id "
         		strQuery += "left join states on states.id = rg.state_id "            
-          	strQuery += "where url is not null and (s.name like ?) and (s.isActive = 1 or s.isActive is null) "
+          	strQuery += "where (s.name like ?) and (s.isActive = 1 or s.isActive is null) "
           	strQuery += "order by permitme_category_id, permitme_subcategory_id, permitme_section_id"
         		PermitmeResourceGroup.find_by_sql([strQuery,'%'+business_type+'%'])
         end
