@@ -124,7 +124,7 @@ module PermitmeHelper
         end
 
         def PermitmeHelper.getFeatureAndStatebyZip(zip)
-            strSQL = "select f.state_id, s.name as state_name, f.fips_feat_id, z.feature_id, f.county_name_full "
+            strSQL = "select f.state_id, s.name as state_name, f.fips_feat_id, z.feature_id, f.county_name_full, f.fips_class "
             strSQL += "from features f "
             strSQL += "left join zipcodes z on z.feature_id = f.id "
             strSQL += "left join states s on s.id = f.state_id "
