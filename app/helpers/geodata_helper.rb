@@ -66,7 +66,7 @@ module GeodataHelper
         		Site.find_by_sql([strQuery,alpha])
       	end
         
-         def  GeodataHelper.get_county_links_for_city_of(alpha)
+         def  GeodataHelper.get_county_links_for_state_of(alpha)
             strQuery = "SELECT f.id, s.feature_id, feat_class, fips_class, feat_name as 'name', st.alpha as 'state_abbreviation', fips_county_cd, " +
             "county_name as 'county_name', primary_lat as 'primary_latitude', primary_lon as 'primary_longitude', st.name as 'state_name', " +
             "county_name_full as 'full_county_name', url, s.name as link_title, s.description " +
@@ -78,7 +78,7 @@ module GeodataHelper
         		Site.find_by_sql([strQuery,alpha])
       	end
         
-         def  GeodataHelper.get_city_links_for_state_of(alpha)
+         def  GeodataHelper.get_all_links_for_state_of(alpha)
             strQuery = "SELECT f.id, s.feature_id, feat_class, fips_class, feat_name as 'name', st.alpha as 'state_abbreviation', fips_county_cd, " +
             "county_name as 'county_name', primary_lat as 'primary_latitude', primary_lon as 'primary_longitude', st.name as 'state_name', " +
             "county_name_full as 'full_county_name', url, s.name as link_title, s.description " +
@@ -90,7 +90,7 @@ module GeodataHelper
         		Site.find_by_sql([strQuery,alpha])
       	end
         
-         def  GeodataHelper.primary_links_for_city_of(feature, state_alpha)
+         def  GeodataHelper.get_primary_links_for_city_of(feature, state_alpha)
             strQuery = "SELECT f.id, s.feature_id, feat_class, fips_class, feat_name as 'name', st.alpha as 'state_abbreviation', fips_county_cd, " +
             "county_name as 'county_name', primary_lat as 'primary_latitude', primary_lon as 'primary_longitude', st.name as 'state_name', " +
             "county_name_full as 'full_county_name', url, s.name as link_title, s.description " +
@@ -102,7 +102,7 @@ module GeodataHelper
         		Site.find_by_sql([strQuery,feature, feature, state_alpha])
       	end
         
-         def  GeodataHelper.primary_links_for_county_of(feature, state_alpha)
+         def  GeodataHelper.get_primary_links_for_county_of(feature, state_alpha)
             strQuery = "SELECT f.id, s.feature_id, feat_class, fips_class, feat_name as 'name', st.alpha as 'state_abbreviation', fips_county_cd, " +
             "county_name as 'county_name', primary_lat as 'primary_latitude', primary_lon as 'primary_longitude', st.name as 'state_name', " +
             "county_name_full as 'full_county_name', url, s.name as link_title, s.description " +
@@ -114,7 +114,7 @@ module GeodataHelper
         		Site.find_by_sql([strQuery,'%'+feature+'%', feature, state_alpha])
       	end
         
-         def  GeodataHelper.primary_city_links_for_state_of(alpha)
+         def  GeodataHelper.get_primary_city_links_for_state_of(alpha)
             strQuery = "SELECT f.id, s.feature_id, feat_class, fips_class, feat_name as 'name', st.alpha as 'state_abbreviation', fips_county_cd, " +
             "county_name as 'county_name', primary_lat as 'primary_latitude', primary_lon as 'primary_longitude', st.name as 'state_name', " +
             "county_name_full as 'full_county_name', url, s.name as link_title, s.description " +
@@ -126,7 +126,7 @@ module GeodataHelper
         		Site.find_by_sql([strQuery,alpha])
       	end
         
-         def  GeodataHelper.primary_county_links_for_city_of(alpha)
+         def  GeodataHelper.get_primary_county_links_for_state_of(alpha)
             strQuery = "SELECT f.id, s.feature_id, feat_class, fips_class, feat_name as 'name', st.alpha as 'state_abbreviation', fips_county_cd, " +
             "county_name as 'county_name', primary_lat as 'primary_latitude', primary_lon as 'primary_longitude', st.name as 'state_name', " +
             "county_name_full as 'full_county_name', url, s.name as link_title, s.description " +
@@ -134,11 +134,11 @@ module GeodataHelper
             "left join sites s ON f.id = s.feature_id " +
             "left join alternate_names an on f.id = an.feature_id " +
             "left join states st on f.state_id = st.id " +
-            "WHERE ((st.alpha=?) and (f.fips_class like 'H%') and is_primary = 1 and url is not null)"
+            "WHERE ((st.alpha=?) and (f.fips_class like 'H%' or f.fips_class like 'C7') and is_primary = 1 and url is not null)"
         		Site.find_by_sql([strQuery,alpha])
       	end
         
-         def  GeodataHelper.primary_city_links_for_state_of(alpha)
+         def  GeodataHelper.get_all_primary_links_for_state_of(alpha)
             strQuery = "SELECT f.id, s.feature_id, feat_class, fips_class, feat_name as 'name', st.alpha as 'state_abbreviation', fips_county_cd, " +
             "county_name as 'county_name', primary_lat as 'primary_latitude', primary_lon as 'primary_longitude', st.name as 'state_name', " +
             "county_name_full as 'full_county_name', url, s.name as link_title, s.description " +
@@ -186,7 +186,7 @@ module GeodataHelper
         		Site.find_by_sql([strQuery,alpha])
       	end
         
-         def  GeodataHelper.get_county_data_for_city_of(alpha)
+         def  GeodataHelper.get_county_data_for_state_of(alpha)
             strQuery = "SELECT f.id, s.feature_id, feat_class, fips_class, feat_name as 'name', st.alpha as 'state_abbreviation', fips_county_cd, " +
             "county_name as 'county_name', primary_lat as 'primary_latitude', primary_lon as 'primary_longitude', st.name as 'state_name', " +
             "county_name_full as 'full_county_name', url, s.name as link_title, s.description " +
@@ -194,11 +194,11 @@ module GeodataHelper
             "left join sites s ON f.id = s.feature_id " +
             "left join alternate_names an on f.id = an.feature_id " +
             "left join states st on f.state_id = st.id " +
-            "WHERE ((st.alpha=?) and (f.fips_class like 'H%'))"
+            "WHERE ((st.alpha=?) and (f.fips_class like 'H%' or f.fips_class like 'C7'))"
         		Site.find_by_sql([strQuery,alpha])
       	end
         
-         def  GeodataHelper.get_city_data_for_state_of(alpha)
+         def  GeodataHelper.get_all_data_for_state_of(alpha)
             strQuery = "SELECT f.id, s.feature_id, feat_class, fips_class, feat_name as 'name', st.alpha as 'state_abbreviation', fips_county_cd, " +
             "county_name as 'county_name', primary_lat as 'primary_latitude', primary_lon as 'primary_longitude', st.name as 'state_name', " +
             "county_name_full as 'full_county_name', url, s.name as link_title, s.description " +
