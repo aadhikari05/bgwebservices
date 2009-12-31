@@ -19,7 +19,7 @@ module GrantLoanHelper
       grant_loan_sql += "from grant_loans "
       grant_loan_sql += "left join grant_loan_state gls on gls.grant_loan_id = grant_loans.id "
       grant_loan_sql += "left join states s on gls.state_id = s.id "
-      grant_loan_sql += "where gov_type = 'state' and state_id=?"
+      grant_loan_sql += "where gov_type = 'state' and gls.state_id=?"
       GrantLoan.find_by_sql([grant_loan_sql,state_id])
   end
 
@@ -31,7 +31,7 @@ module GrantLoanHelper
       grant_loan_sql += "from grant_loans "
       grant_loan_sql += "left join grant_loan_state gls on gls.grant_loan_id = grant_loans.id "
       grant_loan_sql += "left join states s on gls.state_id = s.id "
-      grant_loan_sql += "where (gov_type = 'federal') or (gov_type = 'private') or (gov_type = 'state' and state_id=?)"
+      grant_loan_sql += "where (gov_type = 'federal') or (gov_type = 'private') or (gov_type = 'state' and gls.state_id=?)"
       GrantLoan.find_by_sql([grant_loan_sql,state_id])
   end
 
