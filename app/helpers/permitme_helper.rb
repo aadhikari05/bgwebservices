@@ -53,21 +53,9 @@ module PermitmeHelper
 
             if !query_type.eql?("all_permitme_by_state")
                 @this_result = get_state_business_type_permitme_sites(@this_result, state_and_feature_array[0]["state_id"], business_type_id)
-                @this_result.sites_for_business_type.each do |site|
-                  if !site["state"].nil?
-                    site["state"] = state_and_feature_array[ss]["state_name"]
-                    site["county"] = state_and_feature_array[ss]["county_name_full"]
-                  end
-                end
             else
                 state_id = state_and_feature_array[0]["state_id"]
                 @this_result.state_sites = PermitMeResultsByStateQuery(state_id)
-                @this_result.state_sites.each do |site|
-                  if !site["state"].nil?
-                    site["state"] = state_and_feature_array[ss]["state_name"]
-                    site["county"] = state_and_feature_array[ss]["county_name_full"]
-                  end
-                end
             end
 
             @this_result
@@ -222,7 +210,7 @@ module PermitmeHelper
       	end
 
         def PermitmeHelper.PermitMeResultsByStateQuery(state_id)
-            strQuery = "select states.name as state_name, c.name as category, "
+            strQuery = "select states.name as state, c.name as category, "
             strQuery += "s.name as business_type, "
             strQuery += "sec.name as section, rg.description as resource_group_description, "
             strQuery += "p.url, p.link_title, p.link_description "
@@ -238,7 +226,7 @@ module PermitmeHelper
         end
 
         def PermitmeHelper.PermitMeResultsByBusinessTypeQuery(state_id, business_type_id)
-            strQuery = "select states.name as state_name, c.name as category, "
+            strQuery = "select states.name as state, c.name as category, "
             strQuery += "s.name as business_type, "
             strQuery += "sec.name as section, rg.description as resource_group_description, "
             strQuery += "p.url, p.link_title, p.link_description "
