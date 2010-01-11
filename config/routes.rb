@@ -45,13 +45,13 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'rec_sites/category/:category.:format', :controller => "rec_sites", :action => "category"
 
   #PERMITME ROUTES
-  map.connect 'permitme/by_zip/:business_type/:zip.:format', :controller => "permitme", :action => "permitme_by_zip"
-  map.connect 'permitme/state_and_city/:business_type/:alpha/:feature.:format', :controller => "permitme", :action => "permitme_by_state_and_feature"
-  map.connect 'permitme/state_and_county/:business_type/:alpha/:feature.:format', :controller => "permitme", :action => "permitme_by_state_and_county"
-  map.connect 'permitme/state_only/:business_type/:alpha.:format', :controller => "permitme", :action => "permitme_by_state_only"
-  map.connect 'permitme/all_by_state/:alpha.:format', :controller => "permitme", :action => "all_permitme_by_state"
-  map.connect 'permitme/by_business_type/:business_type.:format', :controller => "permitme", :action => "permitme_by_business_type"
-  map.connect 'permitme/by_category/:category.:format', :controller => "permitme", :action => "permitme_by_category"
+  map.connect 'license_permit/by_zip/:business_type/:zip.:format', :controller => "permitme", :action => "permitme_by_zip"
+  map.connect 'license_permit/state_and_city/:business_type/:alpha/:feature.:format', :controller => "permitme", :action => "permitme_by_state_and_feature"
+  map.connect 'license_permit/state_and_county/:business_type/:alpha/:feature.:format', :controller => "permitme", :action => "permitme_by_state_and_county"
+  map.connect 'license_permit/state_only/:business_type/:alpha.:format', :controller => "permitme", :action => "permitme_by_state_only"
+  map.connect 'license_permit/all_by_state/:alpha.:format', :controller => "permitme", :action => "all_permitme_by_state"
+  map.connect 'license_permit/by_business_type/:business_type.:format', :controller => "permitme", :action => "permitme_by_business_type"
+  map.connect 'license_permit/by_category/:category.:format', :controller => "permitme", :action => "permitme_by_category"
 
   #GRANT_LOAN ROUTES
   map.connect 'loans_grants/federal.:format', :controller => "grant_loan", :action => "all_federal"
